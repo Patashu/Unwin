@@ -39,21 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Controls.gd"
 }, {
-"base": "Node2D",
-"class": "CreditsModal",
-"language": "GDScript",
-"path": "res://CreditsModal.gd"
-}, {
-"base": "Node2D",
-"class": "EndingCutscene1",
-"language": "GDScript",
-"path": "res://EndingCutscene1.gd"
-}, {
-"base": "Node2D",
-"class": "EndingCutscene2",
-"language": "GDScript",
-"path": "res://EndingCutscene2.gd"
-}, {
 "base": "Sprite",
 "class": "FadingSprite",
 "language": "GDScript",
@@ -193,46 +178,6 @@ _global_script_classes=[ {
 "class": "SuperScaling",
 "language": "GDScript",
 "path": "res://SuperScaling/SuperScaling.gd"
-}, {
-"base": "Sprite",
-"class": "ThoughtBubble",
-"language": "GDScript",
-"path": "res://ThoughtBubble.gd"
-}, {
-"base": "Sprite",
-"class": "TimeBubble",
-"language": "GDScript",
-"path": "res://TimeBubble.gd"
-}, {
-"base": "Sprite",
-"class": "TimelineDivider",
-"language": "GDScript",
-"path": "res://timeline/TimelineDivider.gd"
-}, {
-"base": "Sprite",
-"class": "TimelineSlot",
-"language": "GDScript",
-"path": "res://timeline/TimelineSlot.gd"
-}, {
-"base": "Sprite",
-"class": "TimelineSprite",
-"language": "GDScript",
-"path": "res://timeline/TimelineSprite.gd"
-}, {
-"base": "Node2D",
-"class": "TimelineViewer",
-"language": "GDScript",
-"path": "res://timeline/TimelineViewer.gd"
-}, {
-"base": "Node2D",
-"class": "TitleScreen",
-"language": "GDScript",
-"path": "res://TitleScreen.gd"
-}, {
-"base": "Sprite",
-"class": "TransitionToTheEnd",
-"language": "GDScript",
-"path": "res://TransitionToTheEnd.gd"
 } ]
 _global_script_class_icons={
 "AccessibleSpinBox": "",
@@ -241,9 +186,6 @@ _global_script_class_icons={
 "AuthorsReplayModalPrompt": "",
 "BindingButton": "",
 "Controls": "",
-"CreditsModal": "",
-"EndingCutscene1": "",
-"EndingCutscene2": "",
 "FadingSprite": "",
 "FloatingText": "",
 "GainInsightModalPrompt": "",
@@ -271,22 +213,15 @@ _global_script_class_icons={
 "Shade": "",
 "SparkleSpawner": "",
 "StarSprite": "",
-"SuperScaling": "",
-"ThoughtBubble": "",
-"TimeBubble": "",
-"TimelineDivider": "",
-"TimelineSlot": "",
-"TimelineSprite": "",
-"TimelineViewer": "",
-"TitleScreen": "",
-"TransitionToTheEnd": ""
+"SuperScaling": ""
 }
 
 [application]
 
-config/name="Entwined Time"
-config/description="Entwined Time"
+config/name="Unwin"
+config/description="Unwin"
 run/main_scene="res://LevelScene.tscn"
+boot_splash/show_image=false
 boot_splash/image="res://assets/cutscenes/entwined time jacket.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
