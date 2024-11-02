@@ -3533,7 +3533,6 @@ func load_custom_level(custom: String) -> void:
 	level_name = level_info["level_name"];
 	level_author = level_info["level_author"];
 	level_replay = level_info["level_replay"];
-	clock_turns = level_info["clock_turns"];
 	map_x_max = int(level_info["map_x_max"]);
 	map_y_max = int(level_info["map_y_max"]);
 	sky_timer = 0;
