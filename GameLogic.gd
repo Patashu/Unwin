@@ -2607,17 +2607,9 @@ func ready_map() -> void:
 		bg.position = Vector2(-underterrainfolder.position.x, -underterrainfolder.position.y);
 		underterrainfolder.add_child(bg);
 	
-	initialize_timeline_viewers(); # has to be before setup_replay
-	
-	if (level_info.setup_replay != ""):
-		setup_replay(level_info.setup_replay);
-	
 	finish_animations(Chrono.TIMELESS);
 	update_info_labels();
 	check_won(Chrono.TIMELESS);
-	
-	for goal in goals:
-		goal.instantly_reach_scalify();
 	
 	ready_tutorial();
 	update_level_label();
@@ -7905,25 +7897,6 @@ func replay_advance_turn(amount: int) -> void:
 	replay_paused = true;
 	update_info_labels();
 			
-func setup_replay(replay: String) -> void:
-	# should be silent
-	var old_muted = muted;
-	muted = true;
-	# strip annotation if any
-	var annotated = replay.find_last("$");
-	if (annotated >= 0):
-		replay = replay.get_slice("$", 2); # it's got more performance!
-	for chr in replay:
-		do_one_setup_letter(chr);
-		finish_animations(Chrono.MOVE); #doesn't help?
-		calm_down_timelines(); #doesn't help?
-	muted = old_muted;
-	user_replay = "";
-	meta_turn = 0;
-	meta_undo_buffer = [];
-	update_info_labels();
-	calm_down_timelines(); #doesn't help?
-			
 func calm_down_timelines() -> void:
 	heavytimeline.calm_down();
 	lighttimeline.calm_down();
@@ -8574,8 +8547,8 @@ func serialize_current_level() -> String:
 	# keep in sync with LevelEditor.gd serialize_current_level()
 	var result = "EntwinedTimePuzzleStart: " + level_name + " by " + level_author + "\n";
 	var level_metadata = {};
-	var metadatas = ["level_name", "level_author", #"level_replay", "heavy_max_moves", "light_max_moves",
-	"clock_turns", "map_x_max", "map_y_max", "target_track" #"target_sky"
+	var metadatas = ["level_name", "level_author", #"level_replay",
+	"clock_turns", "map_x_max", "map_y_max", 
 	];
 	for metadata in metadatas:
 		level_metadata[metadata] = self.get(metadata);
@@ -8591,9 +8564,6 @@ func serialize_current_level() -> String:
 		
 	var level_info = level.get_node("LevelInfo");
 	level_metadata["level_replay"] = level_info.level_replay;
-	level_metadata["setup_replay"] = level_info.setup_replay;
-	level_metadata["heavy_max_moves"] = int(level_info.heavy_max_moves);
-	level_metadata["light_max_moves"] = int(level_info.light_max_moves);
 		
 	var layers = [];
 	layers.append(level);
@@ -8664,14 +8634,8 @@ func deserialize_custom_level(custom: String) -> Node:
 		floating_text("Assert failed: Line 2 should be a valid dictionary")
 		return null;
 	
-	var metadatas = ["level_name", "level_author", "level_replay", "heavy_max_moves", "light_max_moves",
-	"clock_turns", "map_x_max", "map_y_max", "target_sky", "layers", "target_track", "setup_replay"];
-	
-	#datafix: old custom levels with missing fields
-	if (!result.has("target_track")):
-		result["target_track"] = target_track;
-	if (!result.has("setup_replay")):
-		result["setup_replay"] = "";
+	var metadatas = ["level_name", "level_author", "level_replay",
+	"clock_turns", "map_x_max", "map_y_max", "target_sky", "layers",];
 	
 	for metadata in metadatas:
 		if (!result.has(metadata)):
@@ -8725,8 +8689,6 @@ func load_custom_level(custom: String) -> void:
 	level_name = level_info["level_name"];
 	level_author = level_info["level_author"];
 	level_replay = level_info["level_replay"];
-	heavy_max_moves = int(level_info["heavy_max_moves"]);
-	light_max_moves = int(level_info["light_max_moves"]);
 	clock_turns = level_info["clock_turns"];
 	map_x_max = int(level_info["map_x_max"]);
 	map_y_max = int(level_info["map_y_max"]);
@@ -8734,16 +8696,6 @@ func load_custom_level(custom: String) -> void:
 	sky_timer_max = 3.0;
 	old_sky = current_sky;
 	target_sky = Color(level_info["target_sky"]);
-	# TODO: poorly refactored
-	if (target_track != level_info["target_track"]):
-		target_track = level_info["target_track"];
-		if (target_track < -1 or target_track >= music_tracks.size()):
-			target_track = -1;
-		if (current_track == -1):
-			play_next_song();
-		else:
-			fadeout_timer = max(fadeout_timer, 0); #so if we're in the middle of a fadeout it doesn't reset
-			fadeout_timer_max = 3.0;
 	
 	levelfolder.remove_child(terrainmap);
 	terrainmap.queue_free();

@@ -110,198 +110,30 @@ func _searchbox_mouse_exited() -> void:
 func initialize_picker_array() -> void:
 	# always true now
 	show_tooltips = true;
-	var puzzles = gamelogic.puzzles_completed;
-	if gamelogic.save_file.has("unlock_everything") and gamelogic.save_file["unlock_everything"]:
-		puzzles += 99999;
-	elif gamelogic.save_file["levels"].has("Chrono Lab Reactor") and gamelogic.save_file["levels"]["Chrono Lab Reactor"].has("won") and gamelogic.save_file["levels"]["Chrono Lab Reactor"]["won"]:
-		puzzles += 99999;
+		
+	# keep in sync with GameLogic
+#enum Tiles {
+#	Floor,
+#	Wall,
+#	Player,
+#	Win,
+#	Star,
+#	DirtBlock,
+#	IceBlock,
+#	Hole,
+#	BottomlessPit,
+#}
 		
 	picker_array.append(-1);
-	picker_array.append(Tiles.HeavyIdle);
-	picker_array.append(Tiles.LightIdle);
-	picker_array.append(Tiles.HeavyGoal);
-	picker_array.append(Tiles.LightGoal);
+	picker_array.append(Tiles.Floor);
 	picker_array.append(Tiles.Wall);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[1]):
-		picker_array.append(Tiles.Spikeball);
-		picker_array.append(Tiles.Fire);
-		picker_array.append(Tiles.HeavyFire);
-		picker_array.append(Tiles.LightFire);
-		picker_array.append(Tiles.NoHeavy);
-		picker_array.append(Tiles.NoLight);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[3]):
-		picker_array.append(Tiles.OnewayEast);
-		picker_array.append(Tiles.OnewayNorth);
-		picker_array.append(Tiles.OnewaySouth);
-		picker_array.append(Tiles.OnewayWest);
-		picker_array.append(Tiles.OnewayEastGreen);
-		picker_array.append(Tiles.OnewayNorthGreen);
-		picker_array.append(Tiles.OnewaySouthGreen);
-		picker_array.append(Tiles.OnewayWestGreen);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[4]):
-		picker_array.append(Tiles.Ladder);
-		picker_array.append(Tiles.WoodenPlatform);
-		picker_array.append(Tiles.LadderPlatform);
-		picker_array.append(Tiles.OnewayEastPurple);
-		picker_array.append(Tiles.OnewayNorthPurple);
-		picker_array.append(Tiles.OnewaySouthPurple);
-		picker_array.append(Tiles.OnewayWestPurple);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[5]):
-		picker_array.append(Tiles.IronCrate);
-		picker_array.append(Tiles.CrateGoal);
-		picker_array.append(Tiles.NoCrate);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[6]):
-		picker_array.append(Tiles.ColourRed);
-		picker_array.append(Tiles.ColourBlue);
-		picker_array.append(Tiles.ColourGray);
-		picker_array.append(Tiles.ColourMagenta);
-		picker_array.append(Tiles.WoodenCrate);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[7]):
-		picker_array.append(Tiles.GlassBlock);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[8]):
-		picker_array.append(Tiles.ColourGreen);
-		picker_array.append(Tiles.GreenSpikeball);
-		picker_array.append(Tiles.GreenFire);
-		picker_array.append(Tiles.GreenGlassBlock);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[9]):
-		picker_array.append(Tiles.Fuzz);
-		picker_array.append(Tiles.OneUndo);
-		picker_array.append(Tiles.NoUndo);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[10]):
-		picker_array.append(Tiles.TimeCrystalGreen);
-		picker_array.append(Tiles.TimeCrystalMagenta);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[11]):
-		picker_array.append(Tiles.CuckooClock);
-		picker_array.append(Tiles.TheNight);
-		picker_array.append(Tiles.TheStars);
-	if (puzzles >= gamelogic.chapter_standard_unlock_requirements[12]):
-		picker_array.append(Tiles.SteelCrate);
-		picker_array.append(Tiles.PowerCrate);
-		picker_array.append(Tiles.ColourVoid);
-		picker_array.append(Tiles.ColourCyan);
-		picker_array.append(Tiles.ColourOrange);
-		picker_array.append(Tiles.ColourYellow);
-		picker_array.append(Tiles.ColourPurple);
-		picker_array.append(Tiles.ColourBlurple);
-		picker_array.append(Tiles.ColourWhite);
-		picker_array.append(Tiles.ColourNative)
-		picker_array.append(Tiles.ChronoHelixBlue);
-		picker_array.append(Tiles.ChronoHelixRed);
-		picker_array.append(Tiles.HeavyGoalJoke);
-		picker_array.append(Tiles.LightGoalJoke);
-		picker_array.append(Tiles.PowerSocket);
-		picker_array.append(Tiles.GreenPowerSocket);
-		picker_array.append(Tiles.VoidPowerSocket);
-		picker_array.append(Tiles.VoidSpikeball);
-		picker_array.append(Tiles.VoidGlassBlock);
-		picker_array.append(Tiles.GlassBlockCracked);
-		picker_array.append(Tiles.PhaseWallBlue)
-		picker_array.append(Tiles.PhaseWallRed)
-		picker_array.append(Tiles.PhaseWallGray)
-		picker_array.append(Tiles.PhaseWallPurple)
-		picker_array.append(Tiles.PhaseLightningBlue)
-		picker_array.append(Tiles.PhaseLightningRed)
-		picker_array.append(Tiles.PhaseLightningGray)
-		picker_array.append(Tiles.PhaseLightningPurple)
-		picker_array.append(Tiles.OnewayEastLose)
-		picker_array.append(Tiles.OnewayNorthLose)
-		picker_array.append(Tiles.OnewaySouthLose)
-		picker_array.append(Tiles.OnewayWestLose)
-		picker_array.append(Tiles.Checkpoint)
-		picker_array.append(Tiles.CheckpointRed)
-		picker_array.append(Tiles.CheckpointBlue)
-		picker_array.append(Tiles.GreenFog)
-		picker_array.append(Tiles.Floorboards)
-		picker_array.append(Tiles.MagentaFloorboards)
-		picker_array.append(Tiles.GreenFloorboards)
-		picker_array.append(Tiles.VoidFloorboards)
-		picker_array.append(Tiles.Hole)
-		picker_array.append(Tiles.GreenHole)
-		picker_array.append(Tiles.VoidHole)
-		picker_array.append(Tiles.BoostPad)
-		picker_array.append(Tiles.GreenBoostPad)
-		picker_array.append(Tiles.SlopeNW)
-		picker_array.append(Tiles.SlopeNE)
-		picker_array.append(Tiles.SlopeSE)
-		picker_array.append(Tiles.SlopeSW)
-		picker_array.append(Tiles.Boulder)
-		picker_array.append(Tiles.PhaseWallGreenEven)
-		picker_array.append(Tiles.PhaseWallGreenOdd)
-		picker_array.append(Tiles.NudgeEast)
-		picker_array.append(Tiles.NudgeNorth)
-		picker_array.append(Tiles.NudgeSouth)
-		picker_array.append(Tiles.NudgeWest)
-		picker_array.append(Tiles.NudgeEastGreen)
-		picker_array.append(Tiles.NudgeNorthGreen)
-		picker_array.append(Tiles.NudgeSouthGreen)
-		picker_array.append(Tiles.NudgeWestGreen)
-		picker_array.append(Tiles.Grate)
-		picker_array.append(Tiles.AntiGrate)
-		picker_array.append(Tiles.GhostPlatform)
-		picker_array.append(Tiles.Propellor)
-		picker_array.append(Tiles.FallOne)
-		picker_array.append(Tiles.FallInf)
-		picker_array.append(Tiles.DurPlus)
-		picker_array.append(Tiles.DurMinus)
-		picker_array.append(Tiles.HvyPlus)
-		picker_array.append(Tiles.HvyMinus)
-		picker_array.append(Tiles.StrPlus)
-		picker_array.append(Tiles.StrMinus)
-		picker_array.append(Tiles.RepairStation)
-		picker_array.append(Tiles.RepairStationGray)
-		picker_array.append(Tiles.RepairStationGreen)
-		picker_array.append(Tiles.ZombieTile)
-		picker_array.append(Tiles.HeavyMimic)
-		picker_array.append(Tiles.LightMimic)
-		picker_array.append(Tiles.GhostFog)
-		picker_array.append(Tiles.PurpleFog)
-		picker_array.append(Tiles.Eclipse)
-		picker_array.append(Tiles.PhaseBoardRed)
-		picker_array.append(Tiles.PhaseBoardBlue)
-		picker_array.append(Tiles.PhaseBoardGray)
-		picker_array.append(Tiles.PhaseBoardPurple)
-		picker_array.append(Tiles.PhaseBoardVoid)
-		picker_array.append(Tiles.PhaseBoardDeath)
-		picker_array.append(Tiles.PhaseBoardLife)
-		picker_array.append(Tiles.PhaseBoardHeavy)
-		picker_array.append(Tiles.PhaseBoardLight)
-		picker_array.append(Tiles.PhaseBoardCrate)
-		picker_array.append(Tiles.SpiderWeb)
-		picker_array.append(Tiles.SpiderWebGreen)
-		picker_array.append(Tiles.NoPush)
-		picker_array.append(Tiles.NoPushGreen)
-		picker_array.append(Tiles.YesPush)
-		picker_array.append(Tiles.YesPushGreen)
-		picker_array.append(Tiles.NoLeft)
-		picker_array.append(Tiles.NoLeftGreen)
-		picker_array.append(Tiles.OnewayEastGray)
-		picker_array.append(Tiles.OnewayNorthGray)
-		picker_array.append(Tiles.OnewaySouthGray)
-		picker_array.append(Tiles.OnewayWestGray)
-		picker_array.append(Tiles.PinkJelly)
-		picker_array.append(Tiles.CyanJelly)
-		picker_array.append(Tiles.Spotlight)
-		picker_array.append(Tiles.Continuum)
-		picker_array.append(Tiles.GateOfEternity)
-		picker_array.append(Tiles.GateOfDemise)
-		picker_array.append(Tiles.VoidSingularity)
-		picker_array.append(Tiles.VoidWall)
-		picker_array.append(Tiles.VoidFire)
-		picker_array.append(Tiles.VoidStars)
-		picker_array.append(Tiles.VoidFog)
-		picker_array.append(Tiles.NoRising)
-		picker_array.append(Tiles.NoFalling)
-		picker_array.append(Tiles.NoGrounded)
-		picker_array.append(Tiles.PhaseBoardEast)
-		picker_array.append(Tiles.PhaseBoardNorth)
-		picker_array.append(Tiles.PhaseBoardSouth)
-		picker_array.append(Tiles.PhaseBoardWest)
-		picker_array.append(Tiles.RepairStationBumper)
-		picker_array.append(Tiles.Fence)
-		picker_array.append(Tiles.Fan)
-		picker_array.append(Tiles.Bumper)
-		picker_array.append(Tiles.Passage)
-		picker_array.append(Tiles.GreenPassage)
+	picker_array.append(Tiles.Player);
+	picker_array.append(Tiles.Win);
+	picker_array.append(Tiles.Star);
+	picker_array.append(Tiles.DirtBlock);
+	picker_array.append(Tiles.IceBlock);
+	picker_array.append(Tiles.Hole);
+	picker_array.append(Tiles.BottomlessPit);
 	
 	for i in range(picker_array.size()):
 		var x = i % 21;
@@ -384,8 +216,8 @@ func serialize_current_level() -> String:
 
 	var result = "EntwinedTimePuzzleStart: " + level_info.level_name + " by " + level_info.level_author + "\n";
 	var level_metadata = {};
-	var metadatas = ["level_name", "level_author", "level_replay", "heavy_max_moves", "light_max_moves",
-	"clock_turns", "map_x_max", "map_y_max", "target_track", "setup_replay" #"target_sky"
+	var metadatas = ["level_name", "level_author", "level_replay",
+	"clock_turns", "map_x_max", "map_y_max", #"target_sky"
 	];
 	for metadata in metadatas:
 		level_metadata[metadata] = level_info.get(metadata);
@@ -632,354 +464,24 @@ func tooltip_for_tile(tile: int) -> String:
 	match tile:
 		-1:
 			text = "";
-		Tiles.HeavyIdle:
-			text = "Heavy: Actor. Character. Heaviness: Steel. Strength: Steel. Durability: Spikes. Fall speed: 2.  Native Time Colour: Purple. Doesn't float (immediately starts falling when ungrounded or moving down onto a non-ladder, no air control when falling). Climbs. Sticky top: After making a forward move, anything that was in the tile above it mimics the move. (Only the first Heavy in layer-then-reading-order will be real. The rest will be inert. Inert robots don't activate time crystals, goals, checkpoints and don't care about one rewind/no rewind/fuzz.)"
-		Tiles.LightIdle:
-			text = "Light: Actor. Character. Heaviness: Iron. Strength: Iron. Durability: Nothing. Fall speed: 1. Native Time Colour: Blurple. Floats (if grounded and could fall, enters rising state. When moving down, remains grounded. Has air control while falling.) Climbs. Clumsy (loses one strength when indirectly pushed). (Only the first Heavy in layer-then-reading-order will be real. The rest will be inert. Inert robots don't activate time crystals, goals, checkpoints and don't care about one rewind/no rewind/fuzz.)"
-		Tiles.HeavyGoal:
-			text = "Heavy Goal: At end of turn, if unbroken Heavy is on a Heavy Goal and unbroken Light is on a Light Goal, you win."
-		Tiles.LightGoal:
-			text = "Light Goal: At end of turn, if unbroken Heavy is on a Heavy Goal and unbroken Light is on a Light Goal, you win."
+		Tiles.Floor:
+			text = "Floor: Ice Blocks slide along this."
 		Tiles.Wall:
 			text = "Wall: Solid."
-		Tiles.Spikeball:
-			text = "Spikeball: Solid. Surprise: If the actor doesn't have Spikes or greater Durability, it breaks. (Surprises trigger on failure to enter, and aren't stable ground if they'd do something.)"
-		Tiles.Fire:
-			text = "Fire: When an actor experiences time, after gravity, if it's on Fire and doesn't have Fire or greater Durability, it breaks."
-		Tiles.HeavyFire:
-			text = "Heavy Fire: Fire, but it can't break Light."
-		Tiles.LightFire:
-			text = "Light Fire: Fire, but it deals Spikes level damage."
-		Tiles.NoHeavy:
-			text = "No Heavy: Solid to Heavy."
-		Tiles.NoLight:
-			text = "No Light: Solid to Light."
-		Tiles.OnewayEast:
-			text = "One Way: Solid to forward moves entering its tile, solid to retroactive moves exiting its tile."
-		Tiles.OnewayNorth:
-			text = "One Way: Solid to forward moves entering its tile, solid to retroactive moves exiting its tile."
-		Tiles.OnewaySouth:
-			text = "One Way: Solid to forward moves entering its tile, solid to retroactive moves exiting its tile."
-		Tiles.OnewayWest:
-			text = "One Way: Solid to forward moves entering its tile, solid to retroactive moves exiting its tile."
-		Tiles.OnewayEastGreen:
-			text = "Green One Way: Solid to moves entering its tile."
-		Tiles.OnewayNorthGreen:
-			text = "Green One Way: Solid to moves entering its tile."
-		Tiles.OnewaySouthGreen:
-			text = "Green One Way: Solid to moves entering its tile."
-		Tiles.OnewayWestGreen:
-			text = "Green One Way: Solid to moves entering its tile."
-		Tiles.Ladder:
-			text = "Ladder: Actors that can climb and aren't broken are supported in this tile (they become and remain grounded)."
-		Tiles.WoodenPlatform:
-			text = "Trapdoor: Solid to gravity moves."
-		Tiles.LadderPlatform:
-			text = "Ladder + Trapdoor: Combines the properties of the two tiles. (I made it before layers existed.)"
-		Tiles.OnewayEastPurple:
-			text = "Purple One Way: Solid to retroactive moves entering its tile."
-		Tiles.OnewayNorthPurple:
-			text = "Purple One Way: Solid to retroactive moves entering its tile."
-		Tiles.OnewaySouthPurple:
-			text = "Purple One Way: Solid to retroactive moves entering its tile."
-		Tiles.OnewayWestPurple:
-			text = "Purple One Way: Solid to retroactive moves entering its tile."
-		Tiles.IronCrate:
-			text = "Iron Crate: Actor. Heaviness: Iron. Strength: Wood. Durability: Spikes. Fall speed: Infinite. Native Time Colour: Gray."
-		Tiles.CrateGoal:
-			text = "Crate Goal: If you would win due to Light and Heavy being on Goals: You do not unless every Crate Goal has an unbroken non-Character actor on its tile."
-		Tiles.NoCrate:
-			text = "No Crate: Solid to non-Character actors."
-		Tiles.ColourRed:
-			text = "Red: Colour. (Attaches to the first actor to enter or start in its tile it can modify.) Experiences time when Heavy moves."
-		Tiles.ColourBlue:
-			text = "Blue: Colour. (Attaches to the first actor to enter or start in its tile it can modify.) Experiences time when Light moves."
-		Tiles.ColourGray:
-			text = "Gray: Colour. (Attaches to the first actor to enter or start in its tile it can modify.) Experiences time during moves."
-		Tiles.ColourMagenta:
-			text = "Magenta: Colour. (Attaches to the first actor to enter or start in its tile it can modify.) Always experiences time."
-		Tiles.WoodenCrate:
-			text = "Wooden Crate: Actor. Heaviness: Wood. Strength: Wood. Durability: Nothing. Fall speed: Infinite. Native Time Colour: Gray. When unbroken Light fails to push an unstacked Wooden Crate, Light tries again by pushing it up instead. When unbroken Heavy fails to push an unstacked Wooden Crate, Heavy tries again by breaking it instead (failing if the Wooden Crate has Durability of Spikes or higher)."
-		Tiles.GlassBlock:
-			text = "Glass Block: Solid to moves entering or exiting its tile. Surprise: If the actor is Iron weight or greater, the Glass Block breaks. When a Glass Block unbreaks, it breaks any actors that don't have Unbreakable durability."
-		Tiles.ColourGreen:
-			text = "Green: Colour. Always experiences time. Doesn't create rewind events."
-		Tiles.GreenSpikeball:
-			text = "Green Spikeball: A Spikeball that does not create rewind events."
-		Tiles.GreenFire:
-			text = "Green Fire: A Fire that activates after regular Fires even for actors not experiencing time and does not create rewind events."
-		Tiles.GreenGlassBlock:
-			text = "Green Glass Block: A Glass Block that does not create rewind events."
-		Tiles.Fuzz:
-			text = "Fuzz: When a character rewinds while inside Fuzz, the Fuzz is consumed, the rewind happens but is not consumed, and time does not pass."
-		Tiles.OneUndo:
-			text = "One Rewind: When a character rewinds while inside One Rewind, one of them is replaced with a No Rewind. (In-game, the number of purple dots shows the number of remaining One Rewinds. The open eye is effectively 'zero'.)"
-		Tiles.NoUndo:
-			text = "No Rewind: When a character rewinds while inside No Rewind and on no One Rewind, it is prevented and nothing happens. (In-game, the number of purple dots shows the number of remaining One Rewinds. The open eye is effectively 'zero'.)"
-		Tiles.TimeCrystalGreen:
-			text = "Green Time Crystal: Actor. Heaviness: Crystal. Strength: Crystal. Durability: Unbreakable. Fall speed: 0. Native Time Colour: Green. Time Crystals existing locks goals. When consumed by an unbroken Cuckoo Clock: Increase ticks by 1. When consumed by a Character: If the character has no locked moves: Increase turn limit by 1. Else, unlock the most recently locked move and place it on the end of the character's filled timeline. (Crystals breaking never makes a rewind event, broken crystals are banished from the map.)"
-		Tiles.TimeCrystalMagenta:
-			text = "Magenta Time Crystal: Actor. Heaviness: Crystal. Strength: Crystal. Durability: Unbreakable. Fall speed: 0. Native Time Colour: Green. Time Crystals existing locks goals. When consumed by an unbroken Cuckoo Clock: Decrease ticks by 1. When consumed by a Character: If the character's turn limit is 0: You lose. Else, if the character is filling a timeline slot: Lock it. Else, if the character has a filled timeline slot: Lock the highest numbered one. Else, lock an empty timeline slot. (Crystals breaking never makes a rewind event, broken crystals are banished from the map.)"
-		Tiles.CuckooClock:
-			text = "Cuckoo Clock: Actor. Heaviness: Wooden. Strength: Wooden. Durability: Nothing. Fall speed: 1. Native Time Colour: Gray. To start a puzzle with ticks: Fill out Clock Turns field with a comma separated list, and turns will be assigned to clocks in layer+reading order. When experiencing time, after green fire, if it has ticks and isn't broken, decrease ticks by 1. When a cuckoo clock strikes exactly 0, and isn't broken, and it's not during a fuzz undo: You lose."
-		Tiles.TheNight:
-			text = "Night: Actors inside Night don't experience time passing (except for being burned by fire and green fire)."
-		Tiles.TheStars:
-			text = "Stars: Actors inside Stars are immune to rewind events."
-		Tiles.SteelCrate:
-			text = "Steel Crate: Actor. Heaviness: Steel. Strength: Iron. Durability: Fire. Fall speed: Infinite. Native Time Colour: Gray. When a unbroken Steel Crate fails to move into an unstacked unbroken Light or Cuckoo Clock, the target first breaks."
-		Tiles.PowerCrate:
-			text = "Power Crate: Actor. Heaviness: Wooden. Strength: Steel. Durability: Spikes. Fall speed: Infinite. Native Time Colour: Gray."
-		Tiles.ColourVoid:
-			text = "Void: Colour. (Void coloured actors can't be given other colours.) (Turning Void causes the actor to experience a 'void banish'. See Void Singularity tooltip for more information.) Always experiences time, INCLUDING after undos. Void actors don't create rewind events OR undo events. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.ColourCyan:
-			text = "Cyan: Colour. Experiences time when Light moves or rewinds."
-		Tiles.ColourOrange:
-			text = "Orange: Colour. Experiences time when Heavy moves or rewinds."
-		Tiles.ColourYellow:
-			text = "Yellow: Colour. Experiences time during rewinds."
-		Tiles.ColourPurple:
-			text = "Purple: Colour. Experiences time except when Heavy rewinds."
-		Tiles.ColourBlurple:
-			text = "Blurple: Colour. Experiences time except when Light rewinds."
-		Tiles.ColourWhite:
-			text = "White: Colour. Never experiences time."
-		Tiles.VoidSpikeball:
-			text = "Void Spikeball: A Spikeball that does not create rewind OR undo events. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.VoidGlassBlock:
-			text = "Void Glass Block: A Glass Block that does not create rewind OR undo events. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.ChronoHelixBlue:
-			text = "Chrono Helix Blue: Actor. Heaviness: Iron. Strength: Steel. Durability: Unbreakable. Fall speed: 1. Native Time Colour: Gray. When experiencing time, after gravity and before fire, if 8-way adjacent to a Chrono Helix Red, both move away from each other. When bumped with a Chrono Helix Red, you win."
-		Tiles.ChronoHelixRed:
-			text = "Chrono Helix Red: Actor. Heaviness: Iron. Strength: Steel. Durability: Unbreakable. Fall speed: 1. Native Time Colour: Gray. When experiencing time, after gravity and before fire, if 8-way adjacent to a Chrono Helix Blue, both move away from each other. When bumped with a Chrono Helix Blue, you win."
-		Tiles.HeavyGoalJoke:
-			text = "Heavy Goal (Joke): Actor. Heaviness: Crystal. Strength: Crystal. Durability: Unbreakable. Fall speed: 0. Native Time Colour: Gray. Not solid. Counts as a Heavy Goal. Phases through terrain and actors."
-		Tiles.LightGoalJoke:
-			text = "Light Goal (Joke): Actor. Heaviness: Crystal. Strength: Crystal. Durability: Unbreakable. Fall speed: 0. Native Time Colour: Gray. Not solid. Counts as a Light Goal. Phases through terrain and actors."
-		Tiles.PowerSocket:
-			text = "Power Socket: A Spikeball with the same strength as a Bottomless Pit. (Put a No Heavy/Light/Crate on top if you want it to avoid some actors.)"
-		Tiles.GreenPowerSocket:
-			text = "Green Power Socket: A Power Socket that does not create rewind events."
-		Tiles.VoidPowerSocket:
-			text = "Void Power Socket: A Power Socket that does not create rewind OR undo events. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.GlassBlockCracked:
-			text = "Cracked Glass Block: A Glass Block without the weight requirement. Additionally, actors can break out of a Cracked Glass Block by attempting a non-gravity move."
-		Tiles.PhaseWallBlue:
-			text = "Phase Wall Blue: Solid during Light moves and rewinds."
-		Tiles.PhaseWallRed:
-			text = "Phase Wall Red: Solid during Heavy moves and rewinds."
-		Tiles.PhaseWallGray:
-			text = "Phase Wall Gray: Solid during character moves."
-		Tiles.PhaseWallPurple:
-			text = "Phase Wall Purple: Solid during character rewinds."
-		Tiles.PhaseLightningBlue:
-			text = "Phase Lightning Blue: After Light moves and rewinds, when time passes, before gravity, ALL actors on this tile that don't have Fire or greater Durability break."
-		Tiles.PhaseLightningRed:
-			text = "Phase Lightning Red: After Heavy moves and rewinds, when time passes, before gravity, ALL actors on this tile that don't have Fire or greater Durability break."
-		Tiles.PhaseLightningGray:
-			text = "Phase Lightning Gray: After moves, when time passes, before gravity, ALL actors on this tile that don't have Fire or greater Durability break."
-		Tiles.PhaseLightningPurple:
-			text = "Phase Lightning Purple: After rewinds, when time passes, before gravity, ALL actors on this tile that don't have Fire or greater Durability break."
-		Tiles.OnewayEastLose:
-			text = "Green Zappy One Way: A Green One Way that acts like a Green Power Socket when bumped."
-		Tiles.OnewayNorthLose:
-			text = "Green Zappy One Way: A Green One Way that acts like a Green Power Socket when bumped."
-		Tiles.OnewaySouthLose:
-			text = "Green Zappy One Way: A Green One Way that acts like a Green Power Socket when bumped."
-		Tiles.OnewayWestLose:
-			text = "Green Zappy One Way: A Green One Way that acts like a Green Power Socket when bumped."
-		Tiles.Checkpoint:
-			text = "Checkpoint: At end of turn, Heavy or Light on this tile has its timeline cleared."
-		Tiles.CheckpointRed:
-			text = "Heavy Checkpoint: At end of turn, Heavy on this tile has its timeline cleared."
-		Tiles.CheckpointBlue:
-			text = "Light Checkpoint: At end of turn, Light on this tile has its timeline cleared."
-		Tiles.GreenFog:
-			text = "Green Fog: Actors in Green Fog don't create rewind events."
-		Tiles.Floorboards:
-			text = "Floorboards: Existence of lower layer terrain in this tile is ignored, including Holes. When an Actor leaves a tile with Floorboards using a non-retro move: The Floorboards is destroyed. In a stack of Floorboards, only the topmost one is considered."
-		Tiles.MagentaFloorboards:
-			text = "Magenta Floorboards: A Floorboards that can be destroyed also by retroactive moves."
-		Tiles.GreenFloorboards:
-			text = "Green Floorboards: A Floorboards that can be destroyed also by retroactive moves, and that does not create rewind events."
-		Tiles.VoidFloorboards:
-			text = "Void Floorboards: A Floorboards that can be destroyed also by retroactive moves and undos, and that does not create rewind OR undo events. (Puzzles containing 'Void' will record undos in their replays.)"
+		Tiles.Player:
+			text = "Player: As featured in the hit puzzle game 'Achronal Dungeon'."
+		Tiles.Win:
+			text = "Win: If the Player is on Win and all Stars are collected: You win the puzzle."
+		Tiles.Star:
+			text = "Star: Can push and be pushed by Dirt Blocks and Ice Blocks if uncollected. Intangible if collected. Can be collected by being stepped on by the Player. When they do, release a 3x3 burst that melts Ice. Must collect all Stars to Win the puzzle. Floats above Holes and Bottomless Pits."
+		Tiles.DirtBlock:
+			text = "Dirt Block: An ordinary Sokoban block. Falls into Holes (filling them) and into Bottomless Pits (vanishing)."
+		Tiles.IceBlock:
+			text = "Ice Block: As per Dirt Block, but additionally: 1) Melted by collecting a Star in the 3x3 neighbourhood. 2) After moving, if it moved onto Floor, attempts to move again in the same direction."
 		Tiles.Hole:
-			text = "Hole: Actor. Heaviness: Infinite. Strength: None. Durabilty: Unbreakable. Fall Speed: 0. Native Time Color: Gray. Not solid. When a non-Unbreakable actor enters an unbroken Hole, it breaks. If that actor was an unbroken crate or boulder, the Hole breaks. Holes (broken or unbroken) are solid to moves of broken actors exiting its tile, including itself. Holes get disabled by Floorboards on their tile."
-		Tiles.GreenHole:
-			text = "Green Hole: A Hole, but when it breaks an actor it does not create a rewind event. Also has Native Time Color: Green."
-		Tiles.VoidHole:
-			text = "Void Hole: A hole that doesn't create rewind OR undo events. Also has Native Time Colour: Void. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.BoostPad:
-			text = "Boost Pad: Forward movements leaving this tile happen one additional time."
-		Tiles.GreenBoostPad:
-			text = "Green Boost Pad: ALL movements leaving this tile happen one additional time."
-		Tiles.SlopeNW:
-			text = "Slope: If a non-retro move enters a slope, then for the original move to succeed, it also has to be able to eject perpendicularly out of the slope. If that fails, it also tries to leave parallely. If that fails too, the move fails. (The second movement can't be the direction you came from.) If a slope makes a grounded robot or any other actor move up, it becomes rising.  When time passes, before clocks tick, the 'slope cleanup step' happens - ALL actors still in slope attempt to be ejected (first sideways, then vertically, then if all of that fails we break for infinite damage). This continues recursively until nothing changes. If we loop 100 times: Lose (infinite loop). (Btw, if multiple slopes are in a tile, they're checked in layer order.)"
-		Tiles.SlopeNE:
-			text = "Slope: If a non-retro move enters a slope, then for the original move to succeed, it also has to be able to eject perpendicularly out of the slope. If that fails, it also tries to leave parallely. If that fails too, the move fails. (The second movement can't be the direction you came from.) If a slope makes a grounded robot or any other actor move up, it becomes rising.  When time passes, before clocks tick, the 'slope cleanup step' happens - ALL actors still in slope attempt to be ejected (first sideways, then vertically, then if all of that fails we break for infinite damage). This continues recursively until nothing changes. If we loop 100 times: Lose (infinite loop). (Btw, if multiple slopes are in a tile, they're checked in layer order.)"
-		Tiles.SlopeSE:
-			text = "Slope: If a non-retro move enters a slope, then for the original move to succeed, it also has to be able to eject perpendicularly out of the slope. If that fails, it also tries to leave parallely. If that fails too, the move fails. (The second movement can't be the direction you came from.) If a slope makes a grounded robot or any other actor move up, it becomes rising.  When time passes, before clocks tick, the 'slope cleanup step' happens - ALL actors still in slope attempt to be ejected (first sideways, then vertically, then if all of that fails we break for infinite damage). This continues recursively until nothing changes. If we loop 100 times: Lose (infinite loop). (Btw, if multiple slopes are in a tile, they're checked in layer order.)"
-		Tiles.SlopeSW:
-			text = "Slope: If a non-retro move enters a slope, then for the original move to succeed, it also has to be able to eject perpendicularly out of the slope. If that fails, it also tries to leave parallely. If that fails too, the move fails. (The second movement can't be the direction you came from.) If a slope makes a grounded robot or any other actor move up, it becomes rising.  When time passes, before clocks tick, the 'slope cleanup step' happens - ALL actors still in slope attempt to be ejected (first sideways, then vertically, then if all of that fails we break for infinite damage). This continues recursively until nothing changes. If we loop 100 times: Lose (infinite loop). (Btw, if multiple slopes are in a tile, they're checked in layer order.)"
-		Tiles.Boulder:
-			text = "Boulder: Actor. Heaviness: Iron. Strength: Wood. Durability: Spikes. Fall speed: 1. Native Time Colour: Gray. Boulders can fill holes. If a non-broken Boulder makes a non-retro move with a horizontal component: Its momentum becomes Left or Right. (This is a timeline event.) When time passes, after nudges and before gravity: A non-broken boulder with momentum will attempt to move in that direction, and its momentum will become Zero if the move fails. Boulders rolling under their own momentum can push with +1 strength, but will remain stationary (and thus lose their momentum). (Boulders with a Propellor can have vertical momentum.)"
-		Tiles.PhaseWallGreenEven:
-			text = "Phase Wall Green Even: Solid during even Turns. (Turn increments at the end of a turn.)"
-		Tiles.PhaseWallGreenOdd:
-			text = "Phase Wall Green Odd: Solid during odd Turns. (Turn increments at the end of a turn.)"
-		Tiles.NudgeEast:
-			text = "Nudge: When time passes, before gravity, attempt to move in this direction."
-		Tiles.NudgeNorth:
-			text = "Nudge: When time passes, before gravity, attempt to move in this direction."
-		Tiles.NudgeSouth:
-			text = "Nudge: When time passes, before gravity, attempt to move in this direction."
-		Tiles.NudgeWest:
-			text = "Nudge: When time passes, before gravity, attempt to move in this direction."
-		Tiles.NudgeEastGreen:
-			text = "Green Nudge: When time passes, before gravity, ALL actors on this tile attempt to move in this direction."
-		Tiles.NudgeNorthGreen:
-			text = "Green Nudge: When time passes, before gravity, ALL actors on this tile attempt to move in this direction."
-		Tiles.NudgeSouthGreen:
-			text = "Green Nudge: When time passes, before gravity, ALL actors on this tile attempt to move in this direction."
-		Tiles.NudgeWestGreen:
-			text = "Green Nudge: When time passes, before gravity, ALL actors on this tile attempt to move in this direction."
-		Tiles.Grate:
-			text = "Grate: Solid to unbroken actors."
-		Tiles.AntiGrate:
-			text = "Anti-Grate: Solid to broken actors."
-		Tiles.GhostPlatform:
-			text = "Ghost Platform: Solid to gravity moves of non-Character actors."
-		Tiles.Propellor:
-			text = "Propellor: Hat. (Attaches to an actor entering or starting in the tile below.) That actor doesn't experience gravity, ever."
-		Tiles.DurPlus:
-			text = "Durability Plus: Modifier. (Attaches to an actor entering or starting in this tile.) On level start, attaches to an actor in this tile. That actor gains +1 Durability. Starting at 0, the Durabilities are: Nothing, Spikes, Fire, Unbreakable."
-		Tiles.DurMinus:
-			text = "Durability Minus: Modifier. (Attaches to an actor entering or starting in this tile.) That actor gains -1 Durability. Starting at 0, the Durabilities are: Nothing, Spikes, Fire, Unbreakable."
-		Tiles.HvyPlus:
-			text = "Heaviness Plus: Modifier. (Attaches to an actor entering or starting in this tile.) That actor gains +1 Heaviness. Starting at 0, the Heavinesses are: None, Crystal, Wooden, Iron, Steel, Superheavy, Infinite."
-		Tiles.HvyMinus:
-			text = "Heaviness Minus: Modifier. (Attaches to an actor entering or starting in this tile.) That actor gains -1 Heaviness. Starting at 0, the Heavinesses are: None, Crystal, Wooden, Iron, Steel, Superheavy, Infinite."
-		Tiles.StrPlus:
-			text = "Strength Plus: Modifier. (Attaches to an actor entering or starting in this tile.) That actor gains +1 Strength. Starting at 0, the Strengths are: None, Crystal, Wooden, Iron, Steel, Gravity."
-		Tiles.StrMinus:
-			text = "Strength Minus: Modifier. (Attaches to an actor entering or starting in this tile.) That actor gains -1 Strength. Starting at 0, the Strengths are: None, Crystal, Wooden, Iron, Steel, Gravity."
-		Tiles.FallInf:
-			text = "Fall Speed Infinite: Modifier. (Attaches to an actor entering or starting in this tile.) That actor's Fall Speed is set to Infinite."
-		Tiles.FallOne:
-			text = "Fall Speed 1: Modifier. (Attaches to an actor entering or starting in this tile.) That actor's Fall Speed is set to 1. (Additionally, if it's Light, it loses Floating.)"
-		Tiles.ColourNative:
-			text = "Native Colour: A Colour that will change actors back to their native Time Colour. (For example, a Crate would become Gray, and Light would become Blurple.)";
-		Tiles.RepairStation:
-			text = "Repair Station: When time passes, after clocks tick, repair an unbroken actor experiencing time in this tile, consuming this."
-		Tiles.RepairStationGray:
-			text = "Repair Station: When time passes following a move, after clocks tick, repair an unbroken actor in this tile, consuming this."
-		Tiles.RepairStationGreen:
-			text = "Repair Station: When time passes, after clocks tick, repair an unbroken actor in this tile (greenly), consuming this (greenly)."
-		Tiles.ZombieTile:
-			text = "Zombie Tile: Broken robots can make moves from this tile."
-		Tiles.HeavyMimic:
-			text = "Heavy Mimic:  Hat. (Attaches to an actor entering or starting in the tile below.) After Heavy moves, all Heavy Mimics attempt the same move too. (Mimics don't activate time crystals, goals, checkpoints and don't care about one rewind/no rewind/fuzz.)"
-		Tiles.LightMimic:
-			text = "Light Mimic:  Hat. (Attaches to an actor entering or starting in the tile below.) After Light moves, all Light Mimics attempt the same move too. (Mimics don't activate time crystals, goals, checkpoints and don't care about one rewind/no rewind/fuzz.)"
-		Tiles.GhostFog:
-			text = "Ghost Fog: If an Actor fails to (not due to gravity) push into this tile, the Actor still moves (thus merging with any Actors already on this tile)."
-		Tiles.Eclipse:
-			text = "Eclipse: If you make a move or rewind from this tile, time does not pass."
-		Tiles.PhaseBoardRed:
-			text = "Phase Board Red: A non-destroyable floorboard that exists during Heavy moves and rewinds."
-		Tiles.PhaseBoardBlue:
-			text = "Phase Board Blue: A non-destroyable floorboard that exists during Light moves and rewinds."
-		Tiles.PhaseBoardGray:
-			text = "Phase Board Gray: A non-destroyable floorboard that exists during character moves."
-		Tiles.PhaseBoardPurple:
-			text = "Phase Board Purple: A non-destroyable floorboard that exists during character rewinds."
-		Tiles.PhaseBoardDeath:
-			text = "Phase Board Death: A non-destroyable floorboard that exists whenever one or both characters are broken. (Mimics and inerts don't count.)"
-		Tiles.PhaseBoardLife:
-			text = "Phase Board Life: A non-destroyable floorboard that exists whenever both characters are unbroken. (Mimics and inerts don't count.)"
-		Tiles.PhaseBoardHeavy:
-			text = "Phase Board Heavy: A non-destroyable floorboard that exists whenever the real Heavy is asking."
-		Tiles.PhaseBoardLight:
-			text = "Phase Board Light: A non-destroyable floorboard that exists whenever the real Light is asking."
-		Tiles.PhaseBoardCrate:
-			text = "Phase Board Crate: A non-destroyable floorboard that exists whenever any actor besides the real Heavy/Light is asking."
-		Tiles.SpiderWeb:
-			text = "Spider Web: Solid to non-retro moves exiting this tile if the actor has already non-retro moved 1 or more times this turn.  (+1 for each other Spider Web in this tile.)"
-		Tiles.SpiderWebGreen:
-			text = "Green Spider Web: Solid to moves exiting this tile if the actor has already moved 1 or more times this turn.  (+1 for each other Green Spider Web in this tile.)"
-		Tiles.NoPush:
-			text = "No Push: Solid to non-retro pushes."
-		Tiles.NoPushGreen:
-			text = "Green No Push: Solid to pushes/unpushes."
-		Tiles.YesPush:
-			text = "Yes Push: Solid to non-retro non-pushes."
-		Tiles.YesPushGreen:
-			text = "Yes Push Green: Solid to non-(pushes/unpushes)."
-		Tiles.NoLeft:
-			text = "No Left: Solid to robots that are facing left during non-retro moves."
-		Tiles.NoLeftGreen:
-			text = "No Left Green: Solid to robots that are facing left."
-		Tiles.PhaseBoardVoid:
-			text = "Phase Board Void: A non-destroyable floorboard that exists during undos. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.OnewayEastGray:
-			text = "Gray One Way: Solid to non-retro moves entering its tile."
-		Tiles.OnewayNorthGray:
-			text = "Gray One Way: Solid to non-retro moves entering its tile."
-		Tiles.OnewaySouthGray:
-			text = "Gray One Way: Solid to non-retro moves entering its tile."
-		Tiles.OnewayWestGray:
-			text = "Gray One Way: Solid to non-retro moves entering its tile."
-		Tiles.PinkJelly:
-			text = "Pink Jelly: Solid unless this actor has already moved 1 or more times this turn. (+1 for each other Pink Jelly in this tile.)"
-		Tiles.CyanJelly:
-			text = "Cyan Jelly: Solid unless this actor has already moved and/or bumped 1 or more times this turn. (+1 for each other Cyan Jelly in this tile.)"
-		Tiles.PurpleFog:
-			text = "Purple Fog: If an actor retro moves into this tile, they phase into any actors on that tile."
-		Tiles.Continuum:
-			text = "Continuum: If you make a move from this tile at turn 1 or greater, you don't start a new turn but still record all rewind events made. Then, the Continuum is consumed greenly."
-		Tiles.Spotlight:
-			text = "Spotlight: If you rewind from this tile, the rewind happens as though it were a move (including recording all rewind events made). Then, the Spotlight is consumed greenly."
-		Tiles.GateOfEternity:
-			text = "Gate of Eternity: Solid. If the game is lost (for example, a Cuckoo Clock chimes): Gates of Eternity become Void and open voidly. (Puzzles containing 'Void' will record undos in their replays.)";
-		Tiles.GateOfDemise:
-			text = "Gate of Demise: Solid. When a robot is permanently broken (no broken rewind events for that robot or repair stations exist in the puzzle or in any timeline): Gates of Demise become Void and open voidly. (Puzzles containing 'Void' will record undos in their replays.)";
-		Tiles.VoidSingularity:
-			text = "Void Singularity: When time pases, after repair stations, actors experiencing time here experience a void banish (all undo events for this actor about position, state changes, clock ticking, time colour changes and stat modifiers are erased. Notably, all other kinds of undo events, rewind events, timeline modifications, and changes to tiles caused by this actor are NOT erased.) (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.VoidWall:
-			text = "Void Wall: Solid to undo events. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.VoidFire:
-			text = "Void Fire: Green Fire, but it breaks voidly, and also activates when time passes following an undo. (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.VoidStars:
-			text = "Void Stars: Actors in this tile are immune to banishable undo events (see Void Singularity tooltip). (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.VoidFog:
-			text = "Void Fog: Actors in this tile don't create banishable undo events (see Void Singularity tooltip). (Puzzles containing 'Void' will record undos in their replays.)"
-		Tiles.NoRising:
-			text = "No Rising: Solid to actors in the rising state."
-		Tiles.NoFalling:
-			text = "No Falling: Solid to actors in the falling state."
-		Tiles.NoGrounded:
-			text = "No Grounded: Solid to actors in the grounded state."
-		Tiles.PhaseBoardEast:
-			text = "Phase Board One Way: A non-destroyable floorboard that exists when an actor is attempting to leave or enter this tile by this direction."
-		Tiles.PhaseBoardNorth:
-			text = "Phase Board One Way: A non-destroyable floorboard that exists when an actor is attempting to leave or enter this tile by this direction."
-		Tiles.PhaseBoardSouth:
-			text = "Phase Board One Way: A non-destroyable floorboard that exists when an actor is attempting to leave or enter this tile by this direction."
-		Tiles.PhaseBoardWest:
-			text = "Phase Board One Way: A non-destroyable floorboard that exists when an actor is attempting to leave or enter this tile by this direction."
-		Tiles.RepairStationBumper:
-			text = "Repair Station Bumper: Solid. Surprise: If the actor is broken, repair it."
-		Tiles.Fence:
-			text = "Fence: Solid. Surprise: If the actor isn't grounded, it becomes grounded."
-		Tiles.Fan:
-			text = "Fan: Solid. Surprise: The actor becomes rising."
-		Tiles.Bumper:
-			text = "Bumper: Solid. Surprise: If the actor can move in the opposite direction, it does."
-		Tiles.Passage:
-			text = "Passage: Solid. Surprise: If the actor can move again past this (and any subsequent Passages), it does (creating a single rewind event)."
-		Tiles.GreenPassage:
-			text = "Green Passage: Solid. Surprise: If the actor can move again past this (and any subsequent Green Passages), it does (greenly)."
+			text = "Hole: Stars float above Hole, but the Player and Blocks will fall in and fill the Hole (turning it into Floor)."
+		Tiles.BottomlessPit:
+			text = "Bottomless Pit: A Hole that cannot be filled."
 	return text;
 	
 func picker_tooltip() -> void:

@@ -8,4 +8,3 @@ var map_x_max = -1;
 var map_y_max = -1;
 export var target_sky : Color = Color("25272A");
 var layers = -1;
-export var target_track = -1;
