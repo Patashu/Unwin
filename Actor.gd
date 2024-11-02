@@ -19,7 +19,6 @@ var facing_dir : Vector2 = Vector2.RIGHT;
 # animated sprites logic
 var frame_timer : float = 0.0;
 var frame_timer_max : float = 0.1;
-var post_mortem : int = -1;
 # transient multi-push/multi-fall state:
 # basically, things that move become non-colliding until the end of the multi-push/fall tick they're
 # a part of, so other things that shared their tile can move with them
@@ -130,7 +129,7 @@ func _process(delta: float) -> void:
 			0: #move
 				# afterimage if it was a retro move
 				if (animation_timer == 0):
-					gamelogic.broadcast_animation_nonce(current_animation[3]);
+					pass
 					if current_animation[2]:
 						afterimage();
 				animation_timer_max = 0.083;
@@ -145,7 +144,7 @@ func _process(delta: float) -> void:
 					position += current_animation[1]*(animation_timer/animation_timer_max)*24;
 			1: #bump
 				if (animation_timer == 0):
-					gamelogic.broadcast_animation_nonce(current_animation[2]);
+					pass
 				animation_timer_max = 0.1;
 				var bump_amount = (animation_timer/animation_timer_max);
 				if (bump_amount > 0.5):
@@ -164,7 +163,6 @@ func _process(delta: float) -> void:
 					position += current_animation[1]*bump_amount*24;
 			2: #set_next_texture
 				set_next_texture(current_animation[1], current_animation[3]);
-				gamelogic.broadcast_animation_nonce(current_animation[2]);
 			3: #sfx
 				gamelogic.play_sound(current_animation[1]);
 			4: #afterimage_at

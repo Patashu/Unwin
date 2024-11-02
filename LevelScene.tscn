@@ -196,14 +196,14 @@ margin_bottom = 17.0
 custom_constants/shadow_offset_x = 0
 text = "Z"
 
-[node name="SwapButton" type="Button" parent="VirtualButtons/Verbs"]
+[node name="UnwinButton" type="Button" parent="VirtualButtons/Verbs"]
 margin_left = 35.0
 margin_top = 273.0
 margin_right = 58.0
 margin_bottom = 296.0
 theme = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="VirtualButtons/Verbs/SwapButton"]
+[node name="Label" type="Label" parent="VirtualButtons/Verbs/UnwinButton"]
 margin_left = 8.0
 margin_top = 6.0
 margin_right = 16.0
