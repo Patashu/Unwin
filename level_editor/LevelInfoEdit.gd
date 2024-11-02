@@ -5,64 +5,28 @@ onready var gamelogic = get_tree().get_root().find_node("GameLogic", true, false
 onready var holder : Control = get_node("Holder");
 onready var pointer : Sprite = get_node("Holder/Pointer");
 onready var okbutton : Button = get_node("Holder/OkButton");
-onready var heavymoves : SpinBox = get_node("Holder/HeavyMoves");
-onready var lightmoves : SpinBox = get_node("Holder/LightMoves");
-onready var clockturns : TextEdit = get_node("Holder/ClockTurns");
 onready var levelname : TextEdit = get_node("Holder/LevelName");
 onready var levelauthor : TextEdit = get_node("Holder/LevelAuthor");
 onready var levelreplay : TextEdit = get_node("Holder/LevelReplay");
-onready var setupreplay : TextEdit = get_node("Holder/SetupReplay");
-onready var musictrack : SpinBox = get_node("Holder/MusicTrack");
 onready var skycolourbutton : ColorPickerButton = get_node("Holder/SkyColourButton");
 
-func _ready() -> void:
-	var puzzles = gamelogic.puzzles_completed;
-	if gamelogic.save_file.has("unlock_everything") and gamelogic.save_file["unlock_everything"]:
-		puzzles += 99999;
-	if (puzzles < gamelogic.chapter_standard_unlock_requirements[11]):
-		clockturns.visible = false;
-		get_node("Holder/ClockTurnsLabel").visible = false;
-	
+func _ready() -> void:	
 	okbutton.connect("pressed", self, "destroy");
 	okbutton.grab_focus();
 	
 	var parent = get_parent();
 	
-	heavymoves.value = parent.level_info.heavy_max_moves;
-	lightmoves.value = parent.level_info.light_max_moves;
-	clockturns.text = parent.level_info.clock_turns;
 	levelname.text = parent.level_info.level_name;
 	levelauthor.text = parent.level_info.level_author;
 	levelreplay.text = parent.level_info.level_replay;
-	setupreplay.text = parent.level_info.setup_replay;
-	musictrack.value = parent.level_info.target_track;
-	musictrack.max_value = gamelogic.music_tracks.size();
 	skycolourbutton.color = parent.level_info.target_sky;
-	
-	musictrack.connect("value_changed", self, "_musictrack_value_changed");
-
-func _musictrack_value_changed(value: float) -> void:
-	if (value < -1):
-		value = musictrack.max_value - 1;
-		musictrack.value = value;
-	elif (value >= gamelogic.music_tracks.size()):
-		value = -1;
-		musictrack.value = value;
-	gamelogic.target_track = value;
-	gamelogic.fadeout_timer = 2.9999;
-	gamelogic.fadeout_timer_max = 3.0;
 
 func destroy() -> void:
 	var parent = get_parent();
 	
-	parent.level_info.heavy_max_moves = int(heavymoves.value);
-	parent.level_info.light_max_moves = int(lightmoves.value);
-	parent.level_info.clock_turns = clockturns.text;
 	parent.level_info.level_name = levelname.text;
 	parent.level_info.level_author = levelauthor.text;
 	parent.level_info.level_replay = levelreplay.text;
-	parent.level_info.setup_replay = setupreplay.text;
-	parent.level_info.target_track = musictrack.value;
 	parent.level_info.target_sky = skycolourbutton.color;
 	
 	self.queue_free();
