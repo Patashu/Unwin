@@ -20,32 +20,30 @@ var just_danced = false;
 
 # Must keep in sync with GameLogic serialize_bindings/deserialize_bindings
 var actions = ["ui_accept", "ui_cancel", "escape", "ui_left", "ui_right", "ui_up", "ui_down",
-"character_undo", "meta_undo", "meta_redo", "character_switch", "restart",
-"next_level", "previous_level", "mute",
-"gain_insight", "level_select",
+"character_undo", "meta_undo", "meta_redo", "unwin", "restart",
+"mute",
 "toggle_replay", "start_replay", "start_saved_replay",
 "speedup_replay", "slowdown_replay", "replay_pause", "replay_back1", "replay_fwd1", 
 "Ctrl+C/V: Copy/Paste Replay", "Shift+Replay Speed+: Max Replay Speed",
 "Shift+Replay Speed-: Default Replay Speed", "Shift+Your Replay: Force Save Replay",
-"Ctrl+Your Replay: Unwin"
+"Ctrl+Your Replay: Erase Level Completion"
 ]
 
 var hrn_actions = ["Accept", "Cancel", "Menu", "Left", "Right", "Up", "Down",
-"Rewind", "Undo", "Redo", "Swap", "Restart",
-"Next Lev/Chap", "Prev Lev/Chap", "Mute",
-"Gain Insight", "Level Select",
+"Undo", "Really Undo", "Really Redo", "Unwin", "Restart",
+"Mute",
 "Replay Mode", "Author's Replay", "Your Replay",
 "Replay Speed+", "Replay Speed-", "Replay Pause", "Replay Turn-", "Replay Turn+",
 ]
 
 var blacklist_1 = ["ui_accept", "ui_cancel", "escape", "ui_left", "ui_right", "ui_up", "ui_down"];
 var blacklist_2 = ["escape", "ui_left", "ui_right", "ui_up", "ui_down",
-"character_undo", "meta_undo", "meta_redo", "character_switch", "restart",
-"next_level", "previous_level", "mute", "start_replay", "toggle_replay", "speedup_replay",
-"slowdown_replay", "start_saved_replay", "gain_insight", "level_select",
+"character_undo", "meta_undo", "meta_redo", "unwin", "restart",
+"mute", "start_replay", "toggle_replay", "speedup_replay",
+"slowdown_replay", "start_saved_replay",
 "replay_back1", "replay_fwd1", "replay_pause"];
 var whitelist_1 = ["speedup_replay", "slowdown_replay", "replay_back1", "replay_fwd1", "replay_pause"];
-var whitelist_2 = ["previous_level", "next_level"];
+var whitelist_2 = [];
 
 var controller_images = [
 	preload("res://controller_prompts/Positional_Prompts_Down.png"),
