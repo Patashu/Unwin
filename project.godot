@@ -69,16 +69,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GhostSprite.gd"
 }, {
-"base": "ActorBase",
-"class": "Goal",
-"language": "GDScript",
-"path": "res://Goal.gd"
-}, {
-"base": "Sprite",
-"class": "GoalParticle",
-"language": "GDScript",
-"path": "res://GoalParticle.gd"
-}, {
 "base": "Label",
 "class": "GoldLabel",
 "language": "GDScript",
@@ -192,8 +182,6 @@ _global_script_class_icons={
 "GameLogic": "",
 "GenericModalPrompt": "",
 "GhostSprite": "",
-"Goal": "",
-"GoalParticle": "",
 "GoldLabel": "",
 "Instructions": "",
 "LevelButton": "",

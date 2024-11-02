@@ -133,49 +133,9 @@ enum Anim {
 	bump,
 	set_next_texture,
 	sfx,
-	fluster,
-	fire_roars,
-	trapdoor_opens,
-	explode,
-	shatter,
-	unshatter,
 	afterimage_at,
 	fade,
-	heavy_green_time_crystal_raw, #12
-	light_green_time_crystal_raw, #13
-	heavy_magenta_time_crystal, #14
-	light_magenta_time_crystal, #15
-	heavy_green_time_crystal_unlock, #16
-	light_green_time_crystal_unlock, #17
-	tick, #18
-	undo_immunity, #19
-	grayscale, #20
-	generic_green_time_crystal, #21
-	generic_magenta_time_crystal, #22
-	lose, #23
-	time_passes, #24
-	lightning_strikes, #25
-	heavy_timeline_finish_animations, #26
-	light_timeline_finish_animations, #27
-	intro_hop, #28
-	stall, #29
-	dust, #30
-	time_bubble, #31
-}
-
-enum TimeColour {
-	Gray,
-	Purple,
-	Blurple,
-	Magenta,
-	Red,
-	Blue,
-	Green,
-	Void,
-	Cyan,
-	Orange,
-	Yellow,
-	White,
+	stall,
 }
 
 enum Greenness {
@@ -188,187 +148,16 @@ enum Greenness {
 # order SEEMS to be the same as in DefaultTiles
 # keep in sync with LevelEditor
 enum Tiles {
-	Fire,
-	HeavyGoal,
-	HeavyIdle,
-	IronCrate,
-	Key,
-	Ladder,
-	LadderPlatform,
-	LightGoal,
-	LightIdle,
-	Lock,
-	LockClosed,
-	LockOpen,
-	Spikeball,
-	SteelCrate,
+	Floor,
 	Wall,
-	WoodenCrate,
-	Checkpoint,
-	CheckpointBlue,
-	CheckpointRed,
-	OnewayEast,
-	OnewayNorth,
-	OnewaySouth,
-	OnewayWest,
-	WoodenPlatform,
-	Grate,
-	OnewayEastGreen,
-	OnewayNorthGreen,
-	OnewaySouthGreen,
-	OnewayWestGreen,
-	NoHeavy,
-	NoLight,
-	PowerCrate,
-	CrateGoal,
-	NoCrate,
-	HeavyFire,
-	ColourRed,
-	ColourBlue,
-	ColourGray,
-	ColourMagenta,
-	ColourGreen,
-	ColourVoid,
-	ColourCyan,
-	ColourOrange,
-	ColourYellow,
-	ColourPurple,
-	GlassBlock, #45
-	GreenGlassBlock, #46
-	GreenSpikeball, #47
-	GreenFire, #48
-	NoRetro,
-	NoUndo,
-	OneUndo, #51
-	Fuzz, #52
-	TimeCrystalGreen, #53
-	TimeCrystalMagenta, #54
-	CuckooClock, #55
-	TheNight, #56
-	TheStars, #57
-	VoidSpikeball, #58
-	VoidGlassBlock, #59
-	ChronoHelixBlue, #60
-	ChronoHelixRed, #61
-	HeavyGoalJoke, #62
-	LightGoalJoke, #63
-	LightFire, #64
-	PowerSocket, #65
-	GreenPowerSocket, #66
-	VoidPowerSocket, #67
-	ColourWhite, #68
-	GlassBlockCracked, #69
-	OnewayEastPurple, #70
-	OnewayNorthPurple, #71
-	OnewaySouthPurple, #72
-	OnewayWestPurple, #73
-	ColourBlurple, #74
-	PhaseWallBlue, #75
-	PhaseWallRed, #76
-	PhaseWallGray, #77
-	PhaseWallPurple, #78
-	PhaseLightningBlue, #79
-	PhaseLightningRed, #80
-	PhaseLightningGray, #81
-	PhaseLightningPurple, #82
-	OnewayEastLose, #83
-	OnewayNorthLose, #84
-	OnewaySouthLose, #85
-	OnewayWestLose, #86
-	GreenFog, #87
-	Floorboards, #88
-	GreenFloorboards, #89
-	VoidFloorboards, #90
-	Hole, #91
-	GreenHole, #92
-	VoidHole, #93
-	BoostPad, #94
-	GreenBoostPad, #95
-	SlopeNW, #96
-	SlopeNE, #97
-	SlopeSE, #98
-	SlopeSW, #99
-	Boulder, #100
-	PhaseWallGreenEven, #101
-	PhaseWallGreenOdd, #102
-	NudgeEast, #103
-	NudgeNorth, #104
-	NudgeSouth, #105
-	NudgeWest, #106
-	NudgeEastGreen, #107
-	NudgeNorthGreen, #108
-	NudgeSouthGreen, #109
-	NudgeWestGreen, #110
-	AntiGrate, #111
-	MagentaFloorboards, #112
-	GhostPlatform, #113
-	Propellor, #114
-	DurPlus, #115
-	DurMinus, #116
-	HvyPlus, #117
-	HvyMinus, #118
-	StrPlus, #119
-	StrMinus, #120
-	FallInf, #121
-	FallOne, #122
-	ColourNative, #123
-	RepairStation, #124
-	RepairStationGray, #125
-	RepairStationGreen, #126
-	ZombieTile, #127
-	HeavyMimic, #128
-	LightMimic, #129
-	GhostFog, #130
-	Eclipse, #131
-	PhaseBoardRed, #132
-	PhaseBoardBlue, #133
-	PhaseBoardGray, #134
-	PhaseBoardPurple, #135
-	PhaseBoardDeath, #136
-	PhaseBoardLife, #137
-	PhaseBoardHeavy, #138
-	PhaseBoardLight, #139
-	PhaseBoardCrate, #140
-	SpiderWeb, #141
-	SpiderWebGreen, #142
-	NoPush, #143
-	NoPushGreen, #144
-	YesPush, #145
-	YesPushGreen, #146
-	NoLeft, #147
-	NoLeftGreen, #148
-	PhaseBoardVoid, #149
-	OnewayEastGray, #150
-	OnewayNorthGray, #151
-	OnewaySouthGray, #152
-	OnewayWestGray, #153
-	PinkJelly, #154
-	CyanJelly, #155
-	PurpleFog, #156
-	Spotlight, #157
-	Continuum, #158
-	GateOfEternity, #159
-	GateOfDemise, #160
-	VoidSingularity, #161
-	VoidWall, #162
-	VoidFire, #163
-	VoidStars, #164
-	VoidFog, #165
-	NoRising, #166
-	NoFalling, #167
-	NoGrounded, #168
-	PhaseBoardEast, #169
-	PhaseBoardNorth, #170
-	PhaseBoardSouth, #171
-	PhaseBoardWest, #172
-	RepairStationBumper, #173
-	Fence, #174
-	Fan, #175
-	Bumper, #176
-	Passage, #177
-	GreenPassage, #178
+	Player,
+	Win,
+	Star,
+	DirtBlock,
+	IceBlock,
+	Hole,
+	BottomlessPit,
 }
-var voidlike_tiles : Array = [];
 
 var achievements : Dictionary = {
 	"NonStandardGameOver": "Non-Standard Game Over",

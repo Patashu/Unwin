@@ -16,9 +16,9 @@ theme = ExtResource( 2 )
 custom_styles/normal = ExtResource( 1 )
 text = "Level Editor Instructions:
 (It requires keyboard + mouse, sorry.)
-* Go to the puzzle you want to make an edit of and enter the Level Editor, or use 'New Level', or 'Paste Level'.
+* Open the puzzle you want to make an edit of and enter the Level Editor, or use 'New Level', or 'Paste Level'.
 * Left click to draw, right click to eyedrop currently highlighted tile.
-* You can open Tab to select any tile (only shows tiles in chapters you've unlocked).
+* You can open Tab to select any tile.
 * Scrollwheel moves between adjacent tiles (as ordered by Tab). 
 * 1-9 to change currently selected layer.
 * WASD/UDLR to move all layers. +Shift to move currently selected layer.
@@ -26,8 +26,7 @@ text = "Level Editor Instructions:
 * F1 / Menu > Test Level to playtest. A win will become the official replay.
 * Save often to not lose progress: 'Copy Level' (Ctrl+C)
 * The level can be played in-game by anyone using 'Paste Level' (Ctrl+V).
-* You can toggle between 1x and 1/2x zoom with - key.
-* 'Setup Replay' is a replay that will happen before the player gains control. Then the Turn will be set to 0 and the puzzle begins. It accepts three more keys than regular replays: 'q' waits mundanely (passing a turn as the current robot), 'e' waits greenly, 'v' waits voidly."
+* You can toggle between 1x and 1/2x zoom with - key."
 align = 1
 autowrap = true
 
