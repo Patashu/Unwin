@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/checkerboard.png-ef168dccc938c0e6f631b1ce43cd5578.stex"
+path="res://.import/star_broken.png-de0ac8cc0594c02c401ef30bd807fc31.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/checkerboard.png"
-dest_files=[ "res://.import/checkerboard.png-ef168dccc938c0e6f631b1ce43cd5578.stex" ]
+source_file="res://assets/star_broken.png"
+dest_files=[ "res://.import/star_broken.png-de0ac8cc0594c02c401ef30bd807fc31.stex" ]
 
 [params]
 

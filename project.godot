@@ -225,7 +225,7 @@ boot_splash/show_image=false
 boot_splash/image="res://assets/cutscenes/entwined time jacket.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-boot_splash/bg_color=Color( 0.133333, 0.235294, 0.321569, 1 )
+boot_splash/bg_color=Color( 0.607843, 0.411765, 0.439216, 1 )
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 
@@ -620,5 +620,5 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
-environment/default_clear_color=Color( 0.133333, 0.235294, 0.321569, 1 )
+environment/default_clear_color=Color( 0.145098, 0.152941, 0.164706, 1 )
 environment/default_environment="res://default_env.tres"

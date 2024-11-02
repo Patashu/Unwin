@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/checkerboard.png-ef168dccc938c0e6f631b1ce43cd5578.stex"
+path="res://.import/hole.png-574f3ced342d3b642e06523304c12dd1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/checkerboard.png"
-dest_files=[ "res://.import/checkerboard.png-ef168dccc938c0e6f631b1ce43cd5578.stex" ]
+source_file="res://assets/hole.png"
+dest_files=[ "res://.import/hole.png-574f3ced342d3b642e06523304c12dd1.stex" ]
 
 [params]
 
