@@ -10,8 +10,7 @@ onready var authorsreplaybutton : Button = get_node("Holder/AuthorsReplayButton"
 onready var savereplaybutton : Button = get_node("Holder/SaveReplayButton");
 onready var copyreplaybutton : Button = get_node("Holder/CopyReplayButton");
 onready var pastereplaybutton : Button = get_node("Holder/PasteReplayButton");
-onready var levelselectbutton : Button = get_node("Holder/LevelSelectButton");
-onready var insightbutton : Button = get_node("Holder/InsightButton");
+onready var leveleditorbutton : Button = get_node("Holder/LevelEditorButton");
 onready var controlsbutton : Button = get_node("Holder/ControlsButton");
 onready var settingsbutton : Button = get_node("Holder/SettingsButton");
 onready var restartbutton : Button = get_node("Holder/RestartButton");
@@ -29,8 +28,7 @@ func _ready() -> void:
 	savereplaybutton.connect("pressed", self, "_savereplaybutton_pressed");
 	copyreplaybutton.connect("pressed", self, "_copyreplaybutton_pressed");
 	pastereplaybutton.connect("pressed", self, "_pastereplaybutton_pressed");
-	levelselectbutton.connect("pressed", self, "_levelselectbutton_pressed");
-	insightbutton.connect("pressed", self, "_insightbutton_pressed");
+	leveleditorbutton.connect("pressed", self, "_leveleditorbutton_pressed");
 	controlsbutton.connect("pressed", self, "_controlsbutton_pressed");
 	settingsbutton.connect("pressed", self, "_settingsbutton_pressed");
 	restartbutton.connect("pressed", self, "_restartbutton_pressed");
@@ -38,26 +36,13 @@ func _ready() -> void:
 	#IF YOU CHANGE THE NUMBER OF BUTTONS, CHANGE FOCUS NEIGHBOURS IN EDITOR TOO!!
 	
 	if (gamelogic.test_mode):
-		levelselectbutton.text = "Level Editor";
+		leveleditorbutton.text = "Level Editor";
 		var stylebox = preload("res://meta_styleboxtexture.tres");
-		levelselectbutton.add_stylebox_override("hover", stylebox);
-		levelselectbutton.add_stylebox_override("pressed", stylebox);
-		levelselectbutton.add_stylebox_override("focus", stylebox);
-		levelselectbutton.add_stylebox_override("disabled", stylebox);
-		levelselectbutton.add_stylebox_override("normal", stylebox);
-	
-	if gamelogic.in_insight_level:
-		if gamelogic.has_remix.has(gamelogic.level_name) or gamelogic.level_name.find("(Remix)") >= 0:
-			insightbutton.text = "Lose Remix";
-		else:
-			insightbutton.text = "Lose Insight";
-	elif gamelogic.has_insight_level:
-		if gamelogic.has_remix.has(gamelogic.level_name):
-			insightbutton.text = "Gain Remix";
-		else:
-			insightbutton.text = "Gain Insight";
-	elif !gamelogic.has_insight_level:
-		insightbutton.disabled = true;
+		leveleditorbutton.add_stylebox_override("hover", stylebox);
+		leveleditorbutton.add_stylebox_override("pressed", stylebox);
+		leveleditorbutton.add_stylebox_override("focus", stylebox);
+		leveleditorbutton.add_stylebox_override("disabled", stylebox);
+		leveleditorbutton.add_stylebox_override("normal", stylebox);
 		
 	if gamelogic.doing_replay:
 		authorsreplaybutton.text = "End Replay";
@@ -151,16 +136,12 @@ func _pastereplaybutton_pressed() -> void:
 	else:
 		gamelogic.start_specific_replay(clipboard);
 	
-func _levelselectbutton_pressed() -> void:
+func _leveleditorbutton_pressed() -> void:
 	if (gamelogic.ui_stack.size() > 0 and gamelogic.ui_stack[gamelogic.ui_stack.size() - 1] != self):
 		return;
 	
-	if (gamelogic.test_mode):
-		var a = preload("res://level_editor/LevelEditor.tscn").instance();
-		gamelogic.add_to_ui_stack(a, get_parent());
-	else:
-		var a = preload("res://LevelSelect.tscn").instance();
-		gamelogic.add_to_ui_stack(a, get_parent());
+	var a = preload("res://level_editor/LevelEditor.tscn").instance();
+	gamelogic.add_to_ui_stack(a, get_parent());
 	destroy();
 	
 func _insightbutton_pressed() -> void:
@@ -215,10 +196,6 @@ func _process(delta: float) -> void:
 		destroy();
 	if (Input.is_action_just_pressed("ui_cancel")):
 		destroy();
-	if (Input.is_action_just_pressed("level_select")):
-		_levelselectbutton_pressed();
-	if (Input.is_action_just_pressed("gain_insight")):
-		_insightbutton_pressed();
 		
 	var focus = holder.get_focus_owner();
 	if (focus == null):
