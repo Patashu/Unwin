@@ -303,7 +303,6 @@ func _ready() -> void:
 	
 	# Call once when the game is booted up.
 	menubutton.connect("pressed", self, "escape");
-	levelstar.scale = Vector2(1.0/6.0, 1.0/6.0);
 	winlabel.call_deferred("change_text", "You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Continue\nWatch Replay: Menu -> Your Replay");
 	connect_virtual_buttons();
 	prepare_audio();
