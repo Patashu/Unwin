@@ -1,0 +1,1824 @@
+[gd_scene load_steps=459 format=2]
+
+[ext_resource path="res://assets/light_goal.png" type="Texture" id=1]
+[ext_resource path="res://assets/key.png" type="Texture" id=2]
+[ext_resource path="res://assets/lock_closed.png" type="Texture" id=3]
+[ext_resource path="res://assets/fire_idle_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/heavy_goal.png" type="Texture" id=5]
+[ext_resource path="res://assets/heavy_idle.png" type="Texture" id=6]
+[ext_resource path="res://assets/iron_crate.png" type="Texture" id=7]
+[ext_resource path="res://assets/ladder_platform.png" type="Texture" id=8]
+[ext_resource path="res://assets/light_idle.png" type="Texture" id=9]
+[ext_resource path="res://assets/ladder.png" type="Texture" id=10]
+[ext_resource path="res://assets/oneway_south_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/wooden_crate.png" type="Texture" id=12]
+[ext_resource path="res://assets/WallPlaceholderProtoType1Dark.png" type="Texture" id=13]
+[ext_resource path="res://assets/steel_crate.png" type="Texture" id=14]
+[ext_resource path="res://assets/lock_open.png" type="Texture" id=15]
+[ext_resource path="res://assets/spikeball.png" type="Texture" id=16]
+[ext_resource path="res://assets/oneway_east_5.png" type="Texture" id=17]
+[ext_resource path="res://assets/checkpoint_blue.png" type="Texture" id=18]
+[ext_resource path="res://assets/checkpoint.png" type="Texture" id=19]
+[ext_resource path="res://assets/checkpoint_red.png" type="Texture" id=20]
+[ext_resource path="res://assets/oneway_east_7.png" type="Texture" id=21]
+[ext_resource path="res://assets/oneway_east_1.png" type="Texture" id=22]
+[ext_resource path="res://assets/wooden_platform.png" type="Texture" id=23]
+[ext_resource path="res://assets/grate.png" type="Texture" id=24]
+[ext_resource path="res://assets/oneway_east_4.png" type="Texture" id=25]
+[ext_resource path="res://assets/oneway_east_6.png" type="Texture" id=26]
+[ext_resource path="res://assets/oneway_south_green_1.png" type="Texture" id=27]
+[ext_resource path="res://assets/oneway_east_3.png" type="Texture" id=28]
+[ext_resource path="res://assets/no_heavy.png" type="Texture" id=29]
+[ext_resource path="res://assets/no_light.png" type="Texture" id=30]
+[ext_resource path="res://assets/crate_goal_5.png" type="Texture" id=31]
+[ext_resource path="res://assets/power_crate.png" type="Texture" id=32]
+[ext_resource path="res://assets/fire_idle_3.png" type="Texture" id=33]
+[ext_resource path="res://assets/fire_idle_2.png" type="Texture" id=34]
+[ext_resource path="res://assets/crate_goal_2.png" type="Texture" id=35]
+[ext_resource path="res://assets/crate_goal_1.png" type="Texture" id=36]
+[ext_resource path="res://assets/crate_goal_3.png" type="Texture" id=37]
+[ext_resource path="res://assets/crate_goal_4.png" type="Texture" id=38]
+[ext_resource path="res://assets/spikeball_5.png" type="Texture" id=39]
+[ext_resource path="res://assets/spikeball_4.png" type="Texture" id=40]
+[ext_resource path="res://assets/spikeball_2.png" type="Texture" id=41]
+[ext_resource path="res://assets/spikeball_3.png" type="Texture" id=42]
+[ext_resource path="res://assets/no_crate.png" type="Texture" id=43]
+[ext_resource path="res://assets/heavy_fire_idle_1.png" type="Texture" id=44]
+[ext_resource path="res://assets/heavy_fire_idle_3.png" type="Texture" id=45]
+[ext_resource path="res://assets/heavy_fire_idle_2.png" type="Texture" id=46]
+[ext_resource path="res://assets/colour_magenta.png" type="Texture" id=47]
+[ext_resource path="res://assets/colour_green.png" type="Texture" id=48]
+[ext_resource path="res://assets/colour_blue.png" type="Texture" id=49]
+[ext_resource path="res://assets/colour_red.png" type="Texture" id=50]
+[ext_resource path="res://assets/colour_gray.png" type="Texture" id=51]
+[ext_resource path="res://assets/colour_void.png" type="Texture" id=52]
+[ext_resource path="res://assets/glass_block.png" type="Texture" id=53]
+[ext_resource path="res://assets/green_glass_block.png" type="Texture" id=54]
+[ext_resource path="res://assets/colour_purple.png" type="Texture" id=55]
+[ext_resource path="res://assets/colour_orange.png" type="Texture" id=56]
+[ext_resource path="res://assets/colour_yellow.png" type="Texture" id=57]
+[ext_resource path="res://assets/colour_cyan.png" type="Texture" id=58]
+[ext_resource path="res://assets/green_spikeball_1.png" type="Texture" id=59]
+[ext_resource path="res://assets/green_spikeball_3.png" type="Texture" id=60]
+[ext_resource path="res://assets/green_spikeball_5.png" type="Texture" id=61]
+[ext_resource path="res://assets/green_spikeball_2.png" type="Texture" id=62]
+[ext_resource path="res://assets/green_spikeball_4.png" type="Texture" id=63]
+[ext_resource path="res://assets/green_fire_idle_3.png" type="Texture" id=64]
+[ext_resource path="res://assets/green_fire_idle_2.png" type="Texture" id=65]
+[ext_resource path="res://assets/green_fire_idle_1.png" type="Texture" id=66]
+[ext_resource path="res://assets/oneway_south_3.png" type="Texture" id=67]
+[ext_resource path="res://assets/oneway_south_4.png" type="Texture" id=68]
+[ext_resource path="res://assets/oneway_south_6.png" type="Texture" id=69]
+[ext_resource path="res://assets/oneway_south_7.png" type="Texture" id=70]
+[ext_resource path="res://assets/oneway_south_8.png" type="Texture" id=71]
+[ext_resource path="res://assets/oneway_south_5.png" type="Texture" id=72]
+[ext_resource path="res://assets/oneway_south_2.png" type="Texture" id=73]
+[ext_resource path="res://assets/oneway_south_green_3.png" type="Texture" id=74]
+[ext_resource path="res://assets/oneway_south_green_2.png" type="Texture" id=75]
+[ext_resource path="res://assets/oneway_south_green_4.png" type="Texture" id=76]
+[ext_resource path="res://assets/oneway_south_green_5.png" type="Texture" id=77]
+[ext_resource path="res://assets/oneway_south_green_7.png" type="Texture" id=78]
+[ext_resource path="res://assets/oneway_south_green_6.png" type="Texture" id=79]
+[ext_resource path="res://assets/oneway_south_green_8.png" type="Texture" id=80]
+[ext_resource path="res://assets/oneway_east_8.png" type="Texture" id=81]
+[ext_resource path="res://assets/oneway_east_2.png" type="Texture" id=82]
+[ext_resource path="res://assets/oneway_north_8.png" type="Texture" id=83]
+[ext_resource path="res://assets/oneway_north_7.png" type="Texture" id=84]
+[ext_resource path="res://assets/oneway_north_3.png" type="Texture" id=85]
+[ext_resource path="res://assets/oneway_north_2.png" type="Texture" id=86]
+[ext_resource path="res://assets/oneway_north_4.png" type="Texture" id=87]
+[ext_resource path="res://assets/oneway_north_5.png" type="Texture" id=88]
+[ext_resource path="res://assets/oneway_north_6.png" type="Texture" id=89]
+[ext_resource path="res://assets/oneway_north_1.png" type="Texture" id=90]
+[ext_resource path="res://assets/oneway_west_1.png" type="Texture" id=91]
+[ext_resource path="res://assets/oneway_west_3.png" type="Texture" id=92]
+[ext_resource path="res://assets/oneway_west_4.png" type="Texture" id=93]
+[ext_resource path="res://assets/oneway_west_5.png" type="Texture" id=94]
+[ext_resource path="res://assets/oneway_west_2.png" type="Texture" id=95]
+[ext_resource path="res://assets/oneway_west_6.png" type="Texture" id=96]
+[ext_resource path="res://assets/oneway_west_7.png" type="Texture" id=97]
+[ext_resource path="res://assets/oneway_west_8.png" type="Texture" id=98]
+[ext_resource path="res://assets/oneway_east_green_7.png" type="Texture" id=99]
+[ext_resource path="res://assets/oneway_east_green_6.png" type="Texture" id=100]
+[ext_resource path="res://assets/oneway_east_green_1.png" type="Texture" id=101]
+[ext_resource path="res://assets/oneway_east_green_2.png" type="Texture" id=102]
+[ext_resource path="res://assets/oneway_east_green_3.png" type="Texture" id=103]
+[ext_resource path="res://assets/oneway_east_green_5.png" type="Texture" id=104]
+[ext_resource path="res://assets/oneway_east_green_4.png" type="Texture" id=105]
+[ext_resource path="res://assets/oneway_east_green_8.png" type="Texture" id=106]
+[ext_resource path="res://assets/oneway_north_green_4.png" type="Texture" id=107]
+[ext_resource path="res://assets/oneway_north_green_5.png" type="Texture" id=108]
+[ext_resource path="res://assets/oneway_north_green_2.png" type="Texture" id=109]
+[ext_resource path="res://assets/oneway_north_green_6.png" type="Texture" id=110]
+[ext_resource path="res://assets/oneway_north_green_7.png" type="Texture" id=111]
+[ext_resource path="res://assets/oneway_north_green_1.png" type="Texture" id=112]
+[ext_resource path="res://assets/oneway_north_green_8.png" type="Texture" id=113]
+[ext_resource path="res://assets/oneway_north_green_3.png" type="Texture" id=114]
+[ext_resource path="res://assets/oneway_west_green_5.png" type="Texture" id=115]
+[ext_resource path="res://assets/oneway_west_green_1.png" type="Texture" id=116]
+[ext_resource path="res://assets/oneway_west_green_3.png" type="Texture" id=117]
+[ext_resource path="res://assets/oneway_west_green_7.png" type="Texture" id=118]
+[ext_resource path="res://assets/oneway_west_green_8.png" type="Texture" id=119]
+[ext_resource path="res://assets/oneway_west_green_6.png" type="Texture" id=120]
+[ext_resource path="res://assets/oneway_west_green_2.png" type="Texture" id=121]
+[ext_resource path="res://assets/oneway_west_green_4.png" type="Texture" id=122]
+[ext_resource path="res://assets/no_retro.png" type="Texture" id=123]
+[ext_resource path="res://assets/no_undo.png" type="Texture" id=124]
+[ext_resource path="res://assets/one_undo.png" type="Texture" id=125]
+[ext_resource path="res://assets/fuzz2.png" type="Texture" id=126]
+[ext_resource path="res://assets/fuzz4.png" type="Texture" id=127]
+[ext_resource path="res://assets/fuzz5.png" type="Texture" id=128]
+[ext_resource path="res://assets/fuzz.png" type="Texture" id=129]
+[ext_resource path="res://assets/fuzz3.png" type="Texture" id=130]
+[ext_resource path="res://assets/fuzz8.png" type="Texture" id=131]
+[ext_resource path="res://assets/fuzz10.png" type="Texture" id=132]
+[ext_resource path="res://assets/fuzz6.png" type="Texture" id=133]
+[ext_resource path="res://assets/fuzz7.png" type="Texture" id=134]
+[ext_resource path="res://assets/fuzz9.png" type="Texture" id=135]
+[ext_resource path="res://assets/timecrystalmagenta.png" type="Texture" id=136]
+[ext_resource path="res://assets/timecrystalgreen.png" type="Texture" id=137]
+[ext_resource path="res://assets/cuckoo_clock.png" type="Texture" id=138]
+[ext_resource path="res://assets/the_night_1.png" type="Texture" id=139]
+[ext_resource path="res://assets/void_glass.png" type="Texture" id=140]
+[ext_resource path="res://assets/the_night_2.png" type="Texture" id=141]
+[ext_resource path="res://assets/the_night_3.png" type="Texture" id=142]
+[ext_resource path="res://assets/the_stars_3.png" type="Texture" id=143]
+[ext_resource path="res://assets/the_stars_2.png" type="Texture" id=144]
+[ext_resource path="res://assets/the_stars_4.png" type="Texture" id=145]
+[ext_resource path="res://assets/the_stars_5.png" type="Texture" id=146]
+[ext_resource path="res://assets/the_stars_6.png" type="Texture" id=147]
+[ext_resource path="res://assets/the_stars_9.png" type="Texture" id=148]
+[ext_resource path="res://assets/the_stars_10.png" type="Texture" id=149]
+[ext_resource path="res://assets/the_stars_7.png" type="Texture" id=150]
+[ext_resource path="res://assets/the_stars_8.png" type="Texture" id=151]
+[ext_resource path="res://assets/the_stars_11.png" type="Texture" id=152]
+[ext_resource path="res://assets/the_stars_12.png" type="Texture" id=153]
+[ext_resource path="res://assets/void_spikeball_1.png" type="Texture" id=154]
+[ext_resource path="res://assets/void_spikeball_2.png" type="Texture" id=155]
+[ext_resource path="res://assets/void_spikeball_3.png" type="Texture" id=156]
+[ext_resource path="res://assets/chrono_helix_blue.png" type="Texture" id=157]
+[ext_resource path="res://assets/light_goal_joke.png" type="Texture" id=158]
+[ext_resource path="res://assets/heavy_goal_joke.png" type="Texture" id=159]
+[ext_resource path="res://assets/chrono_helix_red.png" type="Texture" id=160]
+[ext_resource path="res://assets/light_fire_idle_3.png" type="Texture" id=161]
+[ext_resource path="res://assets/light_fire_idle_2.png" type="Texture" id=162]
+[ext_resource path="res://assets/light_fire_idle_1.png" type="Texture" id=163]
+[ext_resource path="res://assets/void_power_socket.png" type="Texture" id=164]
+[ext_resource path="res://assets/white_power_socket.png" type="Texture" id=165]
+[ext_resource path="res://assets/green_power_socket.png" type="Texture" id=166]
+[ext_resource path="res://assets/colour_white.png" type="Texture" id=167]
+[ext_resource path="res://assets/glass_block_cracked.png" type="Texture" id=168]
+[ext_resource path="res://assets/oneway_east_purple_1.png" type="Texture" id=169]
+[ext_resource path="res://assets/oneway_east_purple_7.png" type="Texture" id=170]
+[ext_resource path="res://assets/oneway_east_purple_8.png" type="Texture" id=171]
+[ext_resource path="res://assets/oneway_east_purple_6.png" type="Texture" id=172]
+[ext_resource path="res://assets/oneway_east_purple_3.png" type="Texture" id=173]
+[ext_resource path="res://assets/oneway_east_purple_4.png" type="Texture" id=174]
+[ext_resource path="res://assets/oneway_east_purple_5.png" type="Texture" id=175]
+[ext_resource path="res://assets/oneway_east_purple_2.png" type="Texture" id=176]
+[ext_resource path="res://assets/oneway_north_purple_8.png" type="Texture" id=177]
+[ext_resource path="res://assets/oneway_north_purple_1.png" type="Texture" id=178]
+[ext_resource path="res://assets/oneway_north_purple_2.png" type="Texture" id=179]
+[ext_resource path="res://assets/oneway_north_purple_4.png" type="Texture" id=180]
+[ext_resource path="res://assets/oneway_north_purple_3.png" type="Texture" id=181]
+[ext_resource path="res://assets/oneway_north_purple_5.png" type="Texture" id=182]
+[ext_resource path="res://assets/oneway_north_purple_6.png" type="Texture" id=183]
+[ext_resource path="res://assets/oneway_north_purple_7.png" type="Texture" id=184]
+[ext_resource path="res://assets/oneway_south_purple_3.png" type="Texture" id=185]
+[ext_resource path="res://assets/oneway_south_purple_4.png" type="Texture" id=186]
+[ext_resource path="res://assets/oneway_south_purple_6.png" type="Texture" id=187]
+[ext_resource path="res://assets/oneway_south_purple_7.png" type="Texture" id=188]
+[ext_resource path="res://assets/oneway_south_purple_8.png" type="Texture" id=189]
+[ext_resource path="res://assets/oneway_south_purple_1.png" type="Texture" id=190]
+[ext_resource path="res://assets/oneway_south_purple_2.png" type="Texture" id=191]
+[ext_resource path="res://assets/oneway_west_purple_1.png" type="Texture" id=192]
+[ext_resource path="res://assets/oneway_west_purple_2.png" type="Texture" id=193]
+[ext_resource path="res://assets/oneway_west_purple_7.png" type="Texture" id=194]
+[ext_resource path="res://assets/oneway_west_purple_3.png" type="Texture" id=195]
+[ext_resource path="res://assets/oneway_west_purple_4.png" type="Texture" id=196]
+[ext_resource path="res://assets/oneway_west_purple_5.png" type="Texture" id=197]
+[ext_resource path="res://assets/oneway_west_purple_6.png" type="Texture" id=198]
+[ext_resource path="res://assets/oneway_west_purple_8.png" type="Texture" id=199]
+[ext_resource path="res://assets/colour_blurple.png" type="Texture" id=200]
+[ext_resource path="res://assets/phase_wall_gray_0.png" type="Texture" id=201]
+[ext_resource path="res://assets/phase_wall_gray_14.png" type="Texture" id=202]
+[ext_resource path="res://assets/phase_wall_blue_8.png" type="Texture" id=203]
+[ext_resource path="res://assets/phase_wall_blue_9.png" type="Texture" id=204]
+[ext_resource path="res://assets/phase_wall_blue_1.png" type="Texture" id=205]
+[ext_resource path="res://assets/phase_wall_blue_5.png" type="Texture" id=206]
+[ext_resource path="res://assets/phase_wall_blue_10.png" type="Texture" id=207]
+[ext_resource path="res://assets/phase_wall_blue_3.png" type="Texture" id=208]
+[ext_resource path="res://assets/phase_wall_blue_11.png" type="Texture" id=209]
+[ext_resource path="res://assets/phase_wall_blue_12.png" type="Texture" id=210]
+[ext_resource path="res://assets/phase_wall_blue_14.png" type="Texture" id=211]
+[ext_resource path="res://assets/phase_wall_blue_15.png" type="Texture" id=212]
+[ext_resource path="res://assets/phase_wall_blue_6.png" type="Texture" id=213]
+[ext_resource path="res://assets/phase_wall_blue_13.png" type="Texture" id=214]
+[ext_resource path="res://assets/phase_wall_blue_16.png" type="Texture" id=215]
+[ext_resource path="res://assets/phase_wall_blue_17.png" type="Texture" id=216]
+[ext_resource path="res://assets/phase_wall_blue_7.png" type="Texture" id=217]
+[ext_resource path="res://assets/phase_wall_blue_0.png" type="Texture" id=218]
+[ext_resource path="res://assets/phase_wall_blue_19.png" type="Texture" id=219]
+[ext_resource path="res://assets/phase_wall_blue_20.png" type="Texture" id=220]
+[ext_resource path="res://assets/phase_wall_blue_18.png" type="Texture" id=221]
+[ext_resource path="res://assets/phase_wall_blue_21.png" type="Texture" id=222]
+[ext_resource path="res://assets/phase_wall_blue_22.png" type="Texture" id=223]
+[ext_resource path="res://assets/phase_wall_red_22.png" type="Texture" id=224]
+[ext_resource path="res://assets/phase_wall_red_21.png" type="Texture" id=225]
+[ext_resource path="res://assets/phase_wall_red_20.png" type="Texture" id=226]
+[ext_resource path="res://assets/phase_wall_red_19.png" type="Texture" id=227]
+[ext_resource path="res://assets/phase_wall_red_18.png" type="Texture" id=228]
+[ext_resource path="res://assets/phase_wall_red_17.png" type="Texture" id=229]
+[ext_resource path="res://assets/phase_wall_red_16.png" type="Texture" id=230]
+[ext_resource path="res://assets/phase_wall_red_14.png" type="Texture" id=231]
+[ext_resource path="res://assets/phase_wall_red_15.png" type="Texture" id=232]
+[ext_resource path="res://assets/phase_wall_red_11.png" type="Texture" id=233]
+[ext_resource path="res://assets/phase_wall_red_13.png" type="Texture" id=234]
+[ext_resource path="res://assets/phase_wall_red_12.png" type="Texture" id=235]
+[ext_resource path="res://assets/phase_wall_red_9.png" type="Texture" id=236]
+[ext_resource path="res://assets/phase_wall_red_5.png" type="Texture" id=237]
+[ext_resource path="res://assets/phase_wall_red_7.png" type="Texture" id=238]
+[ext_resource path="res://assets/phase_wall_red_1.png" type="Texture" id=239]
+[ext_resource path="res://assets/phase_wall_red_8.png" type="Texture" id=240]
+[ext_resource path="res://assets/phase_wall_red_0.png" type="Texture" id=241]
+[ext_resource path="res://assets/phase_wall_red_3.png" type="Texture" id=242]
+[ext_resource path="res://assets/phase_wall_red_6.png" type="Texture" id=243]
+[ext_resource path="res://assets/phase_wall_red_2.png" type="Texture" id=244]
+[ext_resource path="res://assets/phase_wall_red_4.png" type="Texture" id=245]
+[ext_resource path="res://assets/phase_wall_red_10.png" type="Texture" id=246]
+[ext_resource path="res://assets/phase_wall_blue_2.png" type="Texture" id=247]
+[ext_resource path="res://assets/phase_wall_blue_4.png" type="Texture" id=248]
+[ext_resource path="res://assets/phase_wall_gray_16.png" type="Texture" id=249]
+[ext_resource path="res://assets/phase_wall_gray_15.png" type="Texture" id=250]
+[ext_resource path="res://assets/phase_wall_gray_13.png" type="Texture" id=251]
+[ext_resource path="res://assets/phase_wall_gray_10.png" type="Texture" id=252]
+[ext_resource path="res://assets/phase_wall_gray_9.png" type="Texture" id=253]
+[ext_resource path="res://assets/phase_wall_gray_11.png" type="Texture" id=254]
+[ext_resource path="res://assets/phase_wall_gray_12.png" type="Texture" id=255]
+[ext_resource path="res://assets/phase_wall_gray_2.png" type="Texture" id=256]
+[ext_resource path="res://assets/phase_wall_gray_5.png" type="Texture" id=257]
+[ext_resource path="res://assets/phase_wall_gray_6.png" type="Texture" id=258]
+[ext_resource path="res://assets/phase_wall_gray_7.png" type="Texture" id=259]
+[ext_resource path="res://assets/phase_wall_gray_8.png" type="Texture" id=260]
+[ext_resource path="res://assets/phase_wall_gray_3.png" type="Texture" id=261]
+[ext_resource path="res://assets/phase_wall_gray_4.png" type="Texture" id=262]
+[ext_resource path="res://assets/phase_wall_gray_1.png" type="Texture" id=263]
+[ext_resource path="res://assets/phase_wall_gray_22.png" type="Texture" id=264]
+[ext_resource path="res://assets/phase_wall_gray_20.png" type="Texture" id=265]
+[ext_resource path="res://assets/phase_wall_gray_19.png" type="Texture" id=266]
+[ext_resource path="res://assets/phase_wall_gray_18.png" type="Texture" id=267]
+[ext_resource path="res://assets/phase_wall_gray_17.png" type="Texture" id=268]
+[ext_resource path="res://assets/phase_wall_gray_21.png" type="Texture" id=269]
+[ext_resource path="res://assets/phase_wall_purple_19.png" type="Texture" id=270]
+[ext_resource path="res://assets/phase_wall_purple_14.png" type="Texture" id=271]
+[ext_resource path="res://assets/phase_wall_purple_18.png" type="Texture" id=272]
+[ext_resource path="res://assets/phase_wall_purple_8.png" type="Texture" id=273]
+[ext_resource path="res://assets/phase_wall_purple_3.png" type="Texture" id=274]
+[ext_resource path="res://assets/phase_wall_purple_12.png" type="Texture" id=275]
+[ext_resource path="res://assets/phase_wall_purple_9.png" type="Texture" id=276]
+[ext_resource path="res://assets/phase_wall_purple_20.png" type="Texture" id=277]
+[ext_resource path="res://assets/phase_wall_purple_11.png" type="Texture" id=278]
+[ext_resource path="res://assets/phase_wall_purple_10.png" type="Texture" id=279]
+[ext_resource path="res://assets/phase_wall_purple_13.png" type="Texture" id=280]
+[ext_resource path="res://assets/phase_wall_purple_7.png" type="Texture" id=281]
+[ext_resource path="res://assets/phase_wall_purple_5.png" type="Texture" id=282]
+[ext_resource path="res://assets/phase_wall_purple_21.png" type="Texture" id=283]
+[ext_resource path="res://assets/phase_wall_purple_2.png" type="Texture" id=284]
+[ext_resource path="res://assets/phase_wall_purple_22.png" type="Texture" id=285]
+[ext_resource path="res://assets/phase_wall_purple_6.png" type="Texture" id=286]
+[ext_resource path="res://assets/phase_wall_purple_17.png" type="Texture" id=287]
+[ext_resource path="res://assets/phase_wall_purple_4.png" type="Texture" id=288]
+[ext_resource path="res://assets/phase_wall_purple_16.png" type="Texture" id=289]
+[ext_resource path="res://assets/phase_wall_purple_15.png" type="Texture" id=290]
+[ext_resource path="res://assets/phase_wall_purple_1.png" type="Texture" id=291]
+[ext_resource path="res://assets/phase_wall_purple_0.png" type="Texture" id=292]
+[ext_resource path="res://assets/oneway_east_lose_1.png" type="Texture" id=293]
+[ext_resource path="res://assets/oneway_north_lose_1.png" type="Texture" id=294]
+[ext_resource path="res://assets/oneway_west_lose_1.png" type="Texture" id=295]
+[ext_resource path="res://assets/oneway_south_lose_1.png" type="Texture" id=296]
+[ext_resource path="res://assets/phase_lightning_purple.png" type="Texture" id=297]
+[ext_resource path="res://assets/phase_lightning_red.png" type="Texture" id=298]
+[ext_resource path="res://assets/phase_lightning_blue.png" type="Texture" id=299]
+[ext_resource path="res://assets/phase_lightning_gray.png" type="Texture" id=300]
+[ext_resource path="res://assets/green_fog_7.png" type="Texture" id=301]
+[ext_resource path="res://assets/green_fog_8.png" type="Texture" id=302]
+[ext_resource path="res://assets/green_fog_2.png" type="Texture" id=303]
+[ext_resource path="res://assets/green_fog_5.png" type="Texture" id=304]
+[ext_resource path="res://assets/green_fog_6.png" type="Texture" id=305]
+[ext_resource path="res://assets/green_fog_3.png" type="Texture" id=306]
+[ext_resource path="res://assets/green_fog_1.png" type="Texture" id=307]
+[ext_resource path="res://assets/green_fog_4.png" type="Texture" id=308]
+[ext_resource path="res://assets/floorboards_gray.png" type="Texture" id=309]
+[ext_resource path="res://assets/floorboards_void.png" type="Texture" id=310]
+[ext_resource path="res://assets/floorboards_green.png" type="Texture" id=311]
+[ext_resource path="res://assets/hole_green.png" type="Texture" id=312]
+[ext_resource path="res://assets/hole.png" type="Texture" id=313]
+[ext_resource path="res://assets/hole_void.png" type="Texture" id=314]
+[ext_resource path="res://assets/boost_pad.png" type="Texture" id=315]
+[ext_resource path="res://assets/boost_pad_green.png" type="Texture" id=316]
+[ext_resource path="res://assets/slope_nw.png" type="Texture" id=317]
+[ext_resource path="res://assets/slope_se.png" type="Texture" id=318]
+[ext_resource path="res://assets/slope_ne.png" type="Texture" id=319]
+[ext_resource path="res://assets/slope_sw.png" type="Texture" id=320]
+[ext_resource path="res://assets/Boulder.png" type="Texture" id=321]
+[ext_resource path="res://assets/phase_wall_green_even.png" type="Texture" id=322]
+[ext_resource path="res://assets/phase_wall_green_odd.png" type="Texture" id=323]
+[ext_resource path="res://assets/nudge_right.png" type="Texture" id=324]
+[ext_resource path="res://assets/nudge_left.png" type="Texture" id=325]
+[ext_resource path="res://assets/nudge_up.png" type="Texture" id=326]
+[ext_resource path="res://assets/nudge_right_green.png" type="Texture" id=327]
+[ext_resource path="res://assets/nudge_up_green.png" type="Texture" id=328]
+[ext_resource path="res://assets/nudge_down.png" type="Texture" id=329]
+[ext_resource path="res://assets/nudge_down_green.png" type="Texture" id=330]
+[ext_resource path="res://assets/nudge_left_green.png" type="Texture" id=331]
+[ext_resource path="res://assets/antigrate.png" type="Texture" id=332]
+[ext_resource path="res://assets/floorboards_magenta.png" type="Texture" id=333]
+[ext_resource path="res://assets/ghost_platform.png" type="Texture" id=334]
+[ext_resource path="res://assets/propellor.png" type="Texture" id=335]
+[ext_resource path="res://assets/StrPlus.png" type="Texture" id=336]
+[ext_resource path="res://assets/HvyPlus.png" type="Texture" id=337]
+[ext_resource path="res://assets/DurMinus.png" type="Texture" id=338]
+[ext_resource path="res://assets/HvyMinus.png" type="Texture" id=339]
+[ext_resource path="res://assets/FallInf.png" type="Texture" id=340]
+[ext_resource path="res://assets/FallOne.png" type="Texture" id=341]
+[ext_resource path="res://assets/DurPlus.png" type="Texture" id=342]
+[ext_resource path="res://assets/StrMinus.png" type="Texture" id=343]
+[ext_resource path="res://assets/colour_native.png" type="Texture" id=344]
+[ext_resource path="res://assets/repair_station.png" type="Texture" id=345]
+[ext_resource path="res://assets/repair_station_gray.png" type="Texture" id=346]
+[ext_resource path="res://assets/repair_station_green.png" type="Texture" id=347]
+[ext_resource path="res://assets/zombie_tile_1.png" type="Texture" id=348]
+[ext_resource path="res://assets/zombie_tile_4.png" type="Texture" id=349]
+[ext_resource path="res://assets/zombie_tile_3.png" type="Texture" id=350]
+[ext_resource path="res://assets/zombie_tile_0.png" type="Texture" id=351]
+[ext_resource path="res://assets/broadcast_light.png" type="Texture" id=352]
+[ext_resource path="res://assets/broadcast_heavy.png" type="Texture" id=353]
+[ext_resource path="res://assets/ghost_fog.png" type="Texture" id=354]
+[ext_resource path="res://assets/eclipse.png" type="Texture" id=355]
+[ext_resource path="res://assets/phase_board_purple.png" type="Texture" id=356]
+[ext_resource path="res://assets/phase_board_heavy.png" type="Texture" id=357]
+[ext_resource path="res://assets/phase_board_blue.png" type="Texture" id=358]
+[ext_resource path="res://assets/phase_board_gray.png" type="Texture" id=359]
+[ext_resource path="res://assets/phase_board_death.png" type="Texture" id=360]
+[ext_resource path="res://assets/phase_board_life.png" type="Texture" id=361]
+[ext_resource path="res://assets/phase_board_crate.png" type="Texture" id=362]
+[ext_resource path="res://assets/phase_board_light.png" type="Texture" id=363]
+[ext_resource path="res://assets/phase_board_red.png" type="Texture" id=364]
+[ext_resource path="res://assets/yes_push.png" type="Texture" id=365]
+[ext_resource path="res://assets/yes_push_green.png" type="Texture" id=366]
+[ext_resource path="res://assets/no_left.png" type="Texture" id=367]
+[ext_resource path="res://assets/no_push_green.png" type="Texture" id=368]
+[ext_resource path="res://assets/spider_web_green.png" type="Texture" id=369]
+[ext_resource path="res://assets/no_push.png" type="Texture" id=370]
+[ext_resource path="res://assets/no_left_green.png" type="Texture" id=371]
+[ext_resource path="res://assets/spider_web.png" type="Texture" id=372]
+[ext_resource path="res://assets/oneway_east.png" type="Texture" id=373]
+[ext_resource path="res://assets/oneway_north.png" type="Texture" id=374]
+[ext_resource path="res://assets/phase_board_void.png" type="Texture" id=375]
+[ext_resource path="res://assets/oneway_west.png" type="Texture" id=376]
+[ext_resource path="res://assets/oneway_south.png" type="Texture" id=377]
+[ext_resource path="res://assets/pinkjelly.png" type="Texture" id=378]
+[ext_resource path="res://assets/cyanjelly.png" type="Texture" id=379]
+[ext_resource path="res://assets/purple_fog.png" type="Texture" id=380]
+[ext_resource path="res://assets/spotlight.png" type="Texture" id=381]
+[ext_resource path="res://assets/continuum1.png" type="Texture" id=382]
+[ext_resource path="res://assets/continuum2.png" type="Texture" id=383]
+[ext_resource path="res://assets/continuum5.png" type="Texture" id=384]
+[ext_resource path="res://assets/continuum3.png" type="Texture" id=385]
+[ext_resource path="res://assets/continuum4.png" type="Texture" id=386]
+[ext_resource path="res://timeline/voidgateofeternity.png" type="Texture" id=387]
+[ext_resource path="res://timeline/voidgateofdemise.png" type="Texture" id=388]
+[ext_resource path="res://timeline/voidsingularity.png" type="Texture" id=389]
+[ext_resource path="res://assets/void_fire_idle_1.png" type="Texture" id=390]
+[ext_resource path="res://assets/void_fire_idle_2.png" type="Texture" id=391]
+[ext_resource path="res://assets/void_fire_idle_3.png" type="Texture" id=392]
+[ext_resource path="res://assets/void_stars_9.png" type="Texture" id=393]
+[ext_resource path="res://assets/void_stars_11.png" type="Texture" id=394]
+[ext_resource path="res://assets/void_stars_3.png" type="Texture" id=395]
+[ext_resource path="res://assets/void_stars_10.png" type="Texture" id=396]
+[ext_resource path="res://assets/void_stars_7.png" type="Texture" id=397]
+[ext_resource path="res://assets/void_stars_8.png" type="Texture" id=398]
+[ext_resource path="res://assets/void_stars_2.png" type="Texture" id=399]
+[ext_resource path="res://assets/void_stars_1.png" type="Texture" id=400]
+[ext_resource path="res://assets/void_stars_4.png" type="Texture" id=401]
+[ext_resource path="res://assets/void_stars_5.png" type="Texture" id=402]
+[ext_resource path="res://assets/void_stars_6.png" type="Texture" id=403]
+[ext_resource path="res://assets/void_fog_8.png" type="Texture" id=404]
+[ext_resource path="res://assets/void_fog_2.png" type="Texture" id=405]
+[ext_resource path="res://assets/void_fog_6.png" type="Texture" id=406]
+[ext_resource path="res://assets/void_fog_4.png" type="Texture" id=407]
+[ext_resource path="res://assets/void_fog_5.png" type="Texture" id=408]
+[ext_resource path="res://assets/void_fog_7.png" type="Texture" id=409]
+[ext_resource path="res://assets/void_fog_1.png" type="Texture" id=410]
+[ext_resource path="res://assets/void_fog_3.png" type="Texture" id=411]
+[ext_resource path="res://assets/void_wall.png" type="Texture" id=412]
+[ext_resource path="res://assets/no_grounded.png" type="Texture" id=413]
+[ext_resource path="res://assets/no_rising.png" type="Texture" id=414]
+[ext_resource path="res://assets/no_falling.png" type="Texture" id=415]
+[ext_resource path="res://assets/phase_board_south.png" type="Texture" id=416]
+[ext_resource path="res://assets/phase_board_east.png" type="Texture" id=417]
+[ext_resource path="res://assets/phase_board_north.png" type="Texture" id=418]
+[ext_resource path="res://assets/phase_board_west.png" type="Texture" id=419]
+[ext_resource path="res://assets/repair_station_bumper.png" type="Texture" id=420]
+[ext_resource path="res://assets/green_passage.png" type="Texture" id=421]
+[ext_resource path="res://assets/bumper.png" type="Texture" id=422]
+[ext_resource path="res://assets/fan.png" type="Texture" id=423]
+[ext_resource path="res://assets/fence.png" type="Texture" id=424]
+[ext_resource path="res://assets/passage.png" type="Texture" id=425]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 34 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 33 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=3]
+frames = 8
+fps = 5.0
+frame_0/texture = ExtResource( 16 )
+frame_1/texture = ExtResource( 41 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 42 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 40 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 39 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 40 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 42 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 41 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=9]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 22 )
+frame_1/texture = ExtResource( 82 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 28 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 25 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 17 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 26 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 21 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 81 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=10]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 90 )
+frame_1/texture = ExtResource( 86 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 85 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 87 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 88 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 89 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 84 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 83 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=7]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 11 )
+frame_1/texture = ExtResource( 73 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 67 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 68 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 72 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 69 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 70 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 71 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=11]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 91 )
+frame_1/texture = ExtResource( 95 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 92 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 93 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 94 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 96 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 97 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 98 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=12]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 101 )
+frame_1/texture = ExtResource( 102 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 103 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 105 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 104 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 100 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 99 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 106 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=13]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 112 )
+frame_1/texture = ExtResource( 109 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 114 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 107 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 108 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 110 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 111 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 113 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=14]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 27 )
+frame_1/texture = ExtResource( 75 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 74 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 76 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 77 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 79 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 78 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 80 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=15]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 116 )
+frame_1/texture = ExtResource( 121 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 117 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 122 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 115 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 120 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 118 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 119 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 8
+fps = 5.0
+frame_0/texture = ExtResource( 36 )
+frame_1/texture = ExtResource( 35 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 37 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 38 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 31 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 38 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 37 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 35 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 44 )
+frame_1/texture = ExtResource( 46 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 45 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=5]
+frames = 8
+fps = 5.0
+frame_0/texture = ExtResource( 59 )
+frame_1/texture = ExtResource( 62 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 60 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 63 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 61 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 63 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 60 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 62 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=6]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 65 )
+frame_1/texture = ExtResource( 64 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 66 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=16]
+frames = 10
+fps = 5.0
+frame_0/texture = ExtResource( 129 )
+frame_1/texture = ExtResource( 133 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 126 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 134 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 130 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 131 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 127 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 135 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 128 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 132 )
+frame_9/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=17]
+frames = 6
+fps = 2.0
+frame_0/texture = ExtResource( 139 )
+frame_1/texture = ExtResource( 141 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 142 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 142 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 141 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 139 )
+frame_5/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=18]
+frames = 11
+fps = 5.0
+frame_0/texture = ExtResource( 153 )
+frame_1/texture = ExtResource( 144 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 143 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 145 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 146 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 147 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 150 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 151 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 148 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 149 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 152 )
+frame_10/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=19]
+frames = 4
+fps = 2.5
+frame_0/texture = ExtResource( 154 )
+frame_1/texture = ExtResource( 155 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 156 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 155 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=20]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 163 )
+frame_1/texture = ExtResource( 162 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 161 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=21]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 169 )
+frame_1/texture = ExtResource( 176 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 173 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 174 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 175 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 172 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 170 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 171 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=22]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 178 )
+frame_1/texture = ExtResource( 179 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 181 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 180 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 182 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 183 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 184 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 177 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=23]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 190 )
+frame_1/texture = ExtResource( 191 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 185 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 186 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 187 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 187 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 188 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 189 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=24]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 192 )
+frame_1/texture = ExtResource( 193 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 195 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 196 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 197 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 198 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 194 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 199 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=25]
+frames = 23
+fps = 23.0
+frame_0/texture = ExtResource( 218 )
+frame_1/texture = ExtResource( 205 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 247 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 208 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 248 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 206 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 213 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 217 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 203 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 204 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 207 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 209 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 210 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 214 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 211 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 212 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 215 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 216 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 221 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 219 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 220 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 222 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 223 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=26]
+frames = 23
+fps = 23.0
+frame_0/texture = ExtResource( 224 )
+frame_1/texture = ExtResource( 225 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 226 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 227 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 228 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 229 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 230 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 232 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 231 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 234 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 235 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 233 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 246 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 236 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 240 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 238 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 243 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 237 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 245 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 242 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 244 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 239 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 241 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=27]
+frames = 23
+fps = 11.5
+frame_0/texture = ExtResource( 201 )
+frame_1/texture = ExtResource( 263 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 256 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 261 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 262 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 257 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 258 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 259 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 260 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 253 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 252 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 254 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 255 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 251 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 202 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 250 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 249 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 268 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 267 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 266 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 265 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 269 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 264 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=28]
+frames = 23
+fps = 11.5
+frame_0/texture = ExtResource( 285 )
+frame_1/texture = ExtResource( 283 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 277 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 270 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 272 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 287 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 289 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 290 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 271 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 280 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 275 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 278 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 279 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 276 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 273 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 281 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 286 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 282 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 288 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 274 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 284 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 291 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 292 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=29]
+frames = 8
+frame_0/texture = ExtResource( 307 )
+frame_1/texture = ExtResource( 303 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 306 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 308 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 304 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 305 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 301 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 302 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=30]
+frames = 4
+fps = 6.0
+frame_0/texture = ExtResource( 349 )
+frame_1/texture = ExtResource( 350 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 348 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 351 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=32]
+frames = 5
+frame_0/texture = ExtResource( 382 )
+frame_1/texture = ExtResource( 383 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 385 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 386 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 384 )
+frame_4/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=33]
+frames = 3
+frame_0/texture = ExtResource( 392 )
+frame_1/texture = ExtResource( 391 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 390 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=34]
+frames = 11
+frame_0/texture = ExtResource( 394 )
+frame_1/texture = ExtResource( 396 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 393 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 398 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 397 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 403 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 402 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 401 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 395 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 399 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 400 )
+frame_10/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=35]
+frames = 8
+fps = 3.0
+frame_0/texture = ExtResource( 404 )
+frame_1/texture = ExtResource( 409 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 406 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 408 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 407 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 411 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 405 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 410 )
+frame_7/delay_sec = 0.0
+
+[node name="TileSetScene" type="Node2D"]
+
+[node name="WoodenPlatform" type="Sprite" parent="."]
+position = Vector2( 177, 95 )
+texture = ExtResource( 23 )
+
+[node name="Fire" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = SubResource( 1 )
+
+[node name="HeavyGoal" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 5 )
+
+[node name="HeavyIdle" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 6 )
+
+[node name="IronCrate" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 7 )
+
+[node name="Key" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 2 )
+
+[node name="Ladder" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 10 )
+
+[node name="LadderPlatform" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 8 )
+
+[node name="LightGoal" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 1 )
+
+[node name="LightIdle" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 9 )
+
+[node name="LockClosed" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 3 )
+
+[node name="LockOpen" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 15 )
+
+[node name="Spikeball" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = SubResource( 3 )
+
+[node name="SteelCrate" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 14 )
+
+[node name="Wall" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 13 )
+
+[node name="WoodenCrate" type="Sprite" parent="."]
+position = Vector2( 114, 88 )
+texture = ExtResource( 12 )
+
+[node name="Checkpoint" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = ExtResource( 19 )
+
+[node name="CheckpointBlue" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = ExtResource( 18 )
+
+[node name="CheckpointRed" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = ExtResource( 20 )
+
+[node name="OnewayEast" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = SubResource( 9 )
+
+[node name="OnewayNorth" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = SubResource( 10 )
+
+[node name="OnewaySouth" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = SubResource( 7 )
+
+[node name="OnewayWest" type="Sprite" parent="."]
+position = Vector2( 145, 90 )
+texture = SubResource( 11 )
+
+[node name="Grate" type="Sprite" parent="."]
+position = Vector2( 212, 90 )
+texture = ExtResource( 24 )
+
+[node name="OnewayEastGreen" type="Sprite" parent="."]
+position = Vector2( 258, 91 )
+texture = SubResource( 12 )
+
+[node name="OnewayNorthGreen" type="Sprite" parent="."]
+position = Vector2( 258, 91 )
+texture = SubResource( 13 )
+
+[node name="OnewaySouthGreen" type="Sprite" parent="."]
+position = Vector2( 258, 91 )
+texture = SubResource( 14 )
+
+[node name="OnewayWestGreen" type="Sprite" parent="."]
+position = Vector2( 258, 91 )
+texture = SubResource( 15 )
+
+[node name="NoHeavy" type="Sprite" parent="."]
+position = Vector2( 341, 92 )
+texture = ExtResource( 29 )
+
+[node name="NoLight" type="Sprite" parent="."]
+position = Vector2( 341, 92 )
+texture = ExtResource( 30 )
+
+[node name="PowerCrate" type="Sprite" parent="."]
+position = Vector2( 114, 129 )
+texture = ExtResource( 32 )
+
+[node name="CrateGoal" type="Sprite" parent="."]
+position = Vector2( 144, 130 )
+texture = SubResource( 2 )
+
+[node name="NoCrate" type="Sprite" parent="."]
+position = Vector2( 304, 139 )
+texture = ExtResource( 43 )
+
+[node name="HeavyFire" type="Sprite" parent="."]
+position = Vector2( 283, 184 )
+texture = SubResource( 4 )
+
+[node name="ColourRed" type="Sprite" parent="."]
+position = Vector2( 326, 173 )
+texture = ExtResource( 50 )
+
+[node name="ColourBlue" type="Sprite" parent="."]
+position = Vector2( 355, 173 )
+texture = ExtResource( 49 )
+
+[node name="ColourGray" type="Sprite" parent="."]
+position = Vector2( 384, 174 )
+texture = ExtResource( 51 )
+
+[node name="ColourMagenta" type="Sprite" parent="."]
+position = Vector2( 407, 175 )
+texture = ExtResource( 47 )
+
+[node name="ColourGreen" type="Sprite" parent="."]
+position = Vector2( 433, 174 )
+texture = ExtResource( 48 )
+
+[node name="ColourVoid" type="Sprite" parent="."]
+position = Vector2( 464, 175 )
+texture = ExtResource( 52 )
+
+[node name="ColourCyan" type="Sprite" parent="."]
+position = Vector2( 258, 238 )
+texture = ExtResource( 58 )
+
+[node name="ColourOrange" type="Sprite" parent="."]
+position = Vector2( 288, 238 )
+texture = ExtResource( 56 )
+
+[node name="ColourYellow" type="Sprite" parent="."]
+position = Vector2( 318, 240 )
+texture = ExtResource( 57 )
+
+[node name="ColourPurple" type="Sprite" parent="."]
+position = Vector2( 346, 242 )
+texture = ExtResource( 55 )
+
+[node name="GlassBlock" type="Sprite" parent="."]
+position = Vector2( 371, 242 )
+texture = ExtResource( 53 )
+
+[node name="GreenGlassBlock" type="Sprite" parent="."]
+position = Vector2( 406, 242 )
+texture = ExtResource( 54 )
+
+[node name="GreenSpikeball" type="Sprite" parent="."]
+position = Vector2( 298, 275 )
+texture = SubResource( 5 )
+
+[node name="GreenFire" type="Sprite" parent="."]
+position = Vector2( 283, 184 )
+texture = SubResource( 6 )
+
+[node name="NoRetro" type="Sprite" parent="."]
+position = Vector2( 334, 274 )
+texture = ExtResource( 123 )
+
+[node name="NoUndo" type="Sprite" parent="."]
+position = Vector2( 363, 274 )
+texture = ExtResource( 124 )
+
+[node name="OneUndo" type="Sprite" parent="."]
+position = Vector2( 395, 275 )
+texture = ExtResource( 125 )
+
+[node name="Fuzz" type="Sprite" parent="."]
+position = Vector2( 259, 274 )
+texture = SubResource( 16 )
+
+[node name="TimeCrystalGreen" type="Sprite" parent="."]
+position = Vector2( 315, 302 )
+texture = ExtResource( 137 )
+
+[node name="TimeCrystalMagenta" type="Sprite" parent="."]
+position = Vector2( 339, 303 )
+texture = ExtResource( 136 )
+
+[node name="CuckooClock" type="Sprite" parent="."]
+position = Vector2( 249, 198 )
+texture = ExtResource( 138 )
+
+[node name="TheNight" type="Sprite" parent="."]
+position = Vector2( 261, 304 )
+texture = SubResource( 17 )
+
+[node name="TheStars" type="Sprite" parent="."]
+position = Vector2( 261, 304 )
+texture = SubResource( 18 )
+
+[node name="VoidSpikeball" type="Sprite" parent="."]
+position = Vector2( 223, 299 )
+texture = SubResource( 19 )
+
+[node name="VoidGlassBlock" type="Sprite" parent="."]
+position = Vector2( 186, 299 )
+texture = ExtResource( 140 )
+
+[node name="ChronoHelixBlue" type="Sprite" parent="."]
+position = Vector2( 145, 297 )
+texture = ExtResource( 157 )
+
+[node name="ChronoHelixRed" type="Sprite" parent="."]
+position = Vector2( 110, 300 )
+texture = ExtResource( 160 )
+
+[node name="HeavyGoalJoke" type="Sprite" parent="."]
+position = Vector2( 82, 299 )
+texture = ExtResource( 159 )
+
+[node name="LightGoalJoke" type="Sprite" parent="."]
+position = Vector2( 45, 297 )
+texture = ExtResource( 158 )
+
+[node name="LightFire" type="Sprite" parent="."]
+position = Vector2( 50, 266 )
+texture = SubResource( 20 )
+
+[node name="PowerSocket" type="Sprite" parent="."]
+position = Vector2( 91, 269 )
+texture = ExtResource( 165 )
+
+[node name="GreenPowerSocket" type="Sprite" parent="."]
+position = Vector2( 103, 272 )
+texture = ExtResource( 166 )
+
+[node name="VoidPowerSocket" type="Sprite" parent="."]
+position = Vector2( 114, 277 )
+texture = ExtResource( 164 )
+
+[node name="ColourWhite" type="Sprite" parent="."]
+position = Vector2( 440, 241 )
+texture = ExtResource( 167 )
+
+[node name="GlassBlockCracked" type="Sprite" parent="."]
+position = Vector2( 437, 280 )
+texture = ExtResource( 168 )
+
+[node name="OnewayEastPurple" type="Sprite" parent="."]
+position = Vector2( 293, 91 )
+texture = SubResource( 21 )
+
+[node name="OnewayNorthPurple" type="Sprite" parent="."]
+position = Vector2( 293, 91 )
+texture = SubResource( 22 )
+
+[node name="OnewaySouthPurple" type="Sprite" parent="."]
+position = Vector2( 293, 91 )
+texture = SubResource( 23 )
+
+[node name="OnewayWestPurple" type="Sprite" parent="."]
+position = Vector2( 293, 91 )
+texture = SubResource( 24 )
+
+[node name="ColourBlurple" type="Sprite" parent="."]
+position = Vector2( 340, 215 )
+texture = ExtResource( 200 )
+
+[node name="PhaseWallBlue" type="Sprite" parent="."]
+position = Vector2( 378, 55 )
+texture = SubResource( 25 )
+
+[node name="PhaseWallRed" type="Sprite" parent="."]
+position = Vector2( 378, 55 )
+texture = SubResource( 26 )
+
+[node name="PhaseWallGray" type="Sprite" parent="."]
+position = Vector2( 378, 55 )
+texture = SubResource( 27 )
+
+[node name="PhaseWallPurple" type="Sprite" parent="."]
+position = Vector2( 378, 55 )
+texture = SubResource( 28 )
+
+[node name="PhaseLightningBlue" type="Sprite" parent="."]
+position = Vector2( 301, 39 )
+texture = ExtResource( 299 )
+
+[node name="PhaseLightningRed" type="Sprite" parent="."]
+position = Vector2( 307, 49 )
+texture = ExtResource( 298 )
+
+[node name="PhaseLightningGray" type="Sprite" parent="."]
+position = Vector2( 308, 40 )
+texture = ExtResource( 300 )
+
+[node name="PhaseLightningPurple" type="Sprite" parent="."]
+position = Vector2( 300, 47 )
+texture = ExtResource( 297 )
+
+[node name="OnewayEastLose" type="Sprite" parent="."]
+position = Vector2( 258, 57 )
+texture = ExtResource( 293 )
+
+[node name="OnewayNorthLose" type="Sprite" parent="."]
+position = Vector2( 258, 57 )
+texture = ExtResource( 294 )
+
+[node name="OnewaySouthLose" type="Sprite" parent="."]
+position = Vector2( 258, 57 )
+texture = ExtResource( 296 )
+
+[node name="OnewayWestLose" type="Sprite" parent="."]
+position = Vector2( 258, 57 )
+texture = ExtResource( 295 )
+
+[node name="GreenFog" type="Sprite" parent="."]
+position = Vector2( 379, 94 )
+texture = SubResource( 29 )
+
+[node name="Floorboards" type="Sprite" parent="."]
+position = Vector2( 410, 42 )
+texture = ExtResource( 309 )
+
+[node name="GreenFloorboards" type="Sprite" parent="."]
+position = Vector2( 416, 47 )
+texture = ExtResource( 311 )
+
+[node name="VoidFloorboards" type="Sprite" parent="."]
+position = Vector2( 423, 53 )
+texture = ExtResource( 310 )
+
+[node name="Hole" type="Sprite" parent="."]
+position = Vector2( 421, 87 )
+texture = ExtResource( 313 )
+
+[node name="GreenHole" type="Sprite" parent="."]
+position = Vector2( 429, 93 )
+texture = ExtResource( 312 )
+
+[node name="VoidHole" type="Sprite" parent="."]
+position = Vector2( 439, 102 )
+texture = ExtResource( 314 )
+
+[node name="BoostPad" type="Sprite" parent="."]
+position = Vector2( 457, 42 )
+texture = ExtResource( 315 )
+
+[node name="GreenBoostPad" type="Sprite" parent="."]
+position = Vector2( 463, 47 )
+texture = ExtResource( 316 )
+
+[node name="SlopeNW" type="Sprite" parent="."]
+position = Vector2( 237, 0 )
+texture = ExtResource( 317 )
+
+[node name="SlopeNE" type="Sprite" parent="."]
+position = Vector2( 261, 0 )
+texture = ExtResource( 319 )
+
+[node name="SlopeSE" type="Sprite" parent="."]
+position = Vector2( 261, 24 )
+texture = ExtResource( 318 )
+
+[node name="SlopeSW" type="Sprite" parent="."]
+position = Vector2( 237, 24 )
+texture = ExtResource( 320 )
+
+[node name="Boulder" type="Sprite" parent="."]
+position = Vector2( 249, 12 )
+texture = ExtResource( 321 )
+
+[node name="PhaseWallGreenEven" type="Sprite" parent="."]
+position = Vector2( 475, 86 )
+texture = ExtResource( 322 )
+
+[node name="PhaseWallGreenOdd" type="Sprite" parent="."]
+position = Vector2( 474, 113 )
+texture = ExtResource( 323 )
+
+[node name="NudgeEast" type="Sprite" parent="."]
+position = Vector2( 453, 204 )
+texture = ExtResource( 324 )
+
+[node name="NudgeNorth" type="Sprite" parent="."]
+position = Vector2( 445, 198 )
+texture = ExtResource( 326 )
+
+[node name="NudgeSouth" type="Sprite" parent="."]
+position = Vector2( 445, 213 )
+texture = ExtResource( 329 )
+
+[node name="NudgeWest" type="Sprite" parent="."]
+position = Vector2( 437, 204 )
+texture = ExtResource( 325 )
+
+[node name="NudgeEastGreen" type="Sprite" parent="."]
+position = Vector2( 483, 208 )
+texture = ExtResource( 327 )
+
+[node name="NudgeNorthGreen" type="Sprite" parent="."]
+position = Vector2( 477, 203 )
+texture = ExtResource( 328 )
+
+[node name="NudgeSouthGreen" type="Sprite" parent="."]
+position = Vector2( 476, 217 )
+texture = ExtResource( 330 )
+
+[node name="NudgeWestGreen" type="Sprite" parent="."]
+position = Vector2( 471, 208 )
+texture = ExtResource( 331 )
+
+[node name="AntiGrate" type="Sprite" parent="."]
+position = Vector2( 218, 95 )
+texture = ExtResource( 332 )
+
+[node name="MagentaFloorboards" type="Sprite" parent="."]
+position = Vector2( 431, 60 )
+texture = ExtResource( 333 )
+
+[node name="GhostPlatform" type="Sprite" parent="."]
+position = Vector2( 319, 127 )
+texture = ExtResource( 334 )
+
+[node name="Propellor" type="Sprite" parent="."]
+position = Vector2( 245, 143 )
+texture = ExtResource( 335 )
+
+[node name="DurPlus" type="Sprite" parent="."]
+position = Vector2( 354, 139 )
+texture = ExtResource( 342 )
+
+[node name="DurMinus" type="Sprite" parent="."]
+position = Vector2( 355, 140 )
+texture = ExtResource( 338 )
+
+[node name="HvyPlus" type="Sprite" parent="."]
+position = Vector2( 353, 135 )
+texture = ExtResource( 337 )
+
+[node name="HvyMinus" type="Sprite" parent="."]
+position = Vector2( 354, 135 )
+texture = ExtResource( 339 )
+
+[node name="StrPlus" type="Sprite" parent="."]
+position = Vector2( 355, 130 )
+texture = ExtResource( 336 )
+
+[node name="StrMinus" type="Sprite" parent="."]
+position = Vector2( 353, 131 )
+texture = ExtResource( 343 )
+
+[node name="FallInf" type="Sprite" parent="."]
+position = Vector2( 355, 156 )
+texture = ExtResource( 340 )
+
+[node name="FallOne" type="Sprite" parent="."]
+position = Vector2( 357, 157 )
+texture = ExtResource( 341 )
+
+[node name="ColourNative" type="Sprite" parent="."]
+position = Vector2( 374, 205 )
+texture = ExtResource( 344 )
+
+[node name="RepairStation" type="Sprite" parent="."]
+position = Vector2( 386, 141 )
+texture = ExtResource( 345 )
+
+[node name="RepairStationGray" type="Sprite" parent="."]
+position = Vector2( 387, 142 )
+texture = ExtResource( 346 )
+
+[node name="RepairStationGreen" type="Sprite" parent="."]
+position = Vector2( 389, 144 )
+texture = ExtResource( 347 )
+
+[node name="ZombieTile" type="Sprite" parent="."]
+position = Vector2( 419, 140 )
+texture = SubResource( 30 )
+
+[node name="HeavyMimic" type="Sprite" parent="."]
+position = Vector2( 451, 148 )
+texture = ExtResource( 353 )
+
+[node name="LightMimic" type="Sprite" parent="."]
+position = Vector2( 453, 145 )
+texture = ExtResource( 352 )
+
+[node name="GhostFog" type="Sprite" parent="."]
+position = Vector2( 485, 148 )
+texture = ExtResource( 354 )
+
+[node name="Eclipse" type="Sprite" parent="."]
+position = Vector2( 344, 23 )
+texture = ExtResource( 355 )
+
+[node name="PhaseBoardRed" type="Sprite" parent="."]
+position = Vector2( 266, 131 )
+texture = ExtResource( 364 )
+
+[node name="PhaseBoardBlue" type="Sprite" parent="."]
+position = Vector2( 269, 132 )
+texture = ExtResource( 358 )
+
+[node name="PhaseBoardGray" type="Sprite" parent="."]
+position = Vector2( 271, 135 )
+texture = ExtResource( 359 )
+
+[node name="PhaseBoardPurple" type="Sprite" parent="."]
+position = Vector2( 275, 138 )
+texture = ExtResource( 356 )
+
+[node name="PhaseBoardDeath" type="Sprite" parent="."]
+position = Vector2( 279, 142 )
+texture = ExtResource( 360 )
+
+[node name="PhaseBoardLife" type="Sprite" parent="."]
+position = Vector2( 283, 146 )
+texture = ExtResource( 361 )
+
+[node name="PhaseBoardHeavy" type="Sprite" parent="."]
+position = Vector2( 285, 152 )
+texture = ExtResource( 357 )
+
+[node name="PhaseBoardLight" type="Sprite" parent="."]
+position = Vector2( 291, 155 )
+texture = ExtResource( 363 )
+
+[node name="PhaseBoardCrate" type="Sprite" parent="."]
+position = Vector2( 294, 163 )
+texture = ExtResource( 362 )
+
+[node name="SpiderWeb" type="Sprite" parent="."]
+position = Vector2( 477, 240 )
+texture = ExtResource( 372 )
+
+[node name="SpiderWebGreen" type="Sprite" parent="."]
+position = Vector2( 492, 239 )
+texture = ExtResource( 369 )
+
+[node name="NoPush" type="Sprite" parent="."]
+position = Vector2( 470, 271 )
+texture = ExtResource( 370 )
+
+[node name="NoPushGreen" type="Sprite" parent="."]
+position = Vector2( 470, 271 )
+texture = ExtResource( 368 )
+
+[node name="YesPush" type="Sprite" parent="."]
+position = Vector2( 471, 272 )
+texture = ExtResource( 365 )
+
+[node name="YesPushGreen" type="Sprite" parent="."]
+position = Vector2( 471, 272 )
+texture = ExtResource( 366 )
+
+[node name="NoLeft" type="Sprite" parent="."]
+position = Vector2( 470, 271 )
+texture = ExtResource( 367 )
+
+[node name="NoLeftGreen" type="Sprite" parent="."]
+position = Vector2( 470, 271 )
+texture = ExtResource( 371 )
+
+[node name="PhaseBoardVoid" type="Sprite" parent="."]
+position = Vector2( 300, 168 )
+texture = ExtResource( 375 )
+
+[node name="OnewayEastGray" type="Sprite" parent="."]
+position = Vector2( 496, 286 )
+texture = ExtResource( 373 )
+
+[node name="OnewayNorthGray" type="Sprite" parent="."]
+position = Vector2( 497, 289 )
+texture = ExtResource( 374 )
+
+[node name="OnewaySouthGray" type="Sprite" parent="."]
+position = Vector2( 496, 286 )
+texture = ExtResource( 377 )
+
+[node name="OnewayWestGray" type="Sprite" parent="."]
+position = Vector2( 497, 288 )
+texture = ExtResource( 376 )
+
+[node name="PinkJelly" type="Sprite" parent="."]
+position = Vector2( 310, 206 )
+texture = ExtResource( 378 )
+
+[node name="CyanJelly" type="Sprite" parent="."]
+position = Vector2( 315, 212 )
+texture = ExtResource( 379 )
+
+[node name="PurpleFog" type="Sprite" parent="."]
+position = Vector2( 484, 148 )
+texture = ExtResource( 380 )
+
+[node name="Spotlight" type="Sprite" parent="."]
+position = Vector2( 342, 58 )
+texture = ExtResource( 381 )
+
+[node name="Continuum" type="Sprite" parent="."]
+position = Vector2( 380, 24 )
+texture = SubResource( 32 )
+
+[node name="GateOfEternity" type="Sprite" parent="."]
+position = Vector2( 415, 16 )
+texture = ExtResource( 387 )
+
+[node name="GateOfDemise" type="Sprite" parent="."]
+position = Vector2( 441, 16 )
+texture = ExtResource( 388 )
+
+[node name="VoidSingularity" type="Sprite" parent="."]
+position = Vector2( 469, 17 )
+texture = ExtResource( 389 )
+
+[node name="VoidWall" type="Sprite" parent="."]
+position = Vector2( 238, 265 )
+texture = ExtResource( 412 )
+
+[node name="VoidFire" type="Sprite" parent="."]
+position = Vector2( 283, 184 )
+texture = SubResource( 33 )
+
+[node name="VoidStars" type="Sprite" parent="."]
+position = Vector2( 261, 304 )
+texture = SubResource( 34 )
+
+[node name="VoidFog" type="Sprite" parent="."]
+position = Vector2( 379, 94 )
+texture = SubResource( 35 )
+
+[node name="NoRising" type="Sprite" parent="."]
+position = Vector2( 354, 118 )
+texture = ExtResource( 414 )
+
+[node name="NoFalling" type="Sprite" parent="."]
+position = Vector2( 353, 118 )
+texture = ExtResource( 415 )
+
+[node name="NoGrounded" type="Sprite" parent="."]
+position = Vector2( 353, 118 )
+texture = ExtResource( 413 )
+
+[node name="PhaseBoardEast" type="Sprite" parent="."]
+position = Vector2( 321, 144 )
+texture = ExtResource( 417 )
+
+[node name="PhaseBoardNorth" type="Sprite" parent="."]
+position = Vector2( 327, 149 )
+texture = ExtResource( 418 )
+
+[node name="PhaseBoardSouth" type="Sprite" parent="."]
+position = Vector2( 327, 140 )
+texture = ExtResource( 416 )
+
+[node name="PhaseBoardWest" type="Sprite" parent="."]
+position = Vector2( 332, 144 )
+texture = ExtResource( 419 )
+
+[node name="RepairStationBumper" type="Sprite" parent="."]
+position = Vector2( 401, 123 )
+texture = ExtResource( 420 )
+
+[node name="Fence" type="Sprite" parent="."]
+position = Vector2( 402, 208 )
+texture = ExtResource( 424 )
+
+[node name="Fan" type="Sprite" parent="."]
+position = Vector2( 404, 211 )
+texture = ExtResource( 423 )
+
+[node name="Bumper" type="Sprite" parent="."]
+position = Vector2( 409, 215 )
+texture = ExtResource( 422 )
+
+[node name="Passage" type="Sprite" parent="."]
+position = Vector2( 415, 217 )
+texture = ExtResource( 425 )
+
+[node name="GreenPassage" type="Sprite" parent="."]
+position = Vector2( 423, 219 )
+texture = ExtResource( 421 )

@@ -1,0 +1,3613 @@
+[gd_resource type="TileSet" load_steps=459 format=2]
+
+[ext_resource path="res://assets/light_goal.png" type="Texture" id=1]
+[ext_resource path="res://assets/key.png" type="Texture" id=2]
+[ext_resource path="res://assets/lock_closed.png" type="Texture" id=3]
+[ext_resource path="res://assets/fire_idle_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/heavy_goal.png" type="Texture" id=5]
+[ext_resource path="res://assets/heavy_idle.png" type="Texture" id=6]
+[ext_resource path="res://assets/iron_crate.png" type="Texture" id=7]
+[ext_resource path="res://assets/ladder_platform.png" type="Texture" id=8]
+[ext_resource path="res://assets/light_idle.png" type="Texture" id=9]
+[ext_resource path="res://assets/ladder.png" type="Texture" id=10]
+[ext_resource path="res://assets/wooden_platform.png" type="Texture" id=11]
+[ext_resource path="res://assets/wooden_crate.png" type="Texture" id=12]
+[ext_resource path="res://assets/WallPlaceholderProtoType1Dark.png" type="Texture" id=13]
+[ext_resource path="res://assets/steel_crate.png" type="Texture" id=14]
+[ext_resource path="res://assets/lock_open.png" type="Texture" id=15]
+[ext_resource path="res://assets/spikeball.png" type="Texture" id=16]
+[ext_resource path="res://assets/oneway_south_1.png" type="Texture" id=17]
+[ext_resource path="res://assets/oneway_east_5.png" type="Texture" id=18]
+[ext_resource path="res://assets/checkpoint_blue.png" type="Texture" id=19]
+[ext_resource path="res://assets/checkpoint.png" type="Texture" id=20]
+[ext_resource path="res://assets/checkpoint_red.png" type="Texture" id=21]
+[ext_resource path="res://assets/oneway_north_8.png" type="Texture" id=22]
+[ext_resource path="res://assets/oneway_east_7.png" type="Texture" id=23]
+[ext_resource path="res://assets/grate.png" type="Texture" id=24]
+[ext_resource path="res://assets/oneway_east_1.png" type="Texture" id=25]
+[ext_resource path="res://assets/oneway_east_4.png" type="Texture" id=26]
+[ext_resource path="res://assets/oneway_south_3.png" type="Texture" id=27]
+[ext_resource path="res://assets/oneway_east_6.png" type="Texture" id=28]
+[ext_resource path="res://assets/no_heavy.png" type="Texture" id=29]
+[ext_resource path="res://assets/no_light.png" type="Texture" id=30]
+[ext_resource path="res://assets/crate_goal_5.png" type="Texture" id=31]
+[ext_resource path="res://assets/power_crate.png" type="Texture" id=32]
+[ext_resource path="res://assets/fire_idle_3.png" type="Texture" id=33]
+[ext_resource path="res://assets/fire_idle_2.png" type="Texture" id=34]
+[ext_resource path="res://assets/crate_goal_2.png" type="Texture" id=35]
+[ext_resource path="res://assets/crate_goal_1.png" type="Texture" id=36]
+[ext_resource path="res://assets/crate_goal_3.png" type="Texture" id=37]
+[ext_resource path="res://assets/crate_goal_4.png" type="Texture" id=38]
+[ext_resource path="res://assets/spikeball_5.png" type="Texture" id=39]
+[ext_resource path="res://assets/spikeball_4.png" type="Texture" id=40]
+[ext_resource path="res://assets/spikeball_2.png" type="Texture" id=41]
+[ext_resource path="res://assets/spikeball_3.png" type="Texture" id=42]
+[ext_resource path="res://assets/no_crate.png" type="Texture" id=43]
+[ext_resource path="res://assets/heavy_fire_idle_1.png" type="Texture" id=44]
+[ext_resource path="res://assets/heavy_fire_idle_3.png" type="Texture" id=45]
+[ext_resource path="res://assets/heavy_fire_idle_2.png" type="Texture" id=46]
+[ext_resource path="res://assets/colour_magenta.png" type="Texture" id=47]
+[ext_resource path="res://assets/colour_green.png" type="Texture" id=48]
+[ext_resource path="res://assets/colour_blue.png" type="Texture" id=49]
+[ext_resource path="res://assets/colour_red.png" type="Texture" id=50]
+[ext_resource path="res://assets/colour_gray.png" type="Texture" id=51]
+[ext_resource path="res://assets/colour_void.png" type="Texture" id=52]
+[ext_resource path="res://assets/colour_purple.png" type="Texture" id=53]
+[ext_resource path="res://assets/colour_orange.png" type="Texture" id=54]
+[ext_resource path="res://assets/colour_yellow.png" type="Texture" id=55]
+[ext_resource path="res://assets/colour_cyan.png" type="Texture" id=56]
+[ext_resource path="res://assets/glass_block.png" type="Texture" id=57]
+[ext_resource path="res://assets/green_glass_block.png" type="Texture" id=58]
+[ext_resource path="res://assets/green_fire_idle_3.png" type="Texture" id=59]
+[ext_resource path="res://assets/green_fire_idle_2.png" type="Texture" id=60]
+[ext_resource path="res://assets/green_spikeball_1.png" type="Texture" id=61]
+[ext_resource path="res://assets/green_spikeball_3.png" type="Texture" id=62]
+[ext_resource path="res://assets/green_spikeball_5.png" type="Texture" id=63]
+[ext_resource path="res://assets/green_fire_idle_1.png" type="Texture" id=64]
+[ext_resource path="res://assets/green_spikeball_2.png" type="Texture" id=65]
+[ext_resource path="res://assets/green_spikeball_4.png" type="Texture" id=66]
+[ext_resource path="res://assets/oneway_south_4.png" type="Texture" id=67]
+[ext_resource path="res://assets/oneway_south_6.png" type="Texture" id=68]
+[ext_resource path="res://assets/oneway_south_7.png" type="Texture" id=69]
+[ext_resource path="res://assets/oneway_south_8.png" type="Texture" id=70]
+[ext_resource path="res://assets/oneway_south_green_1.png" type="Texture" id=71]
+[ext_resource path="res://assets/oneway_south_5.png" type="Texture" id=72]
+[ext_resource path="res://assets/oneway_south_2.png" type="Texture" id=73]
+[ext_resource path="res://assets/oneway_south_green_3.png" type="Texture" id=74]
+[ext_resource path="res://assets/oneway_south_green_2.png" type="Texture" id=75]
+[ext_resource path="res://assets/oneway_south_green_4.png" type="Texture" id=76]
+[ext_resource path="res://assets/oneway_south_green_5.png" type="Texture" id=77]
+[ext_resource path="res://assets/oneway_south_green_7.png" type="Texture" id=78]
+[ext_resource path="res://assets/oneway_south_green_6.png" type="Texture" id=79]
+[ext_resource path="res://assets/oneway_south_green_8.png" type="Texture" id=80]
+[ext_resource path="res://assets/oneway_east_3.png" type="Texture" id=81]
+[ext_resource path="res://assets/oneway_east_8.png" type="Texture" id=82]
+[ext_resource path="res://assets/oneway_east_2.png" type="Texture" id=83]
+[ext_resource path="res://assets/oneway_north_7.png" type="Texture" id=84]
+[ext_resource path="res://assets/oneway_east_green_7.png" type="Texture" id=85]
+[ext_resource path="res://assets/oneway_east_green_6.png" type="Texture" id=86]
+[ext_resource path="res://assets/oneway_east_green_1.png" type="Texture" id=87]
+[ext_resource path="res://assets/oneway_east_green_2.png" type="Texture" id=88]
+[ext_resource path="res://assets/oneway_east_green_3.png" type="Texture" id=89]
+[ext_resource path="res://assets/oneway_north_3.png" type="Texture" id=90]
+[ext_resource path="res://assets/oneway_north_2.png" type="Texture" id=91]
+[ext_resource path="res://assets/oneway_west_1.png" type="Texture" id=92]
+[ext_resource path="res://assets/oneway_west_3.png" type="Texture" id=93]
+[ext_resource path="res://assets/oneway_west_4.png" type="Texture" id=94]
+[ext_resource path="res://assets/oneway_west_5.png" type="Texture" id=95]
+[ext_resource path="res://assets/oneway_west_2.png" type="Texture" id=96]
+[ext_resource path="res://assets/oneway_west_6.png" type="Texture" id=97]
+[ext_resource path="res://assets/oneway_east_green_5.png" type="Texture" id=98]
+[ext_resource path="res://assets/oneway_north_4.png" type="Texture" id=99]
+[ext_resource path="res://assets/oneway_north_5.png" type="Texture" id=100]
+[ext_resource path="res://assets/oneway_north_6.png" type="Texture" id=101]
+[ext_resource path="res://assets/oneway_north_1.png" type="Texture" id=102]
+[ext_resource path="res://assets/oneway_east_green_4.png" type="Texture" id=103]
+[ext_resource path="res://assets/oneway_east_green_8.png" type="Texture" id=104]
+[ext_resource path="res://assets/oneway_west_7.png" type="Texture" id=105]
+[ext_resource path="res://assets/oneway_west_8.png" type="Texture" id=106]
+[ext_resource path="res://assets/oneway_north_green_4.png" type="Texture" id=107]
+[ext_resource path="res://assets/oneway_north_green_5.png" type="Texture" id=108]
+[ext_resource path="res://assets/oneway_north_green_2.png" type="Texture" id=109]
+[ext_resource path="res://assets/oneway_north_green_6.png" type="Texture" id=110]
+[ext_resource path="res://assets/oneway_north_green_7.png" type="Texture" id=111]
+[ext_resource path="res://assets/oneway_north_green_1.png" type="Texture" id=112]
+[ext_resource path="res://assets/oneway_north_green_8.png" type="Texture" id=113]
+[ext_resource path="res://assets/oneway_north_green_3.png" type="Texture" id=114]
+[ext_resource path="res://assets/oneway_west_green_5.png" type="Texture" id=115]
+[ext_resource path="res://assets/oneway_west_green_1.png" type="Texture" id=116]
+[ext_resource path="res://assets/oneway_west_green_3.png" type="Texture" id=117]
+[ext_resource path="res://assets/oneway_west_green_7.png" type="Texture" id=118]
+[ext_resource path="res://assets/oneway_west_green_8.png" type="Texture" id=119]
+[ext_resource path="res://assets/oneway_west_green_6.png" type="Texture" id=120]
+[ext_resource path="res://assets/oneway_west_green_2.png" type="Texture" id=121]
+[ext_resource path="res://assets/oneway_west_green_4.png" type="Texture" id=122]
+[ext_resource path="res://assets/no_retro.png" type="Texture" id=123]
+[ext_resource path="res://assets/no_undo.png" type="Texture" id=124]
+[ext_resource path="res://assets/one_undo.png" type="Texture" id=125]
+[ext_resource path="res://assets/fuzz2.png" type="Texture" id=126]
+[ext_resource path="res://assets/fuzz4.png" type="Texture" id=127]
+[ext_resource path="res://assets/fuzz5.png" type="Texture" id=128]
+[ext_resource path="res://assets/fuzz.png" type="Texture" id=129]
+[ext_resource path="res://assets/fuzz3.png" type="Texture" id=130]
+[ext_resource path="res://assets/fuzz8.png" type="Texture" id=131]
+[ext_resource path="res://assets/fuzz10.png" type="Texture" id=132]
+[ext_resource path="res://assets/fuzz6.png" type="Texture" id=133]
+[ext_resource path="res://assets/fuzz7.png" type="Texture" id=134]
+[ext_resource path="res://assets/fuzz9.png" type="Texture" id=135]
+[ext_resource path="res://assets/timecrystalmagenta.png" type="Texture" id=136]
+[ext_resource path="res://assets/timecrystalgreen.png" type="Texture" id=137]
+[ext_resource path="res://assets/cuckoo_clock.png" type="Texture" id=138]
+[ext_resource path="res://assets/the_night_1.png" type="Texture" id=139]
+[ext_resource path="res://assets/void_glass.png" type="Texture" id=140]
+[ext_resource path="res://assets/the_night_2.png" type="Texture" id=141]
+[ext_resource path="res://assets/the_night_3.png" type="Texture" id=142]
+[ext_resource path="res://assets/the_stars_3.png" type="Texture" id=143]
+[ext_resource path="res://assets/the_stars_2.png" type="Texture" id=144]
+[ext_resource path="res://assets/the_stars_4.png" type="Texture" id=145]
+[ext_resource path="res://assets/the_stars_5.png" type="Texture" id=146]
+[ext_resource path="res://assets/the_stars_6.png" type="Texture" id=147]
+[ext_resource path="res://assets/the_stars_9.png" type="Texture" id=148]
+[ext_resource path="res://assets/the_stars_10.png" type="Texture" id=149]
+[ext_resource path="res://assets/the_stars_7.png" type="Texture" id=150]
+[ext_resource path="res://assets/the_stars_8.png" type="Texture" id=151]
+[ext_resource path="res://assets/the_stars_11.png" type="Texture" id=152]
+[ext_resource path="res://assets/the_stars_12.png" type="Texture" id=153]
+[ext_resource path="res://assets/void_spikeball_1.png" type="Texture" id=154]
+[ext_resource path="res://assets/void_spikeball_2.png" type="Texture" id=155]
+[ext_resource path="res://assets/void_spikeball_3.png" type="Texture" id=156]
+[ext_resource path="res://assets/chrono_helix_blue.png" type="Texture" id=157]
+[ext_resource path="res://assets/light_goal_joke.png" type="Texture" id=158]
+[ext_resource path="res://assets/heavy_goal_joke.png" type="Texture" id=159]
+[ext_resource path="res://assets/chrono_helix_red.png" type="Texture" id=160]
+[ext_resource path="res://assets/light_fire_idle_3.png" type="Texture" id=161]
+[ext_resource path="res://assets/light_fire_idle_2.png" type="Texture" id=162]
+[ext_resource path="res://assets/light_fire_idle_1.png" type="Texture" id=163]
+[ext_resource path="res://assets/void_power_socket.png" type="Texture" id=164]
+[ext_resource path="res://assets/white_power_socket.png" type="Texture" id=165]
+[ext_resource path="res://assets/green_power_socket.png" type="Texture" id=166]
+[ext_resource path="res://assets/colour_white.png" type="Texture" id=167]
+[ext_resource path="res://assets/glass_block_cracked.png" type="Texture" id=168]
+[ext_resource path="res://assets/oneway_east_purple_1.png" type="Texture" id=169]
+[ext_resource path="res://assets/oneway_north_purple_8.png" type="Texture" id=170]
+[ext_resource path="res://assets/oneway_west_purple_1.png" type="Texture" id=171]
+[ext_resource path="res://assets/oneway_south_purple_3.png" type="Texture" id=172]
+[ext_resource path="res://assets/oneway_south_purple_4.png" type="Texture" id=173]
+[ext_resource path="res://assets/oneway_west_purple_2.png" type="Texture" id=174]
+[ext_resource path="res://assets/oneway_south_purple_6.png" type="Texture" id=175]
+[ext_resource path="res://assets/oneway_south_purple_7.png" type="Texture" id=176]
+[ext_resource path="res://assets/oneway_east_purple_7.png" type="Texture" id=177]
+[ext_resource path="res://assets/oneway_east_purple_8.png" type="Texture" id=178]
+[ext_resource path="res://assets/oneway_south_purple_8.png" type="Texture" id=179]
+[ext_resource path="res://assets/oneway_north_purple_1.png" type="Texture" id=180]
+[ext_resource path="res://assets/oneway_east_purple_6.png" type="Texture" id=181]
+[ext_resource path="res://assets/oneway_south_purple_1.png" type="Texture" id=182]
+[ext_resource path="res://assets/oneway_east_purple_3.png" type="Texture" id=183]
+[ext_resource path="res://assets/oneway_east_purple_4.png" type="Texture" id=184]
+[ext_resource path="res://assets/oneway_east_purple_5.png" type="Texture" id=185]
+[ext_resource path="res://assets/oneway_north_purple_2.png" type="Texture" id=186]
+[ext_resource path="res://assets/oneway_north_purple_4.png" type="Texture" id=187]
+[ext_resource path="res://assets/oneway_east_purple_2.png" type="Texture" id=188]
+[ext_resource path="res://assets/oneway_north_purple_3.png" type="Texture" id=189]
+[ext_resource path="res://assets/oneway_north_purple_5.png" type="Texture" id=190]
+[ext_resource path="res://assets/oneway_north_purple_6.png" type="Texture" id=191]
+[ext_resource path="res://assets/oneway_north_purple_7.png" type="Texture" id=192]
+[ext_resource path="res://assets/oneway_south_purple_2.png" type="Texture" id=193]
+[ext_resource path="res://assets/oneway_west_purple_7.png" type="Texture" id=194]
+[ext_resource path="res://assets/oneway_west_purple_8.png" type="Texture" id=195]
+[ext_resource path="res://assets/oneway_west_purple_3.png" type="Texture" id=196]
+[ext_resource path="res://assets/oneway_west_purple_4.png" type="Texture" id=197]
+[ext_resource path="res://assets/oneway_west_purple_5.png" type="Texture" id=198]
+[ext_resource path="res://assets/oneway_west_purple_6.png" type="Texture" id=199]
+[ext_resource path="res://assets/colour_blurple.png" type="Texture" id=200]
+[ext_resource path="res://assets/phase_wall_gray_0.png" type="Texture" id=201]
+[ext_resource path="res://assets/phase_wall_gray_14.png" type="Texture" id=202]
+[ext_resource path="res://assets/phase_wall_blue_2.png" type="Texture" id=203]
+[ext_resource path="res://assets/phase_wall_blue_4.png" type="Texture" id=204]
+[ext_resource path="res://assets/phase_wall_blue_8.png" type="Texture" id=205]
+[ext_resource path="res://assets/phase_wall_gray_16.png" type="Texture" id=206]
+[ext_resource path="res://assets/phase_wall_blue_9.png" type="Texture" id=207]
+[ext_resource path="res://assets/phase_wall_blue_1.png" type="Texture" id=208]
+[ext_resource path="res://assets/phase_wall_blue_5.png" type="Texture" id=209]
+[ext_resource path="res://assets/phase_wall_blue_10.png" type="Texture" id=210]
+[ext_resource path="res://assets/phase_wall_blue_3.png" type="Texture" id=211]
+[ext_resource path="res://assets/phase_wall_blue_11.png" type="Texture" id=212]
+[ext_resource path="res://assets/phase_wall_blue_12.png" type="Texture" id=213]
+[ext_resource path="res://assets/phase_wall_blue_14.png" type="Texture" id=214]
+[ext_resource path="res://assets/phase_wall_blue_15.png" type="Texture" id=215]
+[ext_resource path="res://assets/phase_wall_blue_6.png" type="Texture" id=216]
+[ext_resource path="res://assets/phase_wall_blue_13.png" type="Texture" id=217]
+[ext_resource path="res://assets/phase_wall_blue_16.png" type="Texture" id=218]
+[ext_resource path="res://assets/phase_wall_blue_17.png" type="Texture" id=219]
+[ext_resource path="res://assets/phase_wall_blue_7.png" type="Texture" id=220]
+[ext_resource path="res://assets/phase_wall_gray_15.png" type="Texture" id=221]
+[ext_resource path="res://assets/phase_wall_gray_13.png" type="Texture" id=222]
+[ext_resource path="res://assets/phase_wall_blue_0.png" type="Texture" id=223]
+[ext_resource path="res://assets/phase_wall_gray_10.png" type="Texture" id=224]
+[ext_resource path="res://assets/phase_wall_gray_9.png" type="Texture" id=225]
+[ext_resource path="res://assets/phase_wall_gray_11.png" type="Texture" id=226]
+[ext_resource path="res://assets/phase_wall_gray_12.png" type="Texture" id=227]
+[ext_resource path="res://assets/phase_wall_blue_19.png" type="Texture" id=228]
+[ext_resource path="res://assets/phase_wall_gray_2.png" type="Texture" id=229]
+[ext_resource path="res://assets/phase_wall_gray_5.png" type="Texture" id=230]
+[ext_resource path="res://assets/phase_wall_gray_6.png" type="Texture" id=231]
+[ext_resource path="res://assets/phase_wall_gray_7.png" type="Texture" id=232]
+[ext_resource path="res://assets/phase_wall_red_22.png" type="Texture" id=233]
+[ext_resource path="res://assets/phase_wall_red_21.png" type="Texture" id=234]
+[ext_resource path="res://assets/phase_wall_red_20.png" type="Texture" id=235]
+[ext_resource path="res://assets/phase_wall_red_19.png" type="Texture" id=236]
+[ext_resource path="res://assets/phase_wall_gray_8.png" type="Texture" id=237]
+[ext_resource path="res://assets/phase_wall_red_18.png" type="Texture" id=238]
+[ext_resource path="res://assets/phase_wall_red_17.png" type="Texture" id=239]
+[ext_resource path="res://assets/phase_wall_red_16.png" type="Texture" id=240]
+[ext_resource path="res://assets/phase_wall_blue_20.png" type="Texture" id=241]
+[ext_resource path="res://assets/phase_wall_gray_3.png" type="Texture" id=242]
+[ext_resource path="res://assets/phase_wall_blue_18.png" type="Texture" id=243]
+[ext_resource path="res://assets/phase_wall_gray_4.png" type="Texture" id=244]
+[ext_resource path="res://assets/phase_wall_blue_21.png" type="Texture" id=245]
+[ext_resource path="res://assets/phase_wall_blue_22.png" type="Texture" id=246]
+[ext_resource path="res://assets/phase_wall_gray_1.png" type="Texture" id=247]
+[ext_resource path="res://assets/phase_wall_red_14.png" type="Texture" id=248]
+[ext_resource path="res://assets/phase_wall_red_15.png" type="Texture" id=249]
+[ext_resource path="res://assets/phase_wall_red_11.png" type="Texture" id=250]
+[ext_resource path="res://assets/phase_wall_red_13.png" type="Texture" id=251]
+[ext_resource path="res://assets/phase_wall_red_12.png" type="Texture" id=252]
+[ext_resource path="res://assets/phase_wall_gray_22.png" type="Texture" id=253]
+[ext_resource path="res://assets/phase_wall_purple_19.png" type="Texture" id=254]
+[ext_resource path="res://assets/phase_wall_gray_20.png" type="Texture" id=255]
+[ext_resource path="res://assets/phase_wall_gray_19.png" type="Texture" id=256]
+[ext_resource path="res://assets/phase_wall_purple_14.png" type="Texture" id=257]
+[ext_resource path="res://assets/oneway_east_lose_1.png" type="Texture" id=258]
+[ext_resource path="res://assets/oneway_north_lose_1.png" type="Texture" id=259]
+[ext_resource path="res://assets/phase_wall_purple_18.png" type="Texture" id=260]
+[ext_resource path="res://assets/phase_wall_purple_8.png" type="Texture" id=261]
+[ext_resource path="res://assets/phase_wall_purple_3.png" type="Texture" id=262]
+[ext_resource path="res://assets/oneway_west_lose_1.png" type="Texture" id=263]
+[ext_resource path="res://assets/phase_wall_purple_12.png" type="Texture" id=264]
+[ext_resource path="res://assets/phase_wall_purple_9.png" type="Texture" id=265]
+[ext_resource path="res://assets/phase_wall_gray_18.png" type="Texture" id=266]
+[ext_resource path="res://assets/phase_wall_purple_20.png" type="Texture" id=267]
+[ext_resource path="res://assets/phase_wall_purple_11.png" type="Texture" id=268]
+[ext_resource path="res://assets/phase_wall_purple_10.png" type="Texture" id=269]
+[ext_resource path="res://assets/phase_wall_purple_13.png" type="Texture" id=270]
+[ext_resource path="res://assets/oneway_south_lose_1.png" type="Texture" id=271]
+[ext_resource path="res://assets/phase_wall_purple_7.png" type="Texture" id=272]
+[ext_resource path="res://assets/phase_wall_purple_5.png" type="Texture" id=273]
+[ext_resource path="res://assets/phase_wall_purple_21.png" type="Texture" id=274]
+[ext_resource path="res://assets/phase_wall_purple_2.png" type="Texture" id=275]
+[ext_resource path="res://assets/phase_wall_purple_22.png" type="Texture" id=276]
+[ext_resource path="res://assets/phase_lightning_purple.png" type="Texture" id=277]
+[ext_resource path="res://assets/phase_wall_purple_6.png" type="Texture" id=278]
+[ext_resource path="res://assets/phase_wall_gray_17.png" type="Texture" id=279]
+[ext_resource path="res://assets/phase_lightning_red.png" type="Texture" id=280]
+[ext_resource path="res://assets/phase_wall_purple_17.png" type="Texture" id=281]
+[ext_resource path="res://assets/phase_wall_purple_4.png" type="Texture" id=282]
+[ext_resource path="res://assets/phase_wall_purple_16.png" type="Texture" id=283]
+[ext_resource path="res://assets/phase_wall_purple_15.png" type="Texture" id=284]
+[ext_resource path="res://assets/phase_wall_purple_1.png" type="Texture" id=285]
+[ext_resource path="res://assets/phase_lightning_blue.png" type="Texture" id=286]
+[ext_resource path="res://assets/phase_lightning_gray.png" type="Texture" id=287]
+[ext_resource path="res://assets/phase_wall_gray_21.png" type="Texture" id=288]
+[ext_resource path="res://assets/phase_wall_purple_0.png" type="Texture" id=289]
+[ext_resource path="res://assets/phase_wall_red_9.png" type="Texture" id=290]
+[ext_resource path="res://assets/phase_wall_red_5.png" type="Texture" id=291]
+[ext_resource path="res://assets/phase_wall_red_7.png" type="Texture" id=292]
+[ext_resource path="res://assets/phase_wall_red_1.png" type="Texture" id=293]
+[ext_resource path="res://assets/phase_wall_red_8.png" type="Texture" id=294]
+[ext_resource path="res://assets/phase_wall_red_0.png" type="Texture" id=295]
+[ext_resource path="res://assets/phase_wall_red_3.png" type="Texture" id=296]
+[ext_resource path="res://assets/phase_wall_red_6.png" type="Texture" id=297]
+[ext_resource path="res://assets/phase_wall_red_2.png" type="Texture" id=298]
+[ext_resource path="res://assets/phase_wall_red_4.png" type="Texture" id=299]
+[ext_resource path="res://assets/phase_wall_red_10.png" type="Texture" id=300]
+[ext_resource path="res://assets/green_fog_7.png" type="Texture" id=301]
+[ext_resource path="res://assets/green_fog_8.png" type="Texture" id=302]
+[ext_resource path="res://assets/green_fog_2.png" type="Texture" id=303]
+[ext_resource path="res://assets/green_fog_5.png" type="Texture" id=304]
+[ext_resource path="res://assets/green_fog_6.png" type="Texture" id=305]
+[ext_resource path="res://assets/green_fog_3.png" type="Texture" id=306]
+[ext_resource path="res://assets/green_fog_1.png" type="Texture" id=307]
+[ext_resource path="res://assets/green_fog_4.png" type="Texture" id=308]
+[ext_resource path="res://assets/floorboards_gray.png" type="Texture" id=309]
+[ext_resource path="res://assets/floorboards_void.png" type="Texture" id=310]
+[ext_resource path="res://assets/floorboards_green.png" type="Texture" id=311]
+[ext_resource path="res://assets/hole_green.png" type="Texture" id=312]
+[ext_resource path="res://assets/hole.png" type="Texture" id=313]
+[ext_resource path="res://assets/hole_void.png" type="Texture" id=314]
+[ext_resource path="res://assets/boost_pad.png" type="Texture" id=315]
+[ext_resource path="res://assets/boost_pad_green.png" type="Texture" id=316]
+[ext_resource path="res://assets/slope_nw.png" type="Texture" id=317]
+[ext_resource path="res://assets/slope_se.png" type="Texture" id=318]
+[ext_resource path="res://assets/slope_ne.png" type="Texture" id=319]
+[ext_resource path="res://assets/slope_sw.png" type="Texture" id=320]
+[ext_resource path="res://assets/Boulder.png" type="Texture" id=321]
+[ext_resource path="res://assets/phase_wall_green_even.png" type="Texture" id=322]
+[ext_resource path="res://assets/phase_wall_green_odd.png" type="Texture" id=323]
+[ext_resource path="res://assets/nudge_right.png" type="Texture" id=324]
+[ext_resource path="res://assets/nudge_left.png" type="Texture" id=325]
+[ext_resource path="res://assets/nudge_up.png" type="Texture" id=326]
+[ext_resource path="res://assets/nudge_right_green.png" type="Texture" id=327]
+[ext_resource path="res://assets/nudge_up_green.png" type="Texture" id=328]
+[ext_resource path="res://assets/nudge_down.png" type="Texture" id=329]
+[ext_resource path="res://assets/nudge_down_green.png" type="Texture" id=330]
+[ext_resource path="res://assets/nudge_left_green.png" type="Texture" id=331]
+[ext_resource path="res://assets/antigrate.png" type="Texture" id=332]
+[ext_resource path="res://assets/floorboards_magenta.png" type="Texture" id=333]
+[ext_resource path="res://assets/ghost_platform.png" type="Texture" id=334]
+[ext_resource path="res://assets/propellor.png" type="Texture" id=335]
+[ext_resource path="res://assets/StrPlus.png" type="Texture" id=336]
+[ext_resource path="res://assets/HvyPlus.png" type="Texture" id=337]
+[ext_resource path="res://assets/DurMinus.png" type="Texture" id=338]
+[ext_resource path="res://assets/HvyMinus.png" type="Texture" id=339]
+[ext_resource path="res://assets/FallInf.png" type="Texture" id=340]
+[ext_resource path="res://assets/FallOne.png" type="Texture" id=341]
+[ext_resource path="res://assets/DurPlus.png" type="Texture" id=342]
+[ext_resource path="res://assets/StrMinus.png" type="Texture" id=343]
+[ext_resource path="res://assets/colour_native.png" type="Texture" id=344]
+[ext_resource path="res://assets/repair_station.png" type="Texture" id=345]
+[ext_resource path="res://assets/repair_station_gray.png" type="Texture" id=346]
+[ext_resource path="res://assets/repair_station_green.png" type="Texture" id=347]
+[ext_resource path="res://assets/zombie_tile_1.png" type="Texture" id=348]
+[ext_resource path="res://assets/zombie_tile_4.png" type="Texture" id=349]
+[ext_resource path="res://assets/zombie_tile_3.png" type="Texture" id=350]
+[ext_resource path="res://assets/zombie_tile_0.png" type="Texture" id=351]
+[ext_resource path="res://assets/broadcast_light.png" type="Texture" id=352]
+[ext_resource path="res://assets/broadcast_heavy.png" type="Texture" id=353]
+[ext_resource path="res://assets/ghost_fog.png" type="Texture" id=354]
+[ext_resource path="res://assets/eclipse.png" type="Texture" id=355]
+[ext_resource path="res://assets/phase_board_purple.png" type="Texture" id=356]
+[ext_resource path="res://assets/phase_board_heavy.png" type="Texture" id=357]
+[ext_resource path="res://assets/phase_board_blue.png" type="Texture" id=358]
+[ext_resource path="res://assets/phase_board_gray.png" type="Texture" id=359]
+[ext_resource path="res://assets/phase_board_death.png" type="Texture" id=360]
+[ext_resource path="res://assets/phase_board_life.png" type="Texture" id=361]
+[ext_resource path="res://assets/phase_board_crate.png" type="Texture" id=362]
+[ext_resource path="res://assets/phase_board_light.png" type="Texture" id=363]
+[ext_resource path="res://assets/phase_board_red.png" type="Texture" id=364]
+[ext_resource path="res://assets/yes_push.png" type="Texture" id=365]
+[ext_resource path="res://assets/yes_push_green.png" type="Texture" id=366]
+[ext_resource path="res://assets/no_left.png" type="Texture" id=367]
+[ext_resource path="res://assets/no_push_green.png" type="Texture" id=368]
+[ext_resource path="res://assets/spider_web_green.png" type="Texture" id=369]
+[ext_resource path="res://assets/no_push.png" type="Texture" id=370]
+[ext_resource path="res://assets/no_left_green.png" type="Texture" id=371]
+[ext_resource path="res://assets/spider_web.png" type="Texture" id=372]
+[ext_resource path="res://assets/oneway_east.png" type="Texture" id=373]
+[ext_resource path="res://assets/oneway_north.png" type="Texture" id=374]
+[ext_resource path="res://assets/phase_board_void.png" type="Texture" id=375]
+[ext_resource path="res://assets/oneway_west.png" type="Texture" id=376]
+[ext_resource path="res://assets/oneway_south.png" type="Texture" id=377]
+[ext_resource path="res://assets/pinkjelly.png" type="Texture" id=378]
+[ext_resource path="res://assets/cyanjelly.png" type="Texture" id=379]
+[ext_resource path="res://assets/purple_fog.png" type="Texture" id=380]
+[ext_resource path="res://assets/spotlight.png" type="Texture" id=381]
+[ext_resource path="res://assets/continuum1.png" type="Texture" id=382]
+[ext_resource path="res://assets/continuum2.png" type="Texture" id=383]
+[ext_resource path="res://assets/continuum5.png" type="Texture" id=384]
+[ext_resource path="res://assets/continuum3.png" type="Texture" id=385]
+[ext_resource path="res://assets/continuum4.png" type="Texture" id=386]
+[ext_resource path="res://timeline/voidgateofeternity.png" type="Texture" id=387]
+[ext_resource path="res://timeline/voidgateofdemise.png" type="Texture" id=388]
+[ext_resource path="res://timeline/voidsingularity.png" type="Texture" id=389]
+[ext_resource path="res://assets/void_fog_8.png" type="Texture" id=390]
+[ext_resource path="res://assets/void_fog_2.png" type="Texture" id=391]
+[ext_resource path="res://assets/void_wall.png" type="Texture" id=392]
+[ext_resource path="res://assets/void_fog_6.png" type="Texture" id=393]
+[ext_resource path="res://assets/void_fog_4.png" type="Texture" id=394]
+[ext_resource path="res://assets/void_fog_5.png" type="Texture" id=395]
+[ext_resource path="res://assets/void_stars_9.png" type="Texture" id=396]
+[ext_resource path="res://assets/void_fog_7.png" type="Texture" id=397]
+[ext_resource path="res://assets/void_fog_1.png" type="Texture" id=398]
+[ext_resource path="res://assets/void_stars_11.png" type="Texture" id=399]
+[ext_resource path="res://assets/void_fog_3.png" type="Texture" id=400]
+[ext_resource path="res://assets/void_stars_3.png" type="Texture" id=401]
+[ext_resource path="res://assets/void_stars_10.png" type="Texture" id=402]
+[ext_resource path="res://assets/void_fire_idle_1.png" type="Texture" id=403]
+[ext_resource path="res://assets/void_stars_7.png" type="Texture" id=404]
+[ext_resource path="res://assets/void_stars_8.png" type="Texture" id=405]
+[ext_resource path="res://assets/void_fire_idle_2.png" type="Texture" id=406]
+[ext_resource path="res://assets/void_stars_2.png" type="Texture" id=407]
+[ext_resource path="res://assets/void_fire_idle_3.png" type="Texture" id=408]
+[ext_resource path="res://assets/void_stars_1.png" type="Texture" id=409]
+[ext_resource path="res://assets/void_stars_4.png" type="Texture" id=410]
+[ext_resource path="res://assets/void_stars_5.png" type="Texture" id=411]
+[ext_resource path="res://assets/void_stars_6.png" type="Texture" id=412]
+[ext_resource path="res://assets/no_grounded.png" type="Texture" id=413]
+[ext_resource path="res://assets/no_rising.png" type="Texture" id=414]
+[ext_resource path="res://assets/no_falling.png" type="Texture" id=415]
+[ext_resource path="res://assets/phase_board_east.png" type="Texture" id=416]
+[ext_resource path="res://assets/phase_board_north.png" type="Texture" id=417]
+[ext_resource path="res://assets/phase_board_west.png" type="Texture" id=418]
+[ext_resource path="res://assets/phase_board_south.png" type="Texture" id=419]
+[ext_resource path="res://assets/repair_station_bumper.png" type="Texture" id=420]
+[ext_resource path="res://assets/green_passage.png" type="Texture" id=421]
+[ext_resource path="res://assets/bumper.png" type="Texture" id=422]
+[ext_resource path="res://assets/fan.png" type="Texture" id=423]
+[ext_resource path="res://assets/fence.png" type="Texture" id=424]
+[ext_resource path="res://assets/passage.png" type="Texture" id=425]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 34 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 33 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=3]
+frames = 8
+fps = 5.0
+frame_0/texture = ExtResource( 16 )
+frame_1/texture = ExtResource( 41 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 42 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 40 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 39 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 40 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 42 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 41 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=30]
+frames = 4
+fps = 6.0
+frame_0/texture = ExtResource( 349 )
+frame_1/texture = ExtResource( 350 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 348 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 351 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=32]
+frames = 5
+frame_0/texture = ExtResource( 382 )
+frame_1/texture = ExtResource( 383 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 385 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 386 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 384 )
+frame_4/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=33]
+frames = 3
+frame_0/texture = ExtResource( 408 )
+frame_1/texture = ExtResource( 406 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 403 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=34]
+frames = 11
+frame_0/texture = ExtResource( 399 )
+frame_1/texture = ExtResource( 402 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 396 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 405 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 404 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 412 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 411 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 410 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 401 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 407 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 409 )
+frame_10/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=35]
+frames = 8
+fps = 3.0
+frame_0/texture = ExtResource( 390 )
+frame_1/texture = ExtResource( 397 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 393 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 395 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 394 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 400 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 391 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 398 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=9]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 25 )
+frame_1/texture = ExtResource( 83 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 81 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 26 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 18 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 28 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 23 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 82 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=10]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 102 )
+frame_1/texture = ExtResource( 91 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 90 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 99 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 100 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 101 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 84 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 22 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=7]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 17 )
+frame_1/texture = ExtResource( 73 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 27 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 67 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 72 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 68 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 69 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 70 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=11]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 92 )
+frame_1/texture = ExtResource( 96 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 93 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 94 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 95 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 97 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 105 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 106 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=12]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 87 )
+frame_1/texture = ExtResource( 88 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 89 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 103 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 98 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 86 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 85 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 104 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=13]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 112 )
+frame_1/texture = ExtResource( 109 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 114 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 107 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 108 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 110 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 111 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 113 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=14]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 71 )
+frame_1/texture = ExtResource( 75 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 74 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 76 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 77 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 79 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 78 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 80 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=15]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 116 )
+frame_1/texture = ExtResource( 121 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 117 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 122 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 115 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 120 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 118 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 119 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 8
+fps = 5.0
+frame_0/texture = ExtResource( 36 )
+frame_1/texture = ExtResource( 35 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 37 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 38 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 31 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 38 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 37 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 35 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 44 )
+frame_1/texture = ExtResource( 46 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 45 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=5]
+frames = 8
+fps = 5.0
+frame_0/texture = ExtResource( 61 )
+frame_1/texture = ExtResource( 65 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 62 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 66 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 63 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 66 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 62 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 65 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=6]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 60 )
+frame_1/texture = ExtResource( 59 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 64 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=16]
+frames = 10
+fps = 5.0
+frame_0/texture = ExtResource( 129 )
+frame_1/texture = ExtResource( 133 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 126 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 134 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 130 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 131 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 127 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 135 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 128 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 132 )
+frame_9/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=17]
+frames = 6
+fps = 2.0
+frame_0/texture = ExtResource( 139 )
+frame_1/texture = ExtResource( 141 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 142 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 142 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 141 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 139 )
+frame_5/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=18]
+frames = 11
+fps = 5.0
+frame_0/texture = ExtResource( 153 )
+frame_1/texture = ExtResource( 144 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 143 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 145 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 146 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 147 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 150 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 151 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 148 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 149 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 152 )
+frame_10/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=19]
+frames = 4
+fps = 2.5
+frame_0/texture = ExtResource( 154 )
+frame_1/texture = ExtResource( 155 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 156 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 155 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=20]
+frames = 3
+fps = 5.0
+frame_0/texture = ExtResource( 163 )
+frame_1/texture = ExtResource( 162 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 161 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=21]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 169 )
+frame_1/texture = ExtResource( 188 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 183 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 184 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 185 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 181 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 177 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 178 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=22]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 180 )
+frame_1/texture = ExtResource( 186 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 189 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 187 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 190 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 191 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 192 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 170 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=23]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 182 )
+frame_1/texture = ExtResource( 193 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 172 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 173 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 175 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 175 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 176 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 179 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=24]
+frames = 8
+fps = 10.0
+frame_0/texture = ExtResource( 171 )
+frame_1/texture = ExtResource( 174 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 196 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 197 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 198 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 199 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 194 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 195 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=25]
+frames = 23
+fps = 23.0
+frame_0/texture = ExtResource( 223 )
+frame_1/texture = ExtResource( 208 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 203 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 211 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 204 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 209 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 216 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 220 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 205 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 207 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 210 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 212 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 213 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 217 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 214 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 215 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 218 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 219 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 243 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 228 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 241 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 245 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 246 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=26]
+frames = 23
+fps = 23.0
+frame_0/texture = ExtResource( 233 )
+frame_1/texture = ExtResource( 234 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 235 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 236 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 238 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 239 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 240 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 249 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 248 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 251 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 252 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 250 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 300 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 290 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 294 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 292 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 297 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 291 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 299 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 296 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 298 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 293 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 295 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=27]
+frames = 23
+fps = 11.5
+frame_0/texture = ExtResource( 201 )
+frame_1/texture = ExtResource( 247 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 229 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 242 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 244 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 230 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 231 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 232 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 237 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 225 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 224 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 226 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 227 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 222 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 202 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 221 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 206 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 279 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 266 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 256 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 255 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 288 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 253 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=28]
+frames = 23
+fps = 11.5
+frame_0/texture = ExtResource( 276 )
+frame_1/texture = ExtResource( 274 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 267 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 254 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 260 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 281 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 283 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 284 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 257 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 270 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 264 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 268 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 269 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 265 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 261 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 272 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 278 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 273 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 282 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 262 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 275 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 285 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 289 )
+frame_22/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=29]
+frames = 8
+frame_0/texture = ExtResource( 307 )
+frame_1/texture = ExtResource( 303 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 306 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 308 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 304 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 305 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 301 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 302 )
+frame_7/delay_sec = 0.0
+
+[resource]
+0/name = "Fire"
+0/texture = SubResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 24, 24 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 12, 12 )
+0/navigation_offset = Vector2( 12, 12 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "HeavyGoal"
+1/texture = ExtResource( 5 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 24, 24 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 12, 12 )
+1/navigation_offset = Vector2( 12, 12 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "HeavyIdle"
+2/texture = ExtResource( 6 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 24, 24 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 12, 12 )
+2/navigation_offset = Vector2( 12, 12 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "IronCrate"
+3/texture = ExtResource( 7 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 24, 24 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 12, 12 )
+3/navigation_offset = Vector2( 12, 12 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "Key"
+4/texture = ExtResource( 2 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 24, 24 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 12, 12 )
+4/navigation_offset = Vector2( 12, 12 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Ladder"
+5/texture = ExtResource( 10 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 24, 24 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 12, 12 )
+5/navigation_offset = Vector2( 12, 12 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "LadderPlatform"
+6/texture = ExtResource( 8 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 24, 24 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 12, 12 )
+6/navigation_offset = Vector2( 12, 12 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "LightGoal"
+7/texture = ExtResource( 1 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 24, 24 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 12, 12 )
+7/navigation_offset = Vector2( 12, 12 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "LightIdle"
+8/texture = ExtResource( 9 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 0, 0, 24, 24 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 12, 12 )
+8/navigation_offset = Vector2( 12, 12 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+10/name = "LockClosed"
+10/texture = ExtResource( 3 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 0, 0, 24, 24 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 12, 12 )
+10/navigation_offset = Vector2( 12, 12 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
+11/name = "LockOpen"
+11/texture = ExtResource( 15 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 0, 0, 24, 24 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 12, 12 )
+11/navigation_offset = Vector2( 12, 12 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
+11/shapes = [  ]
+11/z_index = 0
+12/name = "Spikeball"
+12/texture = SubResource( 3 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 0, 0, 24, 24 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 12, 12 )
+12/navigation_offset = Vector2( 12, 12 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
+13/name = "SteelCrate"
+13/texture = ExtResource( 14 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 0, 24, 24 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 12, 12 )
+13/navigation_offset = Vector2( 12, 12 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
+13/shapes = [  ]
+13/z_index = 0
+14/name = "Wall"
+14/texture = ExtResource( 13 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 0, 216, 360 )
+14/tile_mode = 1
+14/autotile/bitmask_mode = 1
+14/autotile/bitmask_flags = [ Vector2( 0, 9 ), 434, Vector2( 1, 3 ), 144, Vector2( 1, 4 ), 146, Vector2( 1, 5 ), 18, Vector2( 1, 9 ), 182, Vector2( 2, 0 ), 432, Vector2( 2, 1 ), 438, Vector2( 2, 2 ), 54, Vector2( 2, 8 ), 176, Vector2( 2, 9 ), 178, Vector2( 2, 10 ), 50, Vector2( 3, 0 ), 504, Vector2( 3, 1 ), 511, Vector2( 3, 2 ), 63, Vector2( 3, 6 ), 440, Vector2( 3, 7 ), 248, Vector2( 3, 8 ), 184, Vector2( 3, 9 ), 186, Vector2( 3, 10 ), 58, Vector2( 3, 11 ), 62, Vector2( 3, 12 ), 59, Vector2( 4, 0 ), 216, Vector2( 4, 1 ), 219, Vector2( 4, 2 ), 27, Vector2( 4, 4 ), 16, Vector2( 4, 8 ), 152, Vector2( 4, 9 ), 154, Vector2( 4, 10 ), 26, Vector2( 5, 3 ), 48, Vector2( 5, 9 ), 155, Vector2( 5, 11 ), 190, Vector2( 5, 12 ), 446, Vector2( 5, 13 ), 443, Vector2( 5, 14 ), 510, Vector2( 6, 3 ), 56, Vector2( 6, 9 ), 218, Vector2( 6, 11 ), 187, Vector2( 6, 12 ), 251, Vector2( 6, 13 ), 254, Vector2( 6, 14 ), 507, Vector2( 7, 3 ), 24, Vector2( 7, 11 ), 442, Vector2( 7, 12 ), 506, Vector2( 7, 14 ), 255, Vector2( 8, 11 ), 250, Vector2( 8, 12 ), 191, Vector2( 8, 14 ), 447 ]
+14/autotile/icon_coordinate = Vector2( 4, 4 )
+14/autotile/tile_size = Vector2( 24, 24 )
+14/autotile/spacing = 0
+14/autotile/occluder_map = [  ]
+14/autotile/navpoly_map = [  ]
+14/autotile/priority_map = [  ]
+14/autotile/z_index_map = [  ]
+14/occluder_offset = Vector2( 108, 180 )
+14/navigation_offset = Vector2( 108, 180 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape_one_way = false
+14/shape_one_way_margin = 0.0
+14/shapes = [  ]
+14/z_index = 0
+15/name = "WoodenCrate"
+15/texture = ExtResource( 12 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 24, 24 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 12, 12 )
+15/navigation_offset = Vector2( 12, 12 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
+16/name = "Checkpoint"
+16/texture = ExtResource( 20 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 24, 24 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 12, 12 )
+16/navigation_offset = Vector2( 12, 12 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape_one_way = false
+16/shape_one_way_margin = 0.0
+16/shapes = [  ]
+16/z_index = 0
+17/name = "CheckpointBlue"
+17/texture = ExtResource( 19 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 24, 24 )
+17/tile_mode = 0
+17/occluder_offset = Vector2( 12, 12 )
+17/navigation_offset = Vector2( 12, 12 )
+17/shape_offset = Vector2( 0, 0 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+17/shape_one_way = false
+17/shape_one_way_margin = 0.0
+17/shapes = [  ]
+17/z_index = 0
+18/name = "CheckpointRed"
+18/texture = ExtResource( 21 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 0, 0, 24, 24 )
+18/tile_mode = 0
+18/occluder_offset = Vector2( 12, 12 )
+18/navigation_offset = Vector2( 12, 12 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0
+19/name = "OnewayEast"
+19/texture = SubResource( 9 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 0, 0, 24, 24 )
+19/tile_mode = 0
+19/occluder_offset = Vector2( 12, 12 )
+19/navigation_offset = Vector2( 12, 12 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape_one_way = false
+19/shape_one_way_margin = 0.0
+19/shapes = [  ]
+19/z_index = 0
+20/name = "OnewayNorth"
+20/texture = SubResource( 10 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 0, 0, 24, 24 )
+20/tile_mode = 0
+20/occluder_offset = Vector2( 12, 12 )
+20/navigation_offset = Vector2( 12, 12 )
+20/shape_offset = Vector2( 0, 0 )
+20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+20/shape_one_way = false
+20/shape_one_way_margin = 0.0
+20/shapes = [  ]
+20/z_index = 0
+21/name = "OnewaySouth"
+21/texture = SubResource( 7 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 0, 0, 24, 24 )
+21/tile_mode = 0
+21/occluder_offset = Vector2( 12, 12 )
+21/navigation_offset = Vector2( 12, 12 )
+21/shape_offset = Vector2( 0, 0 )
+21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+21/shape_one_way = false
+21/shape_one_way_margin = 0.0
+21/shapes = [  ]
+21/z_index = 0
+22/name = "OnewayWest"
+22/texture = SubResource( 11 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 0, 0, 24, 24 )
+22/tile_mode = 0
+22/occluder_offset = Vector2( 12, 12 )
+22/navigation_offset = Vector2( 12, 12 )
+22/shape_offset = Vector2( 0, 0 )
+22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+22/shape_one_way = false
+22/shape_one_way_margin = 0.0
+22/shapes = [  ]
+22/z_index = 0
+23/name = "WoodenPlatform"
+23/texture = ExtResource( 11 )
+23/tex_offset = Vector2( 0, 0 )
+23/modulate = Color( 1, 1, 1, 1 )
+23/region = Rect2( 0, 0, 24, 24 )
+23/tile_mode = 0
+23/occluder_offset = Vector2( 12, 12 )
+23/navigation_offset = Vector2( 12, 12 )
+23/shape_offset = Vector2( 0, 0 )
+23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+23/shape_one_way = false
+23/shape_one_way_margin = 0.0
+23/shapes = [  ]
+23/z_index = 0
+24/name = "Grate"
+24/texture = ExtResource( 24 )
+24/tex_offset = Vector2( 0, 0 )
+24/modulate = Color( 1, 1, 1, 1 )
+24/region = Rect2( 0, 0, 24, 24 )
+24/tile_mode = 0
+24/occluder_offset = Vector2( 12, 12 )
+24/navigation_offset = Vector2( 12, 12 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+24/shape_one_way = false
+24/shape_one_way_margin = 0.0
+24/shapes = [  ]
+24/z_index = 0
+25/name = "OnewayEastGreen"
+25/texture = SubResource( 12 )
+25/tex_offset = Vector2( 0, 0 )
+25/modulate = Color( 1, 1, 1, 1 )
+25/region = Rect2( 0, 0, 24, 24 )
+25/tile_mode = 0
+25/occluder_offset = Vector2( 12, 12 )
+25/navigation_offset = Vector2( 12, 12 )
+25/shape_offset = Vector2( 0, 0 )
+25/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+25/shape_one_way = false
+25/shape_one_way_margin = 0.0
+25/shapes = [  ]
+25/z_index = 0
+26/name = "OnewayNorthGreen"
+26/texture = SubResource( 13 )
+26/tex_offset = Vector2( 0, 0 )
+26/modulate = Color( 1, 1, 1, 1 )
+26/region = Rect2( 0, 0, 24, 24 )
+26/tile_mode = 0
+26/occluder_offset = Vector2( 12, 12 )
+26/navigation_offset = Vector2( 12, 12 )
+26/shape_offset = Vector2( 0, 0 )
+26/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+26/shape_one_way = false
+26/shape_one_way_margin = 0.0
+26/shapes = [  ]
+26/z_index = 0
+27/name = "OnewaySouthGreen"
+27/texture = SubResource( 14 )
+27/tex_offset = Vector2( 0, 0 )
+27/modulate = Color( 1, 1, 1, 1 )
+27/region = Rect2( 0, 0, 24, 24 )
+27/tile_mode = 0
+27/occluder_offset = Vector2( 12, 12 )
+27/navigation_offset = Vector2( 12, 12 )
+27/shape_offset = Vector2( 0, 0 )
+27/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+27/shape_one_way = false
+27/shape_one_way_margin = 0.0
+27/shapes = [  ]
+27/z_index = 0
+28/name = "OnewayWestGreen"
+28/texture = SubResource( 15 )
+28/tex_offset = Vector2( 0, 0 )
+28/modulate = Color( 1, 1, 1, 1 )
+28/region = Rect2( 0, 0, 24, 24 )
+28/tile_mode = 0
+28/occluder_offset = Vector2( 12, 12 )
+28/navigation_offset = Vector2( 12, 12 )
+28/shape_offset = Vector2( 0, 0 )
+28/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+28/shape_one_way = false
+28/shape_one_way_margin = 0.0
+28/shapes = [  ]
+28/z_index = 0
+29/name = "NoHeavy"
+29/texture = ExtResource( 29 )
+29/tex_offset = Vector2( 0, 0 )
+29/modulate = Color( 1, 1, 1, 1 )
+29/region = Rect2( 0, 0, 24, 24 )
+29/tile_mode = 0
+29/occluder_offset = Vector2( 12, 12 )
+29/navigation_offset = Vector2( 12, 12 )
+29/shape_offset = Vector2( 0, 0 )
+29/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+29/shape_one_way = false
+29/shape_one_way_margin = 0.0
+29/shapes = [  ]
+29/z_index = 0
+30/name = "NoLight"
+30/texture = ExtResource( 30 )
+30/tex_offset = Vector2( 0, 0 )
+30/modulate = Color( 1, 1, 1, 1 )
+30/region = Rect2( 0, 0, 24, 24 )
+30/tile_mode = 0
+30/occluder_offset = Vector2( 12, 12 )
+30/navigation_offset = Vector2( 12, 12 )
+30/shape_offset = Vector2( 0, 0 )
+30/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+30/shape_one_way = false
+30/shape_one_way_margin = 0.0
+30/shapes = [  ]
+30/z_index = 0
+31/name = "PowerCrate"
+31/texture = ExtResource( 32 )
+31/tex_offset = Vector2( 0, 0 )
+31/modulate = Color( 1, 1, 1, 1 )
+31/region = Rect2( 0, 0, 24, 24 )
+31/tile_mode = 0
+31/occluder_offset = Vector2( 12, 12 )
+31/navigation_offset = Vector2( 12, 12 )
+31/shape_offset = Vector2( 0, 0 )
+31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+31/shape_one_way = false
+31/shape_one_way_margin = 0.0
+31/shapes = [  ]
+31/z_index = 0
+32/name = "CrateGoal"
+32/texture = SubResource( 2 )
+32/tex_offset = Vector2( 0, 0 )
+32/modulate = Color( 1, 1, 1, 1 )
+32/region = Rect2( 0, 0, 24, 24 )
+32/tile_mode = 0
+32/occluder_offset = Vector2( 12, 12 )
+32/navigation_offset = Vector2( 12, 12 )
+32/shape_offset = Vector2( 0, 0 )
+32/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+32/shape_one_way = false
+32/shape_one_way_margin = 0.0
+32/shapes = [  ]
+32/z_index = 0
+33/name = "NoCrate"
+33/texture = ExtResource( 43 )
+33/tex_offset = Vector2( 0, 0 )
+33/modulate = Color( 1, 1, 1, 1 )
+33/region = Rect2( 0, 0, 24, 24 )
+33/tile_mode = 0
+33/occluder_offset = Vector2( 12, 12 )
+33/navigation_offset = Vector2( 12, 12 )
+33/shape_offset = Vector2( 0, 0 )
+33/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+33/shape_one_way = false
+33/shape_one_way_margin = 0.0
+33/shapes = [  ]
+33/z_index = 0
+34/name = "HeavyFire"
+34/texture = SubResource( 4 )
+34/tex_offset = Vector2( 0, 0 )
+34/modulate = Color( 1, 1, 1, 1 )
+34/region = Rect2( 0, 0, 24, 24 )
+34/tile_mode = 0
+34/occluder_offset = Vector2( 12, 12 )
+34/navigation_offset = Vector2( 12, 12 )
+34/shape_offset = Vector2( 0, 0 )
+34/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+34/shape_one_way = false
+34/shape_one_way_margin = 0.0
+34/shapes = [  ]
+34/z_index = 0
+35/name = "ColourRed"
+35/texture = ExtResource( 50 )
+35/tex_offset = Vector2( 0, 0 )
+35/modulate = Color( 1, 1, 1, 1 )
+35/region = Rect2( 0, 0, 24, 24 )
+35/tile_mode = 0
+35/occluder_offset = Vector2( 12, 12 )
+35/navigation_offset = Vector2( 12, 12 )
+35/shape_offset = Vector2( 0, 0 )
+35/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+35/shape_one_way = false
+35/shape_one_way_margin = 0.0
+35/shapes = [  ]
+35/z_index = 0
+36/name = "ColourBlue"
+36/texture = ExtResource( 49 )
+36/tex_offset = Vector2( 0, 0 )
+36/modulate = Color( 1, 1, 1, 1 )
+36/region = Rect2( 0, 0, 24, 24 )
+36/tile_mode = 0
+36/occluder_offset = Vector2( 12, 12 )
+36/navigation_offset = Vector2( 12, 12 )
+36/shape_offset = Vector2( 0, 0 )
+36/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+36/shape_one_way = false
+36/shape_one_way_margin = 0.0
+36/shapes = [  ]
+36/z_index = 0
+37/name = "ColourGray"
+37/texture = ExtResource( 51 )
+37/tex_offset = Vector2( 0, 0 )
+37/modulate = Color( 1, 1, 1, 1 )
+37/region = Rect2( 0, 0, 24, 24 )
+37/tile_mode = 0
+37/occluder_offset = Vector2( 12, 12 )
+37/navigation_offset = Vector2( 12, 12 )
+37/shape_offset = Vector2( 0, 0 )
+37/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+37/shape_one_way = false
+37/shape_one_way_margin = 0.0
+37/shapes = [  ]
+37/z_index = 0
+38/name = "ColourMagenta"
+38/texture = ExtResource( 47 )
+38/tex_offset = Vector2( 0, 0 )
+38/modulate = Color( 1, 1, 1, 1 )
+38/region = Rect2( 0, 0, 24, 24 )
+38/tile_mode = 0
+38/occluder_offset = Vector2( 12, 12 )
+38/navigation_offset = Vector2( 12, 12 )
+38/shape_offset = Vector2( 0, 0 )
+38/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+38/shape_one_way = false
+38/shape_one_way_margin = 0.0
+38/shapes = [  ]
+38/z_index = 0
+39/name = "ColourGreen"
+39/texture = ExtResource( 48 )
+39/tex_offset = Vector2( 0, 0 )
+39/modulate = Color( 1, 1, 1, 1 )
+39/region = Rect2( 0, 0, 24, 24 )
+39/tile_mode = 0
+39/occluder_offset = Vector2( 12, 12 )
+39/navigation_offset = Vector2( 12, 12 )
+39/shape_offset = Vector2( 0, 0 )
+39/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+39/shape_one_way = false
+39/shape_one_way_margin = 0.0
+39/shapes = [  ]
+39/z_index = 0
+40/name = "ColourVoid"
+40/texture = ExtResource( 52 )
+40/tex_offset = Vector2( 0, 0 )
+40/modulate = Color( 1, 1, 1, 1 )
+40/region = Rect2( 0, 0, 24, 24 )
+40/tile_mode = 0
+40/occluder_offset = Vector2( 12, 12 )
+40/navigation_offset = Vector2( 12, 12 )
+40/shape_offset = Vector2( 0, 0 )
+40/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+40/shape_one_way = false
+40/shape_one_way_margin = 0.0
+40/shapes = [  ]
+40/z_index = 0
+41/name = "ColourCyan"
+41/texture = ExtResource( 56 )
+41/tex_offset = Vector2( 0, 0 )
+41/modulate = Color( 1, 1, 1, 1 )
+41/region = Rect2( 0, 0, 24, 24 )
+41/tile_mode = 0
+41/occluder_offset = Vector2( 12, 12 )
+41/navigation_offset = Vector2( 12, 12 )
+41/shape_offset = Vector2( 0, 0 )
+41/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+41/shape_one_way = false
+41/shape_one_way_margin = 0.0
+41/shapes = [  ]
+41/z_index = 0
+42/name = "ColourOrange"
+42/texture = ExtResource( 54 )
+42/tex_offset = Vector2( 0, 0 )
+42/modulate = Color( 1, 1, 1, 1 )
+42/region = Rect2( 0, 0, 24, 24 )
+42/tile_mode = 0
+42/occluder_offset = Vector2( 12, 12 )
+42/navigation_offset = Vector2( 12, 12 )
+42/shape_offset = Vector2( 0, 0 )
+42/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+42/shape_one_way = false
+42/shape_one_way_margin = 0.0
+42/shapes = [  ]
+42/z_index = 0
+43/name = "ColourYellow"
+43/texture = ExtResource( 55 )
+43/tex_offset = Vector2( 0, 0 )
+43/modulate = Color( 1, 1, 1, 1 )
+43/region = Rect2( 0, 0, 24, 24 )
+43/tile_mode = 0
+43/occluder_offset = Vector2( 12, 12 )
+43/navigation_offset = Vector2( 12, 12 )
+43/shape_offset = Vector2( 0, 0 )
+43/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+43/shape_one_way = false
+43/shape_one_way_margin = 0.0
+43/shapes = [  ]
+43/z_index = 0
+44/name = "ColourPurple"
+44/texture = ExtResource( 53 )
+44/tex_offset = Vector2( 0, 0 )
+44/modulate = Color( 1, 1, 1, 1 )
+44/region = Rect2( 0, 0, 24, 24 )
+44/tile_mode = 0
+44/occluder_offset = Vector2( 12, 12 )
+44/navigation_offset = Vector2( 12, 12 )
+44/shape_offset = Vector2( 0, 0 )
+44/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+44/shape_one_way = false
+44/shape_one_way_margin = 0.0
+44/shapes = [  ]
+44/z_index = 0
+45/name = "GlassBlock"
+45/texture = ExtResource( 57 )
+45/tex_offset = Vector2( 0, 0 )
+45/modulate = Color( 1, 1, 1, 1 )
+45/region = Rect2( 0, 0, 24, 24 )
+45/tile_mode = 0
+45/occluder_offset = Vector2( 12, 12 )
+45/navigation_offset = Vector2( 12, 12 )
+45/shape_offset = Vector2( 0, 0 )
+45/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+45/shape_one_way = false
+45/shape_one_way_margin = 0.0
+45/shapes = [  ]
+45/z_index = 0
+46/name = "GreenGlassBlock"
+46/texture = ExtResource( 58 )
+46/tex_offset = Vector2( 0, 0 )
+46/modulate = Color( 1, 1, 1, 1 )
+46/region = Rect2( 0, 0, 24, 24 )
+46/tile_mode = 0
+46/occluder_offset = Vector2( 12, 12 )
+46/navigation_offset = Vector2( 12, 12 )
+46/shape_offset = Vector2( 0, 0 )
+46/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+46/shape_one_way = false
+46/shape_one_way_margin = 0.0
+46/shapes = [  ]
+46/z_index = 0
+47/name = "GreenSpikeball"
+47/texture = SubResource( 5 )
+47/tex_offset = Vector2( 0, 0 )
+47/modulate = Color( 1, 1, 1, 1 )
+47/region = Rect2( 0, 0, 24, 24 )
+47/tile_mode = 0
+47/occluder_offset = Vector2( 12, 12 )
+47/navigation_offset = Vector2( 12, 12 )
+47/shape_offset = Vector2( 0, 0 )
+47/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+47/shape_one_way = false
+47/shape_one_way_margin = 0.0
+47/shapes = [  ]
+47/z_index = 0
+48/name = "GreenFire"
+48/texture = SubResource( 6 )
+48/tex_offset = Vector2( 0, 0 )
+48/modulate = Color( 1, 1, 1, 1 )
+48/region = Rect2( 0, 0, 24, 24 )
+48/tile_mode = 0
+48/occluder_offset = Vector2( 12, 12 )
+48/navigation_offset = Vector2( 12, 12 )
+48/shape_offset = Vector2( 0, 0 )
+48/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+48/shape_one_way = false
+48/shape_one_way_margin = 0.0
+48/shapes = [  ]
+48/z_index = 0
+49/name = "NoRetro"
+49/texture = ExtResource( 123 )
+49/tex_offset = Vector2( 0, 0 )
+49/modulate = Color( 1, 1, 1, 1 )
+49/region = Rect2( 0, 0, 24, 24 )
+49/tile_mode = 0
+49/occluder_offset = Vector2( 12, 12 )
+49/navigation_offset = Vector2( 12, 12 )
+49/shape_offset = Vector2( 0, 0 )
+49/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+49/shape_one_way = false
+49/shape_one_way_margin = 0.0
+49/shapes = [  ]
+49/z_index = 0
+50/name = "NoUndo"
+50/texture = ExtResource( 124 )
+50/tex_offset = Vector2( 0, 0 )
+50/modulate = Color( 1, 1, 1, 1 )
+50/region = Rect2( 0, 0, 24, 24 )
+50/tile_mode = 0
+50/occluder_offset = Vector2( 12, 12 )
+50/navigation_offset = Vector2( 12, 12 )
+50/shape_offset = Vector2( 0, 0 )
+50/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+50/shape_one_way = false
+50/shape_one_way_margin = 0.0
+50/shapes = [  ]
+50/z_index = 0
+51/name = "OneUndo"
+51/texture = ExtResource( 125 )
+51/tex_offset = Vector2( 0, 0 )
+51/modulate = Color( 1, 1, 1, 1 )
+51/region = Rect2( 0, 0, 24, 24 )
+51/tile_mode = 0
+51/occluder_offset = Vector2( 12, 12 )
+51/navigation_offset = Vector2( 12, 12 )
+51/shape_offset = Vector2( 0, 0 )
+51/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+51/shape_one_way = false
+51/shape_one_way_margin = 0.0
+51/shapes = [  ]
+51/z_index = 0
+52/name = "Fuzz"
+52/texture = SubResource( 16 )
+52/tex_offset = Vector2( 0, 0 )
+52/modulate = Color( 1, 1, 1, 1 )
+52/region = Rect2( 0, 0, 24, 24 )
+52/tile_mode = 0
+52/occluder_offset = Vector2( 12, 12 )
+52/navigation_offset = Vector2( 12, 12 )
+52/shape_offset = Vector2( 0, 0 )
+52/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+52/shape_one_way = false
+52/shape_one_way_margin = 0.0
+52/shapes = [  ]
+52/z_index = 0
+53/name = "TimeCrystalGreen"
+53/texture = ExtResource( 137 )
+53/tex_offset = Vector2( 0, 0 )
+53/modulate = Color( 1, 1, 1, 1 )
+53/region = Rect2( 0, 0, 24, 24 )
+53/tile_mode = 0
+53/occluder_offset = Vector2( 12, 12 )
+53/navigation_offset = Vector2( 12, 12 )
+53/shape_offset = Vector2( 0, 0 )
+53/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+53/shape_one_way = false
+53/shape_one_way_margin = 0.0
+53/shapes = [  ]
+53/z_index = 0
+54/name = "TimeCrystalMagenta"
+54/texture = ExtResource( 136 )
+54/tex_offset = Vector2( 0, 0 )
+54/modulate = Color( 1, 1, 1, 1 )
+54/region = Rect2( 0, 0, 24, 24 )
+54/tile_mode = 0
+54/occluder_offset = Vector2( 12, 12 )
+54/navigation_offset = Vector2( 12, 12 )
+54/shape_offset = Vector2( 0, 0 )
+54/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+54/shape_one_way = false
+54/shape_one_way_margin = 0.0
+54/shapes = [  ]
+54/z_index = 0
+55/name = "CuckooClock"
+55/texture = ExtResource( 138 )
+55/tex_offset = Vector2( 0, 0 )
+55/modulate = Color( 1, 1, 1, 1 )
+55/region = Rect2( 0, 0, 24, 24 )
+55/tile_mode = 0
+55/occluder_offset = Vector2( 12, 12 )
+55/navigation_offset = Vector2( 12, 12 )
+55/shape_offset = Vector2( 0, 0 )
+55/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+55/shape_one_way = false
+55/shape_one_way_margin = 0.0
+55/shapes = [  ]
+55/z_index = 0
+56/name = "TheNight"
+56/texture = SubResource( 17 )
+56/tex_offset = Vector2( 0, 0 )
+56/modulate = Color( 1, 1, 1, 1 )
+56/region = Rect2( 0, 0, 24, 24 )
+56/tile_mode = 0
+56/occluder_offset = Vector2( 12, 12 )
+56/navigation_offset = Vector2( 12, 12 )
+56/shape_offset = Vector2( 0, 0 )
+56/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+56/shape_one_way = false
+56/shape_one_way_margin = 0.0
+56/shapes = [  ]
+56/z_index = 0
+57/name = "TheStars"
+57/texture = SubResource( 18 )
+57/tex_offset = Vector2( 0, 0 )
+57/modulate = Color( 1, 1, 1, 1 )
+57/region = Rect2( 0, 0, 24, 24 )
+57/tile_mode = 0
+57/occluder_offset = Vector2( 12, 12 )
+57/navigation_offset = Vector2( 12, 12 )
+57/shape_offset = Vector2( 0, 0 )
+57/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+57/shape_one_way = false
+57/shape_one_way_margin = 0.0
+57/shapes = [  ]
+57/z_index = 0
+58/name = "VoidSpikeball"
+58/texture = SubResource( 19 )
+58/tex_offset = Vector2( 0, 0 )
+58/modulate = Color( 1, 1, 1, 1 )
+58/region = Rect2( 0, 0, 24, 24 )
+58/tile_mode = 0
+58/occluder_offset = Vector2( 12, 12 )
+58/navigation_offset = Vector2( 12, 12 )
+58/shape_offset = Vector2( 0, 0 )
+58/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+58/shape_one_way = false
+58/shape_one_way_margin = 0.0
+58/shapes = [  ]
+58/z_index = 0
+59/name = "VoidGlassBlock"
+59/texture = ExtResource( 140 )
+59/tex_offset = Vector2( 0, 0 )
+59/modulate = Color( 1, 1, 1, 1 )
+59/region = Rect2( 0, 0, 24, 24 )
+59/tile_mode = 0
+59/occluder_offset = Vector2( 12, 12 )
+59/navigation_offset = Vector2( 12, 12 )
+59/shape_offset = Vector2( 0, 0 )
+59/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+59/shape_one_way = false
+59/shape_one_way_margin = 0.0
+59/shapes = [  ]
+59/z_index = 0
+60/name = "ChronoHelixBlue"
+60/texture = ExtResource( 157 )
+60/tex_offset = Vector2( 0, 0 )
+60/modulate = Color( 1, 1, 1, 1 )
+60/region = Rect2( 0, 0, 24, 24 )
+60/tile_mode = 0
+60/occluder_offset = Vector2( 12, 12 )
+60/navigation_offset = Vector2( 12, 12 )
+60/shape_offset = Vector2( 0, 0 )
+60/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+60/shape_one_way = false
+60/shape_one_way_margin = 0.0
+60/shapes = [  ]
+60/z_index = 0
+61/name = "ChronoHelixRed"
+61/texture = ExtResource( 160 )
+61/tex_offset = Vector2( 0, 0 )
+61/modulate = Color( 1, 1, 1, 1 )
+61/region = Rect2( 0, 0, 24, 24 )
+61/tile_mode = 0
+61/occluder_offset = Vector2( 12, 12 )
+61/navigation_offset = Vector2( 12, 12 )
+61/shape_offset = Vector2( 0, 0 )
+61/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+61/shape_one_way = false
+61/shape_one_way_margin = 0.0
+61/shapes = [  ]
+61/z_index = 0
+62/name = "HeavyGoalJoke"
+62/texture = ExtResource( 159 )
+62/tex_offset = Vector2( 0, 0 )
+62/modulate = Color( 1, 1, 1, 1 )
+62/region = Rect2( 0, 0, 24, 24 )
+62/tile_mode = 0
+62/occluder_offset = Vector2( 12, 12 )
+62/navigation_offset = Vector2( 12, 12 )
+62/shape_offset = Vector2( 0, 0 )
+62/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+62/shape_one_way = false
+62/shape_one_way_margin = 0.0
+62/shapes = [  ]
+62/z_index = 0
+63/name = "LightGoalJoke"
+63/texture = ExtResource( 158 )
+63/tex_offset = Vector2( 0, 0 )
+63/modulate = Color( 1, 1, 1, 1 )
+63/region = Rect2( 0, 0, 24, 24 )
+63/tile_mode = 0
+63/occluder_offset = Vector2( 12, 12 )
+63/navigation_offset = Vector2( 12, 12 )
+63/shape_offset = Vector2( 0, 0 )
+63/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+63/shape_one_way = false
+63/shape_one_way_margin = 0.0
+63/shapes = [  ]
+63/z_index = 0
+64/name = "LightFire"
+64/texture = SubResource( 20 )
+64/tex_offset = Vector2( 0, 0 )
+64/modulate = Color( 1, 1, 1, 1 )
+64/region = Rect2( 0, 0, 24, 24 )
+64/tile_mode = 0
+64/occluder_offset = Vector2( 12, 12 )
+64/navigation_offset = Vector2( 12, 12 )
+64/shape_offset = Vector2( 0, 0 )
+64/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+64/shape_one_way = false
+64/shape_one_way_margin = 0.0
+64/shapes = [  ]
+64/z_index = 0
+65/name = "PowerSocket"
+65/texture = ExtResource( 165 )
+65/tex_offset = Vector2( 0, 0 )
+65/modulate = Color( 1, 1, 1, 1 )
+65/region = Rect2( 0, 0, 24, 24 )
+65/tile_mode = 0
+65/occluder_offset = Vector2( 12, 12 )
+65/navigation_offset = Vector2( 12, 12 )
+65/shape_offset = Vector2( 0, 0 )
+65/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+65/shape_one_way = false
+65/shape_one_way_margin = 0.0
+65/shapes = [  ]
+65/z_index = 0
+66/name = "GreenPowerSocket"
+66/texture = ExtResource( 166 )
+66/tex_offset = Vector2( 0, 0 )
+66/modulate = Color( 1, 1, 1, 1 )
+66/region = Rect2( 0, 0, 24, 24 )
+66/tile_mode = 0
+66/occluder_offset = Vector2( 12, 12 )
+66/navigation_offset = Vector2( 12, 12 )
+66/shape_offset = Vector2( 0, 0 )
+66/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+66/shape_one_way = false
+66/shape_one_way_margin = 0.0
+66/shapes = [  ]
+66/z_index = 0
+67/name = "VoidPowerSocket"
+67/texture = ExtResource( 164 )
+67/tex_offset = Vector2( 0, 0 )
+67/modulate = Color( 1, 1, 1, 1 )
+67/region = Rect2( 0, 0, 24, 24 )
+67/tile_mode = 0
+67/occluder_offset = Vector2( 12, 12 )
+67/navigation_offset = Vector2( 12, 12 )
+67/shape_offset = Vector2( 0, 0 )
+67/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+67/shape_one_way = false
+67/shape_one_way_margin = 0.0
+67/shapes = [  ]
+67/z_index = 0
+68/name = "ColourWhite"
+68/texture = ExtResource( 167 )
+68/tex_offset = Vector2( 0, 0 )
+68/modulate = Color( 1, 1, 1, 1 )
+68/region = Rect2( 0, 0, 24, 24 )
+68/tile_mode = 0
+68/occluder_offset = Vector2( 12, 12 )
+68/navigation_offset = Vector2( 12, 12 )
+68/shape_offset = Vector2( 0, 0 )
+68/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+68/shape_one_way = false
+68/shape_one_way_margin = 0.0
+68/shapes = [  ]
+68/z_index = 0
+69/name = "GlassBlockCracked"
+69/texture = ExtResource( 168 )
+69/tex_offset = Vector2( 0, 0 )
+69/modulate = Color( 1, 1, 1, 1 )
+69/region = Rect2( 0, 0, 24, 24 )
+69/tile_mode = 0
+69/occluder_offset = Vector2( 12, 12 )
+69/navigation_offset = Vector2( 12, 12 )
+69/shape_offset = Vector2( 0, 0 )
+69/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+69/shape_one_way = false
+69/shape_one_way_margin = 0.0
+69/shapes = [  ]
+69/z_index = 0
+70/name = "OnewayEastPurple"
+70/texture = SubResource( 21 )
+70/tex_offset = Vector2( 0, 0 )
+70/modulate = Color( 1, 1, 1, 1 )
+70/region = Rect2( 0, 0, 24, 24 )
+70/tile_mode = 0
+70/occluder_offset = Vector2( 12, 12 )
+70/navigation_offset = Vector2( 12, 12 )
+70/shape_offset = Vector2( 0, 0 )
+70/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+70/shape_one_way = false
+70/shape_one_way_margin = 0.0
+70/shapes = [  ]
+70/z_index = 0
+71/name = "OnewayNorthPurple"
+71/texture = SubResource( 22 )
+71/tex_offset = Vector2( 0, 0 )
+71/modulate = Color( 1, 1, 1, 1 )
+71/region = Rect2( 0, 0, 24, 24 )
+71/tile_mode = 0
+71/occluder_offset = Vector2( 12, 12 )
+71/navigation_offset = Vector2( 12, 12 )
+71/shape_offset = Vector2( 0, 0 )
+71/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+71/shape_one_way = false
+71/shape_one_way_margin = 0.0
+71/shapes = [  ]
+71/z_index = 0
+72/name = "OnewaySouthPurple"
+72/texture = SubResource( 23 )
+72/tex_offset = Vector2( 0, 0 )
+72/modulate = Color( 1, 1, 1, 1 )
+72/region = Rect2( 0, 0, 24, 24 )
+72/tile_mode = 0
+72/occluder_offset = Vector2( 12, 12 )
+72/navigation_offset = Vector2( 12, 12 )
+72/shape_offset = Vector2( 0, 0 )
+72/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+72/shape_one_way = false
+72/shape_one_way_margin = 0.0
+72/shapes = [  ]
+72/z_index = 0
+73/name = "OnewayWestPurple"
+73/texture = SubResource( 24 )
+73/tex_offset = Vector2( 0, 0 )
+73/modulate = Color( 1, 1, 1, 1 )
+73/region = Rect2( 0, 0, 24, 24 )
+73/tile_mode = 0
+73/occluder_offset = Vector2( 12, 12 )
+73/navigation_offset = Vector2( 12, 12 )
+73/shape_offset = Vector2( 0, 0 )
+73/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+73/shape_one_way = false
+73/shape_one_way_margin = 0.0
+73/shapes = [  ]
+73/z_index = 0
+74/name = "ColourBlurple"
+74/texture = ExtResource( 200 )
+74/tex_offset = Vector2( 0, 0 )
+74/modulate = Color( 1, 1, 1, 1 )
+74/region = Rect2( 0, 0, 24, 24 )
+74/tile_mode = 0
+74/occluder_offset = Vector2( 12, 12 )
+74/navigation_offset = Vector2( 12, 12 )
+74/shape_offset = Vector2( 0, 0 )
+74/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+74/shape_one_way = false
+74/shape_one_way_margin = 0.0
+74/shapes = [  ]
+74/z_index = 0
+75/name = "PhaseWallBlue"
+75/texture = SubResource( 25 )
+75/tex_offset = Vector2( 0, 0 )
+75/modulate = Color( 1, 1, 1, 1 )
+75/region = Rect2( 0, 0, 24, 24 )
+75/tile_mode = 0
+75/occluder_offset = Vector2( 12, 12 )
+75/navigation_offset = Vector2( 12, 12 )
+75/shape_offset = Vector2( 0, 0 )
+75/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+75/shape_one_way = false
+75/shape_one_way_margin = 0.0
+75/shapes = [  ]
+75/z_index = 0
+76/name = "PhaseWallRed"
+76/texture = SubResource( 26 )
+76/tex_offset = Vector2( 0, 0 )
+76/modulate = Color( 1, 1, 1, 1 )
+76/region = Rect2( 0, 0, 24, 24 )
+76/tile_mode = 0
+76/occluder_offset = Vector2( 12, 12 )
+76/navigation_offset = Vector2( 12, 12 )
+76/shape_offset = Vector2( 0, 0 )
+76/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+76/shape_one_way = false
+76/shape_one_way_margin = 0.0
+76/shapes = [  ]
+76/z_index = 0
+77/name = "PhaseWallGray"
+77/texture = SubResource( 27 )
+77/tex_offset = Vector2( 0, 0 )
+77/modulate = Color( 1, 1, 1, 1 )
+77/region = Rect2( 0, 0, 24, 24 )
+77/tile_mode = 0
+77/occluder_offset = Vector2( 12, 12 )
+77/navigation_offset = Vector2( 12, 12 )
+77/shape_offset = Vector2( 0, 0 )
+77/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+77/shape_one_way = false
+77/shape_one_way_margin = 0.0
+77/shapes = [  ]
+77/z_index = 0
+78/name = "PhaseWallPurple"
+78/texture = SubResource( 28 )
+78/tex_offset = Vector2( 0, 0 )
+78/modulate = Color( 1, 1, 1, 1 )
+78/region = Rect2( 0, 0, 24, 24 )
+78/tile_mode = 0
+78/occluder_offset = Vector2( 12, 12 )
+78/navigation_offset = Vector2( 12, 12 )
+78/shape_offset = Vector2( 0, 0 )
+78/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+78/shape_one_way = false
+78/shape_one_way_margin = 0.0
+78/shapes = [  ]
+78/z_index = 0
+79/name = "PhaseLightningBlue"
+79/texture = ExtResource( 286 )
+79/tex_offset = Vector2( 0, 0 )
+79/modulate = Color( 1, 1, 1, 1 )
+79/region = Rect2( 0, 0, 24, 24 )
+79/tile_mode = 0
+79/occluder_offset = Vector2( 12, 12 )
+79/navigation_offset = Vector2( 12, 12 )
+79/shape_offset = Vector2( 0, 0 )
+79/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+79/shape_one_way = false
+79/shape_one_way_margin = 0.0
+79/shapes = [  ]
+79/z_index = 0
+80/name = "PhaseLightningRed"
+80/texture = ExtResource( 280 )
+80/tex_offset = Vector2( 0, 0 )
+80/modulate = Color( 1, 1, 1, 1 )
+80/region = Rect2( 0, 0, 24, 24 )
+80/tile_mode = 0
+80/occluder_offset = Vector2( 12, 12 )
+80/navigation_offset = Vector2( 12, 12 )
+80/shape_offset = Vector2( 0, 0 )
+80/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+80/shape_one_way = false
+80/shape_one_way_margin = 0.0
+80/shapes = [  ]
+80/z_index = 0
+81/name = "PhaseLightningGray"
+81/texture = ExtResource( 287 )
+81/tex_offset = Vector2( 0, 0 )
+81/modulate = Color( 1, 1, 1, 1 )
+81/region = Rect2( 0, 0, 24, 24 )
+81/tile_mode = 0
+81/occluder_offset = Vector2( 12, 12 )
+81/navigation_offset = Vector2( 12, 12 )
+81/shape_offset = Vector2( 0, 0 )
+81/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+81/shape_one_way = false
+81/shape_one_way_margin = 0.0
+81/shapes = [  ]
+81/z_index = 0
+82/name = "PhaseLightningPurple"
+82/texture = ExtResource( 277 )
+82/tex_offset = Vector2( 0, 0 )
+82/modulate = Color( 1, 1, 1, 1 )
+82/region = Rect2( 0, 0, 24, 24 )
+82/tile_mode = 0
+82/occluder_offset = Vector2( 12, 12 )
+82/navigation_offset = Vector2( 12, 12 )
+82/shape_offset = Vector2( 0, 0 )
+82/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+82/shape_one_way = false
+82/shape_one_way_margin = 0.0
+82/shapes = [  ]
+82/z_index = 0
+83/name = "OnewayEastLose"
+83/texture = ExtResource( 258 )
+83/tex_offset = Vector2( 0, 0 )
+83/modulate = Color( 1, 1, 1, 1 )
+83/region = Rect2( 0, 0, 24, 24 )
+83/tile_mode = 0
+83/occluder_offset = Vector2( 12, 12 )
+83/navigation_offset = Vector2( 12, 12 )
+83/shape_offset = Vector2( 0, 0 )
+83/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+83/shape_one_way = false
+83/shape_one_way_margin = 0.0
+83/shapes = [  ]
+83/z_index = 0
+84/name = "OnewayNorthLose"
+84/texture = ExtResource( 259 )
+84/tex_offset = Vector2( 0, 0 )
+84/modulate = Color( 1, 1, 1, 1 )
+84/region = Rect2( 0, 0, 24, 24 )
+84/tile_mode = 0
+84/occluder_offset = Vector2( 12, 12 )
+84/navigation_offset = Vector2( 12, 12 )
+84/shape_offset = Vector2( 0, 0 )
+84/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+84/shape_one_way = false
+84/shape_one_way_margin = 0.0
+84/shapes = [  ]
+84/z_index = 0
+85/name = "OnewaySouthLose"
+85/texture = ExtResource( 271 )
+85/tex_offset = Vector2( 0, 0 )
+85/modulate = Color( 1, 1, 1, 1 )
+85/region = Rect2( 0, 0, 24, 24 )
+85/tile_mode = 0
+85/occluder_offset = Vector2( 12, 12 )
+85/navigation_offset = Vector2( 12, 12 )
+85/shape_offset = Vector2( 0, 0 )
+85/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+85/shape_one_way = false
+85/shape_one_way_margin = 0.0
+85/shapes = [  ]
+85/z_index = 0
+86/name = "OnewayWestLose"
+86/texture = ExtResource( 263 )
+86/tex_offset = Vector2( 0, 0 )
+86/modulate = Color( 1, 1, 1, 1 )
+86/region = Rect2( 0, 0, 24, 24 )
+86/tile_mode = 0
+86/occluder_offset = Vector2( 12, 12 )
+86/navigation_offset = Vector2( 12, 12 )
+86/shape_offset = Vector2( 0, 0 )
+86/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+86/shape_one_way = false
+86/shape_one_way_margin = 0.0
+86/shapes = [  ]
+86/z_index = 0
+87/name = "GreenFog"
+87/texture = SubResource( 29 )
+87/tex_offset = Vector2( 0, 0 )
+87/modulate = Color( 1, 1, 1, 1 )
+87/region = Rect2( 0, 0, 24, 24 )
+87/tile_mode = 0
+87/occluder_offset = Vector2( 12, 12 )
+87/navigation_offset = Vector2( 12, 12 )
+87/shape_offset = Vector2( 0, 0 )
+87/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+87/shape_one_way = false
+87/shape_one_way_margin = 0.0
+87/shapes = [  ]
+87/z_index = 0
+88/name = "Floorboards"
+88/texture = ExtResource( 309 )
+88/tex_offset = Vector2( 0, 0 )
+88/modulate = Color( 1, 1, 1, 1 )
+88/region = Rect2( 0, 0, 24, 24 )
+88/tile_mode = 0
+88/occluder_offset = Vector2( 12, 12 )
+88/navigation_offset = Vector2( 12, 12 )
+88/shape_offset = Vector2( 0, 0 )
+88/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+88/shape_one_way = false
+88/shape_one_way_margin = 0.0
+88/shapes = [  ]
+88/z_index = 0
+89/name = "GreenFloorboards"
+89/texture = ExtResource( 311 )
+89/tex_offset = Vector2( 0, 0 )
+89/modulate = Color( 1, 1, 1, 1 )
+89/region = Rect2( 0, 0, 24, 24 )
+89/tile_mode = 0
+89/occluder_offset = Vector2( 12, 12 )
+89/navigation_offset = Vector2( 12, 12 )
+89/shape_offset = Vector2( 0, 0 )
+89/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+89/shape_one_way = false
+89/shape_one_way_margin = 0.0
+89/shapes = [  ]
+89/z_index = 0
+90/name = "VoidFloorboards"
+90/texture = ExtResource( 310 )
+90/tex_offset = Vector2( 0, 0 )
+90/modulate = Color( 1, 1, 1, 1 )
+90/region = Rect2( 0, 0, 24, 24 )
+90/tile_mode = 0
+90/occluder_offset = Vector2( 12, 12 )
+90/navigation_offset = Vector2( 12, 12 )
+90/shape_offset = Vector2( 0, 0 )
+90/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+90/shape_one_way = false
+90/shape_one_way_margin = 0.0
+90/shapes = [  ]
+90/z_index = 0
+91/name = "Hole"
+91/texture = ExtResource( 313 )
+91/tex_offset = Vector2( 0, 0 )
+91/modulate = Color( 1, 1, 1, 1 )
+91/region = Rect2( 0, 0, 24, 24 )
+91/tile_mode = 0
+91/occluder_offset = Vector2( 12, 12 )
+91/navigation_offset = Vector2( 12, 12 )
+91/shape_offset = Vector2( 0, 0 )
+91/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+91/shape_one_way = false
+91/shape_one_way_margin = 0.0
+91/shapes = [  ]
+91/z_index = 0
+92/name = "GreenHole"
+92/texture = ExtResource( 312 )
+92/tex_offset = Vector2( 0, 0 )
+92/modulate = Color( 1, 1, 1, 1 )
+92/region = Rect2( 0, 0, 24, 24 )
+92/tile_mode = 0
+92/occluder_offset = Vector2( 12, 12 )
+92/navigation_offset = Vector2( 12, 12 )
+92/shape_offset = Vector2( 0, 0 )
+92/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+92/shape_one_way = false
+92/shape_one_way_margin = 0.0
+92/shapes = [  ]
+92/z_index = 0
+93/name = "VoidHole"
+93/texture = ExtResource( 314 )
+93/tex_offset = Vector2( 0, 0 )
+93/modulate = Color( 1, 1, 1, 1 )
+93/region = Rect2( 0, 0, 24, 24 )
+93/tile_mode = 0
+93/occluder_offset = Vector2( 12, 12 )
+93/navigation_offset = Vector2( 12, 12 )
+93/shape_offset = Vector2( 0, 0 )
+93/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+93/shape_one_way = false
+93/shape_one_way_margin = 0.0
+93/shapes = [  ]
+93/z_index = 0
+94/name = "BoostPad"
+94/texture = ExtResource( 315 )
+94/tex_offset = Vector2( 0, 0 )
+94/modulate = Color( 1, 1, 1, 1 )
+94/region = Rect2( 0, 0, 24, 24 )
+94/tile_mode = 0
+94/occluder_offset = Vector2( 12, 12 )
+94/navigation_offset = Vector2( 12, 12 )
+94/shape_offset = Vector2( 0, 0 )
+94/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+94/shape_one_way = false
+94/shape_one_way_margin = 0.0
+94/shapes = [  ]
+94/z_index = 0
+95/name = "GreenBoostPad"
+95/texture = ExtResource( 316 )
+95/tex_offset = Vector2( 0, 0 )
+95/modulate = Color( 1, 1, 1, 1 )
+95/region = Rect2( 0, 0, 24, 24 )
+95/tile_mode = 0
+95/occluder_offset = Vector2( 12, 12 )
+95/navigation_offset = Vector2( 12, 12 )
+95/shape_offset = Vector2( 0, 0 )
+95/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+95/shape_one_way = false
+95/shape_one_way_margin = 0.0
+95/shapes = [  ]
+95/z_index = 0
+96/name = "SlopeNW"
+96/texture = ExtResource( 317 )
+96/tex_offset = Vector2( 0, 0 )
+96/modulate = Color( 1, 1, 1, 1 )
+96/region = Rect2( 0, 0, 24, 24 )
+96/tile_mode = 0
+96/occluder_offset = Vector2( 12, 12 )
+96/navigation_offset = Vector2( 12, 12 )
+96/shape_offset = Vector2( 0, 0 )
+96/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+96/shape_one_way = false
+96/shape_one_way_margin = 0.0
+96/shapes = [  ]
+96/z_index = 0
+97/name = "SlopeNE"
+97/texture = ExtResource( 319 )
+97/tex_offset = Vector2( 0, 0 )
+97/modulate = Color( 1, 1, 1, 1 )
+97/region = Rect2( 0, 0, 24, 24 )
+97/tile_mode = 0
+97/occluder_offset = Vector2( 12, 12 )
+97/navigation_offset = Vector2( 12, 12 )
+97/shape_offset = Vector2( 0, 0 )
+97/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+97/shape_one_way = false
+97/shape_one_way_margin = 0.0
+97/shapes = [  ]
+97/z_index = 0
+98/name = "SlopeSE"
+98/texture = ExtResource( 318 )
+98/tex_offset = Vector2( 0, 0 )
+98/modulate = Color( 1, 1, 1, 1 )
+98/region = Rect2( 0, 0, 24, 24 )
+98/tile_mode = 0
+98/occluder_offset = Vector2( 12, 12 )
+98/navigation_offset = Vector2( 12, 12 )
+98/shape_offset = Vector2( 0, 0 )
+98/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+98/shape_one_way = false
+98/shape_one_way_margin = 0.0
+98/shapes = [  ]
+98/z_index = 0
+99/name = "SlopeSW"
+99/texture = ExtResource( 320 )
+99/tex_offset = Vector2( 0, 0 )
+99/modulate = Color( 1, 1, 1, 1 )
+99/region = Rect2( 0, 0, 24, 24 )
+99/tile_mode = 0
+99/occluder_offset = Vector2( 12, 12 )
+99/navigation_offset = Vector2( 12, 12 )
+99/shape_offset = Vector2( 0, 0 )
+99/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+99/shape_one_way = false
+99/shape_one_way_margin = 0.0
+99/shapes = [  ]
+99/z_index = 0
+100/name = "Boulder"
+100/texture = ExtResource( 321 )
+100/tex_offset = Vector2( 0, 0 )
+100/modulate = Color( 1, 1, 1, 1 )
+100/region = Rect2( 0, 0, 24, 24 )
+100/tile_mode = 0
+100/occluder_offset = Vector2( 12, 12 )
+100/navigation_offset = Vector2( 12, 12 )
+100/shape_offset = Vector2( 0, 0 )
+100/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+100/shape_one_way = false
+100/shape_one_way_margin = 0.0
+100/shapes = [  ]
+100/z_index = 0
+101/name = "PhaseWallGreenEven"
+101/texture = ExtResource( 322 )
+101/tex_offset = Vector2( 0, 0 )
+101/modulate = Color( 1, 1, 1, 1 )
+101/region = Rect2( 0, 0, 24, 24 )
+101/tile_mode = 0
+101/occluder_offset = Vector2( 12, 12 )
+101/navigation_offset = Vector2( 12, 12 )
+101/shape_offset = Vector2( 0, 0 )
+101/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+101/shape_one_way = false
+101/shape_one_way_margin = 0.0
+101/shapes = [  ]
+101/z_index = 0
+102/name = "PhaseWallGreenOdd"
+102/texture = ExtResource( 323 )
+102/tex_offset = Vector2( 0, 0 )
+102/modulate = Color( 1, 1, 1, 1 )
+102/region = Rect2( 0, 0, 24, 24 )
+102/tile_mode = 0
+102/occluder_offset = Vector2( 12, 12 )
+102/navigation_offset = Vector2( 12, 12 )
+102/shape_offset = Vector2( 0, 0 )
+102/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+102/shape_one_way = false
+102/shape_one_way_margin = 0.0
+102/shapes = [  ]
+102/z_index = 0
+103/name = "NudgeEast"
+103/texture = ExtResource( 324 )
+103/tex_offset = Vector2( 0, 0 )
+103/modulate = Color( 1, 1, 1, 1 )
+103/region = Rect2( 0, 0, 24, 24 )
+103/tile_mode = 0
+103/occluder_offset = Vector2( 12, 12 )
+103/navigation_offset = Vector2( 12, 12 )
+103/shape_offset = Vector2( 0, 0 )
+103/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+103/shape_one_way = false
+103/shape_one_way_margin = 0.0
+103/shapes = [  ]
+103/z_index = 0
+104/name = "NudgeNorth"
+104/texture = ExtResource( 326 )
+104/tex_offset = Vector2( 0, 0 )
+104/modulate = Color( 1, 1, 1, 1 )
+104/region = Rect2( 0, 0, 24, 24 )
+104/tile_mode = 0
+104/occluder_offset = Vector2( 12, 12 )
+104/navigation_offset = Vector2( 12, 12 )
+104/shape_offset = Vector2( 0, 0 )
+104/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+104/shape_one_way = false
+104/shape_one_way_margin = 0.0
+104/shapes = [  ]
+104/z_index = 0
+105/name = "NudgeSouth"
+105/texture = ExtResource( 329 )
+105/tex_offset = Vector2( 0, 0 )
+105/modulate = Color( 1, 1, 1, 1 )
+105/region = Rect2( 0, 0, 24, 24 )
+105/tile_mode = 0
+105/occluder_offset = Vector2( 12, 12 )
+105/navigation_offset = Vector2( 12, 12 )
+105/shape_offset = Vector2( 0, 0 )
+105/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+105/shape_one_way = false
+105/shape_one_way_margin = 0.0
+105/shapes = [  ]
+105/z_index = 0
+106/name = "NudgeWest"
+106/texture = ExtResource( 325 )
+106/tex_offset = Vector2( 0, 0 )
+106/modulate = Color( 1, 1, 1, 1 )
+106/region = Rect2( 0, 0, 24, 24 )
+106/tile_mode = 0
+106/occluder_offset = Vector2( 12, 12 )
+106/navigation_offset = Vector2( 12, 12 )
+106/shape_offset = Vector2( 0, 0 )
+106/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+106/shape_one_way = false
+106/shape_one_way_margin = 0.0
+106/shapes = [  ]
+106/z_index = 0
+107/name = "NudgeEastGreen"
+107/texture = ExtResource( 327 )
+107/tex_offset = Vector2( 0, 0 )
+107/modulate = Color( 1, 1, 1, 1 )
+107/region = Rect2( 0, 0, 24, 24 )
+107/tile_mode = 0
+107/occluder_offset = Vector2( 12, 12 )
+107/navigation_offset = Vector2( 12, 12 )
+107/shape_offset = Vector2( 0, 0 )
+107/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+107/shape_one_way = false
+107/shape_one_way_margin = 0.0
+107/shapes = [  ]
+107/z_index = 0
+108/name = "NudgeNorthGreen"
+108/texture = ExtResource( 328 )
+108/tex_offset = Vector2( 0, 0 )
+108/modulate = Color( 1, 1, 1, 1 )
+108/region = Rect2( 0, 0, 24, 24 )
+108/tile_mode = 0
+108/occluder_offset = Vector2( 12, 12 )
+108/navigation_offset = Vector2( 12, 12 )
+108/shape_offset = Vector2( 0, 0 )
+108/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+108/shape_one_way = false
+108/shape_one_way_margin = 0.0
+108/shapes = [  ]
+108/z_index = 0
+109/name = "NudgeSouthGreen"
+109/texture = ExtResource( 330 )
+109/tex_offset = Vector2( 0, 0 )
+109/modulate = Color( 1, 1, 1, 1 )
+109/region = Rect2( 0, 0, 24, 24 )
+109/tile_mode = 0
+109/occluder_offset = Vector2( 12, 12 )
+109/navigation_offset = Vector2( 12, 12 )
+109/shape_offset = Vector2( 0, 0 )
+109/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+109/shape_one_way = false
+109/shape_one_way_margin = 0.0
+109/shapes = [  ]
+109/z_index = 0
+110/name = "NudgeWestGreen"
+110/texture = ExtResource( 331 )
+110/tex_offset = Vector2( 0, 0 )
+110/modulate = Color( 1, 1, 1, 1 )
+110/region = Rect2( 0, 0, 24, 24 )
+110/tile_mode = 0
+110/occluder_offset = Vector2( 12, 12 )
+110/navigation_offset = Vector2( 12, 12 )
+110/shape_offset = Vector2( 0, 0 )
+110/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+110/shape_one_way = false
+110/shape_one_way_margin = 0.0
+110/shapes = [  ]
+110/z_index = 0
+111/name = "AntiGrate"
+111/texture = ExtResource( 332 )
+111/tex_offset = Vector2( 0, 0 )
+111/modulate = Color( 1, 1, 1, 1 )
+111/region = Rect2( 0, 0, 24, 24 )
+111/tile_mode = 0
+111/occluder_offset = Vector2( 12, 12 )
+111/navigation_offset = Vector2( 12, 12 )
+111/shape_offset = Vector2( 0, 0 )
+111/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+111/shape_one_way = false
+111/shape_one_way_margin = 0.0
+111/shapes = [  ]
+111/z_index = 0
+112/name = "MagentaFloorboards"
+112/texture = ExtResource( 333 )
+112/tex_offset = Vector2( 0, 0 )
+112/modulate = Color( 1, 1, 1, 1 )
+112/region = Rect2( 0, 0, 24, 24 )
+112/tile_mode = 0
+112/occluder_offset = Vector2( 12, 12 )
+112/navigation_offset = Vector2( 12, 12 )
+112/shape_offset = Vector2( 0, 0 )
+112/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+112/shape_one_way = false
+112/shape_one_way_margin = 0.0
+112/shapes = [  ]
+112/z_index = 0
+113/name = "GhostPlatform"
+113/texture = ExtResource( 334 )
+113/tex_offset = Vector2( 0, 0 )
+113/modulate = Color( 1, 1, 1, 1 )
+113/region = Rect2( 0, 0, 24, 24 )
+113/tile_mode = 0
+113/occluder_offset = Vector2( 12, 12 )
+113/navigation_offset = Vector2( 12, 12 )
+113/shape_offset = Vector2( 0, 0 )
+113/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+113/shape_one_way = false
+113/shape_one_way_margin = 0.0
+113/shapes = [  ]
+113/z_index = 0
+114/name = "Propellor"
+114/texture = ExtResource( 335 )
+114/tex_offset = Vector2( 0, 0 )
+114/modulate = Color( 1, 1, 1, 1 )
+114/region = Rect2( 0, 0, 24, 24 )
+114/tile_mode = 0
+114/occluder_offset = Vector2( 12, 12 )
+114/navigation_offset = Vector2( 12, 12 )
+114/shape_offset = Vector2( 0, 0 )
+114/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+114/shape_one_way = false
+114/shape_one_way_margin = 0.0
+114/shapes = [  ]
+114/z_index = 0
+115/name = "DurPlus"
+115/texture = ExtResource( 342 )
+115/tex_offset = Vector2( 0, 0 )
+115/modulate = Color( 1, 1, 1, 1 )
+115/region = Rect2( 0, 0, 24, 24 )
+115/tile_mode = 0
+115/occluder_offset = Vector2( 12, 12 )
+115/navigation_offset = Vector2( 12, 12 )
+115/shape_offset = Vector2( 0, 0 )
+115/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+115/shape_one_way = false
+115/shape_one_way_margin = 0.0
+115/shapes = [  ]
+115/z_index = 0
+116/name = "DurMinus"
+116/texture = ExtResource( 338 )
+116/tex_offset = Vector2( 0, 0 )
+116/modulate = Color( 1, 1, 1, 1 )
+116/region = Rect2( 0, 0, 24, 24 )
+116/tile_mode = 0
+116/occluder_offset = Vector2( 12, 12 )
+116/navigation_offset = Vector2( 12, 12 )
+116/shape_offset = Vector2( 0, 0 )
+116/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+116/shape_one_way = false
+116/shape_one_way_margin = 0.0
+116/shapes = [  ]
+116/z_index = 0
+117/name = "HvyPlus"
+117/texture = ExtResource( 337 )
+117/tex_offset = Vector2( 0, 0 )
+117/modulate = Color( 1, 1, 1, 1 )
+117/region = Rect2( 0, 0, 24, 24 )
+117/tile_mode = 0
+117/occluder_offset = Vector2( 12, 12 )
+117/navigation_offset = Vector2( 12, 12 )
+117/shape_offset = Vector2( 0, 0 )
+117/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+117/shape_one_way = false
+117/shape_one_way_margin = 0.0
+117/shapes = [  ]
+117/z_index = 0
+118/name = "HvyMinus"
+118/texture = ExtResource( 339 )
+118/tex_offset = Vector2( 0, 0 )
+118/modulate = Color( 1, 1, 1, 1 )
+118/region = Rect2( 0, 0, 24, 24 )
+118/tile_mode = 0
+118/occluder_offset = Vector2( 12, 12 )
+118/navigation_offset = Vector2( 12, 12 )
+118/shape_offset = Vector2( 0, 0 )
+118/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+118/shape_one_way = false
+118/shape_one_way_margin = 0.0
+118/shapes = [  ]
+118/z_index = 0
+119/name = "StrPlus"
+119/texture = ExtResource( 336 )
+119/tex_offset = Vector2( 0, 0 )
+119/modulate = Color( 1, 1, 1, 1 )
+119/region = Rect2( 0, 0, 24, 24 )
+119/tile_mode = 0
+119/occluder_offset = Vector2( 12, 12 )
+119/navigation_offset = Vector2( 12, 12 )
+119/shape_offset = Vector2( 0, 0 )
+119/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+119/shape_one_way = false
+119/shape_one_way_margin = 0.0
+119/shapes = [  ]
+119/z_index = 0
+120/name = "StrMinus"
+120/texture = ExtResource( 343 )
+120/tex_offset = Vector2( 0, 0 )
+120/modulate = Color( 1, 1, 1, 1 )
+120/region = Rect2( 0, 0, 24, 24 )
+120/tile_mode = 0
+120/occluder_offset = Vector2( 12, 12 )
+120/navigation_offset = Vector2( 12, 12 )
+120/shape_offset = Vector2( 0, 0 )
+120/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+120/shape_one_way = false
+120/shape_one_way_margin = 0.0
+120/shapes = [  ]
+120/z_index = 0
+121/name = "FallInf"
+121/texture = ExtResource( 340 )
+121/tex_offset = Vector2( 0, 0 )
+121/modulate = Color( 1, 1, 1, 1 )
+121/region = Rect2( 0, 0, 24, 24 )
+121/tile_mode = 0
+121/occluder_offset = Vector2( 12, 12 )
+121/navigation_offset = Vector2( 12, 12 )
+121/shape_offset = Vector2( 0, 0 )
+121/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+121/shape_one_way = false
+121/shape_one_way_margin = 0.0
+121/shapes = [  ]
+121/z_index = 0
+122/name = "FallOne"
+122/texture = ExtResource( 341 )
+122/tex_offset = Vector2( 0, 0 )
+122/modulate = Color( 1, 1, 1, 1 )
+122/region = Rect2( 0, 0, 24, 24 )
+122/tile_mode = 0
+122/occluder_offset = Vector2( 12, 12 )
+122/navigation_offset = Vector2( 12, 12 )
+122/shape_offset = Vector2( 0, 0 )
+122/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+122/shape_one_way = false
+122/shape_one_way_margin = 0.0
+122/shapes = [  ]
+122/z_index = 0
+123/name = "ColourNative"
+123/texture = ExtResource( 344 )
+123/tex_offset = Vector2( 0, 0 )
+123/modulate = Color( 1, 1, 1, 1 )
+123/region = Rect2( 0, 0, 24, 24 )
+123/tile_mode = 0
+123/occluder_offset = Vector2( 12, 12 )
+123/navigation_offset = Vector2( 12, 12 )
+123/shape_offset = Vector2( 0, 0 )
+123/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+123/shape_one_way = false
+123/shape_one_way_margin = 0.0
+123/shapes = [  ]
+123/z_index = 0
+124/name = "RepairStation"
+124/texture = ExtResource( 345 )
+124/tex_offset = Vector2( 0, 0 )
+124/modulate = Color( 1, 1, 1, 1 )
+124/region = Rect2( 0, 0, 24, 24 )
+124/tile_mode = 0
+124/occluder_offset = Vector2( 12, 12 )
+124/navigation_offset = Vector2( 12, 12 )
+124/shape_offset = Vector2( 0, 0 )
+124/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+124/shape_one_way = false
+124/shape_one_way_margin = 0.0
+124/shapes = [  ]
+124/z_index = 0
+125/name = "RepairStationGray"
+125/texture = ExtResource( 346 )
+125/tex_offset = Vector2( 0, 0 )
+125/modulate = Color( 1, 1, 1, 1 )
+125/region = Rect2( 0, 0, 24, 24 )
+125/tile_mode = 0
+125/occluder_offset = Vector2( 12, 12 )
+125/navigation_offset = Vector2( 12, 12 )
+125/shape_offset = Vector2( 0, 0 )
+125/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+125/shape_one_way = false
+125/shape_one_way_margin = 0.0
+125/shapes = [  ]
+125/z_index = 0
+126/name = "RepairStationGreen"
+126/texture = ExtResource( 347 )
+126/tex_offset = Vector2( 0, 0 )
+126/modulate = Color( 1, 1, 1, 1 )
+126/region = Rect2( 0, 0, 24, 24 )
+126/tile_mode = 0
+126/occluder_offset = Vector2( 12, 12 )
+126/navigation_offset = Vector2( 12, 12 )
+126/shape_offset = Vector2( 0, 0 )
+126/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+126/shape_one_way = false
+126/shape_one_way_margin = 0.0
+126/shapes = [  ]
+126/z_index = 0
+127/name = "ZombieTile"
+127/texture = SubResource( 30 )
+127/tex_offset = Vector2( 0, 0 )
+127/modulate = Color( 1, 1, 1, 1 )
+127/region = Rect2( 0, 0, 24, 24 )
+127/tile_mode = 0
+127/occluder_offset = Vector2( 12, 12 )
+127/navigation_offset = Vector2( 12, 12 )
+127/shape_offset = Vector2( 0, 0 )
+127/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+127/shape_one_way = false
+127/shape_one_way_margin = 0.0
+127/shapes = [  ]
+127/z_index = 0
+128/name = "HeavyMimic"
+128/texture = ExtResource( 353 )
+128/tex_offset = Vector2( 0, 0 )
+128/modulate = Color( 1, 1, 1, 1 )
+128/region = Rect2( 0, 0, 24, 24 )
+128/tile_mode = 0
+128/occluder_offset = Vector2( 12, 12 )
+128/navigation_offset = Vector2( 12, 12 )
+128/shape_offset = Vector2( 0, 0 )
+128/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+128/shape_one_way = false
+128/shape_one_way_margin = 0.0
+128/shapes = [  ]
+128/z_index = 0
+129/name = "LightMimic"
+129/texture = ExtResource( 352 )
+129/tex_offset = Vector2( 0, 0 )
+129/modulate = Color( 1, 1, 1, 1 )
+129/region = Rect2( 0, 0, 24, 24 )
+129/tile_mode = 0
+129/occluder_offset = Vector2( 12, 12 )
+129/navigation_offset = Vector2( 12, 12 )
+129/shape_offset = Vector2( 0, 0 )
+129/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+129/shape_one_way = false
+129/shape_one_way_margin = 0.0
+129/shapes = [  ]
+129/z_index = 0
+130/name = "GhostFog"
+130/texture = ExtResource( 354 )
+130/tex_offset = Vector2( 0, 0 )
+130/modulate = Color( 1, 1, 1, 1 )
+130/region = Rect2( 0, 0, 24, 24 )
+130/tile_mode = 0
+130/occluder_offset = Vector2( 12, 12 )
+130/navigation_offset = Vector2( 12, 12 )
+130/shape_offset = Vector2( 0, 0 )
+130/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+130/shape_one_way = false
+130/shape_one_way_margin = 0.0
+130/shapes = [  ]
+130/z_index = 0
+131/name = "Eclipse"
+131/texture = ExtResource( 355 )
+131/tex_offset = Vector2( 0, 0 )
+131/modulate = Color( 1, 1, 1, 1 )
+131/region = Rect2( 0, 0, 24, 24 )
+131/tile_mode = 0
+131/occluder_offset = Vector2( 12, 12 )
+131/navigation_offset = Vector2( 12, 12 )
+131/shape_offset = Vector2( 0, 0 )
+131/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+131/shape_one_way = false
+131/shape_one_way_margin = 0.0
+131/shapes = [  ]
+131/z_index = 0
+132/name = "PhaseBoardRed"
+132/texture = ExtResource( 364 )
+132/tex_offset = Vector2( 0, 0 )
+132/modulate = Color( 1, 1, 1, 1 )
+132/region = Rect2( 0, 0, 24, 24 )
+132/tile_mode = 0
+132/occluder_offset = Vector2( 12, 12 )
+132/navigation_offset = Vector2( 12, 12 )
+132/shape_offset = Vector2( 0, 0 )
+132/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+132/shape_one_way = false
+132/shape_one_way_margin = 0.0
+132/shapes = [  ]
+132/z_index = 0
+133/name = "PhaseBoardBlue"
+133/texture = ExtResource( 358 )
+133/tex_offset = Vector2( 0, 0 )
+133/modulate = Color( 1, 1, 1, 1 )
+133/region = Rect2( 0, 0, 24, 24 )
+133/tile_mode = 0
+133/occluder_offset = Vector2( 12, 12 )
+133/navigation_offset = Vector2( 12, 12 )
+133/shape_offset = Vector2( 0, 0 )
+133/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+133/shape_one_way = false
+133/shape_one_way_margin = 0.0
+133/shapes = [  ]
+133/z_index = 0
+134/name = "PhaseBoardGray"
+134/texture = ExtResource( 359 )
+134/tex_offset = Vector2( 0, 0 )
+134/modulate = Color( 1, 1, 1, 1 )
+134/region = Rect2( 0, 0, 24, 24 )
+134/tile_mode = 0
+134/occluder_offset = Vector2( 12, 12 )
+134/navigation_offset = Vector2( 12, 12 )
+134/shape_offset = Vector2( 0, 0 )
+134/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+134/shape_one_way = false
+134/shape_one_way_margin = 0.0
+134/shapes = [  ]
+134/z_index = 0
+135/name = "PhaseBoardPurple"
+135/texture = ExtResource( 356 )
+135/tex_offset = Vector2( 0, 0 )
+135/modulate = Color( 1, 1, 1, 1 )
+135/region = Rect2( 0, 0, 24, 24 )
+135/tile_mode = 0
+135/occluder_offset = Vector2( 12, 12 )
+135/navigation_offset = Vector2( 12, 12 )
+135/shape_offset = Vector2( 0, 0 )
+135/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+135/shape_one_way = false
+135/shape_one_way_margin = 0.0
+135/shapes = [  ]
+135/z_index = 0
+136/name = "PhaseBoardDeath"
+136/texture = ExtResource( 360 )
+136/tex_offset = Vector2( 0, 0 )
+136/modulate = Color( 1, 1, 1, 1 )
+136/region = Rect2( 0, 0, 24, 24 )
+136/tile_mode = 0
+136/occluder_offset = Vector2( 12, 12 )
+136/navigation_offset = Vector2( 12, 12 )
+136/shape_offset = Vector2( 0, 0 )
+136/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+136/shape_one_way = false
+136/shape_one_way_margin = 0.0
+136/shapes = [  ]
+136/z_index = 0
+137/name = "PhaseBoardLife"
+137/texture = ExtResource( 361 )
+137/tex_offset = Vector2( 0, 0 )
+137/modulate = Color( 1, 1, 1, 1 )
+137/region = Rect2( 0, 0, 24, 24 )
+137/tile_mode = 0
+137/occluder_offset = Vector2( 12, 12 )
+137/navigation_offset = Vector2( 12, 12 )
+137/shape_offset = Vector2( 0, 0 )
+137/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+137/shape_one_way = false
+137/shape_one_way_margin = 0.0
+137/shapes = [  ]
+137/z_index = 0
+138/name = "PhaseBoardHeavy"
+138/texture = ExtResource( 357 )
+138/tex_offset = Vector2( 0, 0 )
+138/modulate = Color( 1, 1, 1, 1 )
+138/region = Rect2( 0, 0, 24, 24 )
+138/tile_mode = 0
+138/occluder_offset = Vector2( 12, 12 )
+138/navigation_offset = Vector2( 12, 12 )
+138/shape_offset = Vector2( 0, 0 )
+138/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+138/shape_one_way = false
+138/shape_one_way_margin = 0.0
+138/shapes = [  ]
+138/z_index = 0
+139/name = "PhaseBoardLight"
+139/texture = ExtResource( 363 )
+139/tex_offset = Vector2( 0, 0 )
+139/modulate = Color( 1, 1, 1, 1 )
+139/region = Rect2( 0, 0, 24, 24 )
+139/tile_mode = 0
+139/occluder_offset = Vector2( 12, 12 )
+139/navigation_offset = Vector2( 12, 12 )
+139/shape_offset = Vector2( 0, 0 )
+139/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+139/shape_one_way = false
+139/shape_one_way_margin = 0.0
+139/shapes = [  ]
+139/z_index = 0
+140/name = "PhaseBoardCrate"
+140/texture = ExtResource( 362 )
+140/tex_offset = Vector2( 0, 0 )
+140/modulate = Color( 1, 1, 1, 1 )
+140/region = Rect2( 0, 0, 24, 24 )
+140/tile_mode = 0
+140/occluder_offset = Vector2( 12, 12 )
+140/navigation_offset = Vector2( 12, 12 )
+140/shape_offset = Vector2( 0, 0 )
+140/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+140/shape_one_way = false
+140/shape_one_way_margin = 0.0
+140/shapes = [  ]
+140/z_index = 0
+141/name = "SpiderWeb"
+141/texture = ExtResource( 372 )
+141/tex_offset = Vector2( 0, 0 )
+141/modulate = Color( 1, 1, 1, 1 )
+141/region = Rect2( 0, 0, 24, 24 )
+141/tile_mode = 0
+141/occluder_offset = Vector2( 12, 12 )
+141/navigation_offset = Vector2( 12, 12 )
+141/shape_offset = Vector2( 0, 0 )
+141/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+141/shape_one_way = false
+141/shape_one_way_margin = 0.0
+141/shapes = [  ]
+141/z_index = 0
+142/name = "SpiderWebGreen"
+142/texture = ExtResource( 369 )
+142/tex_offset = Vector2( 0, 0 )
+142/modulate = Color( 1, 1, 1, 1 )
+142/region = Rect2( 0, 0, 24, 24 )
+142/tile_mode = 0
+142/occluder_offset = Vector2( 12, 12 )
+142/navigation_offset = Vector2( 12, 12 )
+142/shape_offset = Vector2( 0, 0 )
+142/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+142/shape_one_way = false
+142/shape_one_way_margin = 0.0
+142/shapes = [  ]
+142/z_index = 0
+143/name = "NoPush"
+143/texture = ExtResource( 370 )
+143/tex_offset = Vector2( 0, 0 )
+143/modulate = Color( 1, 1, 1, 1 )
+143/region = Rect2( 0, 0, 24, 24 )
+143/tile_mode = 0
+143/occluder_offset = Vector2( 12, 12 )
+143/navigation_offset = Vector2( 12, 12 )
+143/shape_offset = Vector2( 0, 0 )
+143/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+143/shape_one_way = false
+143/shape_one_way_margin = 0.0
+143/shapes = [  ]
+143/z_index = 0
+144/name = "NoPushGreen"
+144/texture = ExtResource( 368 )
+144/tex_offset = Vector2( 0, 0 )
+144/modulate = Color( 1, 1, 1, 1 )
+144/region = Rect2( 0, 0, 24, 24 )
+144/tile_mode = 0
+144/occluder_offset = Vector2( 12, 12 )
+144/navigation_offset = Vector2( 12, 12 )
+144/shape_offset = Vector2( 0, 0 )
+144/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+144/shape_one_way = false
+144/shape_one_way_margin = 0.0
+144/shapes = [  ]
+144/z_index = 0
+145/name = "YesPush"
+145/texture = ExtResource( 365 )
+145/tex_offset = Vector2( 0, 0 )
+145/modulate = Color( 1, 1, 1, 1 )
+145/region = Rect2( 0, 0, 24, 24 )
+145/tile_mode = 0
+145/occluder_offset = Vector2( 12, 12 )
+145/navigation_offset = Vector2( 12, 12 )
+145/shape_offset = Vector2( 0, 0 )
+145/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+145/shape_one_way = false
+145/shape_one_way_margin = 0.0
+145/shapes = [  ]
+145/z_index = 0
+146/name = "YesPushGreen"
+146/texture = ExtResource( 366 )
+146/tex_offset = Vector2( 0, 0 )
+146/modulate = Color( 1, 1, 1, 1 )
+146/region = Rect2( 0, 0, 24, 24 )
+146/tile_mode = 0
+146/occluder_offset = Vector2( 12, 12 )
+146/navigation_offset = Vector2( 12, 12 )
+146/shape_offset = Vector2( 0, 0 )
+146/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+146/shape_one_way = false
+146/shape_one_way_margin = 0.0
+146/shapes = [  ]
+146/z_index = 0
+147/name = "NoLeft"
+147/texture = ExtResource( 367 )
+147/tex_offset = Vector2( 0, 0 )
+147/modulate = Color( 1, 1, 1, 1 )
+147/region = Rect2( 0, 0, 24, 24 )
+147/tile_mode = 0
+147/occluder_offset = Vector2( 12, 12 )
+147/navigation_offset = Vector2( 12, 12 )
+147/shape_offset = Vector2( 0, 0 )
+147/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+147/shape_one_way = false
+147/shape_one_way_margin = 0.0
+147/shapes = [  ]
+147/z_index = 0
+148/name = "NoLeftGreen"
+148/texture = ExtResource( 371 )
+148/tex_offset = Vector2( 0, 0 )
+148/modulate = Color( 1, 1, 1, 1 )
+148/region = Rect2( 0, 0, 24, 24 )
+148/tile_mode = 0
+148/occluder_offset = Vector2( 12, 12 )
+148/navigation_offset = Vector2( 12, 12 )
+148/shape_offset = Vector2( 0, 0 )
+148/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+148/shape_one_way = false
+148/shape_one_way_margin = 0.0
+148/shapes = [  ]
+148/z_index = 0
+149/name = "PhaseBoardVoid"
+149/texture = ExtResource( 375 )
+149/tex_offset = Vector2( 0, 0 )
+149/modulate = Color( 1, 1, 1, 1 )
+149/region = Rect2( 0, 0, 24, 24 )
+149/tile_mode = 0
+149/occluder_offset = Vector2( 12, 12 )
+149/navigation_offset = Vector2( 12, 12 )
+149/shape_offset = Vector2( 0, 0 )
+149/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+149/shape_one_way = false
+149/shape_one_way_margin = 0.0
+149/shapes = [  ]
+149/z_index = 0
+150/name = "OnewayEastGray"
+150/texture = ExtResource( 373 )
+150/tex_offset = Vector2( 0, 0 )
+150/modulate = Color( 1, 1, 1, 1 )
+150/region = Rect2( 0, 0, 24, 24 )
+150/tile_mode = 0
+150/occluder_offset = Vector2( 12, 12 )
+150/navigation_offset = Vector2( 12, 12 )
+150/shape_offset = Vector2( 0, 0 )
+150/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+150/shape_one_way = false
+150/shape_one_way_margin = 0.0
+150/shapes = [  ]
+150/z_index = 0
+151/name = "OnewayNorthGray"
+151/texture = ExtResource( 374 )
+151/tex_offset = Vector2( 0, 0 )
+151/modulate = Color( 1, 1, 1, 1 )
+151/region = Rect2( 0, 0, 24, 24 )
+151/tile_mode = 0
+151/occluder_offset = Vector2( 12, 12 )
+151/navigation_offset = Vector2( 12, 12 )
+151/shape_offset = Vector2( 0, 0 )
+151/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+151/shape_one_way = false
+151/shape_one_way_margin = 0.0
+151/shapes = [  ]
+151/z_index = 0
+152/name = "OnewaySouthGray"
+152/texture = ExtResource( 377 )
+152/tex_offset = Vector2( 0, 0 )
+152/modulate = Color( 1, 1, 1, 1 )
+152/region = Rect2( 0, 0, 24, 24 )
+152/tile_mode = 0
+152/occluder_offset = Vector2( 12, 12 )
+152/navigation_offset = Vector2( 12, 12 )
+152/shape_offset = Vector2( 0, 0 )
+152/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+152/shape_one_way = false
+152/shape_one_way_margin = 0.0
+152/shapes = [  ]
+152/z_index = 0
+153/name = "OnewayWestGray"
+153/texture = ExtResource( 376 )
+153/tex_offset = Vector2( 0, 0 )
+153/modulate = Color( 1, 1, 1, 1 )
+153/region = Rect2( 0, 0, 24, 24 )
+153/tile_mode = 0
+153/occluder_offset = Vector2( 12, 12 )
+153/navigation_offset = Vector2( 12, 12 )
+153/shape_offset = Vector2( 0, 0 )
+153/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+153/shape_one_way = false
+153/shape_one_way_margin = 0.0
+153/shapes = [  ]
+153/z_index = 0
+154/name = "PinkJelly"
+154/texture = ExtResource( 378 )
+154/tex_offset = Vector2( 0, 0 )
+154/modulate = Color( 1, 1, 1, 1 )
+154/region = Rect2( 0, 0, 24, 24 )
+154/tile_mode = 0
+154/occluder_offset = Vector2( 12, 12 )
+154/navigation_offset = Vector2( 12, 12 )
+154/shape_offset = Vector2( 0, 0 )
+154/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+154/shape_one_way = false
+154/shape_one_way_margin = 0.0
+154/shapes = [  ]
+154/z_index = 0
+155/name = "CyanJelly"
+155/texture = ExtResource( 379 )
+155/tex_offset = Vector2( 0, 0 )
+155/modulate = Color( 1, 1, 1, 1 )
+155/region = Rect2( 0, 0, 24, 24 )
+155/tile_mode = 0
+155/occluder_offset = Vector2( 12, 12 )
+155/navigation_offset = Vector2( 12, 12 )
+155/shape_offset = Vector2( 0, 0 )
+155/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+155/shape_one_way = false
+155/shape_one_way_margin = 0.0
+155/shapes = [  ]
+155/z_index = 0
+156/name = "PurpleFog"
+156/texture = ExtResource( 380 )
+156/tex_offset = Vector2( 0, 0 )
+156/modulate = Color( 1, 1, 1, 1 )
+156/region = Rect2( 0, 0, 24, 24 )
+156/tile_mode = 0
+156/occluder_offset = Vector2( 12, 12 )
+156/navigation_offset = Vector2( 12, 12 )
+156/shape_offset = Vector2( 0, 0 )
+156/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+156/shape_one_way = false
+156/shape_one_way_margin = 0.0
+156/shapes = [  ]
+156/z_index = 0
+157/name = "Spotlight"
+157/texture = ExtResource( 381 )
+157/tex_offset = Vector2( 0, 0 )
+157/modulate = Color( 1, 1, 1, 1 )
+157/region = Rect2( 0, 0, 24, 24 )
+157/tile_mode = 0
+157/occluder_offset = Vector2( 12, 12 )
+157/navigation_offset = Vector2( 12, 12 )
+157/shape_offset = Vector2( 0, 0 )
+157/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+157/shape_one_way = false
+157/shape_one_way_margin = 0.0
+157/shapes = [  ]
+157/z_index = 0
+158/name = "Continuum"
+158/texture = SubResource( 32 )
+158/tex_offset = Vector2( 0, 0 )
+158/modulate = Color( 1, 1, 1, 1 )
+158/region = Rect2( 0, 0, 24, 24 )
+158/tile_mode = 0
+158/occluder_offset = Vector2( 12, 12 )
+158/navigation_offset = Vector2( 12, 12 )
+158/shape_offset = Vector2( 0, 0 )
+158/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+158/shape_one_way = false
+158/shape_one_way_margin = 0.0
+158/shapes = [  ]
+158/z_index = 0
+159/name = "GateOfEternity"
+159/texture = ExtResource( 387 )
+159/tex_offset = Vector2( 0, 0 )
+159/modulate = Color( 1, 1, 1, 1 )
+159/region = Rect2( 0, 0, 24, 24 )
+159/tile_mode = 0
+159/occluder_offset = Vector2( 12, 12 )
+159/navigation_offset = Vector2( 12, 12 )
+159/shape_offset = Vector2( 0, 0 )
+159/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+159/shape_one_way = false
+159/shape_one_way_margin = 0.0
+159/shapes = [  ]
+159/z_index = 0
+160/name = "GateOfDemise"
+160/texture = ExtResource( 388 )
+160/tex_offset = Vector2( 0, 0 )
+160/modulate = Color( 1, 1, 1, 1 )
+160/region = Rect2( 0, 0, 24, 24 )
+160/tile_mode = 0
+160/occluder_offset = Vector2( 12, 12 )
+160/navigation_offset = Vector2( 12, 12 )
+160/shape_offset = Vector2( 0, 0 )
+160/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+160/shape_one_way = false
+160/shape_one_way_margin = 0.0
+160/shapes = [  ]
+160/z_index = 0
+161/name = "VoidSingularity"
+161/texture = ExtResource( 389 )
+161/tex_offset = Vector2( 0, 0 )
+161/modulate = Color( 1, 1, 1, 1 )
+161/region = Rect2( 0, 0, 24, 24 )
+161/tile_mode = 0
+161/occluder_offset = Vector2( 12, 12 )
+161/navigation_offset = Vector2( 12, 12 )
+161/shape_offset = Vector2( 0, 0 )
+161/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+161/shape_one_way = false
+161/shape_one_way_margin = 0.0
+161/shapes = [  ]
+161/z_index = 0
+162/name = "VoidWall"
+162/texture = ExtResource( 392 )
+162/tex_offset = Vector2( 0, 0 )
+162/modulate = Color( 1, 1, 1, 1 )
+162/region = Rect2( 0, 0, 24, 24 )
+162/tile_mode = 0
+162/occluder_offset = Vector2( 12, 12 )
+162/navigation_offset = Vector2( 12, 12 )
+162/shape_offset = Vector2( 0, 0 )
+162/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+162/shape_one_way = false
+162/shape_one_way_margin = 0.0
+162/shapes = [  ]
+162/z_index = 0
+163/name = "VoidFire"
+163/texture = SubResource( 33 )
+163/tex_offset = Vector2( 0, 0 )
+163/modulate = Color( 1, 1, 1, 1 )
+163/region = Rect2( 0, 0, 24, 24 )
+163/tile_mode = 0
+163/occluder_offset = Vector2( 12, 12 )
+163/navigation_offset = Vector2( 12, 12 )
+163/shape_offset = Vector2( 0, 0 )
+163/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+163/shape_one_way = false
+163/shape_one_way_margin = 0.0
+163/shapes = [  ]
+163/z_index = 0
+164/name = "VoidStars"
+164/texture = SubResource( 34 )
+164/tex_offset = Vector2( 0, 0 )
+164/modulate = Color( 1, 1, 1, 1 )
+164/region = Rect2( 0, 0, 24, 24 )
+164/tile_mode = 0
+164/occluder_offset = Vector2( 12, 12 )
+164/navigation_offset = Vector2( 12, 12 )
+164/shape_offset = Vector2( 0, 0 )
+164/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+164/shape_one_way = false
+164/shape_one_way_margin = 0.0
+164/shapes = [  ]
+164/z_index = 0
+165/name = "VoidFog"
+165/texture = SubResource( 35 )
+165/tex_offset = Vector2( 0, 0 )
+165/modulate = Color( 1, 1, 1, 1 )
+165/region = Rect2( 0, 0, 24, 24 )
+165/tile_mode = 0
+165/occluder_offset = Vector2( 12, 12 )
+165/navigation_offset = Vector2( 12, 12 )
+165/shape_offset = Vector2( 0, 0 )
+165/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+165/shape_one_way = false
+165/shape_one_way_margin = 0.0
+165/shapes = [  ]
+165/z_index = 0
+166/name = "NoRising"
+166/texture = ExtResource( 414 )
+166/tex_offset = Vector2( 0, 0 )
+166/modulate = Color( 1, 1, 1, 1 )
+166/region = Rect2( 0, 0, 24, 24 )
+166/tile_mode = 0
+166/occluder_offset = Vector2( 12, 12 )
+166/navigation_offset = Vector2( 12, 12 )
+166/shape_offset = Vector2( 0, 0 )
+166/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+166/shape_one_way = false
+166/shape_one_way_margin = 0.0
+166/shapes = [  ]
+166/z_index = 0
+167/name = "NoFalling"
+167/texture = ExtResource( 415 )
+167/tex_offset = Vector2( 0, 0 )
+167/modulate = Color( 1, 1, 1, 1 )
+167/region = Rect2( 0, 0, 24, 24 )
+167/tile_mode = 0
+167/occluder_offset = Vector2( 12, 12 )
+167/navigation_offset = Vector2( 12, 12 )
+167/shape_offset = Vector2( 0, 0 )
+167/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+167/shape_one_way = false
+167/shape_one_way_margin = 0.0
+167/shapes = [  ]
+167/z_index = 0
+168/name = "NoGrounded"
+168/texture = ExtResource( 413 )
+168/tex_offset = Vector2( 0, 0 )
+168/modulate = Color( 1, 1, 1, 1 )
+168/region = Rect2( 0, 0, 24, 24 )
+168/tile_mode = 0
+168/occluder_offset = Vector2( 12, 12 )
+168/navigation_offset = Vector2( 12, 12 )
+168/shape_offset = Vector2( 0, 0 )
+168/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+168/shape_one_way = false
+168/shape_one_way_margin = 0.0
+168/shapes = [  ]
+168/z_index = 0
+169/name = "PhaseBoardEast"
+169/texture = ExtResource( 416 )
+169/tex_offset = Vector2( 0, 0 )
+169/modulate = Color( 1, 1, 1, 1 )
+169/region = Rect2( 0, 0, 24, 24 )
+169/tile_mode = 0
+169/occluder_offset = Vector2( 12, 12 )
+169/navigation_offset = Vector2( 12, 12 )
+169/shape_offset = Vector2( 0, 0 )
+169/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+169/shape_one_way = false
+169/shape_one_way_margin = 0.0
+169/shapes = [  ]
+169/z_index = 0
+170/name = "PhaseBoardNorth"
+170/texture = ExtResource( 417 )
+170/tex_offset = Vector2( 0, 0 )
+170/modulate = Color( 1, 1, 1, 1 )
+170/region = Rect2( 0, 0, 24, 24 )
+170/tile_mode = 0
+170/occluder_offset = Vector2( 12, 12 )
+170/navigation_offset = Vector2( 12, 12 )
+170/shape_offset = Vector2( 0, 0 )
+170/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+170/shape_one_way = false
+170/shape_one_way_margin = 0.0
+170/shapes = [  ]
+170/z_index = 0
+171/name = "PhaseBoardSouth"
+171/texture = ExtResource( 419 )
+171/tex_offset = Vector2( 0, 0 )
+171/modulate = Color( 1, 1, 1, 1 )
+171/region = Rect2( 0, 0, 24, 24 )
+171/tile_mode = 0
+171/occluder_offset = Vector2( 12, 12 )
+171/navigation_offset = Vector2( 12, 12 )
+171/shape_offset = Vector2( 0, 0 )
+171/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+171/shape_one_way = false
+171/shape_one_way_margin = 0.0
+171/shapes = [  ]
+171/z_index = 0
+172/name = "PhaseBoardWest"
+172/texture = ExtResource( 418 )
+172/tex_offset = Vector2( 0, 0 )
+172/modulate = Color( 1, 1, 1, 1 )
+172/region = Rect2( 0, 0, 24, 24 )
+172/tile_mode = 0
+172/occluder_offset = Vector2( 12, 12 )
+172/navigation_offset = Vector2( 12, 12 )
+172/shape_offset = Vector2( 0, 0 )
+172/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+172/shape_one_way = false
+172/shape_one_way_margin = 0.0
+172/shapes = [  ]
+172/z_index = 0
+173/name = "RepairStationBumper"
+173/texture = ExtResource( 420 )
+173/tex_offset = Vector2( 0, 0 )
+173/modulate = Color( 1, 1, 1, 1 )
+173/region = Rect2( 0, 0, 24, 24 )
+173/tile_mode = 0
+173/occluder_offset = Vector2( 12, 12 )
+173/navigation_offset = Vector2( 12, 12 )
+173/shape_offset = Vector2( 0, 0 )
+173/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+173/shape_one_way = false
+173/shape_one_way_margin = 0.0
+173/shapes = [  ]
+173/z_index = 0
+174/name = "Fence"
+174/texture = ExtResource( 424 )
+174/tex_offset = Vector2( 0, 0 )
+174/modulate = Color( 1, 1, 1, 1 )
+174/region = Rect2( 0, 0, 24, 24 )
+174/tile_mode = 0
+174/occluder_offset = Vector2( 12, 12 )
+174/navigation_offset = Vector2( 12, 12 )
+174/shape_offset = Vector2( 0, 0 )
+174/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+174/shape_one_way = false
+174/shape_one_way_margin = 0.0
+174/shapes = [  ]
+174/z_index = 0
+175/name = "Fan"
+175/texture = ExtResource( 423 )
+175/tex_offset = Vector2( 0, 0 )
+175/modulate = Color( 1, 1, 1, 1 )
+175/region = Rect2( 0, 0, 24, 24 )
+175/tile_mode = 0
+175/occluder_offset = Vector2( 12, 12 )
+175/navigation_offset = Vector2( 12, 12 )
+175/shape_offset = Vector2( 0, 0 )
+175/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+175/shape_one_way = false
+175/shape_one_way_margin = 0.0
+175/shapes = [  ]
+175/z_index = 0
+176/name = "Bumper"
+176/texture = ExtResource( 422 )
+176/tex_offset = Vector2( 0, 0 )
+176/modulate = Color( 1, 1, 1, 1 )
+176/region = Rect2( 0, 0, 24, 24 )
+176/tile_mode = 0
+176/occluder_offset = Vector2( 12, 12 )
+176/navigation_offset = Vector2( 12, 12 )
+176/shape_offset = Vector2( 0, 0 )
+176/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+176/shape_one_way = false
+176/shape_one_way_margin = 0.0
+176/shapes = [  ]
+176/z_index = 0
+177/name = "Passage"
+177/texture = ExtResource( 425 )
+177/tex_offset = Vector2( 0, 0 )
+177/modulate = Color( 1, 1, 1, 1 )
+177/region = Rect2( 0, 0, 24, 24 )
+177/tile_mode = 0
+177/occluder_offset = Vector2( 12, 12 )
+177/navigation_offset = Vector2( 12, 12 )
+177/shape_offset = Vector2( 0, 0 )
+177/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+177/shape_one_way = false
+177/shape_one_way_margin = 0.0
+177/shapes = [  ]
+177/z_index = 0
+178/name = "GreenPassage"
+178/texture = ExtResource( 421 )
+178/tex_offset = Vector2( 0, 0 )
+178/modulate = Color( 1, 1, 1, 1 )
+178/region = Rect2( 0, 0, 24, 24 )
+178/tile_mode = 0
+178/occluder_offset = Vector2( 12, 12 )
+178/navigation_offset = Vector2( 12, 12 )
+178/shape_offset = Vector2( 0, 0 )
+178/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+178/shape_one_way = false
+178/shape_one_way_margin = 0.0
+178/shapes = [  ]
+178/z_index = 0
