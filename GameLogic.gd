@@ -3004,7 +3004,7 @@ func copy_level() -> void:
 	
 func looks_like_level(custom: String) -> bool:
 	custom = custom.strip_edges();
-	if custom.find("UnwinPuzzleStart") >= 0 and custom.find("UnwinTimePuzzleEnd") >= 0:
+	if custom.find("UnwinPuzzleStart") >= 0 and custom.find("UnwinPuzzleEnd") >= 0:
 		return true;
 	return false;
 	
