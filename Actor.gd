@@ -6,6 +6,7 @@ var actorname : int = -1
 var stored_position : Vector2 = Vector2.ZERO
 var pos : Vector2 = Vector2.ZERO
 var broken : bool = false
+var post_mortem : int = -1;
 var strength : int = 0
 var heaviness : int = 0
 var durability : int = 0
@@ -27,6 +28,12 @@ var moving = false;
 # a part of, so other things that shared their tile can move with them
 var just_moved : bool = false;
 var fade_tween = null;
+
+enum PostMortems {
+	Fall,
+	Melt,
+	Collect
+}
 
 # faster than string comparisons
 enum Name {

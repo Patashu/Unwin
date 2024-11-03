@@ -1762,15 +1762,21 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 	if (prop == "broken"):
 		if (actor.actorname == Actor.Name.Star):
 			is_winunwin = true;
+		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.sfx, "greentimecrystal"]);
 			else:
 				add_to_animation_server(actor, [Anim.sfx, "magentatimecrystal"]);
-		else:
+		elif actor.post_mortem == Actor.PostMortems.Fall:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.sfx, "fall"]);
 			else:
 				add_to_animation_server(actor, [Anim.sfx, "unfall"]);
+		elif actor.post_mortem == Actor.PostMortems.Melt:
+			if (value == true):
+				add_to_animation_server(actor, [Anim.sfx, "greenfire"]);
+			else:
+				add_to_animation_server(actor, [Anim.sfx, "redfire"]);
 	
 	add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
 	
@@ -2409,6 +2415,7 @@ func time_passes(chrono: int) -> void:
 		for actor in actors:
 			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
 				# 'it's a blue event' will be handled inside of set_actor_var.
+				actor.post_mortem = Actor.PostMortems.Collect;
 				set_actor_var(actor, "broken", true, chrono);
 				# Melt all surrounding ice.
 				# Notably this happens at Chrono.MOVE speed so it can't be 'forgotten'.
@@ -2418,6 +2425,7 @@ func time_passes(chrono: int) -> void:
 				for actor2 in actors:
 					if actor2.actorname == Actor.Name.IceBlock and !actor2.broken:
 						if abs(actor2.pos.x - actor.pos.x) <= 1 and abs(actor2.pos.y - actor.pos.y) <= 1:
+							actor2.post_mortem = Actor.PostMortems.Melt;
 							set_actor_var(actor2, "broken", true, Chrono.MOVE);
 	
 	animation_substep(chrono);
@@ -2431,10 +2439,12 @@ func time_passes(chrono: int) -> void:
 			for i in range(terrain.size()):
 				var tile = terrain[i];
 				if tile == Tiles.Hole:
+					actor.post_mortem = Actor.PostMortems.Fall;
 					set_actor_var(actor, "broken", true, chrono);
 					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, -1);
 					break;
 				elif tile == Tiles.BottomlessPit:
+					actor.post_mortem = Actor.PostMortems.Fall;
 					set_actor_var(actor, "broken", true, chrono);
 					break;
 	
