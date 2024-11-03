@@ -273,6 +273,8 @@ func default_save_file() -> void:
 		save_file.erase("pixel_scale");
 	if (!save_file.has("fps")):
 		save_file["fps"] = 60;
+	if (!save_file.has("virtual_buttons")):
+		save_file["virtual_buttons"] = 1
 
 func load_game():
 	var file = File.new()
@@ -347,7 +349,7 @@ func connect_virtual_buttons() -> void:
 	virtual_button_name_to_action["UndoButton"] = "character_undo";
 	virtualbuttons.get_node("Verbs/UnwinButton").connect("button_down", self, "_unwinbutton_pressed");
 	virtualbuttons.get_node("Verbs/UnwinButton").connect("button_up", self, "_unwinbutton_released");
-	virtual_button_name_to_action["UnwinButton"] = "unwin";
+	virtual_button_name_to_action["UnwinButton"] = "character_unwin";
 	virtualbuttons.get_node("Verbs/MetaUndoButton").connect("button_down", self, "_metaundobutton_pressed");
 	virtualbuttons.get_node("Verbs/MetaUndoButton").connect("button_up", self, "_metaundobutton_released");
 	virtual_button_name_to_action["MetaUndoButton"] = "meta_undo";
@@ -409,8 +411,8 @@ func virtual_button_released(action: String) -> void:
 func _undobutton_pressed() -> void:
 	virtual_button_pressed("character_undo");
 	
-func _swapbutton_pressed() -> void:
-	virtual_button_pressed("unwin");
+func _unwinbutton_pressed() -> void:
+	virtual_button_pressed("character_unwin");
 	
 func _metaundobutton_pressed() -> void:
 	virtual_button_pressed("meta_undo");
@@ -451,8 +453,8 @@ func _pausebutton_pressed() -> void:
 func _undobutton_released() -> void:
 	virtual_button_released("character_undo");
 	
-func _swapbutton_released() -> void:
-	virtual_button_released("character_switch");
+func _unwinbutton_released() -> void:
+	virtual_button_released("character_unwin");
 	
 func _metaundobutton_released() -> void:
 	virtual_button_released("meta_undo");
@@ -534,7 +536,7 @@ func react_to_save_file_update() -> void:
 	refresh_puzzles_completed();
 	
 var actions = ["ui_accept", "ui_cancel", "escape", "ui_left", "ui_right", "ui_up", "ui_down",
-"character_undo", "meta_undo", "meta_redo", "unwin", "restart",
+"character_undo", "meta_undo", "meta_redo", "character_unwin", "restart",
 "mute",
 "toggle_replay", "start_replay", "start_saved_replay",
 "speedup_replay", "slowdown_replay", "replay_pause", "replay_back1", "replay_fwd1"];
@@ -624,7 +626,7 @@ func setup_udlr() -> void:
 			InputMap.action_add_event(ib, new_event);
 	
 func setup_virtual_buttons() -> void:
-	var value = 0;
+	var value = 1;
 	if (save_file.has("virtual_buttons")):
 		value = int(save_file["virtual_buttons"]);
 	if (value > 0):
@@ -2523,16 +2525,18 @@ func update_level_label() -> void:
 	if (is_custom):
 		levelnumberastext = "CUSTOM";
 	else:
-		var chapter_string = str(chapter);
-		if chapter_replacements.has(chapter):
-			chapter_string = chapter_replacements[chapter];
-		var level_string = str(level_in_chapter);
-		if (level_replacements.has(level_number)):
-			level_string = level_replacements[level_number];
-		levelnumberastext = chapter_string + "-" + level_string;
-		if (level_is_extra):
-			levelnumberastext += "X";
-	levellabel.text = levelnumberastext + " - " + level_name;
+		pass
+#		var chapter_string = str(chapter);
+#		if chapter_replacements.has(chapter):
+#			chapter_string = chapter_replacements[chapter];
+#		var level_string = str(level_in_chapter);
+#		if (level_replacements.has(level_number)):
+#			level_string = level_replacements[level_number];
+#		levelnumberastext = chapter_string + "-" + level_string;
+#		if (level_is_extra):
+#			levelnumberastext += "X";
+	#levellabel.text = levelnumberastext + " - " + level_name;
+	levellabel.text = level_name;
 	if (level_author != "" and (level_author != "Patashu" or is_custom)):
 		levellabel.text += " (By " + level_author + ")"
 	if (doing_replay):
@@ -2555,7 +2559,7 @@ func update_level_label() -> void:
 		var string_size = preload("res://standardfont.tres").get_string_size(levellabel.text);
 		var label_middle = levellabel.rect_position.x + int(floor(levellabel.rect_size.x / 2));
 		var string_left = label_middle - int(floor(string_size.x/2));
-		levelstar.position = Vector2(string_left-14, levellabel.rect_position.y);
+		levelstar.position = Vector2(string_left-19, levellabel.rect_position.y);
 	else:
 		levelstar.finish_animations();
 		levelstar.modulate = Color(1, 1, 1, 0);
@@ -2583,7 +2587,7 @@ func update_info_labels() -> void:
 		virtualbuttons.get_node("Dirs/RightButton"),
 		virtualbuttons.get_node("Dirs/UpButton")];
 		var undo_button = virtualbuttons.get_node("Verbs/UndoButton");
-		var swap_button = virtualbuttons.get_node("Verbs/SwapButton");
+		var unwin_button = virtualbuttons.get_node("Verbs/UnwinButton");
 #		if (heavy_selected):
 #			for button in dirs:
 #				button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
