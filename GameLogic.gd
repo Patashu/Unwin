@@ -1491,12 +1491,12 @@ is_move: bool = false, can_push: bool = true) -> int:
 	
 	return success;
 
-func adjust_turn(is_winunwin: bool, amount: int, chrono : int, adjust_current_move: bool, continuum: bool = false) -> void:
+func adjust_turn(is_winunwin: bool, amount: int, chrono : int) -> void:
 	if (is_winunwin):
-		add_undo_event([Undo.blue_turn, amount, true], chrono);
+		add_undo_event([Undo.blue_turn, amount], chrono);
 		blue_turn += amount;
 	else:
-		add_undo_event([Undo.red_turn, amount, true], chrono);
+		add_undo_event([Undo.red_turn, amount], chrono);
 		red_turn += amount;
 		
 func actors_in_tile(pos: Vector2) -> Array:
@@ -1707,40 +1707,22 @@ func add_undo_event(event: Array, chrono: int = Chrono.MOVE, is_winunwin: bool =
 	#if (debug_prints and chrono < Chrono.META_UNDO):
 	#	print("add_undo_event", " ", event, " ", chrono);
 	
-	if chrono == Chrono.MOVE:
-		if (heavy_selected):
-			while (heavy_undo_buffer.size() <= heavy_turn):
-				heavy_undo_buffer.append([]);
-			if (heavy_filling_locked_turn_index > -1):
-				heavy_locked_turns[heavy_filling_locked_turn_index].push_front(event);
-				add_undo_event([Undo.heavy_undo_event_add_locked, heavy_filling_locked_turn_index], Chrono.CHAR_UNDO)
-			elif (heavy_filling_turn_actual > -1):
-				heavy_undo_buffer[heavy_filling_turn_actual].push_front(event);
-				add_undo_event([Undo.heavy_undo_event_add, heavy_filling_turn_actual], Chrono.CHAR_UNDO);
-			else:
-				heavy_undo_buffer[heavy_turn].push_front(event);
-				add_undo_event([Undo.heavy_undo_event_add, heavy_turn], Chrono.CHAR_UNDO);
+	if is_winunwin:
+		if chrono >= Chrono.META_UNDO:
+			pass
 		else:
-			while (light_undo_buffer.size() <= light_turn):
-				light_undo_buffer.append([]);
-			if (light_filling_locked_turn_index > -1):
-				light_locked_turns[light_filling_locked_turn_index].push_front(event);
-				add_undo_event([Undo.light_undo_event_add_locked, light_filling_locked_turn_index], Chrono.CHAR_UNDO)
-			elif (light_filling_turn_actual > -1):
-				light_undo_buffer[light_filling_turn_actual].push_front(event);
-				add_undo_event([Undo.light_undo_event_add, light_filling_turn_actual], Chrono.CHAR_UNDO);
-			else:
-				light_undo_buffer[light_turn].push_front(event);
-				add_undo_event([Undo.light_undo_event_add, light_turn], Chrono.CHAR_UNDO);
-	
-	if (chrono == Chrono.MOVE || chrono == Chrono.CHAR_UNDO):
-		if (has_void_fog and event[0] in void_banish_dict):
-			var actor = event[1];
-			if terrain_in_tile(actor.pos, actor, chrono).has(Tiles.VoidFog):
-				if (!currently_fast_replay()):
-					call_deferred("play_sound", "greenfire");
-				return;
-		
+			while (blue_undo_buffer.size() <= blue_turn):
+				blue_undo_buffer.append([]);
+			blue_undo_buffer[blue_turn].push_front(event);
+			add_undo_event([Undo.blue_undo_event_add, blue_turn], Chrono.CHAR_UNDO);
+	else:
+		if (chrono == Chrono.MOVE):
+			while (red_undo_buffer.size() <= red_turn):
+				red_undo_buffer.append([]);
+			red_undo_buffer[red_turn].push_front(event);
+			add_undo_event([Undo.red_undo_event_add, red_turn], Chrono.CHAR_UNDO);
+
+	if (chrono <= Chrono.CHAR_UNDO):
 		while (meta_undo_buffer.size() <= meta_turn):
 			meta_undo_buffer.append([]);
 		meta_undo_buffer[meta_turn].push_front(event);
@@ -1761,201 +1743,54 @@ func meta_undo_replay() -> bool:
 func character_undo(is_silent: bool = false) -> bool:
 	var chrono = Chrono.CHAR_UNDO;
 	if (won or lost): return false;
-	if (heavy_selected):
-		# check if we can undo
-		if (heavy_turn <= 0):
-			if !is_silent:
-				play_sound("bump");
-			return false;
-		var terrain = terrain_in_tile(heavy_actor.pos, heavy_actor, Chrono.CHAR_UNDO);
-		
-		# before undo effects
-		finish_animations(Chrono.CHAR_UNDO);
-		maybe_pulse_phase_blocks(chrono);
-		if (terrain.has(Tiles.OneUndo)):
-			maybe_change_terrain(heavy_actor, heavy_actor.pos, terrain.find(Tiles.OneUndo), false, true, Chrono.CHAR_UNDO, Tiles.NoUndo);
-		
-		if (has_eclipses and terrain.has(Tiles.Eclipse)):
-			play_sound("eclipse");
-			eclipsed = true;
-			fuzzed = true;
-		
-		#the undo itself
-		if (terrain.has(Tiles.Fuzz)):
-			fuzzed = true;
-			fuzz_timer = 0;
-			fuzz_timer_max = 1.5;
-			maybe_change_terrain(heavy_actor, heavy_actor.pos, terrain.find(Tiles.Fuzz), false, true, Chrono.CHAR_UNDO, -1);
-			heavytimeline.fuzz_activate();
-			var events = heavy_undo_buffer[heavy_turn - 1];
-			for event in events:
-				if event[0] == Undo.heavy_turn or event[0] == Undo.light_turn:
-					continue
-				if (event[0] == Undo.set_actor_var and event[2] == "powered"):
-					continue
-				undo_one_event(event, chrono);
-		else:
-			var events = heavy_undo_buffer.pop_at(heavy_turn - 1);
-			for event in events:
-				undo_one_event(event, chrono);
-				add_undo_event([Undo.heavy_undo_event_remove, heavy_turn, event], Chrono.CHAR_UNDO);
-			
-		if (fuzzed):
-			time_passes(Chrono.TIMELESS);
-		else:
-			time_passes(chrono);
-		
-		append_replay("z");
-		
-		if (chrono == Chrono.MOVE):
-			#have to add our own synthetic Undo.heavy_turn to the end
-			add_undo_event([Undo.heavy_turn, 1, true], chrono);
-			# delete the now empty buffer to shuffle everything around.
-			heavy_undo_buffer.pop_at(heavy_turn-1);
-			# now have to patch meta events so they refer to the correct turn
-			# also have to erase the most recent heavy_turn meta-event
-			var mevents = meta_undo_buffer[meta_undo_buffer.size() - 1];
-			for event in mevents:
-				if (event[0] == Undo.heavy_turn):
-					mevents.erase(event);
-					break; #need to do two loops since we're iterating something we deleted from
-			for event in mevents:
-				if (event[0] == Undo.heavy_undo_event_remove):
-					event[1] -= 1;
-				elif (event[0] == Undo.heavy_undo_event_add):
-					event[1] -= 1;
-			#need to also move all adds to the start ...
-			for j in range(mevents.size() -1):
-				var event = mevents[j];
-				if (event[0] == Undo.heavy_undo_event_add):
-					# can't use erase because all the events look identical
-					mevents.pop_at(j);
-					mevents.push_front(event);
-				
-			#and we need a synthetic timeline add_turn too
-			heavytimeline.add_turn(heavy_undo_buffer[heavy_undo_buffer.size()-1]);
-			
-		adjust_meta_turn(1, chrono);
-		
-		if (!is_silent):
-			if (!fuzzed or eclipsed):
-				play_sound("undostrong");
-			if (!currently_fast_replay()):
-				if (fuzzed and !eclipsed):
-					undo_effect_strength = 0.25;
-					undo_effect_per_second = undo_effect_strength*(1/0.5);
-					undo_effect_color = meta_color;
-				else:
-					undo_effect_strength = 0.12; #yes stronger on purpose. it doesn't show up as well.
-					undo_effect_per_second = undo_effect_strength*(1/0.4);
-					undo_effect_color = heavy_color;
-		fuzzed = false;
-		return true;
-	else:
-		
-		# check if we can undo
-		if (light_turn <= 0):
-			if !is_silent:
-				play_sound("bump");
-			return false;
-		var terrain = terrain_in_tile(light_actor.pos, light_actor, Chrono.CHAR_UNDO);
-		if (terrain.has(Tiles.NoUndo) and !terrain.has(Tiles.OneUndo)):
-			if !is_silent:
-				play_sound("rewindstopped");
-			add_to_animation_server(light_actor, [Anim.afterimage_at, terrainmap.tile_set.tile_get_texture(Tiles.NoUndo), terrainmap.map_to_world(light_actor.pos), Color(0, 0, 0, 1)]);
-			return false;
-		if (has_spotlights and terrain.has(Tiles.Spotlight)):
-			if !is_silent:
-				play_sound("spotlight");
-			add_undo_event([Undo.spotlight_fix], Chrono.CHAR_UNDO);
-			chrono = Chrono.MOVE;
-			var events = light_undo_buffer[light_turn-1];
-			for event in events:
-				if (event[0] == Undo.light_turn):
-					events.erase(event);
-			lighttimeline.current_move -= 1;
-			maybe_change_terrain(light_actor, light_actor.pos, terrain.find(Tiles.Spotlight), false, true, Chrono.CHAR_UNDO, -1);
-			
-		# before undo effects
-		finish_animations(Chrono.CHAR_UNDO);
-		maybe_pulse_phase_blocks(chrono);
-		if (terrain.has(Tiles.OneUndo)):
-			maybe_change_terrain(light_actor, light_actor.pos, terrain.find(Tiles.OneUndo), false, true, Chrono.CHAR_UNDO, Tiles.NoUndo);
-		
-		if (has_eclipses and terrain.has(Tiles.Eclipse)):
-			play_sound("eclipse");
-			fuzzed = true;
-		
-		#the undo itself
-		if (terrain.has(Tiles.Fuzz)):
-			fuzzed = true;
-			fuzz_timer = 0;
-			fuzz_timer_max = 1.5;
-			maybe_change_terrain(light_actor, light_actor.pos, terrain.find(Tiles.Fuzz), false, true, Chrono.CHAR_UNDO, -1);
-			lighttimeline.fuzz_activate();
-			var events = light_undo_buffer[light_turn - 1];
-			for event in events:
-				if event[0] == Undo.heavy_turn or event[0] == Undo.light_turn:
-					continue
-				if (event[0] == Undo.set_actor_var and event[2] == "powered"):
-					continue
-				undo_one_event(event, chrono);
-		else:
-			var events = light_undo_buffer.pop_at(light_turn - 1);
-			for event in events:
-				undo_one_event(event, chrono);
-				add_undo_event([Undo.light_undo_event_remove, light_turn, event], Chrono.CHAR_UNDO);
-		
-		if (fuzzed):
-			time_passes(Chrono.TIMELESS);
-		else:
-			time_passes(chrono);
-			
-		append_replay("z");
-		
-		if (chrono == Chrono.MOVE):
-			#have to add our own synthetic Undo.light_turn to the end
-			add_undo_event([Undo.light_turn, 1, true], chrono);
-			# delete the now empty buffer to shuffle everything around.
-			light_undo_buffer.pop_at(light_turn-1);
-			# now have to patch meta events so they refer to the correct turn
-			# also have to erase the most recent light_turn meta-event
-			var mevents = meta_undo_buffer[meta_undo_buffer.size() - 1];
-			for event in mevents:
-				if (event[0] == Undo.light_turn):
-					mevents.erase(event);
-					break; #need to do two loops since we're iterating something we deleted from
-			for event in mevents:
-				if (event[0] == Undo.light_undo_event_remove):
-					event[1] -= 1;
-				elif (event[0] == Undo.light_undo_event_add):
-					event[1] -= 1;
-			#need to also move all adds to the start ...
-			for j in range(mevents.size() -1):
-				var event = mevents[j];
-				if (event[0] == Undo.light_undo_event_add):
-					# can't use erase because all the events look identical
-					mevents.pop_at(j);
-					mevents.push_front(event);
-				
-			#and we need a synthetic timeline add_turn too
-			lighttimeline.add_turn(light_undo_buffer[light_undo_buffer.size()-1]);
-		
-		adjust_meta_turn(1, chrono);
-		if (!is_silent):
-			if (!fuzzed or eclipsed):
-				play_sound("undostrong");
-			if (!currently_fast_replay()):
-				if (fuzzed and !eclipsed):
-					undo_effect_strength = 0.25;
-					undo_effect_per_second = undo_effect_strength*(1/0.5);
-					undo_effect_color = meta_color;
-				else:
-					undo_effect_strength = 0.08;
-					undo_effect_per_second = undo_effect_strength*(1/0.4);
-					undo_effect_color = light_color;
-		fuzzed = false;
-		return true;
+	# check if we can undo
+	if (red_turn <= 0):
+		if !is_silent:
+			play_sound("bump");
+		return false;
+	#the undo itself
+	var events = red_undo_buffer.pop_at(red_turn - 1);
+	for event in events:
+		undo_one_event(event, chrono);
+		add_undo_event([Undo.red_undo_event_remove, red_turn, event], Chrono.CHAR_UNDO);
+
+	append_replay("z");
+	
+	adjust_meta_turn(1, chrono);
+	
+	if (!is_silent):
+		play_sound("undostrong");
+		if (!currently_fast_replay()):
+			undo_effect_strength = 0.12;
+			undo_effect_per_second = undo_effect_strength*(1/0.4);
+			undo_effect_color = red_color;
+	return true;
+
+func character_unwin(is_silent: bool = false) -> bool:
+	var chrono = Chrono.CHAR_UNDO;
+	if (won or lost): return false;
+	# check if we can unwin
+	if (blue_turn <= 0):
+		if !is_silent:
+			play_sound("bump");
+		return false;
+	#the unwin itself
+	var events = blue_undo_buffer.pop_at(blue_turn - 1);
+	for event in events:
+		undo_one_event(event, chrono);
+		add_undo_event([Undo.blue_undo_event_remove, blue_turn, event], Chrono.CHAR_UNDO);
+
+	append_replay("x");
+	
+	adjust_meta_turn(1, chrono);
+	
+	if (!is_silent):
+		play_sound("undostrong");
+		if (!currently_fast_replay()):
+			undo_effect_strength = 0.12;
+			undo_effect_per_second = undo_effect_strength*(1/0.4);
+			undo_effect_color = blue_color;
+	return true;
 
 func finish_animations(chrono: int) -> void:
 	undo_effect_color = Color.transparent;
@@ -1984,29 +1819,10 @@ func finish_animations(chrono: int) -> void:
 	animation_substep = 0;
 
 func adjust_meta_turn(amount: int, chrono: int) -> void:
-	#check ongoing 'magenta crystaled the current move' and clear:
-	if (light_filling_locked_turn_index > -1):
-		add_undo_event([Undo.light_filling_locked_turn_index, light_filling_locked_turn_index, -1], Chrono.CHAR_UNDO);
-		light_filling_locked_turn_index = -1;
-	if (heavy_filling_locked_turn_index > -1):
-		add_undo_event([Undo.heavy_filling_locked_turn_index, heavy_filling_locked_turn_index, -1], Chrono.CHAR_UNDO);
-		heavy_filling_locked_turn_index = -1;
-	#and unlock:
-	if (light_filling_turn_actual > -1):
-		add_undo_event([Undo.light_filling_turn_actual, light_filling_turn_actual, -1], Chrono.CHAR_UNDO);
-		light_filling_turn_actual = -1;
-	if (heavy_filling_turn_actual > -1):
-		add_undo_event([Undo.heavy_filling_turn_actual, heavy_filling_turn_actual, -1], Chrono.CHAR_UNDO);
-		heavy_filling_turn_actual = -1;
-	
-	if (has_checkpoints and amount > 0):
-		check_checkpoints(chrono);
-	
 	meta_turn += amount;
 	#if (debug_prints):
 	#	print("=== IT IS NOW META TURN " + str(meta_turn) + " ===");
-	update_ghosts();
-	if (won or lost or amount >= 0 or voidlike_puzzle):
+	if (won or lost or amount >= 0):
 		check_won(chrono);
 	
 func check_won(chrono: int) -> void:
@@ -2017,44 +1833,13 @@ func check_won(chrono: int) -> void:
 		return
 	Shade.on = false;
 	
-	#check crate goal satisfaction
-	if (has_crate_goals):
-		var crate_goals = get_used_cells_by_id_one_array(Tiles.CrateGoal);
-		# would fix this O(n^2) with an actors_by_pos dictionary, but then I have to update it all the time.
-		# maybe use DINGED?
-		for crate_goal in crate_goals:
-			# boarded crate goals don't have to be satisfied
-			if (has_floorboards):
-				if (!terrain_in_tile(crate_goal, null, chrono).has(Tiles.CrateGoal)):
-					continue;
-			
-			var crate_goal_satisfied = false;
-			for actor in actors:
-				if actor.pos == crate_goal and !actor.is_main_character() and !actor.broken and !actor.is_crystal:
-					crate_goal_satisfied = true;
-					break;
-			if (!crate_goal_satisfied):
-				locked = true;
-				won = false;
-				for goal in goals:
-					if !goal.locked2:
-						goal.lock2();
-				break;
-		if (!locked):
-			for goal in goals:
-				if goal.locked2:
-					goal.unlock2();
-		
-	#check time crystal goal lock:
-	for goal in goals:
-		if goal.locked:
+	#check stars
+	for actor in actors:
+		if actor.actorname == Actor.Name.Star and !actor.broken:
 			locked = true;
-			won = false;
 			break;
 	
-	if (!locked and !light_actor.broken and !heavy_actor.broken
-	and heavy_goal_here(heavy_actor.pos, terrain_in_tile(heavy_actor.pos, heavy_actor, chrono))
-	and light_goal_here(light_actor.pos, terrain_in_tile(light_actor.pos, light_actor, chrono))) or nonstandard_won:
+	if (!locked and !player.broken and terrain_in_tile(player.pos, player, chrono).has(Tiles.Goal)):
 		won = true;
 		if (won and test_mode):
 			var level_info = terrainmap.get_node_or_null("LevelInfo");
@@ -2066,14 +1851,7 @@ func check_won(chrono: int) -> void:
 					custom_string = custom_string.replace(annotated_authors_replay, level_info.level_replay);
 				floating_text("Test successful, recorded replay!");
 		if (won == true and !doing_replay):
-			if (level_name == "Joke"):
-				play_won("winbadtime");
-			elif (level_name == "A Way In?"):
-				pass
-			elif (level_name == "Chrono Lab Reactor"):
-				pass
-			else:
-				play_won("winentwined");
+			play_won("winentwined");
 			var levels_save_data = save_file["levels"];
 			if (!levels_save_data.has(level_name)):
 				levels_save_data[level_name] = {};
@@ -2084,12 +1862,11 @@ func check_won(chrono: int) -> void:
 				level_save_data["won"] = true;
 				levelstar.previous_modulate = Color(1, 1, 1, 0);
 				levelstar.flash();
-				if (!in_insight_level):
-					if (!is_custom):
-						puzzles_completed += 1;
-						if (level_is_extra):
-							advanced_puzzles_completed += 1;
-					specific_puzzles_completed[level_number] = true;
+				if (!is_custom):
+					puzzles_completed += 1;
+					if (level_is_extra):
+						advanced_puzzles_completed += 1;
+				specific_puzzles_completed[level_number] = true;
 			if (!level_save_data.has("replay")):
 				level_save_data["replay"] = annotate_replay(user_replay);
 			else:
@@ -2113,17 +1890,7 @@ func check_won(chrono: int) -> void:
 	virtualbuttons.get_node("Others/EnterButton").disabled = !won or !virtualbuttons.visible;
 	if (won):
 		won_cooldown = 0;
-		if (level_name == "Joke"):
-			winlabel.change_text("Thanks for playing :3")
-		elif (level_name == "Chrono Lab Reactor" and !doing_replay and ui_stack.size() == 0):
-			transition_to_ending_cutscene_2();
-		elif (level_name == "A Way In?" and !doing_replay):
-			target_track = -1;
-			fadeout_timer_max = 3.0;
-			fadeout_timer = 0.0;
-			Shade.on = true;
-			winlabel.change_text("You carefully enter the Chrono Lab Reactor...\n\n[" + human_readable_input("ui_accept", 1) + "]: Outro Cutscene\nWatch Replay: Menu -> Your Replay")
-		elif !doing_replay:
+		if !doing_replay:
 			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Continue\nWatch Replay: Menu -> Your Replay")
 		elif doing_replay:
 			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Continue")
@@ -2132,8 +1899,7 @@ func check_won(chrono: int) -> void:
 		call_deferred("adjust_winlabel_deferred");
 	elif won_fade_started:
 		won_fade_started = false;
-		heavy_actor.modulate.a = 1;
-		light_actor.modulate.a = 1;
+		player.modulate.a = 1;
 	
 func adjust_winlabel_deferred() -> void:
 	call_deferred("adjust_winlabel");
@@ -2159,190 +1925,51 @@ func adjust_winlabel() -> void:
 func undo_one_event(event: Array, chrono : int) -> void:
 	#if (debug_prints):
 	#	print("undo_one_event", " ", event, " ", chrono);
-		
-	if (has_void_stars and chrono == Chrono.META_UNDO and event[0] in void_banish_dict):
-		var actor = event[1];
-		if terrain_in_tile(actor.pos, actor, chrono).has(Tiles.VoidStars):
-			if (!currently_fast_replay()):
-				call_deferred("add_to_animation_server", actor, [Anim.undo_immunity, -1]);
-			#add_to_animation_server(actor, [Anim.undo_immunity, event[6]]);
-			#call_deferred("play_sound", "shroud");
-			return;
-		
-	# undo events that should create undo trails
-	
+
 	match event[0]:
 		Undo.move:
-			#[Undo.move, actor, dir, was_push, was_fall]
-			#func move_actor_relative(actor: Actor, dir: Vector2, chrono: int,
-			#hypothetical: bool, is_gravity: bool, is_retro: bool = false,
-			#pushers_list: Array = [], was_fall = false, was_push = false, phased_out_of: Array = null) -> int:
 			var actor = event[1];
-			var animation_nonce = event[6];
-			if (chrono < Chrono.META_UNDO and actor.in_stars):
-				add_to_animation_server(actor, [Anim.undo_immunity, event[6]]);
-			else:
-				move_actor_relative(actor, -event[2], chrono, false, false, true, [], event[3], event[4], event[5],
-				animation_nonce);
+			var dir = event[2];
+			var was_push = event[3];
+			move_actor_relative(actor, -event[2], chrono, false, true, [], event[3]);
 		Undo.set_actor_var:
 			var actor = event[1];
 			var retro_old_value = event[4];
-			var animation_nonce = event[5];
 			var is_retro = true;
-			if (chrono < Chrono.META_UNDO and actor.in_stars):
-				add_to_animation_server(actor, [Anim.undo_immunity, animation_nonce]);
-				if (event[2] == "broken"):
-					check_abyss_chimes();
-			else:
-				#[Undo.set_actor_var, actor, prop, old_value, value, animation_nonce]
-				
-				set_actor_var(actor, event[2], event[3], chrono, animation_nonce, is_retro, retro_old_value);
+			set_actor_var(actor, event[2], event[3], chrono, is_retro, retro_old_value);
 		Undo.change_terrain:
 			var actor = event[1];
 			var pos = event[2];
 			var layer = event[3];
 			var old_tile = event[4];
 			var new_tile = event[5];
-			var animation_nonce = event[6];
-			maybe_change_terrain(actor, pos, layer, false, false, chrono, old_tile, new_tile, animation_nonce);
-		
-	# undo events that should not
-		
-	if (chrono >= Chrono.GHOSTS):
-		return;
+			maybe_change_terrain(actor, pos, layer, false, false, chrono, old_tile, new_tile);
 	
 	match event[0]:
-		Undo.heavy_turn:
-			adjust_turn(true, -event[1], chrono, event[2]);
-		Undo.light_turn:
-			adjust_turn(false, -event[1], chrono, event[2]);
-		Undo.heavy_turn_direct:
-			heavy_turn -= event[1];
-		Undo.light_turn_direct:
-			light_turn -= event[1];
-		Undo.heavy_undo_event_add:
-			while (heavy_undo_buffer.size() <= event[1]):
-				heavy_undo_buffer.append([]);
-			heavy_undo_buffer[event[1]].pop_front();
-		Undo.light_undo_event_add:
-			while (light_undo_buffer.size() <= event[1]):
-				light_undo_buffer.append([]);
-			light_undo_buffer[event[1]].pop_front();
-		Undo.heavy_undo_event_add_locked:
-			while (heavy_undo_buffer.size() <= event[1]):
-				heavy_undo_buffer.append([]);
-			heavy_locked_turns[event[1]].pop_front();
-		Undo.light_undo_event_add_locked:
-			while (light_undo_buffer.size() <= event[1]):
-				light_undo_buffer.append([]);
-			light_locked_turns[event[1]].pop_front();
-		Undo.heavy_undo_event_remove:
-			# 'Negativity' crash prevention
-			if (event[1] < 0):
-				lost_void = true;
-				lose("What have you DONE", null, false, "exception");
-				return;
+		Undo.red_turn:
+			adjust_turn(false, -event[1], chrono);
+		Undo.blue_turn:
+			adjust_turn(true, -event[1], chrono);
+		Undo.red_undo_event_add:
+			while (red_undo_buffer.size() <= event[1]):
+				red_undo_buffer.append([]);
+			red_undo_buffer[event[1]].pop_front();
+		Undo.blue_undo_event_add:
+			while (blue_undo_buffer.size() <= event[1]):
+				blue_undo_buffer.append([]);
+			blue_undo_buffer[event[1]].pop_front();
+		Undo.red_undo_event_remove:
 			# meta undo an undo creates a char undo event but not a meta undo event, it's special!
-			while (heavy_undo_buffer.size() <= event[1]):
-				heavy_undo_buffer.append([]);
-			heavy_undo_buffer[event[1]].push_front(event[2]);
-		Undo.light_undo_event_remove:
-			if (event[1] < 0):
-				lost_void = true;
-				lose("What have you DONE", null, false, "exception");
-				return;
-			while (light_undo_buffer.size() <= event[1]):
-				light_undo_buffer.append([]);
-			light_undo_buffer[event[1]].push_front(event[2]);
+			while (red_undo_buffer.size() <= event[1]):
+				red_undo_buffer.append([]);
+			red_undo_buffer[event[1]].push_front(event[2]);
+		Undo.blue_undo_event_remove:
+			while (blue_undo_buffer.size() <= event[1]):
+				blue_undo_buffer.append([]);
+			blue_undo_buffer[event[1]].push_front(event[2]);
 		Undo.animation_substep:
 			# don't need to emit a new event as meta undoing and beyond is a teleport
 			animation_substep += 1;
-		Undo.heavy_green_time_crystal_raw:
-			# don't need to emit a new event as this can't be char undone
-			# (comment repeats for all other time crystal stuff)
-			heavy_max_moves -= 1;
-			heavytimeline.undo_add_max_turn();
-			timeline_squish();
-		Undo.light_green_time_crystal_raw:
-			light_max_moves -= 1;
-			lighttimeline.undo_add_max_turn();
-			timeline_squish();
-		Undo.heavy_max_moves:
-			heavy_max_moves -= event[1];
-			heavytimeline.undo_lock_turn();
-		Undo.light_max_moves:
-			light_max_moves -= event[1];
-			lighttimeline.undo_lock_turn();
-		Undo.heavy_filling_locked_turn_index:
-			heavy_filling_locked_turn_index = event[1]; #the old value, event[2] is the new value
-		Undo.light_filling_locked_turn_index:
-			light_filling_locked_turn_index = event[1]; #the old value, event[2] is the new value
-		Undo.heavy_turn_locked:
-			# don't have to do turn adjustment as a separate undo event was emitted for it
-			var locked_turn = heavy_locked_turns.pop_at(event[2]);
-			# put it back if we locked an actual turn
-			if event[1] == -1:
-				pass
-			else:
-				heavy_undo_buffer.insert(event[1], locked_turn);
-		Undo.light_turn_locked:
-			# don't have to do turn adjustment as a separate undo event was emitted for it
-			var locked_turn = light_locked_turns.pop_at(event[2]);
-			# put it back if we locked an actual turn
-			if event[1] == -1:
-				pass
-			else:
-				light_undo_buffer.insert(event[1], locked_turn);
-		Undo.heavy_filling_turn_actual:
-			heavy_filling_turn_actual = event[1]; #the old value, event[2] is the new value
-		Undo.light_filling_turn_actual:
-			light_filling_turn_actual = event[1]; #the old value, event[2] is the new value
-		Undo.heavy_turn_unlocked:
-			# just lock it again ig
-			var was_turn = event[1];
-			if (was_turn == -1):
-				heavy_locked_turns.append([]);
-			else:
-				heavy_locked_turns.append(heavy_undo_buffer.pop_at(was_turn));
-			heavytimeline.undo_unlock_turn(event[1]);
-			heavy_max_moves -= 1;
-		Undo.light_turn_unlocked:
-			var was_turn = event[1];
-			if (was_turn == -1):
-				light_locked_turns.append([]);
-			else:
-				light_locked_turns.append(light_undo_buffer.pop_at(was_turn));
-			lighttimeline.undo_unlock_turn(event[1]);
-			light_max_moves -= 1;
-		Undo.tick:
-			var actor = event[1];
-			var amount = event[2];
-			var animation_nonce = event[3];
-			if (chrono < Chrono.META_UNDO and actor.in_stars):
-				add_to_animation_server(actor, [Anim.undo_immunity, animation_nonce]);
-			else:
-				clock_ticks(actor, -amount, chrono, animation_nonce);
-		Undo.time_bubble:
-			var actor = event[1];
-			var old_time_colour = event[2];
-			actor.time_colour = old_time_colour;
-			actor.update_time_bubble();
-		Undo.sprite:
-			var actor = event[1];
-			var sprite = event[2];
-			sprite.get_parent().remove_child(sprite);
-			sprite.queue_free();
-		Undo.spotlight_fix:
-			if (heavy_selected):
-				heavytimeline.current_move -= 1;
-				heavytimeline.add_turn(heavy_undo_buffer[heavy_turn-1], true);
-			else:
-				lighttimeline.current_move -= 1;
-				lighttimeline.add_turn(light_undo_buffer[light_turn-1], true);
-		Undo.heavy_surprise_abyss_chimed:
-			heavytimeline.end_fade();
-		Undo.light_surprise_abyss_chimed:
-			lighttimeline.end_fade();
 
 func meta_undo_a_restart() -> bool:
 	var meta_undo_a_restart_type = 2;
@@ -2394,7 +2021,7 @@ func meta_undo(is_silent: bool = false) -> bool:
 	
 	end_lose();
 	finish_animations(Chrono.MOVE);
-	nonstandard_won = false;
+
 	var events = meta_undo_buffer.pop_back();
 	for event in events:
 		undo_one_event(event, Chrono.META_UNDO);
@@ -2455,12 +2082,6 @@ func do_one_letter(replay_char: String) -> void:
 		"c":
 			meta_undo();
 
-func character_unwin() -> void:
-	pass
-	#logic goeth hereth
-	#play_sound("switch2")
-	#append_replay("x")
-
 func restart(_is_silent: bool = false) -> void:
 	load_level(0);
 	cut_sound();
@@ -2489,8 +2110,6 @@ func level_editor() -> void:
 	add_to_ui_stack(a);
 
 func how_many_standard_puzzles_are_solved_in_chapter(chapter: int) -> Array:
-	if chapter >= custom_past_here:
-		return [0, 0];
 	var x = 0;
 	var y = -1;
 	var start = chapter_standard_starting_levels[chapter];
@@ -2522,11 +2141,11 @@ func setup_chapter_etc() -> void:
 			break;
 	var target_target_track = chapter_tracks[chapter]
 	var target_target_sky = chapter_skies[chapter];
-	if (chapter >= custom_past_here):
-		var level_info = terrainmap.get_node_or_null("LevelInfo");
-		if (level_info != null):
-			target_target_sky = level_info.target_sky;
-			target_target_track = level_info.target_track;
+#	if (chapter >= custom_past_here):
+#		var level_info = terrainmap.get_node_or_null("LevelInfo");
+#		if (level_info != null):
+#			target_target_sky = level_info.target_sky;
+#			target_target_track = level_info.target_track;
 	if (target_sky != target_target_sky):
 		sky_timer = 0;
 		sky_timer_max = 3.0;
@@ -2534,21 +2153,17 @@ func setup_chapter_etc() -> void:
 		target_sky = target_target_sky;
 	if (target_track != target_target_track):
 		target_track = target_target_track;
-		if (jukebox_track == -1):
-			if (current_track == -1):
-				play_next_song();
-			else:
-				fadeout_timer = max(fadeout_timer, 0); #so if we're in the middle of a fadeout it doesn't reset
-				fadeout_timer_max = 3.0;
+		if (current_track == -1):
+			play_next_song();
+		else:
+			fadeout_timer = max(fadeout_timer, 0); #so if we're in the middle of a fadeout it doesn't reset
+			fadeout_timer_max = 3.0;
 	
 func play_next_song() -> void:
 	if (!ready_done):
 		return;
 	
-	if (jukebox_track > -1):
-		current_track = jukebox_track;
-	else:
-		current_track = target_track;
+	current_track = target_track;
 	fadeout_timer = 0;
 	fadeout_timer_max = 0;
 	if (is_instance_valid(now_playing)):
@@ -2572,23 +2187,16 @@ func play_next_song() -> void:
 func load_level_direct(new_level: int) -> void:
 	is_custom = false;
 	end_replay();
-	in_insight_level = false;
-	has_insight_level = false;
 	var impulse = new_level - self.level_number;
 	load_level(impulse, true);
 	
 func load_level(impulse: int, ignore_locked: bool = false) -> void:
-	if (is_community_level):
-		is_custom = false;
 	if (impulse != 0 and test_mode):
 		level_editor();
 		test_mode = false;
 		return;
 	
 	if (impulse != 0):
-		if (nag_timer != null):
-			nag_timer.queue_free();
-			nag_timer = null;
 		is_custom = false; # at least until custom campaigns :eyes:
 	level_number = posmod(int(level_number), level_list.size());
 	
@@ -2612,24 +2220,17 @@ func load_level(impulse: int, ignore_locked: bool = false) -> void:
 			setup_chapter_etc();
 			if !trying_to_load_locked_level(level_number, is_custom):
 				break;
-		# buggy if the game just loaded, for some reason, but I didn't want it anyway
-		if (ready_done):
-			level_select();
 			
 	if (impulse != 0):
-		in_insight_level = false;
 		save_file["level_number"] = level_number;
 		level_replay = "";
 		save_game();
 	
 	var level = null;
-	if (is_custom and !is_community_level):
+	if (is_custom):
 		load_custom_level(custom_string);
 		return;
-	if (impulse == 0 and has_insight_level and in_insight_level and insight_level_scene != null):
-		level = insight_level_scene.instance();
-	else:
-		level = level_list[level_number].instance();
+	level = level_list[level_number].instance();
 	levelfolder.remove_child(terrainmap);
 	terrainmap.queue_free();
 	levelfolder.add_child(level);
@@ -2646,8 +2247,6 @@ func load_level(impulse: int, ignore_locked: bool = false) -> void:
 func character_move(dir: Vector2) -> bool:
 	if (won or lost): return false;
 	var chr = "";
-	var continuum = false;
-	var seemingly_nothing_happened = false;
 	match dir:
 		Vector2.UP:
 			chr = "w";
@@ -2658,213 +2257,53 @@ func character_move(dir: Vector2) -> bool:
 		Vector2.RIGHT:
 			chr = "d";
 	var result = false;
-	if heavy_selected:
-		var pos = heavy_actor.pos;
-		if ((heavy_actor.broken and !terrain_in_tile(pos, heavy_actor, Chrono.MOVE).has(Tiles.ZombieTile)) or (heavy_turn >= heavy_max_moves and heavy_max_moves >= 0)):
+	if true:
+		var pos = player.pos;
+		if (player.broken):
 			play_sound("bump");
 			return false;
 		finish_animations(Chrono.MOVE);
-		maybe_pulse_phase_blocks(Chrono.MOVE);
-		if (has_continuums and heavy_turn > 0 and terrain_in_tile(pos, heavy_actor, Chrono.MOVE).has(Tiles.Continuum)):
-			heavy_turn -= 1;
-			heavytimeline.current_move -= 1;
-			continuum = true;
-		if (!valid_voluntary_airborne_move(heavy_actor, dir)):
-			result = Success.Surprise;
-		else:
-			result = move_actor_relative(heavy_actor, dir, Chrono.MOVE,
-			false, false, false, [], false, false, null, -1, true);
-		if (continuum):
-			if (result != Success.No):
-				var events = heavy_undo_buffer[heavy_turn]; # already adjusted by -1
-				for event in events:
-					if (event[0] == Undo.heavy_turn):
-						events.erase(event);
-				play_sound("continuum");
-				maybe_change_terrain(heavy_actor, pos, terrain_in_tile(pos, heavy_actor, Chrono.MOVE).find(Tiles.Continuum), false, true, Chrono.CHAR_UNDO, -1);
-			else:
-				heavy_turn += 1;
-				heavytimeline.current_move += 1;
-		if (result != Success.No):
-			if (has_eclipses and terrain_in_tile(pos, heavy_actor, Chrono.MOVE).has(Tiles.Eclipse)):
-				fuzzed = true;
-				play_sound("eclipse");
-	else:
-		var pos = light_actor.pos;
-		if ((light_actor.broken and !terrain_in_tile(pos, heavy_actor, Chrono.MOVE).has(Tiles.ZombieTile)) or (light_turn >= light_max_moves and light_max_moves >= 0)):
-			play_sound("bump");
-			return false;
-		finish_animations(Chrono.MOVE);
-		maybe_pulse_phase_blocks(Chrono.MOVE);
-		if (has_continuums and light_turn > 0 and terrain_in_tile(pos, light_actor, Chrono.MOVE).has(Tiles.Continuum)):
-			light_turn -= 1;
-			lighttimeline.current_move -= 1;
-			continuum = true;
-		if (!valid_voluntary_airborne_move(light_actor, dir)):
-			result = Success.Surprise;
-		else:
-			result = move_actor_relative(light_actor, dir, Chrono.MOVE,
-			false, false, false, [], false, false, null, -1, true);
-		if (continuum):
-			if (result != Success.No):
-				var events = light_undo_buffer[light_turn]; # already adjusted by -1
-				for event in events:
-					if (event[0] == Undo.light_turn):
-						events.erase(event);
-				play_sound("continuum");
-				maybe_change_terrain(light_actor, pos, terrain_in_tile(pos, light_actor, Chrono.MOVE).find(Tiles.Continuum), false, true, Chrono.CHAR_UNDO, -1);
-			else:
-				light_turn += 1;
-				lighttimeline.current_move += 1;
-		if (result != Success.No):
-			if (has_eclipses and terrain_in_tile(pos, light_actor, Chrono.MOVE).has(Tiles.Eclipse)):
-				fuzzed = true;
-				play_sound("eclipse");
+		result = move_actor_relative(player, dir, Chrono.MOVE,
+		false, false, [], false, true);
+	
 	if (result == Success.Yes):
-		if (!heavy_selected):
-			play_sound("lightstep")
-		else:
-			play_sound("heavystep")
-		if (dir == Vector2.UP):
-			if heavy_selected and !is_suspended(heavy_actor, Chrono.MOVE):
-				set_actor_var(heavy_actor, "airborne", 2, Chrono.MOVE);
-			elif !heavy_selected and !is_suspended(light_actor, Chrono.MOVE):
-				set_actor_var(light_actor, "airborne", 2, Chrono.MOVE);
-		elif (dir == Vector2.DOWN):
-			if heavy_selected and !is_suspended(heavy_actor, Chrono.MOVE):
-				set_actor_var(heavy_actor, "airborne", 0, Chrono.MOVE);
-			#AD10: Light floats gracefully downwards
-			#elif !heavy_selected and !is_suspended(light_actor, Chrono.MOVE):
-			#	set_actor_var(light_actor, "airborne", 0, Chrono.MOVE);
-			
-		#mimics mimic
-		if heavy_selected:
-			for mimic in actors:
-				if (mimic.heavy_mimic != null):
-					try_move_mimic(mimic, dir);
-		else:
-			for mimic in actors:
-				if (mimic.light_mimic != null):
-					try_move_mimic(mimic, dir);
-	if (result != Success.No or nonstandard_won):
-		if (!nonstandard_won):
-			if (fuzzed):
-				time_passes(Chrono.TIMELESS);
-			else:
-				time_passes(Chrono.MOVE);
-		if anything_happened_meta():
-			if heavy_selected:
-				if anything_happened_char():
-					adjust_turn(true, 1, Chrono.MOVE, true, continuum);
-					if (continuum):
-						#now eliminate oldest turn change since it's not real
-						var events = meta_undo_buffer[meta_undo_buffer.size() - 1];
-						for event in events:
-							if (event[0] == Undo.heavy_turn):
-								events.erase(event);
-								break;
-			else:
-				if anything_happened_char():
-					adjust_turn(false, 1, Chrono.MOVE, true, continuum);
-					if (continuum):
-						#now eliminate oldest turn change since it's not real
-						var events = meta_undo_buffer[meta_undo_buffer.size() - 1];
-						for event in events:
-							if (event[0] == Undo.light_turn):
-								events.erase(event);
-								break;
-		else:
-			seemingly_nothing_happened = true;
-			result = Success.No;
-	if (result != Success.No or nonstandard_won or voidlike_puzzle):
+		play_sound("heavystep");
+
+	if (result != Success.No):
+		time_passes(Chrono.MOVE);
+		if anything_happened_char(false):
+			adjust_turn(false, 1, Chrono.MOVE);
+		if anything_happened_char(true):
+			adjust_turn(true, 1, Chrono.MOVE);
+	if (result != Success.No):
 		append_replay(chr);
 	if (result != Success.Yes):
-		if (voidlike_puzzle and seemingly_nothing_happened):
-			pass
-		else:
-			play_sound("bump")
-	if (result != Success.No or nonstandard_won):
+		play_sound("bump")
+	if (result != Success.No):
 		adjust_meta_turn(1, Chrono.MOVE);
-	elif (voidlike_puzzle):
-		adjust_meta_turn(0, Chrono.MOVE);
-	fuzzed = false;
 	return result != Success.No;
 
-func anything_happened_char(destructive: bool = true) -> bool:
-	# time crystals fuck this logic up and obviously mean something happened, so just say 'yes' if they happened
-	# (and hopefully this doesn't come bite me in the ass later)
-	if (heavy_filling_locked_turn_index > -1 or light_filling_locked_turn_index > -1):
-		return true;
-	if (heavy_selected):
-		var turn = heavy_turn;
-		if (heavy_filling_turn_actual > -1):
-			turn = heavy_filling_turn_actual;
-		while (heavy_undo_buffer.size() <= turn):
-			heavy_undo_buffer.append([]);
-		for event in heavy_undo_buffer[turn]:
+func anything_happened_char(is_winunwin: bool, destructive: bool = true) -> bool:
+	if (!is_winunwin):
+		var turn = red_turn;
+		while (red_undo_buffer.size() <= turn):
+			red_undo_buffer.append([]);
+		for event in red_undo_buffer[turn]:
 			if event[0] != Undo.animation_substep:
 				return true;
 		#clear out now unnecessary animation_substeps if nothing else happened
 		if (destructive):
-			heavy_undo_buffer.pop_at(turn);
-			# if we remembered a locked move but nothing happened on our 'real' move,
-			# then we need to find and adjust the related heavy_turn_unlocked event
-			# by -1 so it's correct
-			if (heavy_filling_turn_actual > -1):
-				var buffer = meta_undo_buffer[meta_undo_buffer.size()-1];
-				for i in range(buffer.size() - 1, -1, -1):
-					var event = buffer[i];
-					if event[0] == Undo.heavy_turn_unlocked:
-						event[1] = max(event[1] - 1, -1);
-						break;
+			red_undo_buffer.pop_at(turn);
 	else:
-		var turn = light_turn;
-		if (light_filling_turn_actual > -1):
-			turn = light_filling_turn_actual;
-		while (light_undo_buffer.size() <= turn):
-			light_undo_buffer.append([]);
-		for event in light_undo_buffer[turn]:
+		var turn = blue_turn;
+		while (blue_undo_buffer.size() <= turn):
+			blue_undo_buffer.append([]);
+		for event in blue_undo_buffer[turn]:
 			if event[0] != Undo.animation_substep:
 				return true;
+		#clear out now unnecessary animation_substeps if nothing else happened
 		if (destructive):
-			light_undo_buffer.pop_at(turn);
-			if (light_filling_turn_actual > -1):
-				var buffer = meta_undo_buffer[meta_undo_buffer.size()-1];
-				for i in range(buffer.size() - 1, -1, -1):
-					var event = buffer[i];
-					if event[0] == Undo.light_turn_unlocked:
-						event[1] = max(event[1] - 1, -1);
-						break;
-	return false;
-	
-func anything_happened_meta() -> bool:
-	if (lost == true or nonstandard_won == true):
-		while (meta_undo_buffer.size() <= meta_turn):
-			meta_undo_buffer.append([]);
-		return true;
-	if anything_happened_char(false):
-		return true;
-	while (meta_undo_buffer.size() <= meta_turn):
-		meta_undo_buffer.append([]);
-	var heavy_undo_event_add_count = 0;
-	var light_undo_event_add_count = 0;
-	for event in meta_undo_buffer[meta_turn]:
-		if event[0] == Undo.animation_substep:
-			continue;
-		elif event[0] == Undo.heavy_undo_event_add:
-			heavy_undo_event_add_count += 1;
-		elif event[0] == Undo.light_undo_event_add:
-			light_undo_event_add_count += 1;
-		else:
-			return true;
-	if heavy_undo_event_add_count > 0:
-		if heavy_undo_buffer[heavy_turn].size() != heavy_undo_event_add_count:
-			return true;
-	if light_undo_event_add_count > 0:
-		if light_undo_buffer[light_turn].size() != light_undo_event_add_count:
-			return true;
-	meta_undo_buffer.pop_at(meta_turn);
-	anything_happened_char(true); #to destroy
+			blue_undo_buffer.pop_at(turn);
 	return false;
 
 func time_passes(chrono: int) -> void:
@@ -2941,19 +2380,13 @@ func do_one_replay_turn() -> void:
 					level_replay = replay;
 				else:
 					unit_test_mode_do_second_pass = true;
-					if (has_insight_level and !in_insight_level):
-						gain_insight();
-					else:
-						load_level(1);
-						while (unit_test_blacklist.has(level_name)):
-							load_level(1);
-			else:
-				if (has_insight_level and !in_insight_level):
-					gain_insight();
-				else:
 					load_level(1);
 					while (unit_test_blacklist.has(level_name)):
 						load_level(1);
+			else:
+				load_level(1);
+				while (unit_test_blacklist.has(level_name)):
+					load_level(1);
 			replay_turn = 0;
 			level_replay = authors_replay;
 			next_replay = replay_timer + replay_interval();
@@ -3028,7 +2461,7 @@ func replay_advance_turn(amount: int) -> void:
 			for _i in range(target_turn):
 				do_one_replay_turn();
 			finish_animations(Chrono.TIMELESS);
-			calm_down_timelines();
+
 			replay_interval = old_replay_interval;
 			muted = old_muted;
 			# weaker and slower than meta-undo
@@ -3041,11 +2474,7 @@ func replay_advance_turn(amount: int) -> void:
 		else:
 			var iterations = replay_turn - target_turn;
 			for _i in range(iterations):
-				var last_input = level_replay[replay_turn - 1];
-				if (last_input == "x"):
-					character_switch();
-				else:
-					meta_undo();
+				meta_undo();
 				replay_turn -= 1;
 	replay_paused = true;
 	update_info_labels();
@@ -3116,38 +2545,38 @@ func update_info_labels() -> void:
 		virtualbuttons.get_node("Dirs/UpButton")];
 		var undo_button = virtualbuttons.get_node("Verbs/UndoButton");
 		var swap_button = virtualbuttons.get_node("Verbs/SwapButton");
-		if (heavy_selected):
-			for button in dirs:
-				button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
-				do_all_stylebox_overrides(button, preload("res://heavy_styleboxtexture.tres"));
-				if (heavy_actor.broken or heavy_turn >= heavy_max_moves):
-					button.modulate = Color(0.5, 0.5, 0.5, 1);
-				else:
-					button.modulate = Color(1, 1, 1, 1);
-			undo_button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
-			do_all_stylebox_overrides(undo_button, preload("res://heavy_styleboxtexture.tres"));
-			if (heavy_turn == 0):
-				undo_button.modulate = Color(0.5, 0.5, 0.5, 1);
-			else:
-				undo_button.modulate = Color(1, 1, 1, 1);
-			swap_button.get_node("Label").add_color_override("font_color", Color("#7fc9ff"));
-			do_all_stylebox_overrides(swap_button, preload("res://light_styleboxtexture.tres"));
-		else:
-			for button in dirs:
-				button.get_node("Label").add_color_override("font_color", Color("#7fc9ff"));
-				do_all_stylebox_overrides(button, preload("res://light_styleboxtexture.tres"));
-				if (light_actor.broken or light_turn >= light_max_moves):
-					button.modulate = Color(0.5, 0.5, 0.5, 1);
-				else:
-					button.modulate = Color(1, 1, 1, 1);
-			undo_button.get_node("Label").add_color_override("font_color", Color("#7fc9ff"));
-			do_all_stylebox_overrides(undo_button, preload("res://light_styleboxtexture.tres"));
-			if (light_turn == 0):
-				undo_button.modulate = Color(0.5, 0.5, 0.5, 1);
-			else:
-				undo_button.modulate = Color(1, 1, 1, 1);
-			swap_button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
-			do_all_stylebox_overrides(swap_button, preload("res://heavy_styleboxtexture.tres"));
+#		if (heavy_selected):
+#			for button in dirs:
+#				button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
+#				do_all_stylebox_overrides(button, preload("res://heavy_styleboxtexture.tres"));
+#				if (heavy_actor.broken or heavy_turn >= heavy_max_moves):
+#					button.modulate = Color(0.5, 0.5, 0.5, 1);
+#				else:
+#					button.modulate = Color(1, 1, 1, 1);
+#			undo_button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
+#			do_all_stylebox_overrides(undo_button, preload("res://heavy_styleboxtexture.tres"));
+#			if (heavy_turn == 0):
+#				undo_button.modulate = Color(0.5, 0.5, 0.5, 1);
+#			else:
+#				undo_button.modulate = Color(1, 1, 1, 1);
+#			swap_button.get_node("Label").add_color_override("font_color", Color("#7fc9ff"));
+#			do_all_stylebox_overrides(swap_button, preload("res://light_styleboxtexture.tres"));
+#		else:
+#			for button in dirs:
+#				button.get_node("Label").add_color_override("font_color", Color("#7fc9ff"));
+#				do_all_stylebox_overrides(button, preload("res://light_styleboxtexture.tres"));
+#				if (light_actor.broken or light_turn >= light_max_moves):
+#					button.modulate = Color(0.5, 0.5, 0.5, 1);
+#				else:
+#					button.modulate = Color(1, 1, 1, 1);
+#			undo_button.get_node("Label").add_color_override("font_color", Color("#7fc9ff"));
+#			do_all_stylebox_overrides(undo_button, preload("res://light_styleboxtexture.tres"));
+#			if (light_turn == 0):
+#				undo_button.modulate = Color(0.5, 0.5, 0.5, 1);
+#			else:
+#				undo_button.modulate = Color(1, 1, 1, 1);
+#			swap_button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
+#			do_all_stylebox_overrides(swap_button, preload("res://heavy_styleboxtexture.tres"));
 	
 	metaredobutton.visible = meta_redo_inputs != "";
 
@@ -3214,8 +2643,7 @@ func update_animation_server(skip_globals: bool = false) -> void:
 			won_fade_started = true;
 			if (lost):
 				fade_in_lost();
-			add_to_animation_server(heavy_actor, [Anim.fade, 1.0, 0.0, 3.0]);
-			add_to_animation_server(light_actor, [Anim.fade, 1.0, 0.0, 3.0]);
+			add_to_animation_server(player, [Anim.fade, 1.0, 0.0, 3.0]);
 			#add_to_animation_server(heavy_actor, [Anim.intro_hop]);
 			#add_to_animation_server(light_actor, [Anim.intro_hop]);
 		return;
@@ -3387,7 +2815,7 @@ func _input(event: InputEvent) -> void:
 			setup_resolution();
 
 func serialize_current_level() -> String:
-	if (is_custom and !is_community_level):
+	if (is_custom):
 		return custom_string;
 	
 	# keep in sync with LevelEditor.gd serialize_current_level()
@@ -3526,7 +2954,6 @@ func load_custom_level(custom: String) -> void:
 		return;
 	
 	is_custom = true;
-	is_community_level = false;
 	custom_string = custom;
 	var level_info = level.get_node("LevelInfo");
 	level_name = level_info["level_name"];
@@ -3746,15 +3173,6 @@ func _process(delta: float) -> void:
 		current_sky = Color(current_r, current_g, current_b);
 		VisualServer.set_default_clear_color(current_sky);
 		
-	if (fuzz_timer_max > 0):
-		fuzz_timer += delta;
-		if (fuzz_timer < fuzz_timer_max):
-			Static.visible = true;
-			Static.modulate = Color(1, 1, 1, 1-(fuzz_timer/fuzz_timer_max));
-		else:
-			Static.visible = false;
-			Static.modulate = Color(1, 1, 1, 1);
-		
 	# allow mute to happen even when in menus
 	if (Input.is_action_just_pressed("mute") and !no_mute_pwease):
 		# hack: no muting in LevelInfoEdit where the player might type M
@@ -3774,32 +3192,12 @@ func _process(delta: float) -> void:
 			update_info_labels();
 		
 		if (won and Input.is_action_just_pressed("ui_accept")):
-			end_replay();
-			if (in_insight_level):
-				gain_insight();
-			elif (level_name == "A Way In?" and !doing_replay):
-				ending_cutscene_1();
-			elif last_level_of_section():
-				level_select();
-			else:
-				load_level(1);
+			# only thing you really can do for a one puzzle game
+			start_saved_replay();
+			update_info_labels();
 		elif (Input.is_action_just_pressed("escape")):
 			#end_replay(); #done in escape();
 			escape();
-		elif (pressed_or_key_repeated("previous_level")
-		and (!using_controller or ((!doing_replay or won) and (!won or won_cooldown > 0.5)))):
-			if (!using_controller or won or lost or meta_turn <= 0):
-				end_replay();
-				load_level(-1);
-			else:
-				play_sound("bump");
-		elif (pressed_or_key_repeated("next_level")
-		and (!using_controller or ((!doing_replay or won) and (!won or won_cooldown > 0.5)))):
-			if (!using_controller or won or lost or meta_turn <= 0):
-				end_replay();
-				load_level(1);
-			else:
-				play_sound("bump");
 		elif (Input.is_action_just_pressed("toggle_replay")):
 			user_pressed_toggle_replay();
 		elif (doing_replay and pressed_or_key_repeated("replay_back1")):
@@ -3887,14 +3285,9 @@ func _process(delta: float) -> void:
 			end_replay();
 			restart();
 			update_info_labels();
-		elif (Input.is_action_just_pressed("level_select")):
-			level_select();
-		elif (Input.is_action_just_pressed("gain_insight")):
+		elif (Input.is_action_just_pressed("character_unwin")):
 			end_replay();
-			gain_insight();
-		elif (Input.is_action_just_pressed("character_switch")):
-			end_replay();
-			character_switch();
+			character_unwin();
 			update_info_labels();
 		elif (Input.is_action_just_pressed("ui_accept")): #so enter can open the menu but only if it's closed
 			#end_replay(); #done in escape();
