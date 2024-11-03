@@ -1501,7 +1501,7 @@ is_move: bool = false, can_push: bool = true) -> int:
 
 func adjust_turn(is_winunwin: bool, amount: int, chrono : int) -> void:
 	if (is_winunwin):
-		add_undo_event([Undo.blue_turn, amount], chrono, is_winunwin);
+		add_undo_event([Undo.blue_turn, amount], chrono, amount > 0);
 		blue_turn += amount;
 	else:
 		add_undo_event([Undo.red_turn, amount], chrono, is_winunwin);
@@ -1723,7 +1723,7 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 
 func add_undo_event(event: Array, chrono: int = Chrono.MOVE, is_winunwin: bool = false) -> void:
 	#if (debug_prints and chrono < Chrono.META_UNDO):
-	#	print("add_undo_event", " ", event, " ", chrono);
+	# print("add_undo_event", " ", event, " ", chrono, " ", is_winunwin);
 	
 	if is_winunwin:
 		if chrono >= Chrono.META_UNDO:
@@ -1857,7 +1857,7 @@ func finish_animations(chrono: int) -> void:
 func adjust_meta_turn(amount: int, chrono: int) -> void:
 	meta_turn += amount;
 	#if (debug_prints):
-	#	print("=== IT IS NOW META TURN " + str(meta_turn) + " ===");
+	# print("=== IT IS NOW META TURN " + str(meta_turn) + " ===");
 	if (won or lost or amount >= 0):
 		check_won(chrono);
 	
@@ -1960,7 +1960,7 @@ func adjust_winlabel() -> void:
 	
 func undo_one_event(event: Array, chrono : int) -> void:
 	#if (debug_prints):
-	#	print("undo_one_event", " ", event, " ", chrono);
+	print("undo_one_event", " ", event, " ", chrono);
 
 	match event[0]:
 		Undo.move:
@@ -2345,8 +2345,17 @@ func anything_happened_char(is_winunwin: bool, destructive: bool = true) -> bool
 func time_passes(chrono: int) -> void:
 	animation_substep(chrono);
 	
+	# Collect stars. (Going to experiment with collecting happening during undo/unwin.)
+	if (chrono < Chrono.META_UNDO):
+		for actor in actors:
+			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
+				# 'it's a blue event' will be handled inside of set_actor_var.
+				set_actor_var(actor, "broken", true, chrono);
+	
+	animation_substep(chrono);
+	
 	# Fall into holes and bottomless pits.
-	if (chrono == Chrono.MOVE):
+	if (chrono < Chrono.META_UNDO):
 		for actor in actors:
 			if actor.broken or actor.floats:
 				continue
@@ -2360,13 +2369,6 @@ func time_passes(chrono: int) -> void:
 				elif tile == Tiles.BottomlessPit:
 					set_actor_var(actor, "broken", true, chrono);
 					break;
-
-	# Collect stars. (I might make stars collectable during undo/unwin in the future.)
-	if (chrono == Chrono.MOVE):
-		for actor in actors:
-			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
-				# 'it's a blue event' will be handled inside of set_actor_var.
-				set_actor_var(actor, "broken", true, chrono);
 	
 func currently_fast_replay() -> bool:
 	if (!doing_replay):
