@@ -3124,33 +3124,54 @@ var virtual_button_held_dict = {"meta_undo": false, "meta_redo": false,
 "ui_left": false, "ui_right": false, "ui_up": false, "ui_down": false,
 "replay_back1": false, "replay_fwd1": false, "speedup_replay": false, "slowdown_replay": false};
 var key_repeat_this_frame_dict = {};
+var most_recent_direction_held = "";
 var covered_cooldown_timer = 0.0;
 var no_mute_pwease = false;
+var just_key_repeated_a_dir_cooldown_timer = 0.0;
 	
 func pressed_or_key_repeated(action: String) -> bool:
 	return Input.is_action_just_pressed(action) or (key_repeat_this_frame_dict.has(action) and key_repeat_this_frame_dict[action]);
 	
 func _process(delta: float) -> void:
-	#levellabel.text = "%3.2f,%3.2f,%3.2f,%3.2f" % [Input.get_action_raw_strength("ui_left"), Input.get_action_raw_strength("ui_right"), Input.get_action_raw_strength("ui_up"), Input.get_action_raw_strength("ui_down")]
 	shade_virtual_buttons();
+	var will_set_just_key_repeated_a_dir_cooldown_timer = false;
 	
 	# key repeat
+	just_key_repeated_a_dir_cooldown_timer -= delta;
 	for action in virtual_button_held_dict.keys():
+		var is_dir = action.find("ui_") == 0;
 		if (Input.is_action_just_pressed(action)):
 			key_repeat_timer_dict[action] = 0.0;
-			key_repeat_timer_max_dict[action] = 0.5;
+			if (is_dir):
+				key_repeat_timer_max_dict[action] = 0.19;
+				most_recent_direction_held = action;
+			else:
+				key_repeat_timer_max_dict[action] = 0.5;
 			key_repeat_this_frame_dict[action] = false;
-		if Input.is_action_pressed(action) or virtual_button_held_dict[action]:
+		if (Input.is_action_pressed(action) or virtual_button_held_dict[action]) and (!is_dir or action == most_recent_direction_held or most_recent_direction_held == ""):
 			key_repeat_this_frame_dict[action] = false;
 			key_repeat_timer_dict[action] += delta;
 			if (key_repeat_timer_dict[action] > key_repeat_timer_max_dict[action]):
 				key_repeat_this_frame_dict[action] = true;
+				if (is_dir):
+					# we basically want to solve the following:
+					# If we're key repeating in a direction, and then tap another direction,
+					# we don't want it to happen too quickly (feels like we moved on consecutive frames)
+					# but we also don't want to wait the full maximum of 0.2 seconds in such a case (feels too sluggish)
+					# so let's try this: we'll prevent an input within 0.05 seconds but it will happen immediately after if still held.)
+					will_set_just_key_repeated_a_dir_cooldown_timer = true;
+					if (just_key_repeated_a_dir_cooldown_timer > 0.0 and key_repeat_timer_dict[action] < 0.10):
+						key_repeat_timer_dict[action] = 0.19 - just_key_repeated_a_dir_cooldown_timer;
 				key_repeat_timer_dict[action] -= key_repeat_timer_max_dict[action];
 				if (key_repeat_timer_max_dict[action] == 0.5):
-					key_repeat_timer_max_dict[action] = 0.20;
-				else:
+					key_repeat_timer_max_dict[action] = 0.19;
+				elif !is_dir:
 					key_repeat_timer_max_dict[action] = max(0.05, key_repeat_timer_max_dict[action] * 0.91);
+				else:
+					key_repeat_timer_max_dict[action] = 0.19;
 		else:
+			if (most_recent_direction_held == action):
+				most_recent_direction_held = "";
 			key_repeat_timer_dict[action] = 0.0;
 			key_repeat_timer_max_dict[action] = 0.0;
 			key_repeat_this_frame_dict[action] = false;
@@ -3355,7 +3376,7 @@ func _process(delta: float) -> void:
 				paste_level(clipboard);
 			else:
 				start_specific_replay(clipboard);
-		elif (Input.is_action_just_pressed("character_undo")):
+		elif (pressed_or_key_repeated("character_undo")):
 			end_replay();
 			character_undo();
 			update_info_labels();
@@ -3372,23 +3393,23 @@ func _process(delta: float) -> void:
 			end_replay();
 			restart();
 			update_info_labels();
-		elif (Input.is_action_just_pressed("character_unwin")):
+		elif (pressed_or_key_repeated("character_unwin")):
 			end_replay();
 			character_unwin();
 			update_info_labels();
 		elif (Input.is_action_just_pressed("ui_accept")): #so enter can open the menu but only if it's closed
 			#end_replay(); #done in escape();
 			escape();
-		elif (!get_debounced):
+		elif (!get_debounced and just_key_repeated_a_dir_cooldown_timer <= 0.0):
 			# and !replayspeedslider.has_focus() and !replayturnslider.has_focus()
 			# (not necessary right now as they auto-unfocus in _input)
-			if (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("nonaxis_left")):
+			if (pressed_or_key_repeated("ui_left") or pressed_or_key_repeated("nonaxis_left")):
 				dir = Vector2.LEFT;
-			if (Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("nonaxis_right")):
+			if (pressed_or_key_repeated("ui_right") or pressed_or_key_repeated("nonaxis_right")):
 				dir = Vector2.RIGHT;
-			if (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("nonaxis_up")):
+			if (pressed_or_key_repeated("ui_up") or pressed_or_key_repeated("nonaxis_up")):
 				dir = Vector2.UP;
-			if (Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("nonaxis_down")):
+			if (pressed_or_key_repeated("ui_down") or pressed_or_key_repeated("nonaxis_down")):
 				dir = Vector2.DOWN;
 				
 			if dir != Vector2.ZERO:
@@ -3398,6 +3419,8 @@ func _process(delta: float) -> void:
 		
 	update_targeter();
 	update_animation_server();
+	if (will_set_just_key_repeated_a_dir_cooldown_timer):
+		just_key_repeated_a_dir_cooldown_timer = 0.049;
 
 func _notification(what: int) -> void:
 	match what:
