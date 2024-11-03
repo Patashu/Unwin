@@ -1960,7 +1960,7 @@ func adjust_winlabel() -> void:
 	
 func undo_one_event(event: Array, chrono : int) -> void:
 	#if (debug_prints):
-	print("undo_one_event", " ", event, " ", chrono);
+	# print("undo_one_event", " ", event, " ", chrono);
 
 	match event[0]:
 		Undo.move:
@@ -2351,6 +2351,15 @@ func time_passes(chrono: int) -> void:
 			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
 				# 'it's a blue event' will be handled inside of set_actor_var.
 				set_actor_var(actor, "broken", true, chrono);
+				# Melt all surrounding ice.
+				# Notably this happens at Chrono.MOVE speed so it can't be 'forgotten'.
+				# ... Actually that might be a problem after all. Hmm.
+				# Like, if you collect a star during an undo, where does the ice melting GO.
+				# Idk, maybe it's okay? I'll try it and see if it's too buggy.
+				for actor2 in actors:
+					if actor2.actorname == Actor.Name.IceBlock and !actor2.broken:
+						if abs(actor2.pos.x - actor.pos.x) <= 1 and abs(actor2.pos.y - actor.pos.y) <= 1:
+							set_actor_var(actor2, "broken", true, Chrono.MOVE);
 	
 	animation_substep(chrono);
 	
