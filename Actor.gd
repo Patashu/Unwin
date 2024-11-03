@@ -148,7 +148,7 @@ func _process(delta: float) -> void:
 				if (bump_amount > 0.5):
 					bump_amount = 1-bump_amount;
 				bump_amount *= 0.2;
-				position -= current_animation[1]*bump_amount*24;
+				position -= current_animation[1]*bump_amount*gamelogic.cell_size;
 				animation_timer += delta;
 				if (animation_timer > animation_timer_max):
 					position.x = round(position.x); position.y = round(position.y);

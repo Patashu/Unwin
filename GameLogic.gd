@@ -1202,7 +1202,7 @@ func make_actors() -> void:
 	# crates
 	extract_actors(Tiles.DirtBlock, Actor.Name.DirtBlock, Heaviness.IRON, Strength.WOODEN, false);
 	extract_actors(Tiles.IceBlock, Actor.Name.IceBlock, Heaviness.IRON, Strength.WOODEN, false);
-	extract_actors(Tiles.Star, Actor.Name.Star, Heaviness.CRYSTAL, Strength.HEAVY, false);
+	extract_actors(Tiles.Star, Actor.Name.Star, Heaviness.CRYSTAL, Strength.HEAVY, true);
 	
 func find_goals() -> void:
 	pass
@@ -1595,12 +1595,11 @@ var flash_colour = Color(1, 1, 1, 1);
 # infinite loop variable
 var bumper_counter: int = 0;
 
-func try_enter_terrain(actor: Actor, pos: Vector2, dir: Vector2, hypothetical: bool, is_gravity: bool, is_retro: bool, chrono: int, pushers_list: Array, was_push: bool) -> int:
+func try_enter_terrain(actor: Actor, pos: Vector2, chrono: int) -> int:
 	var result = Success.Yes;
 	flash_terrain = -1;
 	
 	var terrain = terrain_in_tile(pos, actor, chrono);
-
 	for i in range(terrain.size()):
 		var id = terrain[i];
 		match id:
@@ -1635,6 +1634,10 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 	# Also, for Unwin in particular, retro moves don't desync (though they might do other things in the future...)
 	if (chrono >= Chrono.CHAR_UNDO and is_retro):
 		return Success.Yes;
+	
+	var solidity_check = try_enter_terrain(actor, dest, chrono);
+	if (solidity_check != Success.Yes):
+		return solidity_check;
 	
 	# handle pushing
 	var actors_there = actors_in_tile(dest);
