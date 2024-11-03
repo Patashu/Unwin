@@ -1166,10 +1166,10 @@ func any_layer_has_this_tile(id: int) -> bool:
 func make_actors() -> void:
 	voidlike_puzzle = false;
 	
-	# find goals and goal-ify them
-	find_goals();
-	
 	var where_are_actors = {};
+	
+	#stars first, so they draw behind the player on the same layer
+	extract_actors(Tiles.Star, Actor.Name.Star, Heaviness.CRYSTAL, Strength.HEAVY, true);
 	
 	# find the player
 	player = null;
@@ -1202,10 +1202,6 @@ func make_actors() -> void:
 	# crates
 	extract_actors(Tiles.DirtBlock, Actor.Name.DirtBlock, Heaviness.IRON, Strength.WOODEN, false);
 	extract_actors(Tiles.IceBlock, Actor.Name.IceBlock, Heaviness.IRON, Strength.WOODEN, false);
-	extract_actors(Tiles.Star, Actor.Name.Star, Heaviness.CRYSTAL, Strength.HEAVY, true);
-	
-func find_goals() -> void:
-	pass
 	
 func add_actor_or_goal_at_appropriate_layer(thing: ActorBase, i: int) -> void:
 	terrain_layers[i].add_child(thing);
@@ -1505,10 +1501,10 @@ is_move: bool = false, can_push: bool = true) -> int:
 
 func adjust_turn(is_winunwin: bool, amount: int, chrono : int) -> void:
 	if (is_winunwin):
-		add_undo_event([Undo.blue_turn, amount], chrono);
+		add_undo_event([Undo.blue_turn, amount], chrono, is_winunwin);
 		blue_turn += amount;
 	else:
-		add_undo_event([Undo.red_turn, amount], chrono);
+		add_undo_event([Undo.red_turn, amount], chrono, is_winunwin);
 		red_turn += amount;
 		
 func actors_in_tile(pos: Vector2) -> Array:
@@ -1775,8 +1771,15 @@ func character_undo(is_silent: bool = false) -> bool:
 	for event in events:
 		undo_one_event(event, chrono);
 		add_undo_event([Undo.red_undo_event_remove, red_turn, event], Chrono.CHAR_UNDO);
-
+	
+	time_passes(chrono);
+	
 	append_replay("z");
+	
+	if anything_happened_char(false):
+		adjust_turn(false, 1, Chrono.MOVE);
+	if anything_happened_char(true):
+		adjust_turn(true, 1, Chrono.MOVE);
 	
 	adjust_meta_turn(1, chrono);
 	
@@ -1799,10 +1802,21 @@ func character_unwin(is_silent: bool = false) -> bool:
 	#the unwin itself
 	var events = blue_undo_buffer.pop_at(blue_turn - 1);
 	for event in events:
-		undo_one_event(event, chrono);
+		#trying something - I think the unwin itself I want to not record its own undo event, so let's try Chrono.META_UNDO
+		if (event[0] == Undo.set_actor_var):
+			undo_one_event(event, Chrono.META_UNDO);
+		else:
+			undo_one_event(event, chrono);
 		add_undo_event([Undo.blue_undo_event_remove, blue_turn, event], Chrono.CHAR_UNDO);
+	
+	time_passes(chrono);
 
 	append_replay("x");
+	
+	if anything_happened_char(false):
+		adjust_turn(false, 1, Chrono.MOVE);
+	if anything_happened_char(true):
+		adjust_turn(true, 1, Chrono.MOVE);
 	
 	adjust_meta_turn(1, chrono);
 	
@@ -2591,6 +2605,20 @@ func update_info_labels() -> void:
 		virtualbuttons.get_node("Dirs/UpButton")];
 		var undo_button = virtualbuttons.get_node("Verbs/UndoButton");
 		var unwin_button = virtualbuttons.get_node("Verbs/UnwinButton");
+		if (red_turn == 0):
+			undo_button.modulate = Color(0.5, 0.5, 0.5, 1);
+		else:
+			undo_button.modulate = Color(1.0, 1.0, 1.0, 1);
+		if (blue_turn == 0):
+			unwin_button.modulate = Color(0.5, 0.5, 0.5, 1);
+		else:
+			unwin_button.modulate = Color(1.0, 1.0, 1.0, 1);
+		if player.broken:
+			for button in dirs:
+				button.modulate = Color(0.5, 0.5, 0.5, 1);
+		else:
+			for button in dirs:
+				button.modulate = Color(1.0, 1.0, 1.0, 1);
 #		if (heavy_selected):
 #			for button in dirs:
 #				button.get_node("Label").add_color_override("font_color", Color("#ff7459"));
