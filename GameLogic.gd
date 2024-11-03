@@ -1501,7 +1501,7 @@ is_move: bool = false, can_push: bool = true) -> int:
 	# Ice blocks that successfully non-retro non-hypothetical move slide.
 	if (!is_retro and !hypothetical and result == Success.Yes and actor.actorname == Actor.Name.IceBlock):
 		var terrain = terrain_in_tile(actor.pos, actor, chrono);
-		if terrain.has(Tiles.Floor):
+		if terrain.has(Tiles.Floor) and !terrain.has(Tiles.Hole) and !terrain.has(Tiles.BottomlessPit):
 			move_actor_relative(actor, dir, chrono, hypothetical, false, pushers_list);
 	return result;
 
@@ -1992,9 +1992,9 @@ func check_won(chrono: int) -> void:
 	if (won):
 		won_cooldown = 0;
 		if !doing_replay:
-			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Continue\nWatch Replay: Menu -> Your Replay")
+			winlabel.change_text("You have won!\nProgramming: Patashu\nGraphics: Teal Knight\n[" + human_readable_input("ui_accept", 1) + "]: Watch Replay")
 		elif doing_replay:
-			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Continue")
+			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Watch Replay")
 		won_fade_started = false;
 		tutoriallabel.visible = false;
 		call_deferred("adjust_winlabel_deferred");
@@ -2410,6 +2410,26 @@ func anything_happened_char(is_winunwin: bool, destructive: bool = true) -> bool
 func time_passes(chrono: int) -> void:
 	animation_substep(chrono);
 	
+	# Fall into holes and bottomless pits. (Having this happen before star collect is INTERESTING...)
+	if (chrono < Chrono.META_UNDO):
+		for actor in actors:
+			if actor.broken or actor.floats:
+				continue
+			var terrain = terrain_in_tile(actor.pos, actor, chrono);
+			for i in range(terrain.size()):
+				var tile = terrain[i];
+				if tile == Tiles.Hole:
+					actor.post_mortem = Actor.PostMortems.Fall;
+					set_actor_var(actor, "broken", true, chrono);
+					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, -1);
+					break;
+				elif tile == Tiles.BottomlessPit:
+					actor.post_mortem = Actor.PostMortems.Fall;
+					set_actor_var(actor, "broken", true, chrono);
+					break;
+	
+	animation_substep(chrono);
+	
 	# Collect stars. (Going to experiment with collecting happening during undo/unwin.)
 	if (chrono < Chrono.META_UNDO):
 		for actor in actors:
@@ -2427,26 +2447,6 @@ func time_passes(chrono: int) -> void:
 						if abs(actor2.pos.x - actor.pos.x) <= 1 and abs(actor2.pos.y - actor.pos.y) <= 1:
 							actor2.post_mortem = Actor.PostMortems.Melt;
 							set_actor_var(actor2, "broken", true, Chrono.MOVE);
-	
-	animation_substep(chrono);
-	
-	# Fall into holes and bottomless pits.
-	if (chrono < Chrono.META_UNDO):
-		for actor in actors:
-			if actor.broken or actor.floats:
-				continue
-			var terrain = terrain_in_tile(actor.pos, actor, chrono);
-			for i in range(terrain.size()):
-				var tile = terrain[i];
-				if tile == Tiles.Hole:
-					actor.post_mortem = Actor.PostMortems.Fall;
-					set_actor_var(actor, "broken", true, chrono);
-					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, -1);
-					break;
-				elif tile == Tiles.BottomlessPit:
-					actor.post_mortem = Actor.PostMortems.Fall;
-					set_actor_var(actor, "broken", true, chrono);
-					break;
 	
 func currently_fast_replay() -> bool:
 	if (!doing_replay):
