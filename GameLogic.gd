@@ -935,6 +935,7 @@ func ready_map() -> void:
 			authors_replay = annotated_authors_replay;
 
 	calculate_map_size();
+	make_shadows();
 	make_actors();
 	
 	finish_animations(Chrono.TIMELESS);
@@ -1162,6 +1163,53 @@ func any_layer_has_this_tile(id: int) -> bool:
 		if (layer.get_used_cells_by_id(id).size() > 0):
 			return true;
 	return false;
+
+func make_shadows() -> void:
+	# it'd probably be smarter to come up with some sort of like, tilemap, but sprites to be quick-and-dirty
+	# and if it's a problem I'll fix it later
+	var floor_layers = get_used_cells_by_id_all_layers(Tiles.Floor);
+	for i in range(floor_layers.size()):
+		var layer = floor_layers[i];
+		for tile in layer:
+			var wall_to_left = terrain_in_tile(tile + Vector2.LEFT).has(Tiles.Wall);
+			var wall_to_north = terrain_in_tile(tile + Vector2.UP).has(Tiles.Wall);
+			var wall_to_nw = terrain_in_tile(tile + Vector2.UP + Vector2.LEFT).has(Tiles.Wall);
+			var bitfield = 0;
+			if (wall_to_left):
+				bitfield += 1;
+			if (wall_to_north):
+				bitfield += 2;
+			if (wall_to_nw):
+				bitfield += 4;
+			var frame = 0;
+			match bitfield:
+				0:
+					frame = -1;
+				1:
+					frame = 6;
+				2:
+					frame = 7;
+				3:
+					frame = 2;
+				4:
+					frame = 4;
+				5:
+					frame = 3;
+				6:
+					frame = 1;
+				7:
+					frame = 0;
+			if (frame >= 0):
+				var sprite = Sprite.new();
+				terrain_layers[i].add_child(sprite);
+				sprite.texture = preload("res://assets/wall_shadow.png");
+				sprite.centered = false;
+				sprite.hframes = 3;
+				sprite.vframes = 3;
+				sprite.frame = frame;
+				sprite.position = tile * cell_size;
+				if (i == terrain_layers.size() - 1):
+					terrain_layers[i].move_child(sprite, terrain_layers[i-1].get_index());
 
 func make_actors() -> void:
 	voidlike_puzzle = false;
@@ -2373,7 +2421,7 @@ func time_passes(chrono: int) -> void:
 				var tile = terrain[i];
 				if tile == Tiles.Hole:
 					set_actor_var(actor, "broken", true, chrono);
-					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, Tiles.Floor);
+					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, -1);
 					break;
 				elif tile == Tiles.BottomlessPit:
 					set_actor_var(actor, "broken", true, chrono);
