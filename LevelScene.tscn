@@ -377,7 +377,6 @@ X: Swap Character
 Z: Undo Character"
 
 [node name="MetaInfoLabel" type="Label" parent="."]
-visible = false
 margin_top = 271.0
 margin_right = 511.0
 margin_bottom = 285.0

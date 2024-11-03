@@ -2713,7 +2713,7 @@ func update_info_labels() -> void:
 	
 	metaredobutton.visible = meta_redo_inputs != "";
 
-	metainfolabel.text = "Turn: " + str(meta_turn)
+	metainfolabel.text = "Turn: " + str(red_turn) + " | Stars: " + str(blue_turn) + " | Inputs: " + str(meta_turn);
 	
 	if (doing_replay):
 		replaybuttons.visible = true;
