@@ -1502,7 +1502,7 @@ is_move: bool = false, can_push: bool = true) -> int:
 	if (!is_retro and !hypothetical and result == Success.Yes and actor.actorname == Actor.Name.IceBlock):
 		var terrain = terrain_in_tile(actor.pos, actor, chrono);
 		if terrain.has(Tiles.Floor):
-			move_actor_relative(actor, dir, chrono, hypothetical);
+			move_actor_relative(actor, dir, chrono, hypothetical, false, pushers_list);
 	return result;
 
 func move_actor_to(actor: Actor, pos: Vector2, chrono: int, hypothetical: bool,
@@ -1539,11 +1539,12 @@ is_move: bool = false, can_push: bool = true) -> int:
 		return success;
 	elif (success != Success.Yes):
 		if (!hypothetical):
-			# involuntary bump sfx (this probably should never play but I'll leave it in for debugging like in SiC)
+			# involuntary bump sfx (atm this plays when an ice block slide ends)
 			if (pushers_list.size() > 0 or is_retro):
-				add_to_animation_server(actor, [Anim.sfx, "involuntarybumpother"], true);
+				add_to_animation_server(actor, [Anim.sfx, "involuntarybumpother"], false);
 		# bump animation always happens, I think?
-		add_to_animation_server(actor, [Anim.bump, dir], true);
+		# unlike in Entwined Time, let's try NOT adding the bump at the start
+		add_to_animation_server(actor, [Anim.bump, dir], false);
 	
 	return success;
 
@@ -1758,8 +1759,18 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 	actor.set(prop, value);
 	
 	var is_winunwin = false;
-	if (actor.actorname == Actor.Name.Star and prop == "broken"):
-		is_winunwin = true;
+	if (prop == "broken"):
+		if (actor.actorname == Actor.Name.Star):
+			is_winunwin = true;
+			if (value == true):
+				add_to_animation_server(actor, [Anim.sfx, "greentimecrystal"]);
+			else:
+				add_to_animation_server(actor, [Anim.sfx, "magentatimecrystal"]);
+		else:
+			if (value == true):
+				add_to_animation_server(actor, [Anim.sfx, "fall"]);
+			else:
+				add_to_animation_server(actor, [Anim.sfx, "unfall"]);
 	
 	add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
 	
