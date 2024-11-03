@@ -14,11 +14,14 @@ var is_character : bool = false
 # animation system logic
 var animation_timer : float = 0.0;
 var animation_timer_max : float = 0.05;
+var base_frame = 0;
+var animation_frame = 0;
 var animations : Array = [];
-var facing_dir : Vector2 = Vector2.RIGHT;
+var facing_dir : Vector2 = Vector2.DOWN;
 # animated sprites logic
 var frame_timer : float = 0.0;
 var frame_timer_max : float = 0.1;
+var moving = false;
 # transient multi-push/multi-fall state:
 # basically, things that move become non-colliding until the end of the multi-push/fall tick they're
 # a part of, so other things that shared their tile can move with them
@@ -48,7 +51,7 @@ func get_next_texture() -> Texture:
 			if broken:
 				return null;
 			else:
-				return preload("res://assets/player.png");
+				return preload("res://assets/player_spritesheet.png");
 		
 		Name.Star:
 			if broken:
@@ -70,16 +73,7 @@ func get_next_texture() -> Texture:
 		
 	return null;
 
-func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
-	# facing updates here, even if the texture didn't change
-#	if facing_left_at_the_time:
-#		flip_h = true;
-#	else:
-#		flip_h = false;
-	
-	if (self.texture == tex):
-		return;
-		
+func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:		
 	if tex == null:
 		visible = false;
 	elif self.texture == null:
@@ -89,10 +83,26 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 	
 	frame_timer = 0;
 	frame = 0;
-#	match texture:
-#		preload("res://assets/heavy_broken.png"):
-#			frame_timer_max = 0.4;
-#			hframes = 8;
+	match texture:
+		preload("res://assets/player_spritesheet.png"):
+			hframes = 4;
+			vframes = 3;
+			frame_timer_max = 0.033;
+			match (facing_dir_at_the_time):
+				Vector2.DOWN:
+					frame = 0;
+					flip_h = false;
+				Vector2.UP:
+					frame = 4;
+					flip_h = false;
+				Vector2.LEFT:
+					frame = 8;
+					flip_h = true;
+				Vector2.RIGHT:
+					frame = 8;
+					flip_h = false;
+			base_frame = frame;
+			animation_frame = 0;
 
 func pushable(by_actor: Actor) -> bool:
 	if (self.actorname == Name.Star and by_actor.actorname == Name.Player):
@@ -110,21 +120,31 @@ func afterimage() -> void:
 
 func _process(delta: float) -> void:
 	#animated sprites
-	if hframes <= 1:
-		pass
-	else:
-		frame_timer += delta;
-		if (frame_timer > frame_timer_max):
-			frame_timer -= frame_timer_max;
-			if (frame == hframes - 1):
-				frame = 0;
+	if actorname == Name.Player:
+		if moving:
+			frame_timer += delta;
+			if (frame_timer > frame_timer_max):
+				frame_timer -= frame_timer_max;
+				animation_frame += 1;
+				if (animation_frame >= hframes):
+					animation_frame = 0;
+		else:
+			animation_frame = 0;
+			frame = base_frame;
+			# brittle logic for ping pong that'll break if hframes changes from 4
+		var adjusted_frame = animation_frame;
+		if (adjusted_frame == 0):
+			adjusted_frame = 2;
+		frame = base_frame + animation_frame;
 	
 	# animation system stuff
+	moving = false;
 	if (animations.size() > 0):
 		var current_animation = animations[0];
 		var is_done = true;
 		match current_animation[0]:
 			0: #move
+				moving = true;
 				# afterimage if it was a retro move
 				if (animation_timer == 0):
 					pass

@@ -1472,7 +1472,7 @@ is_move: bool = false, can_push: bool = true) -> int:
 		if (!is_retro):
 			was_push = pushers_list.size() > 0;
 		actor.pos = pos;
-			
+		
 		# do facing change now before move happens
 		if (is_move and actor.is_character):
 			set_actor_var(actor, "facing_dir", dir, Chrono.MOVE);
@@ -1703,19 +1703,19 @@ func end_lose() -> void:
 func set_actor_var(actor: ActorBase, prop: String, value, chrono: int,
 is_retro: bool = false, _retro_old_value = null) -> void:
 	var old_value = actor.get(prop);
-	if (true):
-		# sanity check: prevent, for example, spotlight from making a broken->broken event
-		if (old_value == value):
-			return
-		actor.set(prop, value);
-		
-		var is_winunwin = false;
-		if (actor.actorname == Actor.Name.Star and prop == "broken"):
-			is_winunwin = true;
-		
-		add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
-		add_to_animation_server(actor, [Anim.set_next_texture, actor.get_next_texture(), actor.facing_dir])
-
+	
+	# sanity check: prevent, for example, spotlight from making a broken->broken event
+	if (old_value == value):
+		return
+	actor.set(prop, value);
+	
+	var is_winunwin = false;
+	if (actor.actorname == Actor.Name.Star and prop == "broken"):
+		is_winunwin = true;
+	
+	add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
+	
+	add_to_animation_server(actor, [Anim.set_next_texture, actor.get_next_texture(), actor.facing_dir])
 			
 	# stall certain animations
 #	if (prop == "broken"):
