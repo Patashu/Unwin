@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Afterimage.gd" type="Script" id=1]
-[ext_resource path="res://assets/heavy_idle.png" type="Texture" id=2]
+[ext_resource path="res://assets/player.png" type="Texture" id=2]
 [ext_resource path="res://afterimage_shadermaterial.tres" type="Material" id=3]
 
 [node name="Afterimage" type="Node2D"]

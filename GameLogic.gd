@@ -227,9 +227,9 @@ var chapter_skies : Array = [];
 var chapter_tracks : Array = [];
 var chapter_replacements : Dictionary = {};
 var level_replacements : Dictionary = {};
-var target_sky : Color = Color("#223C52");
-var old_sky : Color = Color("#223C52");
-var current_sky : Color = Color("#223C52");
+var target_sky : Color = Color("25272a");
+var old_sky : Color = Color("25272a");
+var current_sky : Color = Color("25272a");
 var sky_timer : float = 0.0;
 var sky_timer_max : float = 0.0;
 var chapter_standard_starting_levels : Array = [];
@@ -601,6 +601,9 @@ func serialize_bindings() -> void:
 	setup_udlr();
 	
 func setup_udlr() -> void:
+	if !save_file.has("keyboard_bindings") or  !save_file.has("controller_bindings"):
+		serialize_bindings();
+	
 	var a = ["ui_left", "ui_right", "ui_up", "ui_down"];
 	var b = ["nonaxis_left", "nonaxis_right", "nonaxis_up", "nonaxis_down"];
 	for i in range(4):
@@ -834,7 +837,7 @@ func initialize_level_list() -> void:
 	chapter_standard_unlock_requirements.push_back(0);
 	chapter_skies.push_back(Color("25272A"));
 	chapter_tracks.push_back(-1);
-	
+	level_filenames.push_back("Level")
 	chapter_advanced_starting_levels.push_back(level_filenames.size());
 	chapter_advanced_unlock_requirements.push_back(8);
 	
@@ -1168,7 +1171,7 @@ func make_actors() -> void:
 	
 	# find the player
 	player = null;
-	var layers_tiles = get_used_cells_by_id_all_layers(Tiles.HeavyIdle);
+	var layers_tiles = get_used_cells_by_id_all_layers(Tiles.Player);
 	var found_one = false;
 	var count = 0;
 	for i in range(layers_tiles.size()):
@@ -1710,7 +1713,7 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 			is_winunwin = true;
 		
 		add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
-		add_to_animation_server(actor, [Anim.set_next_texture, actor.get_next_texture(), actor.facing_left])
+		add_to_animation_server(actor, [Anim.set_next_texture, actor.get_next_texture(), actor.facing_dir])
 
 			
 	# stall certain animations
@@ -1853,7 +1856,7 @@ func check_won(chrono: int) -> void:
 			locked = true;
 			break;
 	
-	if (!locked and !player.broken and terrain_in_tile(player.pos, player, chrono).has(Tiles.Goal)):
+	if (!locked and !player.broken and terrain_in_tile(player.pos, player, chrono).has(Tiles.Win)):
 		won = true;
 		if (won and test_mode):
 			var level_info = terrainmap.get_node_or_null("LevelInfo");

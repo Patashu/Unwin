@@ -131,15 +131,15 @@ func _process(delta: float) -> void:
 					if current_animation[2]:
 						afterimage();
 				animation_timer_max = 0.083;
-				position -= current_animation[1]*(animation_timer/animation_timer_max)*24;
+				position -= current_animation[1]*(animation_timer/animation_timer_max)*gamelogic.cell_size;
 				animation_timer += delta;
 				if (animation_timer > animation_timer_max):
-					position += current_animation[1]*1*24;
+					position += current_animation[1]*1*gamelogic.cell_size;
 					# no rounding errors here! get rounded sucker!
 					position.x = round(position.x); position.y = round(position.y);
 				else:
 					is_done = false;
-					position += current_animation[1]*(animation_timer/animation_timer_max)*24;
+					position += current_animation[1]*(animation_timer/animation_timer_max)*gamelogic.cell_size;
 			1: #bump
 				if (animation_timer == 0):
 					pass
@@ -158,9 +158,9 @@ func _process(delta: float) -> void:
 					if (bump_amount > 0.5):
 						bump_amount = 1-bump_amount;
 					bump_amount *= 0.2;
-					position += current_animation[1]*bump_amount*24;
+					position += current_animation[1]*bump_amount*gamelogic.cell_size;
 			2: #set_next_texture
-				set_next_texture(current_animation[1], current_animation[3]);
+				set_next_texture(current_animation[1], current_animation[2]);
 			3: #sfx
 				gamelogic.play_sound(current_animation[1]);
 			4: #afterimage_at
