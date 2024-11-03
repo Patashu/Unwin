@@ -94,12 +94,10 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 #			frame_timer_max = 0.4;
 #			hframes = 8;
 
-func pushable(checking_phased_out: bool = false) -> bool:
-	if (!checking_phased_out and just_moved):
+func pushable(by_actor: Actor) -> bool:
+	if (self.actorname == Name.Star and by_actor.actorname == Name.Player):
 		return false;
-	if (broken):
-		return is_character;
-	return true;
+	return !broken;
 		
 func phases_into_terrain() -> bool:
 	return false;

@@ -1446,8 +1446,15 @@ func make_actor(actorname: int, pos: Vector2, is_character: bool, i: int, chrono
 func move_actor_relative(actor: Actor, dir: Vector2, chrono: int, hypothetical: bool,
 is_retro: bool = false, pushers_list: Array = [],  was_push = false,
 is_move: bool = false, can_push: bool = true) -> int:
-	return move_actor_to(actor, actor.pos + dir, chrono, hypothetical, is_retro,
+	var result = move_actor_to(actor, actor.pos + dir, chrono, hypothetical, is_retro,
 	pushers_list, was_push, is_move, can_push);
+	
+	# Ice blocks that successfully non-retro non-hypothetical move slide.
+	if (!is_retro and !hypothetical and result == Success.Yes and actor.actorname == Actor.Name.IceBlock):
+		var terrain = terrain_in_tile(actor.pos, actor, chrono);
+		if terrain.has(Tiles.Floor):
+			move_actor_relative(actor, dir, chrono, hypothetical);
+	return result;
 
 func move_actor_to(actor: Actor, pos: Vector2, chrono: int, hypothetical: bool,
 is_retro: bool = false, pushers_list: Array = [], was_push: bool = false,
@@ -1620,12 +1627,15 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 	if (chrono >= Chrono.META_UNDO and is_retro):
 		# assuming no bugs, if it was overlapping in the meta-past, then it must have been valid to reach then
 		return Success.Yes;
+	# Also, for Unwin in particular, retro moves don't desync (though they might do other things in the future...)
+	if (chrono >= Chrono.CHAR_UNDO and is_retro):
+		return Success.Yes;
 	
 	# handle pushing
 	var actors_there = actors_in_tile(dest);
 	var pushables_there = [];
 	for actor_there in actors_there:
-		if actor_there.pushable():
+		if actor_there.pushable(actor):
 			pushables_there.push_back(actor_there);
 	
 	if (pushables_there.size() > 0):
@@ -1687,7 +1697,7 @@ func end_lose() -> void:
 		player.modulate.a = 1;
 
 func set_actor_var(actor: ActorBase, prop: String, value, chrono: int,
-animation_nonce: int = -1, is_retro: bool = false, _retro_old_value = null) -> void:
+is_retro: bool = false, _retro_old_value = null) -> void:
 	var old_value = actor.get(prop);
 	if (true):
 		# sanity check: prevent, for example, spotlight from making a broken->broken event
@@ -1695,8 +1705,12 @@ animation_nonce: int = -1, is_retro: bool = false, _retro_old_value = null) -> v
 			return
 		actor.set(prop, value);
 		
-		add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono));
-		add_to_animation_server(actor, [Anim.set_next_texture, actor.get_next_texture(), animation_nonce, actor.facing_left])
+		var is_winunwin = false;
+		if (actor.actorname == Actor.Name.Star and prop == "broken"):
+			is_winunwin = true;
+		
+		add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
+		add_to_animation_server(actor, [Anim.set_next_texture, actor.get_next_texture(), actor.facing_left])
 
 			
 	# stall certain animations
@@ -2308,7 +2322,29 @@ func anything_happened_char(is_winunwin: bool, destructive: bool = true) -> bool
 
 func time_passes(chrono: int) -> void:
 	animation_substep(chrono);
-	pass
+	
+	# Fall into holes and bottomless pits.
+	if (chrono == Chrono.MOVE):
+		for actor in actors:
+			if actor.broken or actor.floats:
+				continue
+			var terrain = terrain_in_tile(actor.pos, actor, chrono);
+			for i in range(terrain.size()):
+				var tile = terrain[i];
+				if tile == Tiles.Hole:
+					set_actor_var(actor, "broken", true, chrono);
+					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, Tiles.Floor);
+					break;
+				elif tile == Tiles.BottomlessPit:
+					set_actor_var(actor, "broken", true, chrono);
+					break;
+
+	# Collect stars. (I might make stars collectable during undo/unwin in the future.)
+	if (chrono == Chrono.MOVE):
+		for actor in actors:
+			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
+				# 'it's a blue event' will be handled inside of set_actor_var.
+				set_actor_var(actor, "broken", true, chrono);
 	
 func currently_fast_replay() -> bool:
 	if (!doing_replay):
@@ -3034,7 +3070,9 @@ func shade_virtual_buttons() -> void:
 var last_dir_release_times = [0, 0, 0, 0];
 var key_repeat_timer_dict = {};
 var key_repeat_timer_max_dict = {};
-var virtual_button_held_dict = {"meta_undo": false, "meta_redo": false, "previous_level": false, "next_level": false, 
+var virtual_button_held_dict = {"meta_undo": false, "meta_redo": false,
+"character_undo": false, "character_unwin": false,
+"ui_left": false, "ui_right": false, "ui_up": false, "ui_down": false,
 "replay_back1": false, "replay_fwd1": false, "speedup_replay": false, "slowdown_replay": false};
 var key_repeat_this_frame_dict = {};
 var covered_cooldown_timer = 0.0;
