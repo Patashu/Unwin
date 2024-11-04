@@ -275,6 +275,7 @@ func default_save_file() -> void:
 		save_file["fps"] = 60;
 	if (!save_file.has("virtual_buttons")):
 		save_file["virtual_buttons"] = 1
+		setup_virtual_buttons()
 
 func load_game():
 	var file = File.new()
