@@ -1491,18 +1491,36 @@ func make_actor(actorname: int, pos: Vector2, is_character: bool, i: int, chrono
 	if (chrono < Chrono.META_UNDO):
 		print("TODO")
 	return actor;
-	
-func move_actor_relative(actor: Actor, dir: Vector2, chrono: int, hypothetical: bool,
+
+var wants_to_move_again: Dictionary = {};
+
+func move_actor_initiate(actor: Actor, dir: Vector2, chrono: int, hypothetical: bool,
 is_retro: bool = false, pushers_list: Array = [],  was_push = false,
 is_move: bool = false, can_push: bool = true) -> int:
 	var result = move_actor_to(actor, actor.pos + dir, chrono, hypothetical, is_retro,
 	pushers_list, was_push, is_move, can_push);
 	
 	# Ice blocks that successfully non-retro non-hypothetical move slide.
+	while (wants_to_move_again.size() > 0):
+		animation_substep(chrono);
+		var temp = wants_to_move_again.duplicate();
+		wants_to_move_again.clear();
+		for w in temp:
+			move_actor_relative(w, temp[w], chrono, hypothetical, false, pushers_list);
+			
+	return result;
+
+func move_actor_relative(actor: Actor, dir: Vector2, chrono: int, hypothetical: bool,
+is_retro: bool = false, pushers_list: Array = [],  was_push = false,
+is_move: bool = false, can_push: bool = true) -> int:
+	var result = move_actor_to(actor, actor.pos + dir, chrono, hypothetical, is_retro,
+	pushers_list, was_push, is_move, can_push);
+	
+	# Ice blocks that successfully non-retro non-hypothetical move slide (when move_actor_initiate next ticks).
 	if (!is_retro and !hypothetical and result == Success.Yes and actor.actorname == Actor.Name.IceBlock):
 		var terrain = terrain_in_tile(actor.pos, actor, chrono);
 		if terrain.has(Tiles.Floor) and !terrain.has(Tiles.Hole) and !terrain.has(Tiles.BottomlessPit):
-			move_actor_relative(actor, dir, chrono, hypothetical, false, pushers_list);
+			wants_to_move_again[actor] = dir;
 	return result;
 
 func move_actor_to(actor: Actor, pos: Vector2, chrono: int, hypothetical: bool,
@@ -2363,7 +2381,7 @@ func character_move(dir: Vector2) -> bool:
 			play_sound("bump");
 			return false;
 		finish_animations(Chrono.MOVE);
-		result = move_actor_relative(player, dir, Chrono.MOVE,
+		result = move_actor_initiate(player, dir, Chrono.MOVE,
 		false, false, [], false, true);
 	
 	if (result == Success.Yes):
