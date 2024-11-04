@@ -1779,6 +1779,7 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 	var is_winunwin = false;
 	if (prop == "broken"):
 		# for now, uncollecting a star is not is_winunwin, because there's no way to non-retro do it.
+		# TODO: I think we actually check is_retro, but I need star revival to care about this first
 		if (actor.actorname == Actor.Name.Star and value == true):
 			is_winunwin = true;
 		if actor.post_mortem == Actor.PostMortems.Collect:
