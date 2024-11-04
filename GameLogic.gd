@@ -839,7 +839,7 @@ func initialize_level_list() -> void:
 	chapter_standard_unlock_requirements.push_back(0);
 	chapter_skies.push_back(Color("25272A"));
 	chapter_tracks.push_back(-1);
-	level_filenames.push_back("Level")
+	level_filenames.push_back("Unwin")
 	chapter_advanced_starting_levels.push_back(level_filenames.size());
 	chapter_advanced_unlock_requirements.push_back(8);
 	
@@ -2448,7 +2448,7 @@ func time_passes(chrono: int) -> void:
 	animation_substep(chrono);
 	
 	# Collect stars. (Going to experiment with collecting happening during undo/unwin.)
-	if (chrono < Chrono.META_UNDO):
+	if (chrono < Chrono.META_UNDO and !player.broken):
 		for actor in actors:
 			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
 				# 'it's a blue event' will be handled inside of set_actor_var.
