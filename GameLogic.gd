@@ -1760,7 +1760,8 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 	
 	var is_winunwin = false;
 	if (prop == "broken"):
-		if (actor.actorname == Actor.Name.Star):
+		# for now, uncollecting a star is not is_winunwin, because there's no way to non-retro do it.
+		if (actor.actorname == Actor.Name.Star and value == true):
 			is_winunwin = true;
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
@@ -1831,6 +1832,7 @@ func character_undo(is_silent: bool = false) -> bool:
 		if !is_silent:
 			play_sound("bump");
 		return false;
+	finish_animations(Chrono.CHAR_UNDO);
 	#the undo itself
 	var events = red_undo_buffer.pop_at(red_turn - 1);
 	for event in events:
@@ -1864,14 +1866,11 @@ func character_unwin(is_silent: bool = false) -> bool:
 		if !is_silent:
 			play_sound("bump");
 		return false;
+	finish_animations(Chrono.CHAR_UNDO);
 	#the unwin itself
 	var events = blue_undo_buffer.pop_at(blue_turn - 1);
 	for event in events:
-		#trying something - I think the unwin itself I want to not record its own undo event, so let's try Chrono.META_UNDO
-		if (event[0] == Undo.set_actor_var):
-			undo_one_event(event, Chrono.META_UNDO);
-		else:
-			undo_one_event(event, chrono);
+		undo_one_event(event, chrono);
 		add_undo_event([Undo.blue_undo_event_remove, blue_turn, event], Chrono.CHAR_UNDO);
 	
 	time_passes(chrono);
