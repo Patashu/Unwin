@@ -116,6 +116,9 @@ enum Tiles {
 	IceBlock,
 	Hole,
 	BottomlessPit,
+	Water,
+	Ice,
+	MagicBarrier,
 }
 
 # information about the level
@@ -1669,6 +1672,12 @@ func try_enter_terrain(actor: Actor, pos: Vector2, chrono: int) -> int:
 		match id:
 			Tiles.Wall:
 				result = Success.No;
+			Tiles.Water:
+				result = no_if_true_yes_if_false(actor.actorname == Actor.Name.Player);
+			Tiles.Ice:
+				result = no_if_true_yes_if_false(actor.actorname != Actor.Name.Player && actor.actorname != Actor.Name.Star);
+			Tiles.MagicBarrier:
+				result = no_if_true_yes_if_false(actor.actorname == Actor.Name.Star);
 		if result != Success.Yes:
 			return result;
 	return result;

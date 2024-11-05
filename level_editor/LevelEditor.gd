@@ -12,6 +12,9 @@ enum Tiles {
 	IceBlock,
 	Hole,
 	BottomlessPit,
+	Water,
+	Ice,
+	MagicBarrier,
 }
 
 onready var gamelogic = get_tree().get_root().find_node("LevelScene", true, false).gamelogic;
@@ -111,19 +114,6 @@ func initialize_picker_array() -> void:
 	# always true now
 	show_tooltips = true;
 		
-	# keep in sync with GameLogic
-#enum Tiles {
-#	Floor,
-#	Wall,
-#	Player,
-#	Win,
-#	Star,
-#	DirtBlock,
-#	IceBlock,
-#	Hole,
-#	BottomlessPit,
-#}
-		
 	picker_array.append(-1);
 	picker_array.append(Tiles.Floor);
 	picker_array.append(Tiles.Wall);
@@ -134,6 +124,9 @@ func initialize_picker_array() -> void:
 	picker_array.append(Tiles.IceBlock);
 	picker_array.append(Tiles.Hole);
 	picker_array.append(Tiles.BottomlessPit);
+	picker_array.append(Tiles.Water);
+	picker_array.append(Tiles.Ice);
+	picker_array.append(Tiles.MagicBarrier);
 	
 	for i in range(picker_array.size()):
 		var x = i % 21;
@@ -482,6 +475,12 @@ func tooltip_for_tile(tile: int) -> String:
 			text = "Hole: Stars float above Hole, but the Player and Blocks will fall in and fill the Hole (turning it into Floor)."
 		Tiles.BottomlessPit:
 			text = "Bottomless Pit: A Hole that cannot be filled."
+		Tiles.Water:
+			text = "Water: Solid to Players."
+		Tiles.Ice:
+			text = "Ice: Solid to Blocks."
+		Tiles.MagicBarrier:
+			text = "Magic Barrier: Solid to Stars."
 	return text;
 	
 func picker_tooltip() -> void:
