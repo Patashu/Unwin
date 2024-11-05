@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://DefaultTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://DefaultTheme.tres" type="Theme" id=2]
 [ext_resource path="res://GameLogic.gd" type="Script" id=3]
+[ext_resource path="res://light_styleboxtexture.tres" type="StyleBox" id=4]
 [ext_resource path="res://LevelScene.gd" type="Script" id=5]
+[ext_resource path="res://heavy_styleboxtexture.tres" type="StyleBox" id=6]
 [ext_resource path="res://assets/star.png" type="Texture" id=7]
 [ext_resource path="res://assets/tutorial_arrows/DownArrow.tres" type="Texture" id=8]
 [ext_resource path="res://assets/tutorial_arrows/LeftArrow.tres" type="Texture" id=9]
@@ -188,6 +190,11 @@ margin_top = 273.0
 margin_right = 30.0
 margin_bottom = 296.0
 theme = ExtResource( 2 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="VirtualButtons/Verbs/UndoButton"]
 margin_left = 8.0
@@ -203,6 +210,11 @@ margin_top = 273.0
 margin_right = 58.0
 margin_bottom = 296.0
 theme = ExtResource( 2 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="VirtualButtons/Verbs/UnwinButton"]
 margin_left = 8.0
@@ -229,7 +241,7 @@ margin_left = 8.0
 margin_top = 6.0
 margin_right = 15.0
 margin_bottom = 17.0
-custom_colors/font_color = Color( 0.662745, 0.941176, 0.372549, 1 )
+custom_colors/font_color = Color( 0.698039, 0.686275, 0.360784, 1 )
 custom_constants/shadow_offset_x = 0
 text = "C"
 
@@ -251,7 +263,7 @@ margin_left = -31.0
 margin_top = 6.0
 margin_right = -1.0
 margin_bottom = 17.0
-custom_colors/font_color = Color( 0.662745, 0.941176, 0.372549, 1 )
+custom_colors/font_color = Color( 0.698039, 0.686275, 0.360784, 1 )
 text = "Redo:"
 
 [node name="Label" type="Label" parent="VirtualButtons/Verbs/MetaRedoButton"]
@@ -381,7 +393,7 @@ margin_top = 271.0
 margin_right = 511.0
 margin_bottom = 285.0
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 0.662745, 0.941176, 0.372549, 1 )
+custom_colors/font_color = Color( 0.698039, 0.686275, 0.360784, 1 )
 text = "Meta"
 align = 1
 valign = 1
