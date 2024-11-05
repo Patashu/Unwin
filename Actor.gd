@@ -114,6 +114,10 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 func pushable(by_actor: Actor) -> bool:
 	if (self.actorname == Name.Star and by_actor.actorname == Name.Player):
 		return false;
+	# I accidentally deleted this code during cleanup. But it's slightly more interesting to leave it deleted...
+	# (it lets you split a stack of stars, and maybe stacks of crates will be interesting too?)
+	#if (just_moved):
+	#	return false;
 	return !broken;
 		
 func phases_into_terrain() -> bool:

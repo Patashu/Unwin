@@ -1740,11 +1740,12 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 				for actor_there in surprises:
 					move_actor_relative(actor_there, dir, chrono, hypothetical, false, pushers_list);
 			else:
+				# Not using just_moved in Unwin, atm.
 				for actor_there in pushables_there:
-					actor_there.just_moved = true;
+					#actor_there.just_moved = true;
 					move_actor_relative(actor_there, dir, chrono, hypothetical, false, pushers_list);
-				for actor_there in pushables_there:
-					actor_there.just_moved = false;
+				#for actor_there in pushables_there:
+				#	actor_there.just_moved = false;
 		
 		pushers_list.pop_front();
 		
