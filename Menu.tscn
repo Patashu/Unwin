@@ -72,7 +72,6 @@ margin_top = 35.0
 margin_right = 74.0
 margin_bottom = 50.0
 focus_neighbour_left = NodePath("../AuthorsReplayButton")
-focus_neighbour_bottom = NodePath("../ControlsButton")
 text = "Level Editor"
 
 [node name="ControlsButton" type="Button" parent="Holder"]
@@ -81,8 +80,15 @@ margin_top = 71.0
 margin_right = 74.0
 margin_bottom = 86.0
 focus_neighbour_left = NodePath("../CopyReplayButton")
-focus_neighbour_top = NodePath("../LevelEditorButton")
 text = "Controls"
+
+[node name="HintButton" type="Button" parent="Holder"]
+margin_left = 9.0
+margin_top = 53.0
+margin_right = 74.0
+margin_bottom = 68.0
+focus_neighbour_left = NodePath("../CopyReplayButton")
+text = "Hint, Please!"
 
 [node name="SettingsButton" type="Button" parent="Holder"]
 margin_left = 9.0

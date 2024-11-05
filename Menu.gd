@@ -12,6 +12,7 @@ onready var copyreplaybutton : Button = get_node("Holder/CopyReplayButton");
 onready var pastereplaybutton : Button = get_node("Holder/PasteReplayButton");
 onready var leveleditorbutton : Button = get_node("Holder/LevelEditorButton");
 onready var controlsbutton : Button = get_node("Holder/ControlsButton");
+onready var hintbutton : Button = get_node("Holder/HintButton");
 onready var settingsbutton : Button = get_node("Holder/SettingsButton");
 onready var restartbutton : Button = get_node("Holder/RestartButton");
 onready var quitgamebutton : Button = get_node("Holder/QuitGameButton");
@@ -30,6 +31,7 @@ func _ready() -> void:
 	pastereplaybutton.connect("pressed", self, "_pastereplaybutton_pressed");
 	leveleditorbutton.connect("pressed", self, "_leveleditorbutton_pressed");
 	controlsbutton.connect("pressed", self, "_controlsbutton_pressed");
+	hintbutton.connect("pressed", self, "_hintbutton_pressed");
 	settingsbutton.connect("pressed", self, "_settingsbutton_pressed");
 	restartbutton.connect("pressed", self, "_restartbutton_pressed");
 	quitgamebutton.connect("pressed", self, "_quitgamebutton_pressed");
@@ -156,6 +158,14 @@ func _controlsbutton_pressed() -> void:
 		return;
 	
 	var a = preload("res://Controls.tscn").instance();
+	gamelogic.add_to_ui_stack(a, get_parent());
+	destroy();
+	
+func _hintbutton_pressed() -> void:
+	if (gamelogic.ui_stack.size() > 0 and gamelogic.ui_stack[gamelogic.ui_stack.size() - 1] != self):
+		return;
+	
+	var a = preload("res://Hint.tscn").instance();
 	gamelogic.add_to_ui_stack(a, get_parent());
 	destroy();
 	
