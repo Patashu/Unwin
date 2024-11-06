@@ -51,11 +51,11 @@ script = ExtResource( 3 )
 script = ExtResource( 36 )
 
 [node name="LevelLabel" type="Label" parent="."]
+margin_left = 19.0
 margin_right = 512.0
 margin_bottom = 14.0
 theme = ExtResource( 2 )
 text = "Level 01 - Blah Blah Blah"
-align = 1
 valign = 1
 
 [node name="LevelStar" type="Sprite" parent="."]
@@ -385,13 +385,12 @@ custom_fonts/normal_font = ExtResource( 39 )
 bbcode_enabled = true
 
 [node name="MetaInfoLabel" type="Label" parent="."]
-margin_top = 271.0
 margin_right = 511.0
-margin_bottom = 285.0
+margin_bottom = 14.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.698039, 0.686275, 0.360784, 1 )
 text = "Meta"
-align = 1
+align = 2
 valign = 1
 
 [node name="FadeIn" type="ColorRect" parent="."]

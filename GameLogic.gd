@@ -2614,9 +2614,9 @@ func update_level_label() -> void:
 		else:
 			levelstar.modulate = Color(1, 1, 1, 1);
 		var string_size = preload("res://standardfont.tres").get_string_size(levellabel.text);
-		var label_middle = levellabel.rect_position.x + int(floor(levellabel.rect_size.x / 2));
-		var string_left = label_middle - int(floor(string_size.x/2));
-		levelstar.position = Vector2(string_left-19, levellabel.rect_position.y);
+		#var label_middle = levellabel.rect_position.x + int(floor(levellabel.rect_size.x / 2));
+		#var string_left = label_middle - int(floor(string_size.x/2));
+		#levelstar.position = Vector2(string_left-19, levellabel.rect_position.y);
 	else:
 		levelstar.finish_animations();
 		levelstar.modulate = Color(1, 1, 1, 0);
