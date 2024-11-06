@@ -243,6 +243,14 @@ var save_file_string : String = "user://unwin.sav";
 
 var is_web : bool = false;
 
+# tutorial system
+var z_shown : bool = false;
+var z_used : bool = false;
+var x_shown : bool = false;
+var x_used : bool = false;
+var c_shown : bool = false;
+var c_used : bool = false;
+
 func save_game():
 	var file = File.new()
 	file.open(save_file_string, File.WRITE)
@@ -953,136 +961,35 @@ func ready_map() -> void:
 func intro_hop() -> void:
 	pass
 
+func tutorial_complete() -> void:
+	show_button(virtualbuttons.get_node("Verbs/UndoButton"))
+	show_button(virtualbuttons.get_node("Verbs/UnwinButton"))
+	show_button(virtualbuttons.get_node("Verbs/MetaUndoButton"))
+	z_shown = true;
+	x_shown = true;
+	c_shown = true;
+	z_used = true;
+	x_used = true;
+	c_used = true;
+	tutoriallabel.visible = false;
+
+func show_button(button: Button) -> void:
+	if (!button.visible):
+		button.visible = true;
+		var sparklespawner = Node2D.new();
+		sparklespawner.script = preload("res://SparkleSpawner.gd");
+		button.add_child(sparklespawner);
+		sparklespawner.color = button.get_child(0).get_color("font_color");
+
 func ready_tutorial() -> void:
-	pass
-#	if (winlabel.visible):
-#		return;
-#
-#	# start a timer for 10 minutes to suggest Gain Insight if:
-#	# we're in chapter 0
-#	# we're not in an insight (or remix)
-#	# we have an insight (and not a remix)
-#	# we haven't beaten this puzzle yet
-#	# we've never used gain insight
-#	# additionally, stop/restart it if we change puzzles, but don't stop/restart it if we restart
-#	if (chapter == 0):
-#		if (save_file.has("gain_insight") and save_file["gain_insight"] == true):
-#			if (nag_timer != null):
-#				nag_timer.queue_free();
-#				nag_timer = null;
-#		elif in_insight_level or !has_insight_level or has_remix.has(level_name):
-#			if (nag_timer != null):
-#				nag_timer.queue_free();
-#				nag_timer = null;
-#		else:
-#			var levels_save_data = save_file["levels"];
-#			if (!levels_save_data.has(level_name)):
-#				nag_label_start();
-#			else:
-#				var level_save_data = levels_save_data[level_name];
-#				if (level_save_data.has("won") and level_save_data["won"]):
-#					if (nag_timer != null):
-#						nag_timer.queue_free();
-#						nag_timer = null;
-#				else:
-#					nag_label_start();
-#
-#	virtualbuttons.get_node("Verbs/SwapButton").visible = true;
-#	virtualbuttons.get_node("Verbs/MetaUndoButton").visible = true;
-#
-#	if is_custom:
-#		metainfolabel.visible = true;
-#		tutoriallabel.visible = false;
-#		downarrow.visible = false;
-#		leftarrow.visible = false;
-#		rightarrow.visible = false;
-#		return;
-#
-#	if level_number > 5:
-#		metainfolabel.visible = true;
-#	else:
-#		metainfolabel.visible = false;
-#
-#	if level_number > 7:
-#		tutoriallabel.visible = false;
-#		downarrow.visible = false;
-#		leftarrow.visible = false;
-#		rightarrow.visible = false;
-#	else:
-#		tutoriallabel.visible = true;
-#		downarrow.visible = true;
-#		leftarrow.visible = true;
-#		rightarrow.visible = true;
-#		tutoriallabel.rect_position = Vector2(0, 72);
-#		match level_number:
-#			0:
-#				virtualbuttons.get_node("Verbs/SwapButton").visible = false;
-#				virtualbuttons.get_node("Verbs/MetaUndoButton").visible = false;
-#				tutoriallabel.bbcode_text = "$MOVE: Move\n$UNDO: Rewind\n$RESTART: Restart";
-#				if (in_insight_level):
-#					tutoriallabel.rect_position.y -= 24;
-#
-#
-#				for a in actorsfolder.get_children():
-#					if (a.name == "Pictogram" or a.name == "Pictogram2"):
-#						a.queue_free();
-#				var sprite = Sprite.new();
-#				sprite.name = "Pictogram";
-#				sprite.texture = preload("res://assets/light_goal_tutorial.png");
-#				actorsfolder.add_child(sprite);
-#				sprite.position = Vector2(84, 84);
-#				if (in_insight_level):
-#					sprite.position.y += 48;
-#
-#			1:
-#				virtualbuttons.get_node("Verbs/SwapButton").visible = false;
-#				virtualbuttons.get_node("Verbs/MetaUndoButton").visible = false;
-#				tutoriallabel.bbcode_text = "$MOVE: Move\n$UNDO: Rewind\n$RESTART: Restart";
-#
-#				for a in actorsfolder.get_children():
-#					if (a.name == "Pictogram" or a.name == "Pictogram2"):
-#						a.queue_free();
-#				var sprite = Sprite.new();
-#				sprite.name = "Pictogram";
-#				sprite.texture = preload("res://assets/light_goal_tutorial.png");
-#				actorsfolder.add_child(sprite);
-#				sprite.position = Vector2(84, 84);
-#				sprite = Sprite.new();
-#				sprite.name = "Pictogram2";
-#				sprite.texture = preload("res://assets/heavy_goal_tutorial.png");
-#				actorsfolder.add_child(sprite);
-#				sprite.position = Vector2(84, 84+24);
-#			2:
-#				virtualbuttons.get_node("Verbs/MetaUndoButton").visible = false;
-#				tutoriallabel.rect_position.y -= 24;
-#				tutoriallabel.bbcode_text = "$MOVE: Move [color=#FF7459]Heavy[/color]\n$SWAP: Swap [color=#7FC9FF]To Light[/color]\n$UNDO: Rewind [color=#FF7459]Heavy[/color]\n$RESTART: Restart";
-#			3:
-#				virtualbuttons.get_node("Verbs/MetaUndoButton").visible = false;
-#				tutoriallabel.rect_position.y -= 24;
-#				tutoriallabel.bbcode_text = "$SWAP: Swap [color=#7FC9FF]To Light[/color]\n$UNDO: Rewind [color=#FF7459]Heavy[/color]\n$RESTART: Restart";
-#			4:
-#				virtualbuttons.get_node("Verbs/MetaUndoButton").visible = false;
-#				tutoriallabel.rect_position.y -= 24;
-#				tutoriallabel.bbcode_text = "$UNDO: Rewind [color=#FF7459]Heavy[/color]\n$RESTART: Restart";
-#			5:
-#				virtualbuttons.get_node("Verbs/MetaUndoButton").visible = false;
-#				tutoriallabel.rect_position.y -= 24;
-#				tutoriallabel.bbcode_text = "$UNDO: Rewind [color=#FF7459]Heavy[/color]\n$RESTART: Restart";
-#			6:
-#				tutoriallabel.rect_position.y -= 48;
-#				tutoriallabel.bbcode_text = "$META-UNDO: [color=#A9F05F]Undo[/color]\n$RESTART: Restart\n([color=#A9F05F]Undo[/color] undoes your last Move or Rewind.)";
-#			7:
-#				tutoriallabel.rect_position.y -= 48;
-#				tutoriallabel.bbcode_text = "$META-UNDO: [color=#A9F05F]Undo[/color]\n$RESTART: Restart\n(If you Restart by mistake, you can [color=#A9F05F]Undo[/color] that too!)";
-#		tutoriallabel.bbcode_text = "[center]" + tutoriallabel.bbcode_text + "[/center]";
-#		translate_tutorial_inputs();
-#
-#	if level_name == "Snake Pit":
-#		tutoriallabel.visible = true;
-#		tutoriallabel.rect_position = Vector2(0, 69);
-#		tutoriallabel.rect_position.y -= 48;
-#		tutoriallabel.bbcode_text = "[center]Visualize your current attempt as a Replay:\n$TOGGLE-REPLAY: Toggle Replay\nAlso, you can make Checkpoints by doing:\nCtrl+C: Copy Replay\nCtrl+V: Paste Replay[/center]";
-#		translate_tutorial_inputs();
+	if (tutoriallabel.visible):
+		tutoriallabel.bbcode_text = "";
+		if z_shown and !z_used:
+			tutoriallabel.bbcode_text += human_readable_input("character_undo") + ": [color=#CF6A4F]Undo[/color]\n"
+		if x_shown and !x_used:
+			tutoriallabel.bbcode_text += human_readable_input("character_unwin") + ": [color=#E0B94A]Unwin[/color]\n"
+		if c_shown and !c_used:
+			tutoriallabel.bbcode_text += "\n" + human_readable_input("meta_undo") + ": [color=#B2AF5C]Really Undo[/color]"
 		
 func translate_tutorial_inputs() -> void:
 	if tutoriallabel.visible:
@@ -1873,6 +1780,9 @@ func character_undo(is_silent: bool = false) -> bool:
 	
 	append_replay("z");
 	
+	if (z_shown):
+		z_used = true;
+	
 	if anything_happened_char(false):
 		adjust_turn(false, 1, Chrono.MOVE);
 	if anything_happened_char(true):
@@ -1906,6 +1816,12 @@ func character_unwin(is_silent: bool = false) -> bool:
 	time_passes(chrono);
 
 	append_replay("x");
+	
+	if (x_shown):
+		x_used = true;
+		if (!c_shown):
+			c_shown = true;
+			show_button(virtualbuttons.get_node("Verbs/MetaUndoButton"));
 	
 	if anything_happened_char(false):
 		adjust_turn(false, 1, Chrono.MOVE);
@@ -2151,6 +2067,13 @@ func meta_undo(is_silent: bool = false) -> bool:
 	
 	end_lose();
 	finish_animations(Chrono.MOVE);
+	
+	if (!c_shown):
+		c_shown = true;
+		show_button(virtualbuttons.get_node("Verbs/MetaUndoButton"));
+	c_used = true;
+	if (z_used and x_used):
+		tutoriallabel.visible = false;
 
 	var events = meta_undo_buffer.pop_back();
 	for event in events:
@@ -2410,6 +2333,9 @@ func character_move(dir: Vector2) -> bool:
 	if (result != Success.Yes):
 		play_sound("bump")
 	if (result != Success.No):
+		if (!z_shown):
+			show_button(virtualbuttons.get_node("Verbs/UndoButton"));
+			z_shown = true;
 		adjust_meta_turn(1, Chrono.MOVE);
 	return result != Success.No;
 
@@ -2466,6 +2392,11 @@ func time_passes(chrono: int) -> void:
 				# 'it's a blue event' will be handled inside of set_actor_var.
 				actor.post_mortem = Actor.PostMortems.Collect;
 				set_actor_var(actor, "broken", true, chrono);
+				
+				if (!x_shown):
+					x_shown = true;
+					show_button(virtualbuttons.get_node("Verbs/UnwinButton"));
+				
 				# Melt all surrounding ice.
 				# Notably this happens at Chrono.MOVE speed so it can't be 'forgotten'.
 				# ... Actually that might be a problem after all. Hmm.
@@ -3135,6 +3066,8 @@ func load_custom_level(custom: String) -> void:
 	var level = deserialize_custom_level(custom);
 	if level == null:
 		return;
+	
+	tutorial_complete();
 	
 	is_custom = true;
 	custom_string = custom;

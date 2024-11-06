@@ -4,7 +4,8 @@ class_name SparkleSpawner
 var sparkle_timer = 0;
 var sparkle_timer_max = 0.1;
 var end = 1;
-var color = Color(1, 1, 1, 1);
+var color = Color("DBC1AF");
+onready var gamelogic = get_tree().get_root().find_node("LevelScene", true, false).gamelogic;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -17,7 +18,10 @@ func _process(delta: float) -> void:
 		var sprite = Sprite.new();
 		sprite.set_script(preload("res://FadingSprite.gd"));
 		sprite.texture = preload("res://assets/Sparkle.png")
-		sprite.position = parent.offset + Vector2(parent.gamelogic.rng.randf_range(-12, 12), parent.gamelogic.rng.randf_range(-12, 12));
+		if (parent is Control):
+			sprite.position = parent.rect_size / 2 + Vector2(gamelogic.rng.randf_range(-12, 12), gamelogic.rng.randf_range(-12, 12));
+		else:
+			sprite.position = parent.offset + Vector2(gamelogic.rng.randf_range(-12, 12), gamelogic.rng.randf_range(-12, 12));
 		sprite.frame = 0;
 		sprite.centered = true;
 		sprite.scale = Vector2(0.25, 0.25);

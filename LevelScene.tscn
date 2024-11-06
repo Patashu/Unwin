@@ -180,11 +180,11 @@ custom_constants/shadow_offset_x = 0
 text = ">>"
 
 [node name="VirtualButtons" type="Node2D" parent="."]
-visible = false
 
 [node name="Verbs" type="Node2D" parent="VirtualButtons"]
 
 [node name="UndoButton" type="Button" parent="VirtualButtons/Verbs"]
+visible = false
 margin_left = 7.0
 margin_top = 273.0
 margin_right = 30.0
@@ -205,6 +205,7 @@ custom_constants/shadow_offset_x = 0
 text = "Z"
 
 [node name="UnwinButton" type="Button" parent="VirtualButtons/Verbs"]
+visible = false
 margin_left = 35.0
 margin_top = 273.0
 margin_right = 58.0
@@ -225,6 +226,7 @@ custom_constants/shadow_offset_x = 0
 text = "X"
 
 [node name="MetaUndoButton" type="Button" parent="VirtualButtons/Verbs"]
+visible = false
 margin_left = 63.0
 margin_top = 273.0
 margin_right = 86.0
@@ -246,6 +248,7 @@ custom_constants/shadow_offset_x = 0
 text = "C"
 
 [node name="MetaRedoButton" type="Button" parent="VirtualButtons/Verbs"]
+visible = false
 margin_left = 63.0
 margin_top = 245.0
 margin_right = 86.0
@@ -370,23 +373,16 @@ visible = false
 script = ExtResource( 40 )
 
 [node name="TutorialLabel" type="RichTextLabel" parent="."]
-visible = false
-margin_left = 1.0
-margin_top = 69.0
-margin_right = 513.0
-margin_bottom = 229.0
+margin_left = 90.0
+margin_top = 265.0
+margin_right = 222.0
+margin_bottom = 309.0
 theme = ExtResource( 2 )
 custom_colors/default_color = Color( 0.952941, 0.733333, 0.588235, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
 custom_fonts/normal_font = ExtResource( 39 )
 bbcode_enabled = true
-bbcode_text = "[center]Arrows: Move Character
-X: Swap Character
-Z: Undo Character[/center]"
-text = "Arrows: Move Character
-X: Swap Character
-Z: Undo Character"
 
 [node name="MetaInfoLabel" type="Label" parent="."]
 margin_top = 271.0
