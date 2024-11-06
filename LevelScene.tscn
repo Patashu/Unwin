@@ -274,7 +274,7 @@ margin_left = 8.0
 margin_top = 6.0
 margin_right = 16.0
 margin_bottom = 17.0
-custom_colors/font_color = Color( 0.662745, 0.941176, 0.372549, 1 )
+custom_colors/font_color = Color( 0.698039, 0.686275, 0.360784, 1 )
 custom_constants/shadow_offset_x = 0
 text = "Y"
 
@@ -385,6 +385,7 @@ custom_fonts/normal_font = ExtResource( 39 )
 bbcode_enabled = true
 
 [node name="MetaInfoLabel" type="Label" parent="."]
+visible = false
 margin_right = 511.0
 margin_bottom = 14.0
 theme = ExtResource( 2 )

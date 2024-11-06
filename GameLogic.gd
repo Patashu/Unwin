@@ -972,6 +972,7 @@ func tutorial_complete() -> void:
 	x_used = true;
 	c_used = true;
 	tutoriallabel.visible = false;
+	metainfolabel.visible = true;
 
 func show_button(button: Button) -> void:
 	if (!button.visible):
@@ -2074,6 +2075,7 @@ func meta_undo(is_silent: bool = false) -> bool:
 	c_used = true;
 	if (z_used and x_used):
 		tutoriallabel.visible = false;
+		metainfolabel.visible = true;
 
 	var events = meta_undo_buffer.pop_back();
 	for event in events:
@@ -2694,7 +2696,7 @@ func update_info_labels() -> void:
 	
 	metaredobutton.visible = meta_redo_inputs != "";
 
-	metainfolabel.text = "Turn: " + str(red_turn) + " | Stars: " + str(blue_turn) + " | Inputs: " + str(meta_turn);
+	metainfolabel.text = "Turn: " + str(red_turn) + " | Inputs: " + str(meta_turn);
 	
 	if (doing_replay):
 		replaybuttons.visible = true;
