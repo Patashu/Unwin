@@ -84,6 +84,7 @@ enum Undo {
 	blue_undo_event_remove, #7
 	animation_substep, #8
 	change_terrain, #9
+	sfx, #10
 }
 
 # and same for animations
@@ -1365,7 +1366,9 @@ is_move: bool = false, can_push: bool = true) -> int:
 		var temp = wants_to_move_again.duplicate();
 		wants_to_move_again.clear();
 		for w in temp:
+			# slide and unslide sfx - it's conveniently its own reverse
 			add_to_animation_server(w, [Anim.sfx, "slide"]);
+			add_undo_event([Undo.sfx, w, "slide"], chrono);
 			var r = move_actor_relative(w, temp[w], chrono, hypothetical, false, pushers_list);
 			
 	return result;
@@ -1939,6 +1942,10 @@ func undo_one_event(event: Array, chrono : int) -> void:
 			var old_tile = event[4];
 			var new_tile = event[5];
 			maybe_change_terrain(actor, pos, layer, false, false, chrono, old_tile, new_tile);
+		Undo.sfx:
+			var actor = event[1];
+			var sfx = event[2];
+			add_to_animation_server(actor, [Anim.sfx, sfx]);
 	
 	match event[0]:
 		Undo.red_turn:
