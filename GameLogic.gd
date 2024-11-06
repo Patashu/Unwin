@@ -2395,6 +2395,7 @@ func authors_replay() -> void:
 		voidlike_puzzle = true;
 	
 func toggle_replay() -> void:
+	tutorial_complete();
 	meta_undo_a_restart_mode = false;
 	unit_test_mode = false;
 	if (doing_replay):
