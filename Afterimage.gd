@@ -5,6 +5,7 @@ var timer_max = 0.5;
 var actor = null;
 var texture = null;
 var material_temp = null;
+var velocity = Vector2.ZERO;
 
 func initialize(actor: Sprite, undo_color: Color) -> void:
 	self.actor = actor;
@@ -29,6 +30,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (velocity != Vector2.ZERO):
+		position += velocity * delta;
 	timer += delta;
 	if timer > timer_max:
 		queue_free();

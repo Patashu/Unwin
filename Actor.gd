@@ -76,7 +76,8 @@ func get_next_texture() -> Texture:
 			if broken:
 				return null;
 			else:
-				return preload("res://assets/ice_block.png");
+				frame = 0;
+				return preload("res://assets/ice_melt_spritesheet.png");
 		
 	return null;
 
@@ -89,8 +90,11 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 	self.texture = tex;
 	
 	frame_timer = 0;
-	frame = 0;
+	#frame = 0;
 	match texture:
+		preload("res://assets/ice_melt_spritesheet.png"):
+			hframes = 8;
+			vframes = 1;
 		preload("res://assets/player_spritesheet.png"):
 			hframes = 4;
 			vframes = 3;
@@ -206,6 +210,69 @@ func _process(delta: float) -> void:
 			6: #stall
 				animation_timer_max = current_animation[1];
 				animation_timer += delta;
+				if (animation_timer > animation_timer_max):
+					is_done = true;
+				else:
+					is_done = false;
+			7: #melt
+				if (animation_timer == 0):
+					gamelogic.play_sound("melt");
+				animation_timer_max = 0.4;
+				var old_animation_timer_tick = int(animation_timer*10);
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*10);
+				if (old_animation_timer_tick != new_animation_timer_tick):
+					for i in range(3):
+						var sprite = Sprite.new();
+						sprite.set_script(preload("res://FadingSprite.gd"));
+						if (gamelogic.rng.randi_range(0, 1) == 1):
+							sprite.texture = preload("res://assets/ice_melt_spritesheet.png")
+							sprite.hframes = 8;
+							sprite.vframes = 1;
+							sprite.frame = 5;
+							sprite.fadeout_timer_max = 0.4;
+							sprite.velocity = Vector2(gamelogic.rng.randf_range(16, 32), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
+						else:
+							sprite.texture = preload("res://assets/dust.png")
+							sprite.hframes = 8;
+							sprite.vframes = 1;
+							sprite.frame = gamelogic.rng.randi_range(0, sprite.hframes - 1);
+							sprite.fadeout_timer_max = 0.8;
+							sprite.velocity = Vector2(0, -gamelogic.rng.randf_range(16, 32)).rotated(gamelogic.rng.randf_range(-0.5, 0.5));
+						sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+						sprite.centered = true;
+						gamelogic.overactorsparticles.add_child(sprite);
+				frame = round((animation_timer / animation_timer_max)*(hframes-1)); #or floor or ceil
+				if (animation_timer > animation_timer_max):
+					is_done = true;
+				else:
+					is_done = false;
+			8: #unmelt
+				# since it's currently invisible due to being 'broken'
+				texture = preload("res://assets/ice_melt_spritesheet.png");
+				visible = true;
+				if (animation_timer == 0):
+					gamelogic.play_sound("unmelt");
+				animation_timer_max = 0.4;
+				var old_animation_timer_tick = int(animation_timer*10);
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*10);
+				if (old_animation_timer_tick != new_animation_timer_tick):
+					for i in range(3):
+						var sprite = null;
+						if (gamelogic.rng.randi_range(0, 1) == 1):
+							sprite = gamelogic.afterimage_terrain(preload("res://assets/ice_melt_spritesheet.png"), position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2), gamelogic.red_color);
+							if (sprite != null):
+								var child = sprite.get_child(0);
+								child.centered = true;
+								child.hframes = 8;
+								child.vframes = 1;
+								child.frame = 5;
+								sprite.timer_max = 0.4;
+								sprite.velocity = Vector2(gamelogic.rng.randf_range(16, 32), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
+								sprite.position -= sprite.velocity*sprite.timer_max;
+				frame = round((animation_timer / animation_timer_max)*(hframes-1)); #or floor or ceil
+				frame = (hframes-1)-frame;
 				if (animation_timer > animation_timer_max):
 					is_done = true;
 				else:

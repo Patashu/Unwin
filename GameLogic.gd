@@ -89,13 +89,15 @@ enum Undo {
 
 # and same for animations
 enum Anim {
-	move,
-	bump,
-	set_next_texture,
-	sfx,
-	afterimage_at,
-	fade,
-	stall,
+	move, #0
+	bump, #1
+	set_next_texture, #2
+	sfx, #3
+	afterimage_at, #4
+	fade, #5
+	stall, #6
+	melt, #7
+	unmelt, #8
 }
 
 enum Greenness {
@@ -1664,9 +1666,9 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 				add_to_animation_server(actor, [Anim.sfx, "unfall"]);
 		elif actor.post_mortem == Actor.PostMortems.Melt:
 			if (value == true):
-				add_to_animation_server(actor, [Anim.sfx, "melt"]);
+				add_to_animation_server(actor, [Anim.melt]);
 			else:
-				add_to_animation_server(actor, [Anim.sfx, "unmelt"]);
+				add_to_animation_server(actor, [Anim.unmelt]);
 	
 	add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
 	
@@ -2823,14 +2825,15 @@ func afterimage(actor: Actor) -> void:
 	afterimage.set_material(get_afterimage_material_for(undo_effect_color));
 	underactorsparticles.add_child(afterimage);
 	
-func afterimage_terrain(texture: Texture, position: Vector2, color: Color) -> void:
+func afterimage_terrain(texture: Texture, position: Vector2, color: Color) -> Node2D:
 	if (currently_fast_replay()):
-		return;
+		return null;
 	var afterimage = preload("res://Afterimage.tscn").instance();
 	afterimage.texture = texture;
 	afterimage.position = position;
 	afterimage.set_material(get_afterimage_material_for(color));
 	overactorsparticles.add_child(afterimage);
+	return afterimage;
 		
 func last_level_of_section() -> bool:
 	var chapter_standard_starting_level = chapter_standard_starting_levels[chapter+1];
