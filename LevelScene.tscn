@@ -64,6 +64,18 @@ texture = ExtResource( 7 )
 centered = false
 script = ExtResource( 38 )
 
+[node name="TutorialLabel" type="RichTextLabel" parent="."]
+margin_left = 90.0
+margin_top = 265.0
+margin_right = 222.0
+margin_bottom = 309.0
+theme = ExtResource( 2 )
+custom_colors/default_color = Color( 0.952941, 0.733333, 0.588235, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+custom_fonts/normal_font = ExtResource( 39 )
+bbcode_enabled = true
+
 [node name="ReplayButtons" type="Node2D" parent="."]
 visible = false
 
@@ -371,18 +383,6 @@ centered = false
 [node name="WinLabel" type="Node2D" parent="."]
 visible = false
 script = ExtResource( 40 )
-
-[node name="TutorialLabel" type="RichTextLabel" parent="."]
-margin_left = 90.0
-margin_top = 265.0
-margin_right = 222.0
-margin_bottom = 309.0
-theme = ExtResource( 2 )
-custom_colors/default_color = Color( 0.952941, 0.733333, 0.588235, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 1
-custom_fonts/normal_font = ExtResource( 39 )
-bbcode_enabled = true
 
 [node name="MetaInfoLabel" type="Label" parent="."]
 visible = false
