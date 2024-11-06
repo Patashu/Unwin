@@ -1229,85 +1229,32 @@ func prepare_audio() -> void:
 	# TODO: I could automate this if I can iterate the folder
 	# TODO: replace this with an enum and assert on startup like tiles
 	
-	#used
-	sounds["abysschime"] = preload("res://sfx/abysschime.ogg");
-	sounds["bluefire"] = preload("res://sfx/bluefire.ogg");
-	sounds["bootup"] = preload("res://sfx/bootup.ogg");
-	sounds["broken"] = preload("res://sfx/broken.ogg");
-	sounds["bump"] = preload("res://sfx/bump.ogg");
-	sounds["bumper"] = preload("res://sfx/bumper.ogg");
-	sounds["continuum"] = preload("res://sfx/continuum.ogg");
-	sounds["eclipse"] = preload("res://sfx/eclipse.ogg");
-	sounds["exception"] = preload("res://sfx/exception.ogg");
-	sounds["fall"] = preload("res://sfx/fall.ogg");
-	sounds["fence"] = preload("res://sfx/fence.ogg");
-	sounds["fuzz"] = preload("res://sfx/fuzz.ogg");
-	sounds["greenfire"] = preload("res://sfx/greenfire.ogg");
-	sounds["greentimecrystal"] = preload("res://sfx/greentimecrystal.ogg");
-	sounds["heavycoyote"] = preload("res://sfx/heavycoyote.ogg");
-	sounds["heavyland"] = preload("res://sfx/heavyland.ogg");
-	sounds["heavystep"] = preload("res://sfx/heavystep.ogg");
-	sounds["heavyuncoyote"] = preload("res://sfx/heavyuncoyote.ogg");
-	sounds["heavyunland"] = preload("res://sfx/heavyunland.ogg");
-	sounds["infloop"] = preload("res://sfx/infloop.ogg");
-	sounds["involuntarybump"] = preload("res://sfx/involuntarybump.ogg");
-	sounds["involuntarybumplight"] = preload("res://sfx/involuntarybumplight.ogg");
+	#new SFX
+	sounds["crashland"] = preload("res://sfx/crashland.ogg");
+	sounds["melt"] = preload("res://sfx/melt.ogg");
+	sounds["plummet"] = preload("res://sfx/plummet.ogg");
+	sounds["slide"] = preload("res://sfx/slide.ogg");
+	sounds["starget"] = preload("res://sfx/starget.ogg");
+	sounds["unmelt"] = preload("res://sfx/unmelt.ogg");
+	sounds["unwin"] = preload("res://sfx/unwin.ogg");
+	
+	#old SFX still in use (afaik
 	sounds["involuntarybumpother"] = preload("res://sfx/involuntarybumpother.ogg");
-	sounds["lightcoyote"] = preload("res://sfx/lightcoyote.ogg");
-	sounds["lightland"] = preload("res://sfx/lightland.ogg");
-	sounds["lightstep"] = preload("res://sfx/lightstep.ogg");
-	sounds["lightuncoyote"] = preload("res://sfx/lightuncoyote.ogg");
-	sounds["lightunland"] = preload("res://sfx/lightunland.ogg");
-	sounds["lose"] = preload("res://sfx/lose.ogg");
-	sounds["magentatimecrystal"] = preload("res://sfx/magentatimecrystal.ogg");
+	sounds["winentwined"] = preload("res://sfx/winentwined.ogg");
+	sounds["bump"] = preload("res://sfx/bump.ogg");
+	sounds["bootup"] = preload("res://sfx/bootup.ogg");
+	sounds["unpush"] = preload("res://sfx/unpush.ogg");
+	sounds["push"] = preload("res://sfx/push.ogg");
+	sounds["unfall"] = preload("res://sfx/unfall.ogg");
+	sounds["undostrong"] = preload("res://sfx/undostrong.ogg");
 	sounds["metaredo"] = preload("res://sfx/metaredo.ogg");
 	sounds["metarestart"] = preload("res://sfx/metarestart.ogg");
 	sounds["metaundo"] = preload("res://sfx/metaundo.ogg");
-	sounds["onemillionyears"] = preload("res://sfx/onemillionyears.ogg");
-	sounds["push"] = preload("res://sfx/push.ogg");
-	sounds["redfire"] = preload("res://sfx/redfire.ogg");
-	sounds["rewindnoticed"] = preload("res://sfx/rewindnoticed.ogg");
-	sounds["rewindstopped"] = preload("res://sfx/rewindstopped.ogg");
-	sounds["remembertimecrystal"] = preload("res://sfx/remembertimecrystal.ogg");
-	sounds["restart"] = preload("res://sfx/restart.ogg");	
-	sounds["shatter"] = preload("res://sfx/shatter.ogg");
-	sounds["shroud"] = preload("res://sfx/shroud.ogg");
-	sounds["singularity"] = preload("res://sfx/singularity.ogg");
-	sounds["spotlight"] = preload("res://sfx/spotlight.ogg");
-	sounds["switch"] = preload("res://sfx/switch.ogg");
-	sounds["switch2"] = preload("res://sfx/switch2.ogg");
-	sounds["thejourneybegins"] = preload("res://sfx/thejourneybegins.ogg");
-	sounds["tick"] = preload("res://sfx/tick.ogg");
-	sounds["timesup"] = preload("res://sfx/timesup.ogg");
-	sounds["unbroken"] = preload("res://sfx/unbroken.ogg");
-	sounds["undostrong"] = preload("res://sfx/undostrong.ogg");
-	sounds["unfall"] = preload("res://sfx/unfall.ogg");
-	sounds["unlock"] = preload("res://sfx/unlock.ogg");
-	sounds["unpush"] = preload("res://sfx/unpush.ogg");
-	sounds["unshatter"] = preload("res://sfx/unshatter.ogg");
-	sounds["untick"] = preload("res://sfx/untick.ogg");
-	sounds["usegreenality"] = preload("res://sfx/usegreenality.ogg");
+	sounds["restart"] = preload("res://sfx/restart.ogg");
+	sounds["heavystep"] = preload("res://sfx/heavystep.ogg");
 	sounds["voidundo"] = preload("res://sfx/voidundo.ogg");
-	sounds["winentwined"] = preload("res://sfx/winentwined.ogg");
-	sounds["winbadtime"] = preload("res://sfx/winbadtime.ogg");
-	
-	#used only in cutscenes
-	sounds["noodling"] = preload("res://sfx/noodling.ogg");
-	sounds["alert"] = preload("res://sfx/alert.ogg");
-	sounds["alert2"] = preload("res://sfx/alert2.ogg");
-	sounds["alert3"] = preload("res://sfx/alert3.ogg");
-	sounds["intothewarp"] = preload("res://sfx/intothewarp.ogg");
-	sounds["getgreenality"] = preload("res://sfx/getgreenality.ogg");
-	sounds["fixit1"] = preload("res://sfx/fixit1.ogg");
-	sounds["fixit2"] = preload("res://sfx/fixit2.ogg");
-	sounds["fixit3"] = preload("res://sfx/fixit3.ogg");
-	sounds["fixit4"] = preload("res://sfx/fixit4.ogg");
-	sounds["helixfixed"] = preload("res://sfx/helixfixed.ogg");
-	
-	#unused except by custom elements
-	sounds["step"] = preload("res://sfx/step.ogg"); #replaced by heavystep, now used by nudge
-	sounds["undo"] = preload("res://sfx/undo.ogg"); #actually used by checkpoint but it should be a different sfx
-	
+	sounds["switch"] = preload("res://sfx/switch.ogg");
+
 #	music_tracks.append(preload("res://music/New Bounds.ogg"));
 #	music_info.append("Patashu - New Bounds");
 #	music_db.append(0.30);
@@ -1317,7 +1264,7 @@ func prepare_audio() -> void:
 		self.add_child(speaker);
 		speakers.append(speaker);
 	lost_speaker = AudioStreamPlayer.new();
-	lost_speaker.stream = sounds["lose"];
+	#lost_speaker.stream = sounds["lose"];
 	lost_speaker_volume_tween = Tween.new();
 	self.add_child(lost_speaker_volume_tween);
 	self.add_child(lost_speaker);
@@ -1418,7 +1365,8 @@ is_move: bool = false, can_push: bool = true) -> int:
 		var temp = wants_to_move_again.duplicate();
 		wants_to_move_again.clear();
 		for w in temp:
-			move_actor_relative(w, temp[w], chrono, hypothetical, false, pushers_list);
+			add_to_animation_server(w, [Anim.sfx, "slide"]);
+			var r = move_actor_relative(w, temp[w], chrono, hypothetical, false, pushers_list);
 			
 	return result;
 
@@ -1703,19 +1651,19 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 			is_winunwin = true;
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
-				add_to_animation_server(actor, [Anim.sfx, "greentimecrystal"]);
+				add_to_animation_server(actor, [Anim.sfx, "starget"]);
 			else:
-				add_to_animation_server(actor, [Anim.sfx, "magentatimecrystal"]);
+				add_to_animation_server(actor, [Anim.sfx, "unwin"]);
 		elif actor.post_mortem == Actor.PostMortems.Fall:
 			if (value == true):
-				add_to_animation_server(actor, [Anim.sfx, "fall"]);
+				add_to_animation_server(actor, [Anim.sfx, "plummet"]);
 			else:
 				add_to_animation_server(actor, [Anim.sfx, "unfall"]);
 		elif actor.post_mortem == Actor.PostMortems.Melt:
 			if (value == true):
-				add_to_animation_server(actor, [Anim.sfx, "greenfire"]);
+				add_to_animation_server(actor, [Anim.sfx, "melt"]);
 			else:
-				add_to_animation_server(actor, [Anim.sfx, "redfire"]);
+				add_to_animation_server(actor, [Anim.sfx, "unmelt"]);
 	
 	add_undo_event([Undo.set_actor_var, actor, prop, old_value, value], chrono_for_maybe_green_actor(actor, chrono), is_winunwin);
 	
