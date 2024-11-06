@@ -258,7 +258,7 @@ func _process(delta: float) -> void:
 				animation_timer += delta;
 				var new_animation_timer_tick = int(animation_timer*10);
 				if (old_animation_timer_tick != new_animation_timer_tick):
-					for i in range(3):
+					for i in range(4):
 						var sprite = null;
 						if (gamelogic.rng.randi_range(0, 1) == 1):
 							sprite = gamelogic.afterimage_terrain(preload("res://assets/ice_melt_spritesheet.png"), position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2), gamelogic.red_color);
@@ -267,7 +267,7 @@ func _process(delta: float) -> void:
 								child.centered = true;
 								child.hframes = 8;
 								child.vframes = 1;
-								child.frame = 5;
+								child.frame = 4;
 								sprite.timer_max = 0.4;
 								sprite.velocity = Vector2(gamelogic.rng.randf_range(16, 32), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
 								sprite.position -= sprite.velocity*sprite.timer_max;
