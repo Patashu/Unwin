@@ -23,6 +23,9 @@ var facing_dir : Vector2 = Vector2.DOWN;
 var frame_timer : float = 0.0;
 var frame_timer_max : float = 0.1;
 var moving : Vector2 = Vector2.ZERO;
+var blink_timer = 0.0;
+var blink_timer_max = 2.0;
+var double_blinking = false;
 # transient multi-push/multi-fall state:
 # basically, things that move become non-colliding until the end of the multi-push/fall tick they're
 # a part of, so other things that shared their tile can move with them
@@ -147,15 +150,29 @@ func _process(delta: float) -> void:
 				animation_frame += 1;
 				if (animation_frame >= hframes):
 					animation_frame = 0;
+					
+			# brittle logic for ping pong that'll break if hframes changes from 4
+			# actually it might be OK???
+			var adjusted_frame = animation_frame;
+			if (adjusted_frame == 0):
+				adjusted_frame = 2;
+			frame = base_frame + animation_frame;
 		else:
 			animation_frame = 0;
 			frame = base_frame;
-			# brittle logic for ping pong that'll break if hframes changes from 4
-			# actually it might be OK???
-		var adjusted_frame = animation_frame;
-		if (adjusted_frame == 0):
-			adjusted_frame = 2;
-		frame = base_frame + animation_frame;
+			# blinking logic
+			blink_timer += delta;
+			if (blink_timer > blink_timer_max):
+				blink_timer = 0;
+				if (!double_blinking and gamelogic.rng.randf_range(0.0, 1.0) < 0.2):
+					blink_timer_max = 0.2;
+					double_blinking = true;
+				else:
+					double_blinking = false;
+					blink_timer_max = gamelogic.rng.randf_range(1.5, 2.5);
+			elif (blink_timer_max - blink_timer < 0.1):
+				frame += 4;
+			
 	elif actorname == Name.IceBlock:
 		if moving != Vector2.ZERO:
 			frame_timer_max = 0.033;
