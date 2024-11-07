@@ -98,6 +98,8 @@ enum Anim {
 	stall, #6
 	melt, #7
 	unmelt, #8
+	starget, #9
+	starunget, #10
 }
 
 enum Greenness {
@@ -1656,9 +1658,9 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 			is_winunwin = true;
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
-				add_to_animation_server(actor, [Anim.sfx, "starget"]);
+				add_to_animation_server(actor, [Anim.starget]);
 			else:
-				add_to_animation_server(actor, [Anim.sfx, "unwin"]);
+				add_to_animation_server(actor, [Anim.starunget]);
 		elif actor.post_mortem == Actor.PostMortems.Fall:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.sfx, "plummet"]);
@@ -2731,7 +2733,7 @@ func update_animation_server(skip_globals: bool = false) -> void:
 		else:
 			animation[0].animations.push_back(animation[1]);
 
-func floating_text(text: String) -> void:
+func floating_text(text: String, reverse: bool = false) -> void:
 	if (!ready_done):
 		return
 	var label = preload("res://FloatingText.tscn").instance();
@@ -2744,6 +2746,10 @@ func floating_text(text: String) -> void:
 	label.rect_size.x = pixel_width;
 	label.rect_position.y = pixel_height/2-16 + 8*existing_labels;
 	label.text = text;
+	if (reverse):
+		label.rect_position.y -= 60;
+		label.reversed = true;
+		label.modulate = Color(1, 1, 1, 0);
 
 func is_valid_replay(replay: String) -> bool:
 	var replay_parts = replay.split("$");

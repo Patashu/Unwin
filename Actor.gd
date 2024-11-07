@@ -61,10 +61,7 @@ func get_next_texture() -> Texture:
 				return preload("res://assets/player_spritesheet.png");
 		
 		Name.Star:
-			if broken:
-				return preload("res://assets/star_broken.png");
-			else:
-				return preload("res://assets/star.png");
+			return preload("res://assets/star_spritesheet.png");
 		
 		Name.DirtBlock:
 			if broken:
@@ -92,6 +89,13 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 	frame_timer = 0;
 	#frame = 0;
 	match texture:
+		preload("res://assets/star_spritesheet.png"):
+			hframes = 6;
+			vframes = 1;
+			if (broken):
+				frame = 3;
+			else:
+				frame = 0;
 		preload("res://assets/ice_melt_spritesheet.png"):
 			hframes = 8;
 			vframes = 1;
@@ -290,6 +294,95 @@ func _process(delta: float) -> void:
 				frame = clamp(round((animation_timer / animation_timer_max)*(hframes-1)), 0, hframes - 1); #or floor or ceil
 				frame = (hframes-1)-frame;
 				if (animation_timer > animation_timer_max):
+					is_done = true;
+				else:
+					is_done = false;
+			9: #starget
+				var c = Color("E0B94A");
+				if (animation_timer == 0 and !gamelogic.currently_fast_replay()):
+					gamelogic.play_sound("starget");
+					var sparklespawner = Node2D.new();
+					sparklespawner.script = preload("res://SparkleSpawner.gd");
+					sparklespawner.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+					gamelogic.overactorsparticles.add_child(sparklespawner);
+					sparklespawner.color = c;
+					gamelogic.undo_effect_strength = 0.12;
+					gamelogic.undo_effect_per_second = 0.12;
+					gamelogic.undo_effect_color = c;
+					gamelogic.floating_text("You got a Star!");
+				animation_timer_max = 1.0;
+				var old_animation_timer_tick = int(animation_timer*5);
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*5);
+				if (old_animation_timer_tick != new_animation_timer_tick):
+					for i in range(2):
+						var sprite = Sprite.new();
+						sprite.set_script(preload("res://FadingSprite.gd"));
+						if (i == 0):
+							sprite.texture = preload("res://assets/star_particle_smaller.png")
+							sprite.modulate = c;
+							sprite.fadeout_timer_max = 1.6;
+							sprite.velocity = Vector2(gamelogic.rng.randf_range(8, 16), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
+							sprite.rotation = gamelogic.rng.randf_range(0, PI*2);
+						else:
+							sprite.texture = preload("res://assets/action_line.png")
+							sprite.modulate = c;
+							sprite.fadeout_timer_max = 1.6;
+							sprite.rotation = gamelogic.rng.randf_range(0, PI*2);
+							sprite.velocity = Vector2(0, -gamelogic.rng.randf_range(8, 16)).rotated(sprite.rotation);
+							sprite.scale = Vector2(2.0, 2.0);
+						sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+						sprite.position += sprite.velocity;
+						sprite.centered = true;
+						gamelogic.overactorsparticles.add_child(sprite);
+				frame = clamp(round((animation_timer / animation_timer_max)*3), 0, 3);
+				if (animation_timer > animation_timer_max):
+					frame = 3;
+					is_done = true;
+				else:
+					is_done = false;
+				
+			10: #starunget
+				var c = Color("A7A79E");
+				if (animation_timer == 0 and !gamelogic.currently_fast_replay()):
+					gamelogic.play_sound("unwin");
+					var sparklespawner = Node2D.new();
+					sparklespawner.script = preload("res://SparkleSpawner.gd");
+					sparklespawner.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+					gamelogic.overactorsparticles.add_child(sparklespawner);
+					sparklespawner.color = c;
+					gamelogic.undo_effect_strength = 0.12;
+					gamelogic.undo_effect_per_second = 0.12;
+					gamelogic.undo_effect_color = c;
+					gamelogic.floating_text("You got a Star!", true);
+				animation_timer_max = 1.0;
+				var old_animation_timer_tick = int(animation_timer*5);
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*5);
+				if (old_animation_timer_tick != new_animation_timer_tick):
+					for i in range(2):
+						var sprite = Sprite.new();
+						sprite.set_script(preload("res://FadingSprite.gd"));
+						if (i == 0):
+							sprite.texture = preload("res://assets/star_particle_smaller.png")
+							sprite.modulate = c;
+							sprite.fadeout_timer_max = 1.6;
+							sprite.velocity = Vector2(gamelogic.rng.randf_range(8, 16), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
+							sprite.rotation = gamelogic.rng.randf_range(0, PI*2);
+						else:
+							sprite.texture = preload("res://assets/action_line.png")
+							sprite.modulate = c;
+							sprite.fadeout_timer_max = 1.6;
+							sprite.rotation = gamelogic.rng.randf_range(0, PI*2);
+							sprite.velocity = Vector2(0, -gamelogic.rng.randf_range(8, 16)).rotated(sprite.rotation);
+							sprite.scale = Vector2(2.0, 2.0);
+						sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+						sprite.position -= sprite.velocity*2;
+						sprite.centered = true;
+						gamelogic.overactorsparticles.add_child(sprite);
+				frame = clamp(3 + round((animation_timer / animation_timer_max)*2), 3, 5);
+				if (animation_timer > animation_timer_max):
+					frame = 0;
 					is_done = true;
 				else:
 					is_done = false;
