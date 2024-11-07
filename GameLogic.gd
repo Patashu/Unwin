@@ -248,6 +248,9 @@ var save_file_string : String = "user://unwin.sav";
 
 var is_web : bool = false;
 
+var starticipation_timer : float = 0.0;
+var starticipation_timer_max : float = 1.0;
+
 # tutorial system
 var z_shown : bool = false;
 var z_used : bool = false;
@@ -3267,7 +3270,27 @@ func _process(delta: float) -> void:
 	if (fanfare_duck_db < 0):
 		fanfare_duck_db = 0;
 	music_speaker.volume_db = music_speaker.volume_db - fanfare_duck_db;
-		
+	
+	#starticipation - most recently unwon star(s) sparkle subtly
+	starticipation_timer += delta;
+	if (starticipation_timer > starticipation_timer_max):
+		starticipation_timer -= starticipation_timer_max;
+		if (blue_turn > 0):
+			var buffer = blue_undo_buffer[blue_turn - 1];
+			for event in buffer:
+				if event[0] == Undo.set_actor_var:
+					var star = event[1];
+					var c = Color("E0B94A");
+					# one sparkle, slightly different position logic
+					var sprite = Sprite.new();
+					sprite.set_script(preload("res://FadingSprite.gd"));
+					sprite.texture = preload("res://assets/Sparkle.png")
+					sprite.position = star.offset + Vector2(rng.randf_range(-6, 6), rng.randf_range(-6, 6));
+					sprite.centered = true;
+					sprite.scale = Vector2(0.25, 0.25);
+					sprite.modulate = c;
+					star.add_child(sprite)
+	
 	if (sky_timer < sky_timer_max):
 		sky_timer += delta;
 		if (sky_timer > sky_timer_max):
