@@ -1154,6 +1154,9 @@ func make_shadows() -> void:
 func make_actors() -> void:
 	voidlike_puzzle = false;
 	
+	# find goals and goal-ify them
+	find_goals();
+	
 	var where_are_actors = {};
 	
 	#stars first, so they draw behind the player on the same layer
@@ -1190,6 +1193,23 @@ func make_actors() -> void:
 	# crates
 	extract_actors(Tiles.DirtBlock, Actor.Name.DirtBlock, Heaviness.IRON, Strength.WOODEN, false);
 	extract_actors(Tiles.IceBlock, Actor.Name.IceBlock, Heaviness.IRON, Strength.WOODEN, false);
+	
+func find_goals() -> void:
+	var layers = get_used_cells_by_id_all_layers(Tiles.Win);
+	for i in range(layers.size()):
+		var goal_tiles = layers[i];
+		for tile in goal_tiles:
+			var goal = Goal.new();
+			goal.gamelogic = self;
+			goal.actorname = Actor.Name.Goal;
+			goal.texture = preload("res://assets/win.png");
+			goal.centered = true;
+			goal.pos = tile;
+			goal.position = terrainmap.map_to_world(goal.pos) + Vector2(cell_size/2, cell_size/2);
+			goal.starbar = starbar;
+			goals.append(goal);
+			add_actor_or_goal_at_appropriate_layer(goal, i);
+			goal.update_graphics();
 	
 func add_actor_or_goal_at_appropriate_layer(thing: ActorBase, i: int) -> void:
 	terrain_layers[i].add_child(thing);
@@ -1688,10 +1708,14 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 				starbar.star_unget();
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
+				for goal in goals:
+					add_to_animation_server(goal, [Anim.starget]);
 				add_to_animation_server(actor, [Anim.starget]);
 				add_to_animation_server(player, [Anim.stall, 0.8*Engine.time_scale]);
 				add_to_animation_server(player, [Anim.sing]);
 			else:
+				for goal in goals:
+					add_to_animation_server(goal, [Anim.starunget]);
 				add_to_animation_server(actor, [Anim.starunget]);
 				add_to_animation_server(player, [Anim.sing]);
 		elif actor.post_mortem == Actor.PostMortems.Fall:

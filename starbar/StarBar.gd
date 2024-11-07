@@ -6,8 +6,10 @@ class_name StarBar
 # var b: String = "text"
 var slots: Array = [];
 var collected = 0;
+var collected_max = 0;
 
 func initialize(num: int) -> void:
+	collected_max = num;
 	collected = 0;
 	for slot in slots:
 		slot.queue_free();

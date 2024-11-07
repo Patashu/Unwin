@@ -48,6 +48,7 @@ enum Name {
 	Star,
 	DirtBlock,
 	IceBlock,
+	Goal,
 }
 
 func update_graphics() -> void:
