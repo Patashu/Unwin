@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://DefaultTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://DefaultTheme.tres" type="Theme" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/tutorial_arrows/RightArrow.tres" type="Texture" id=10]
 [ext_resource path="res://FadeIn.gd" type="Script" id=11]
 [ext_resource path="res://meta_styleboxtexture.tres" type="StyleBox" id=12]
+[ext_resource path="res://starbar/StarBar.gd" type="Script" id=13]
 [ext_resource path="res://Shade.gd" type="Script" id=36]
 [ext_resource path="res://assets/checkerboard.png" type="Texture" id=37]
 [ext_resource path="res://StarSprite.gd" type="Script" id=38]
@@ -63,6 +64,10 @@ modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 7 )
 centered = false
 script = ExtResource( 38 )
+
+[node name="StarBar" type="Node2D" parent="."]
+position = Vector2( 502, 10 )
+script = ExtResource( 13 )
 
 [node name="TutorialLabel" type="RichTextLabel" parent="."]
 margin_left = 90.0
@@ -385,9 +390,9 @@ visible = false
 script = ExtResource( 40 )
 
 [node name="MetaInfoLabel" type="Label" parent="."]
-visible = false
+margin_top = 18.0
 margin_right = 511.0
-margin_bottom = 14.0
+margin_bottom = 32.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.698039, 0.686275, 0.360784, 1 )
 text = "Meta"

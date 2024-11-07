@@ -149,6 +149,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://SparkleSpawner.gd"
 }, {
+"base": "Node2D",
+"class": "StarBar",
+"language": "GDScript",
+"path": "res://starbar/StarBar.gd"
+}, {
+"base": "Sprite",
+"class": "StarBarSlot",
+"language": "GDScript",
+"path": "res://starbar/StarBarSlot.gd"
+}, {
 "base": "Sprite",
 "class": "StarSprite",
 "language": "GDScript",
@@ -193,6 +203,8 @@ _global_script_class_icons={
 "Settings": "",
 "Shade": "",
 "SparkleSpawner": "",
+"StarBar": "",
+"StarBarSlot": "",
 "StarSprite": "",
 "SuperScaling": "",
 "WaitForDraw": ""

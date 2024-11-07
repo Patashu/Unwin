@@ -338,17 +338,18 @@ func _process(delta: float) -> void:
 					is_done = false;
 			9: #starget
 				var c = Color("E0B94A");
-				if (animation_timer == 0 and !gamelogic.currently_fast_replay()):
-					gamelogic.play_sound("starget");
-					var sparklespawner = Node2D.new();
-					sparklespawner.script = preload("res://SparkleSpawner.gd");
-					sparklespawner.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
-					gamelogic.overactorsparticles.add_child(sparklespawner);
-					sparklespawner.color = c;
-					gamelogic.undo_effect_strength = 0.12;
-					gamelogic.undo_effect_per_second = 0.12;
-					gamelogic.undo_effect_color = c;
-					gamelogic.floating_text("You got a Star!");
+				if (animation_timer == 0):
+					if (!gamelogic.currently_fast_replay()):
+						gamelogic.play_sound("starget");
+						var sparklespawner = Node2D.new();
+						sparklespawner.script = preload("res://SparkleSpawner.gd");
+						sparklespawner.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+						gamelogic.overactorsparticles.add_child(sparklespawner);
+						sparklespawner.color = c;
+						gamelogic.undo_effect_strength = 0.12;
+						gamelogic.undo_effect_per_second = 0.12;
+						gamelogic.undo_effect_color = c;
+						gamelogic.floating_text("You got a Star!");
 				animation_timer_max = 1.0;
 				var old_animation_timer_tick = int(animation_timer*5);
 				animation_timer += delta;
@@ -383,17 +384,18 @@ func _process(delta: float) -> void:
 				
 			10: #starunget
 				var c = Color("A7A79E");
-				if (animation_timer == 0 and !gamelogic.currently_fast_replay()):
-					gamelogic.play_sound("unwin");
-					var sparklespawner = Node2D.new();
-					sparklespawner.script = preload("res://SparkleSpawner.gd");
-					sparklespawner.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
-					gamelogic.overactorsparticles.add_child(sparklespawner);
-					sparklespawner.color = c;
-					gamelogic.undo_effect_strength = 0.12;
-					gamelogic.undo_effect_per_second = 0.12;
-					gamelogic.undo_effect_color = c;
-					gamelogic.floating_text("You got a Star!", true);
+				if (animation_timer == 0):
+					if (!gamelogic.currently_fast_replay()):
+						gamelogic.play_sound("unwin");
+						var sparklespawner = Node2D.new();
+						sparklespawner.script = preload("res://SparkleSpawner.gd");
+						sparklespawner.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+						gamelogic.overactorsparticles.add_child(sparklespawner);
+						sparklespawner.color = c;
+						gamelogic.undo_effect_strength = 0.12;
+						gamelogic.undo_effect_per_second = 0.12;
+						gamelogic.undo_effect_color = c;
+						gamelogic.floating_text("You got a Star!", true);
 				animation_timer_max = 1.0;
 				var old_animation_timer_tick = int(animation_timer*5);
 				animation_timer += delta;

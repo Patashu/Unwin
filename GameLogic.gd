@@ -11,6 +11,7 @@ onready var underactorsparticles : Node2D = levelscene.get_node("UnderActorsPart
 onready var menubutton : Button = levelscene.get_node("MenuButton");
 onready var levellabel : Label = levelscene.get_node("LevelLabel");
 onready var levelstar : Sprite = levelscene.get_node("LevelStar");
+onready var starbar : StarBar = levelscene.get_node("StarBar");
 onready var winlabel : Node2D = levelscene.get_node("WinLabel");
 onready var metainfolabel : Label = levelscene.get_node("MetaInfoLabel");
 onready var tutoriallabel : RichTextLabel = levelscene.get_node("TutorialLabel");
@@ -965,6 +966,8 @@ func ready_map() -> void:
 	make_shadows();
 	make_actors();
 	
+	initialize_starbar();
+	
 	finish_animations(Chrono.TIMELESS);
 	update_info_labels();
 	check_won(Chrono.TIMELESS);
@@ -972,6 +975,16 @@ func ready_map() -> void:
 	ready_tutorial();
 	update_level_label();
 	intro_hop();
+
+func initialize_starbar() -> void:
+	if (ready_done):
+		var num_stars = 0;
+		for actor in actors:
+			if actor.actorname == Actor.Name.Star:
+				num_stars += 1;
+		starbar.initialize(num_stars);
+	else:
+		call_deferred("initialize_starbar");
 
 func intro_hop() -> void:
 	pass
@@ -1667,8 +1680,12 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 	if (prop == "broken"):
 		# for now, uncollecting a star is not is_winunwin, because there's no way to non-retro do it.
 		# TODO: I think we actually check is_retro, but I need star revival to care about this first
-		if (actor.actorname == Actor.Name.Star and value == true):
-			is_winunwin = true;
+		if (actor.actorname == Actor.Name.Star):
+			if (value == true):
+				starbar.star_get();
+				is_winunwin = true;
+			else:
+				starbar.star_unget();
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.starget]);
@@ -2059,6 +2076,7 @@ func meta_undo(is_silent: bool = false) -> bool:
 		cut_sound();
 		play_sound("metaundo");
 	just_did_meta();
+	starbar.finish_animations();
 	adjust_meta_turn(-1, Chrono.META_UNDO);
 	var result = meta_undo_replay();
 	preserving_meta_redo_inputs = false;
