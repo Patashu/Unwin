@@ -22,7 +22,7 @@ var facing_dir : Vector2 = Vector2.DOWN;
 # animated sprites logic
 var frame_timer : float = 0.0;
 var frame_timer_max : float = 0.1;
-var moving = false;
+var moving : Vector2 = Vector2.ZERO;
 # transient multi-push/multi-fall state:
 # basically, things that move become non-colliding until the end of the multi-push/fall tick they're
 # a part of, so other things that shared their tile can move with them
@@ -136,7 +136,7 @@ func afterimage() -> void:
 func _process(delta: float) -> void:
 	#animated sprites
 	if actorname == Name.Player:
-		if moving:
+		if moving != Vector2.ZERO:
 			frame_timer += delta;
 			if (frame_timer > frame_timer_max):
 				frame_timer -= frame_timer_max;
@@ -151,15 +151,31 @@ func _process(delta: float) -> void:
 		if (adjusted_frame == 0):
 			adjusted_frame = 2;
 		frame = base_frame + animation_frame;
+	elif actorname == Name.IceBlock:
+		if moving != Vector2.ZERO:
+			frame_timer_max = 0.033;
+			frame_timer += delta;
+			if (frame_timer > frame_timer_max):
+				frame_timer -= frame_timer_max;
+				# spawn an ice puff
+				var sprite = Sprite.new();
+				sprite.set_script(preload("res://FadingSprite.gd"));
+				sprite.texture = preload("res://assets/pixel.png");
+				sprite.fadeout_timer_max = 0.8;
+				sprite.velocity = (-moving*gamelogic.rng.randf_range(8, 16)).rotated(gamelogic.rng.randf_range(-0.5, 0.5));
+				sprite.position = position + Vector2(gamelogic.rng.randf_range(gamelogic.cell_size*1/4, gamelogic.cell_size*3/4), gamelogic.rng.randf_range(gamelogic.cell_size*1/4, gamelogic.cell_size*3/4));
+				sprite.centered = true;
+				sprite.scale = Vector2(2, 2);
+				gamelogic.overactorsparticles.add_child(sprite);
 	
 	# animation system stuff
-	moving = false;
+	moving = Vector2.ZERO;
 	if (animations.size() > 0):
 		var current_animation = animations[0];
 		var is_done = true;
 		match current_animation[0]:
 			0: #move
-				moving = true;
+				moving = current_animation[1];
 				# afterimage if it was a retro move
 				if (animation_timer == 0):
 					pass
