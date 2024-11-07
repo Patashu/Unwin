@@ -1423,7 +1423,7 @@ is_move: bool = false, can_push: bool = true) -> int:
 	elif (success != Success.Yes):
 		if (!hypothetical):
 			# involuntary bump sfx (atm this plays when an ice block slide ends)
-			if (pushers_list.size() > 0 or is_retro):
+			if (actor.actorname == Actor.Name.IceBlock or is_retro):
 				add_to_animation_server(actor, [Anim.sfx, "involuntarybumpother"], false);
 		# bump animation always happens, I think?
 		# unlike in Entwined Time, let's try NOT adding the bump at the start
