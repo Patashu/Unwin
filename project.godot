@@ -158,6 +158,11 @@ _global_script_classes=[ {
 "class": "SuperScaling",
 "language": "GDScript",
 "path": "res://SuperScaling/SuperScaling.gd"
+}, {
+"base": "Node2D",
+"class": "WaitForDraw",
+"language": "GDScript",
+"path": "res://WaitForDraw.gd"
 } ]
 _global_script_class_icons={
 "AccessibleSpinBox": "",
@@ -189,7 +194,8 @@ _global_script_class_icons={
 "Shade": "",
 "SparkleSpawner": "",
 "StarSprite": "",
-"SuperScaling": ""
+"SuperScaling": "",
+"WaitForDraw": ""
 }
 
 [application]

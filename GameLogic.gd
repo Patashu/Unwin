@@ -341,6 +341,12 @@ func _ready() -> void:
 	load_level(0);
 	ready_done = true;
 	
+	var timetostart = Node2D.new();
+	timetostart.script = preload("res://WaitForDraw.gd");
+	timetostart.gamelogic = self;
+	self.get_parent().call_deferred("add_child", timetostart);
+
+func time_to_start() -> void:
 	play_sound("bootup");
 	fadeout_timer = 0.0;
 	fadeout_timer_max = 2.5;

@@ -18,8 +18,8 @@ func _draw():
 		draw_rect(Rect2(0, 0, gamelogic.pixel_width, gamelogic.pixel_height), color, true);
 	gamelogic.undo_effect_strength -= gamelogic.undo_effect_per_second*last_delta;
 	
-	if (gamelogic.currently_fast_replay()):
-		return;
+	#if (gamelogic.currently_fast_replay()):
+	#	return;
 	
 	# directional input debugger
 #	var color_l = Color(1, 0, 0);
