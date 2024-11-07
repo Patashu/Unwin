@@ -156,7 +156,7 @@ func _process(delta: float) -> void:
 			var adjusted_frame = animation_frame;
 			if (adjusted_frame == 0):
 				adjusted_frame = 2;
-			frame = base_frame + animation_frame;
+			frame = base_frame + adjusted_frame;
 		else:
 			animation_frame = 0;
 			frame = base_frame;
