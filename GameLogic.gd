@@ -1427,6 +1427,9 @@ is_move: bool = false, can_push: bool = true) -> int:
 			add_to_animation_server(actor, [Anim.sfx, "unpush"]);
 		if (was_push and !is_retro):
 			add_to_animation_server(actor, [Anim.sfx, "push"]);
+			# dirty hack - we would really rather have some way to send this information to their Anim.move event
+			if (pushers_list.has(player)):
+				player.exerting = true;
 		
 		add_to_animation_server(actor, [Anim.move, dir, is_retro]);
 
@@ -1601,7 +1604,7 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 		for actor_there in pushables_there:
 			# Strength Rule
 			if !strength_check(actor.strength + strength_modifier, actor_there.heaviness):
-				pushers_list.pop_front();
+				pushers_list.pop_back();
 				return Success.No;
 		var result = Success.Yes;
 
@@ -1610,7 +1613,7 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 		for actor_there in pushables_there:
 			var actor_there_result = move_actor_relative(actor_there, dir, chrono, true, false, pushers_list);
 			if actor_there_result == Success.No:
-				pushers_list.pop_front();
+				pushers_list.pop_back();
 				return Success.No;
 			if actor_there_result == Success.Surprise:
 				result = Success.Surprise;
@@ -1628,7 +1631,7 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 				#for actor_there in pushables_there:
 				#	actor_there.just_moved = false;
 		
-		pushers_list.pop_front();
+		pushers_list.pop_back();
 		
 		return result;
 	
