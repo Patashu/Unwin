@@ -100,6 +100,7 @@ enum Anim {
 	unmelt, #8
 	starget, #9
 	starunget, #10
+	sing, #11
 }
 
 enum Greenness {
@@ -1671,8 +1672,11 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.starget]);
+				add_to_animation_server(player, [Anim.stall, 0.8]);
+				add_to_animation_server(player, [Anim.sing]);
 			else:
 				add_to_animation_server(actor, [Anim.starunget]);
+				add_to_animation_server(player, [Anim.sing]);
 		elif actor.post_mortem == Actor.PostMortems.Fall:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.sfx, "plummet"]);

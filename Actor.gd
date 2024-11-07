@@ -425,6 +425,31 @@ func _process(delta: float) -> void:
 					is_done = true;
 				else:
 					is_done = false;
+			11: #sing
+				animation_timer_max = 1.0;
+				var old_animation_timer_tick = int(animation_timer*5);
+				var old_animation_timer = animation_timer;
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*5);
+				if (old_animation_timer == 0 or old_animation_timer_tick != new_animation_timer_tick):
+					var sprite = Sprite.new();
+					sprite.set_script(preload("res://FadingSprite.gd"));
+					sprite.texture = preload("res://assets/note_particle.png")
+					sprite.hframes = 2;
+					sprite.vframes = 1;
+					sprite.frame = gamelogic.rng.randi_range(0, sprite.hframes - 1);
+					sprite.fadeout_timer_max = 0.8;
+					sprite.velocity = Vector2(0, -gamelogic.rng.randf_range(16, 32)).rotated(gamelogic.rng.randf_range(-0.5, 0.5));
+					sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+					sprite.position += sprite.velocity*0.4;
+					sprite.centered = true;
+					gamelogic.overactorsparticles.add_child(sprite);
+				if animation_timer > animation_timer_max:
+					is_done = true;
+				else:
+					is_done = false;
+					var adjusted_frame = 5 + new_animation_timer_tick % 2;
+					frame = base_frame + adjusted_frame;
 		if (is_done):
 			animations.pop_front();
 			animation_timer = 0;
