@@ -1689,7 +1689,7 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
 				add_to_animation_server(actor, [Anim.starget]);
-				add_to_animation_server(player, [Anim.stall, 0.8]);
+				add_to_animation_server(player, [Anim.stall, 0.8*Engine.time_scale]);
 				add_to_animation_server(player, [Anim.sing]);
 			else:
 				add_to_animation_server(actor, [Anim.starunget]);
