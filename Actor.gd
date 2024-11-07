@@ -100,7 +100,7 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 			hframes = 8;
 			vframes = 1;
 		preload("res://assets/player_spritesheet.png"):
-			hframes = 4;
+			hframes = 10;
 			vframes = 3;
 			frame_timer_max = 0.033;
 			match (facing_dir_at_the_time):
@@ -108,13 +108,13 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 					frame = 0;
 					flip_h = false;
 				Vector2.UP:
-					frame = 4;
+					frame = hframes;
 					flip_h = false;
 				Vector2.LEFT:
-					frame = 8;
+					frame = hframes*2;
 					flip_h = true;
 				Vector2.RIGHT:
-					frame = 8;
+					frame = hframes*2;
 					flip_h = false;
 			base_frame = frame;
 			animation_frame = 0;
@@ -151,6 +151,7 @@ func _process(delta: float) -> void:
 			animation_frame = 0;
 			frame = base_frame;
 			# brittle logic for ping pong that'll break if hframes changes from 4
+			# actually it might be OK???
 		var adjusted_frame = animation_frame;
 		if (adjusted_frame == 0):
 			adjusted_frame = 2;
