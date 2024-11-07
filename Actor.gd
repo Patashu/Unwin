@@ -444,7 +444,11 @@ func _process(delta: float) -> void:
 					sprite.velocity = Vector2(0, -gamelogic.rng.randf_range(16, 32)).rotated(gamelogic.rng.randf_range(-0.5, 0.5));
 					sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
 					sprite.position += sprite.velocity*0.4;
+					sprite.position.x += gamelogic.rng.randf_range(-8, 8);
 					sprite.centered = true;
+					sprite.sine_mult = 7.0;
+					sprite.sine_offset = 3.0;
+					sprite.sine_timer = gamelogic.rng.randf_range(0.0, 100.0);
 					gamelogic.overactorsparticles.add_child(sprite);
 				if animation_timer > animation_timer_max:
 					is_done = true;
