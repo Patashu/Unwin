@@ -242,7 +242,7 @@ func _process(delta: float) -> void:
 						sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
 						sprite.centered = true;
 						gamelogic.overactorsparticles.add_child(sprite);
-				frame = round((animation_timer / animation_timer_max)*(hframes-1)); #or floor or ceil
+				frame = clamp(round((animation_timer / animation_timer_max)*(hframes-1)), 0, hframes - 1); #or floor or ceil
 				if (animation_timer > animation_timer_max):
 					is_done = true;
 				else:
@@ -271,7 +271,7 @@ func _process(delta: float) -> void:
 								sprite.timer_max = 0.4;
 								sprite.velocity = Vector2(gamelogic.rng.randf_range(16, 32), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
 								sprite.position -= sprite.velocity*sprite.timer_max;
-				frame = round((animation_timer / animation_timer_max)*(hframes-1)); #or floor or ceil
+				frame = clamp(round((animation_timer / animation_timer_max)*(hframes-1)), 0, hframes - 1); #or floor or ceil
 				frame = (hframes-1)-frame;
 				if (animation_timer > animation_timer_max):
 					is_done = true;
