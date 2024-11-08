@@ -103,6 +103,7 @@ enum Anim {
 	starunget, #10
 	sing, #11
 	fall, #12
+	intro, #13
 }
 
 enum Greenness {
@@ -992,7 +993,13 @@ func initialize_starbar() -> void:
 		call_deferred("initialize_starbar");
 
 func intro_hop() -> void:
-	pass
+	if (!ready_done):
+		player.texture = null;
+		add_to_animation_server(player, [Anim.stall, 0.5]);
+		add_to_animation_server(player, [Anim.intro, 2.0]);
+		add_to_animation_server(player, [Anim.sing]);
+	else:
+		add_to_animation_server(player, [Anim.intro, 0.5]);
 
 func tutorial_complete() -> void:
 	show_button(virtualbuttons.get_node("Verbs/UndoButton"))
@@ -2192,7 +2199,7 @@ func restart(_is_silent: bool = false) -> void:
 	play_sound("restart");
 	undo_effect_strength = 0.3;
 	undo_effect_per_second = undo_effect_strength*(1/0.5);
-	finish_animations(Chrono.TIMELESS);
+	#finish_animations(Chrono.TIMELESS);
 	undo_effect_color = meta_color;
 	
 func escape() -> void:
@@ -2811,8 +2818,6 @@ func update_animation_server(skip_globals: bool = false) -> void:
 			if (lost):
 				fade_in_lost();
 			add_to_animation_server(player, [Anim.fade, 1.0, 0.0, 3.0]);
-			#add_to_animation_server(heavy_actor, [Anim.intro_hop]);
-			#add_to_animation_server(light_actor, [Anim.intro_hop]);
 		return;
 	
 	# we found new animations - give them to everyone at once
