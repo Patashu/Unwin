@@ -104,6 +104,7 @@ enum Anim {
 	sing, #11
 	fall, #12
 	intro, #13
+	outro, #14
 }
 
 enum Greenness {
@@ -1298,6 +1299,7 @@ func prepare_audio() -> void:
 	sounds["goalclosing"] = preload("res://sfx/goalclosing.ogg");
 	sounds["goalopening"] = preload("res://sfx/goalopening.ogg");
 	sounds["melt"] = preload("res://sfx/melt.ogg");
+	sounds["outro"] = preload("res://sfx/outro.ogg");
 	sounds["plummet"] = preload("res://sfx/plummet.ogg");
 	sounds["slide"] = preload("res://sfx/slide.ogg");
 	sounds["starget"] = preload("res://sfx/starget.ogg");
@@ -1306,7 +1308,6 @@ func prepare_audio() -> void:
 	
 	#old SFX still in use (afaik
 	sounds["involuntarybumpother"] = preload("res://sfx/involuntarybumpother.ogg");
-	sounds["winentwined"] = preload("res://sfx/winentwined.ogg");
 	sounds["bump"] = preload("res://sfx/bump.ogg");
 	sounds["bootup"] = preload("res://sfx/bootup.ogg");
 	sounds["unpush"] = preload("res://sfx/unpush.ogg");
@@ -1949,7 +1950,7 @@ func check_won(chrono: int) -> void:
 					custom_string = custom_string.replace(annotated_authors_replay, level_info.level_replay);
 				floating_text("Test successful, recorded replay!");
 		if (won == true and !doing_replay):
-			play_won("winentwined");
+			play_won("outro");
 			var levels_save_data = save_file["levels"];
 			if (!levels_save_data.has(level_name)):
 				levels_save_data[level_name] = {};
@@ -2817,7 +2818,11 @@ func update_animation_server(skip_globals: bool = false) -> void:
 			won_fade_started = true;
 			if (lost):
 				fade_in_lost();
-			add_to_animation_server(player, [Anim.fade, 1.0, 0.0, 3.0]);
+				add_to_animation_server(player, [Anim.fade, 1.0, 0.0, 3.0]);
+			else:
+				Shade.on = true;
+				add_to_animation_server(player, [Anim.sing]);
+				add_to_animation_server(player, [Anim.outro, 2.2]);
 		return;
 	
 	# we found new animations - give them to everyone at once

@@ -544,6 +544,43 @@ func _process(delta: float) -> void:
 					update_graphics();
 				else:
 					is_done = false;
+			14: #outro
+				#same code as intro but with anim reversed
+				# also have to set base_frame to 0 to not interfere
+				facing_dir = Vector2.RIGHT;
+				base_frame = 0;
+				animation_frame = 0;
+				self.texture = preload("res://assets/intro_spritesheet.png");
+				self.hframes = 17;
+				self.vframes = 1;
+				animation_timer_max = current_animation[1];
+				var old_animation_timer_tick = int(animation_timer*10);
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*10);
+				if (old_animation_timer_tick != new_animation_timer_tick):
+					var sprite = Sprite.new();
+					sprite.set_script(preload("res://FadingSprite.gd"));
+					sprite.texture = preload("res://assets/intro_particle.png")
+					sprite.hframes = 3;
+					sprite.vframes = 1;
+					sprite.frame = gamelogic.rng.randi_range(0, sprite.hframes - 1);
+					sprite.fadeout_timer_max = 0.8;
+					sprite.velocity = Vector2(0, -gamelogic.rng.randf_range(16, 32)).rotated(gamelogic.rng.randf_range(-0.5, 0.5));
+					sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+					sprite.position += sprite.velocity*0.4;
+					sprite.position.x += gamelogic.rng.randf_range(-8, 8);
+					sprite.position.y += ((animation_timer/animation_timer_max))*gamelogic.cell_size*2;
+					sprite.centered = true;
+					sprite.sine_mult = 7.0;
+					sprite.sine_offset = 3.0;
+					sprite.sine_timer = gamelogic.rng.randf_range(0.0, 100.0);
+					gamelogic.overactorsparticles.add_child(sprite);
+				self.frame = clamp(floor((1.0-animation_timer/animation_timer_max)*hframes), 0, hframes - 1);
+				if animation_timer > animation_timer_max:
+					is_done = true;
+					texture = null;
+				else:
+					is_done = false;
 		if (is_done):
 			animations.pop_front();
 			animation_timer = 0;
