@@ -134,6 +134,10 @@ enum Tiles {
 	CrackedStar,
 	DarkStar,
 	GreenAura,
+	OneWayWest,
+	OneWaySouth,
+	OneWayNorth,
+	OneWayEast,
 }
 
 # information about the level
@@ -1648,6 +1652,14 @@ func try_enter_terrain(actor: Actor, pos: Vector2, chrono: int) -> int:
 		match id:
 			Tiles.Wall:
 				result = Success.No;
+			Tiles.OneWaySouth:
+				result = no_if_true_yes_if_false(pos.y < actor.pos.y);
+			Tiles.OneWayWest:
+				result = no_if_true_yes_if_false(pos.x > actor.pos.x);
+			Tiles.OneWayEast:
+				result = no_if_true_yes_if_false(pos.x < actor.pos.x);
+			Tiles.OneWayNorth:
+				result = no_if_true_yes_if_false(pos.y > actor.pos.y);
 			Tiles.Water:
 				result = no_if_true_yes_if_false(actor.actorname == Actor.Name.Player);
 			Tiles.Ice:
