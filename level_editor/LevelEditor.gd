@@ -476,7 +476,7 @@ func tooltip_for_tile(tile: int) -> String:
 		Tiles.Wall:
 			text = "Wall: Solid."
 		Tiles.Player:
-			text = "Player: As featured in the hit puzzle game 'Achronal Dungeon'."
+			text = "Player: I'll write some lore here later."
 		Tiles.Win:
 			text = "Win: If the Player is on Win and all Stars are collected: You win the puzzle."
 		Tiles.Star:
