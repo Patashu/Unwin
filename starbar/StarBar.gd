@@ -6,7 +6,7 @@ class_name StarBar
 # var b: String = "text"
 var slots: Array = [];
 var collected = 0;
-var collected_max = 0;
+var collected_max = 5;
 
 func initialize(num: int) -> void:
 	collected_max = num;

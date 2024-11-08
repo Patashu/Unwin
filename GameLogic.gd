@@ -1858,6 +1858,9 @@ func finish_animations(chrono: int) -> void:
 		for actor in actors:
 			actor.animation_timer = 0;
 			actor.animations.clear();
+		for actor in goals:
+			actor.animation_timer = 0;
+			actor.animations.clear();
 	else:
 		# new logic instead of clearing animations - run animations over and over until we're done
 		# this should get rid of all bugs of the form 'if an animation is skipped over some side effect never completes' 5ever
@@ -1868,12 +1871,19 @@ func finish_animations(chrono: int) -> void:
 					actor.animation_timer = 99;
 					actor._process(0);
 				actor.animation_timer = 0;
+			for actor in goals:
+				while (actor.animations.size() > 0):
+					actor.animation_timer = 99;
+					actor._process(0);
+				actor.animation_timer = 0;
 			if animation_server.size() <= 0:
 				break;
 			
 	for actor in actors:
 		actor.position = terrainmap.map_to_world(actor.pos);
 		actor.update_graphics();
+	for goal in goals:
+		goal.calculate_speed();
 	animation_server.clear();
 	animation_substep = 0;
 
