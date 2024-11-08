@@ -15,6 +15,9 @@ enum Tiles {
 	Water,
 	Ice,
 	MagicBarrier,
+	CrackedStar,
+	DarkStar,
+	GreenAura,
 }
 
 onready var gamelogic = get_tree().get_root().find_node("LevelScene", true, false).gamelogic;
@@ -127,6 +130,9 @@ func initialize_picker_array() -> void:
 	picker_array.append(Tiles.Water);
 	picker_array.append(Tiles.Ice);
 	picker_array.append(Tiles.MagicBarrier);
+	picker_array.append(Tiles.CrackedStar);
+	picker_array.append(Tiles.DarkStar);
+	picker_array.append(Tiles.GreenAura);
 	
 	for i in range(picker_array.size()):
 		var x = i % 21;
@@ -481,6 +487,12 @@ func tooltip_for_tile(tile: int) -> String:
 			text = "Ice: Solid to Blocks."
 		Tiles.MagicBarrier:
 			text = "Magic Barrier: Solid to Stars."
+		Tiles.CrackedStar:
+			text = "Cracked Star: A Star that does not create an Unwin event."
+		Tiles.DarkStar:
+			text = "Dark Star: A Star that prevents the player from Unwinning past where it was collected."
+		Tiles.GreenAura:
+			text = "Green: Colour. (Attaches to the first actor to enter or start in its tile it can modify.) Immune to Undo events."
 	return text;
 	
 func picker_tooltip() -> void:

@@ -10,7 +10,7 @@ var post_mortem : int = -1;
 var strength : int = 0
 var heaviness : int = 0
 var durability : int = 0
-var floats : bool = false
+var is_star : bool = false
 var is_character : bool = false
 # animation system logic
 var animation_timer : float = 0.0;
@@ -35,6 +35,9 @@ var movement_parity = false;
 # a part of, so other things that shared their tile can move with them
 var just_moved : bool = false;
 var fade_tween = null;
+# green
+var is_green = false;
+var time_bubble = null;
 
 enum PostMortems {
 	Fall,
@@ -49,6 +52,8 @@ enum Name {
 	DirtBlock,
 	IceBlock,
 	Goal,
+	CrackedStar,
+	DarkStar,
 }
 
 func update_graphics() -> void:
@@ -83,6 +88,18 @@ func get_next_texture() -> Texture:
 			else:
 				frame = 0;
 				return preload("res://assets/ice_melt_spritesheet.png");
+				
+		Name.CrackedStar:
+			if broken:
+				return null;
+			else:
+				return preload("res://assets/cracked_star.png");
+				
+		Name.DarkStar:
+			if broken:
+				return null;
+			else:
+				return preload("res://assets/dark_star.png");
 		
 	return null;
 
@@ -128,12 +145,10 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 			animation_frame = 0;
 
 func pushable(by_actor: Actor) -> bool:
-	if (self.actorname == Name.Star and by_actor.actorname == Name.Player):
+	if (is_star and by_actor.actorname == Name.Player):
 		return false;
-	# I accidentally deleted this code during cleanup. But it's slightly more interesting to leave it deleted...
-	# (it lets you split a stack of stars, and maybe stacks of crates will be interesting too?)
-	#if (just_moved):
-	#	return false;
+	if (just_moved):
+		return false;
 	return !broken;
 		
 func phases_into_terrain() -> bool:
@@ -144,6 +159,19 @@ func phases_into_actors() -> bool:
 
 func afterimage() -> void:
 	gamelogic.afterimage(self);
+	
+func update_time_bubble():
+	if time_bubble != null:
+		time_bubble.queue_free();
+		time_bubble = null;
+	if is_green:
+		if (time_bubble == null):
+			time_bubble = Sprite.new();
+			time_bubble.set_script(preload("res://TimeBubble.gd"));
+			time_bubble.texture = preload("res://assets/time_bubble.png");
+			time_bubble.centered = true;
+			time_bubble.position = Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+			self.add_child(time_bubble);
 
 func _process(delta: float) -> void:
 	#animated sprites
@@ -377,9 +405,11 @@ func _process(delta: float) -> void:
 						sprite.position += sprite.velocity;
 						sprite.centered = true;
 						gamelogic.overactorsparticles.add_child(sprite);
-				frame = clamp(round((animation_timer / animation_timer_max)*3), 0, 3);
+				if (self.actorname == Name.Star):
+					frame = clamp(round((animation_timer / animation_timer_max)*3), 0, 3);
 				if (animation_timer > animation_timer_max):
-					frame = 3;
+					if (self.actorname == Name.Star):
+						frame = 3;
 					is_done = true;
 				else:
 					is_done = false;
@@ -423,9 +453,11 @@ func _process(delta: float) -> void:
 						sprite.position -= sprite.velocity*2;
 						sprite.centered = true;
 						gamelogic.overactorsparticles.add_child(sprite);
-				frame = clamp(3 + round((animation_timer / animation_timer_max)*2), 3, 5);
+				if (self.actorname == Name.Star):
+					frame = clamp(3 + round((animation_timer / animation_timer_max)*2), 3, 5);
 				if (animation_timer > animation_timer_max):
-					frame = 0;
+					if (self.actorname == Name.Star):
+						frame = 0;
 					is_done = true;
 				else:
 					is_done = false;
@@ -599,6 +631,12 @@ func _process(delta: float) -> void:
 					texture = null;
 				else:
 					is_done = false;
+			15: #time_bubble
+				update_time_bubble();
+				gamelogic.play_sound("usegreenality");
+				gamelogic.undo_effect_strength = 0.4;
+				gamelogic.undo_effect_per_second = gamelogic.undo_effect_strength*(1);
+				gamelogic.undo_effect_color = gamelogic.meta_color;
 		if (is_done):
 			animations.pop_front();
 			animation_timer = 0;

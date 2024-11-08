@@ -86,6 +86,7 @@ enum Undo {
 	animation_substep, #8
 	change_terrain, #9
 	sfx, #10
+	time_bubble, #11
 }
 
 # and same for animations
@@ -105,6 +106,7 @@ enum Anim {
 	fall, #12
 	intro, #13
 	outro, #14
+	time_bubble, #15
 }
 
 enum Greenness {
@@ -129,6 +131,9 @@ enum Tiles {
 	Water,
 	Ice,
 	MagicBarrier,
+	CrackedStar,
+	DarkStar,
+	GreenAura,
 }
 
 # information about the level
@@ -988,7 +993,7 @@ func initialize_starbar() -> void:
 	if (ready_done):
 		var num_stars = 0;
 		for actor in actors:
-			if actor.actorname == Actor.Name.Star:
+			if actor.is_star:
 				num_stars += 1;
 		starbar.initialize(num_stars);
 	else:
@@ -1182,6 +1187,8 @@ func make_actors() -> void:
 	
 	#stars first, so they draw behind the player on the same layer
 	extract_actors(Tiles.Star, Actor.Name.Star, Heaviness.CRYSTAL, Strength.HEAVY, true);
+	extract_actors(Tiles.DarkStar, Actor.Name.DarkStar, Heaviness.CRYSTAL, Strength.HEAVY, true);
+	extract_actors(Tiles.CrackedStar, Actor.Name.CrackedStar, Heaviness.CRYSTAL, Strength.HEAVY, true);
 	
 	# find the player
 	player = null;
@@ -1215,6 +1222,8 @@ func make_actors() -> void:
 	extract_actors(Tiles.DirtBlock, Actor.Name.DirtBlock, Heaviness.IRON, Strength.WOODEN, false);
 	extract_actors(Tiles.IceBlock, Actor.Name.IceBlock, Heaviness.IRON, Strength.WOODEN, false);
 	
+	find_colours();
+	
 func find_goals() -> void:
 	var layers = get_used_cells_by_id_all_layers(Tiles.Win);
 	for i in range(layers.size()):
@@ -1241,7 +1250,7 @@ func add_actor_or_goal_at_appropriate_layer_at_back(thing: Node2D, i: int) -> vo
 	terrain_layers[i].add_child(thing);
 	terrain_layers[i].move_child(thing, 0);
 
-func extract_actors(id: int, actorname: int, heaviness: int, strength: int, floats: bool) -> void:
+func extract_actors(id: int, actorname: int, heaviness: int, strength: int, is_star: bool) -> void:
 	var layers_tiles = get_used_cells_by_id_all_layers(id);
 	var count = 0;
 	for i in range(layers_tiles.size()):
@@ -1251,9 +1260,23 @@ func extract_actors(id: int, actorname: int, heaviness: int, strength: int, floa
 			var actor = make_actor(actorname, tile, false, i);
 			actor.heaviness = heaviness;
 			actor.strength = strength;
-			actor.floats = floats;
+			actor.is_star = is_star;
 			actor.is_character = false;
 			actor.update_graphics();
+
+func find_colours() -> void:
+	var layers_tiles = get_used_cells_by_id_all_layers(Tiles.GreenAura);
+	for i in range(layers_tiles.size()):
+		var tiles = layers_tiles[i];
+		for tile in tiles:
+			var found = false;
+			# get first actor with the same pos and native colour and change their time_colour
+			for actor in actors:
+				if actor.pos == tile and !actor.is_green:
+					actor.is_green = true;
+					actor.update_time_bubble();
+					terrain_layers[i].set_cellv(tile, -1);
+					break;
 
 func calculate_map_size() -> void:
 	map_x_max = 0;
@@ -1317,6 +1340,7 @@ func prepare_audio() -> void:
 	#old SFX still in use (afaik
 	sounds["involuntarybumpother"] = preload("res://sfx/involuntarybumpother.ogg");
 	sounds["bump"] = preload("res://sfx/bump.ogg");
+	sounds["usegreenality"] = preload("res://sfx/usegreenality.ogg");
 	sounds["intro"] = preload("res://sfx/intro.ogg");
 	sounds["unpush"] = preload("res://sfx/unpush.ogg");
 	sounds["push"] = preload("res://sfx/push.ogg");
@@ -1482,6 +1506,20 @@ is_move: bool = false, can_push: bool = true) -> int:
 		
 		add_undo_event([Undo.move, actor, dir, was_push],
 		chrono_for_maybe_green_actor(actor, chrono));
+		
+		# green aura
+		
+		if (!actor.is_green and chrono < Chrono.META_UNDO):
+			var terrain = terrain_in_tile(actor.pos);
+			for i in range(terrain.size()):
+				var tile = terrain[i];
+				if (tile == Tiles.GreenAura):
+					actor.is_green = true;
+					add_undo_event([Undo.time_bubble, actor],
+						chrono_for_maybe_green_actor(actor, Chrono.CHAR_UNDO));
+					add_to_animation_server(actor, [Anim.time_bubble]);
+					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Green, chrono, -1);
+					break;
 
 		#do sound effects for special moves and their undoes
 		if (was_push and is_retro):
@@ -1528,6 +1566,10 @@ func terrain_in_tile(pos: Vector2, actor: Actor = null, chrono: int = Chrono.TIM
 	return result;
 
 func chrono_for_maybe_green_actor(actor: Actor, chrono: int) -> int:
+	if (chrono >= Chrono.META_UNDO):
+		return chrono;
+	if (actor.is_green):
+		return Chrono.CHAR_UNDO;
 	return chrono;
 
 func set_cellv_maybe_rotation(id: int, tile: Vector2, layer: int) -> void:
@@ -1609,9 +1651,9 @@ func try_enter_terrain(actor: Actor, pos: Vector2, chrono: int) -> int:
 			Tiles.Water:
 				result = no_if_true_yes_if_false(actor.actorname == Actor.Name.Player);
 			Tiles.Ice:
-				result = no_if_true_yes_if_false(actor.actorname != Actor.Name.Player && actor.actorname != Actor.Name.Star);
+				result = no_if_true_yes_if_false(actor.actorname != Actor.Name.Player && !actor.is_star);
 			Tiles.MagicBarrier:
-				result = no_if_true_yes_if_false(actor.actorname == Actor.Name.Star);
+				result = no_if_true_yes_if_false(actor.is_star);
 		if result != Success.Yes:
 			return result;
 	return result;
@@ -1683,12 +1725,11 @@ func try_enter(actor: Actor, dir: Vector2, chrono: int, can_push: bool, hypothet
 				for actor_there in surprises:
 					move_actor_relative(actor_there, dir, chrono, hypothetical, false, pushers_list);
 			else:
-				# Not using just_moved in Unwin, atm.
 				for actor_there in pushables_there:
-					#actor_there.just_moved = true;
+					actor_there.just_moved = true;
 					move_actor_relative(actor_there, dir, chrono, hypothetical, false, pushers_list);
-				#for actor_there in pushables_there:
-				#	actor_there.just_moved = false;
+				for actor_there in pushables_there:
+					actor_there.just_moved = false;
 		
 		pushers_list.pop_back();
 		
@@ -1734,12 +1775,16 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 	if (prop == "broken"):
 		# for now, uncollecting a star is not is_winunwin, because there's no way to non-retro do it.
 		# TODO: I think we actually check is_retro, but I need star revival to care about this first
-		if (actor.actorname == Actor.Name.Star):
+		if (actor.is_star):
 			if (value == true):
 				starbar.star_get();
 				is_winunwin = true;
 			else:
 				starbar.star_unget();
+			if (actor.actorname == Actor.Name.CrackedStar):
+				if chrono == Chrono.MOVE:
+					chrono = Chrono.CHAR_UNDO;
+					is_winunwin = false;
 		if actor.post_mortem == Actor.PostMortems.Collect:
 			if (value == true):
 				for goal in goals:
@@ -1853,6 +1898,15 @@ func character_unwin(is_silent: bool = false) -> bool:
 		if !is_silent:
 			play_sound("bump");
 		return false;
+		
+	# check for dark stars
+	for event in blue_undo_buffer[blue_turn - 1]:
+		if event[0] == Undo.set_actor_var and event[1].actorname == Actor.Name.DarkStar:
+			floating_text("Cannot Unwin a Dark Star.");
+			if !is_silent:
+				play_sound("bump");
+			return false;
+		
 	finish_animations(Chrono.CHAR_UNDO);
 	#the unwin itself
 	var events = blue_undo_buffer.pop_at(blue_turn - 1);
@@ -1942,7 +1996,7 @@ func check_won(chrono: int) -> void:
 	
 	#check stars
 	for actor in actors:
-		if actor.actorname == Actor.Name.Star and !actor.broken:
+		if actor.is_star and !actor.broken:
 			locked = true;
 			break;
 	
@@ -2038,12 +2092,14 @@ func undo_one_event(event: Array, chrono : int) -> void:
 			var actor = event[1];
 			var dir = event[2];
 			var was_push = event[3];
-			move_actor_relative(actor, -event[2], chrono, false, true, [], event[3]);
+			if (chrono >= Chrono.META_UNDO or !actor.is_green):
+				move_actor_relative(actor, -event[2], chrono, false, true, [], event[3]);
 		Undo.set_actor_var:
 			var actor = event[1];
 			var retro_old_value = event[4];
 			var is_retro = true;
-			set_actor_var(actor, event[2], event[3], chrono, is_retro, retro_old_value);
+			if (chrono >= Chrono.META_UNDO or !actor.is_green):
+				set_actor_var(actor, event[2], event[3], chrono, is_retro, retro_old_value);
 		Undo.change_terrain:
 			var actor = event[1];
 			var pos = event[2];
@@ -2081,6 +2137,10 @@ func undo_one_event(event: Array, chrono : int) -> void:
 		Undo.animation_substep:
 			# don't need to emit a new event as meta undoing and beyond is a teleport
 			animation_substep += 1;
+		Undo.time_bubble:
+			var actor = event[1];
+			actor.is_green = false;
+			actor.update_time_bubble();
 
 func meta_undo_a_restart() -> bool:
 	var meta_undo_a_restart_type = 2;
@@ -2435,7 +2495,7 @@ func time_passes(chrono: int) -> void:
 	# Fall into holes and bottomless pits. (Having this happen before star collect is INTERESTING...)
 	if (chrono < Chrono.META_UNDO):
 		for actor in actors:
-			if actor.broken or actor.floats:
+			if actor.broken or actor.is_star:
 				continue
 			var terrain = terrain_in_tile(actor.pos, actor, chrono);
 			for i in range(terrain.size()):
@@ -2456,7 +2516,7 @@ func time_passes(chrono: int) -> void:
 	# Collect stars. (Going to experiment with collecting happening during undo/unwin.)
 	if (chrono < Chrono.META_UNDO and !player.broken):
 		for actor in actors:
-			if actor.actorname == Actor.Name.Star and !actor.broken and actor.pos == player.pos:
+			if actor.is_star and !actor.broken and actor.pos == player.pos:
 				# 'it's a blue event' will be handled inside of set_actor_var.
 				actor.post_mortem = Actor.PostMortems.Collect;
 				set_actor_var(actor, "broken", true, chrono);
