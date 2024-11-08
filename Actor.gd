@@ -93,6 +93,7 @@ func set_next_texture(tex: Texture, facing_dir_at_the_time: Vector2) -> void:
 		visible = true;
 		
 	self.texture = tex;
+	self.modulate.a = 1.0;
 	
 	frame_timer = 0;
 	#frame = 0;
@@ -457,6 +458,60 @@ func _process(delta: float) -> void:
 					is_done = false;
 					var adjusted_frame = 5 + new_animation_timer_tick % 2;
 					frame = base_frame + adjusted_frame;
+			12: #fall
+				if (animation_timer == 0):
+					gamelogic.play_sound("plummet");
+				animation_timer_max = 0.5;
+				var old_animation_timer_tick = int(animation_timer*10);
+				animation_timer += delta;
+				var new_animation_timer_tick = int(animation_timer*10);
+				var hole = null;
+				if (gamelogic.hole_sprites.has(pos)):
+					hole = gamelogic.hole_sprites[pos];
+				if (hole != null):
+					if actorname == Name.Player:
+						hole.frame = hole.hframes;
+						# TODO: do player kick here
+					elif (actorname == Name.IceBlock):
+						hole.frame = hole.hframes*2;
+					else:
+						hole.frame = 0;
+					hole.frame += clamp(floor((animation_timer/animation_timer_max)*hole.hframes), 0, hole.hframes-1);
+				if (old_animation_timer_tick != new_animation_timer_tick):
+					var sprite = Sprite.new();
+					sprite.set_script(preload("res://FadingSprite.gd"));
+					sprite.texture = preload("res://assets/action_line.png")
+					sprite.modulate = Color("A7A79E")
+					sprite.fadeout_timer_max = 0.4;
+					sprite.velocity = Vector2(0, -32)
+					sprite.position = position;
+					sprite.position.x += gamelogic.rng.randf_range(gamelogic.cell_size*0.25, gamelogic.cell_size*0.75);
+					sprite.centered = true;
+					gamelogic.overactorsparticles.add_child(sprite);
+				self.modulate.a = 1.0-(animation_timer/animation_timer_max);
+				if animation_timer > animation_timer_max:
+					is_done = true;
+					gamelogic.play_sound("crashland");
+					if (hole != null):
+						hole.queue_free();
+						gamelogic.hole_sprites.erase(pos);
+					for i in range(10):
+						var sprite = Sprite.new();
+						sprite.set_script(preload("res://FadingSprite.gd"));
+						sprite.texture = preload("res://assets/dust.png")
+						sprite.hframes = 8;
+						sprite.vframes = 1;
+						sprite.frame = gamelogic.rng.randi_range(0, sprite.hframes - 1);
+						sprite.fadeout_timer_max = 0.4;
+						sprite.velocity = Vector2(gamelogic.rng.randf_range(16, 32), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
+						sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2);
+						sprite.centered = true;
+						gamelogic.overactorsparticles.add_child(sprite);
+				else:
+					if (actorname == Name.Player):
+						var adjusted_frame = 1 + (new_animation_timer_tick % 2)*2;
+						frame = base_frame + adjusted_frame;
+					is_done = false;
 		if (is_done):
 			animations.pop_front();
 			animation_timer = 0;

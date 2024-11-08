@@ -102,6 +102,7 @@ enum Anim {
 	starget, #9
 	starunget, #10
 	sing, #11
+	fall, #12
 }
 
 enum Greenness {
@@ -152,6 +153,7 @@ var voidlike_puzzle : bool = false;
 var player : Actor = null
 var actors : Array = []
 var goals : Array = []
+var hole_sprites : Dictionary = {}
 # red is for 'undo', blue is for 'unwin', meta/green is for 'really undo'
 var red_turn : int = 0;
 var red_undo_buffer : Array = [];
@@ -933,6 +935,9 @@ func ready_map() -> void:
 	for goal in goals:
 		goal.queue_free();
 	goals.clear();
+	for hole_sprite in hole_sprites:
+		hole_sprite.queue_free();
+	hole_sprites.clear();
 	for whatever in underterrainfolder.get_children():
 		whatever.queue_free();
 	for whatever in actorsfolder.get_children():
@@ -1211,10 +1216,14 @@ func find_goals() -> void:
 			add_actor_or_goal_at_appropriate_layer(goal, i);
 			goal.update_graphics();
 	
-func add_actor_or_goal_at_appropriate_layer(thing: ActorBase, i: int) -> void:
+func add_actor_or_goal_at_appropriate_layer(thing: Node2D, i: int) -> void:
 	terrain_layers[i].add_child(thing);
 	if (i == terrain_layers.size() - 1):
 		terrain_layers[i].move_child(thing, terrain_layers[i-1].get_index());
+
+func add_actor_or_goal_at_appropriate_layer_at_back(thing: Node2D, i: int) -> void:
+	terrain_layers[i].add_child(thing);
+	terrain_layers[i].move_child(thing, 0);
 
 func extract_actors(id: int, actorname: int, heaviness: int, strength: int, floats: bool) -> void:
 	var layers_tiles = get_used_cells_by_id_all_layers(id);
@@ -1519,7 +1528,6 @@ func maybe_break_actor(actor: Actor, hypothetical: bool, green_terrain: int, chr
 			if (actor.is_crystal and chrono < Chrono.CHAR_UNDO):
 				chrono = Chrono.CHAR_UNDO;
 			set_actor_var(actor, "broken", true, chrono);
-			# TODO: any hole filling animations go here
 		return Success.Surprise;
 	else:
 		return Success.No;
@@ -1558,7 +1566,6 @@ chrono: int, new_tile: int, assumed_old_tile: int = -2, animation_nonce: int = -
 			chrono = Chrono.META_UNDO;
 
 		add_undo_event([Undo.change_terrain, actor, pos, layer, old_tile, new_tile, animation_nonce], chrono);
-		# TODO: any hole filling animations go here
 		
 	return Success.Surprise;
 
@@ -1689,6 +1696,15 @@ func end_lose() -> void:
 		won_fade_started = false;
 		player.modulate.a = 1;
 
+func add_hole_sprite(actor: ActorBase, layer: int) -> void:
+	var sprite = Sprite.new();
+	hole_sprites[actor.pos] = sprite;
+	sprite.position = actor.pos*cell_size + Vector2(cell_size/2, cell_size/2);
+	sprite.texture = preload("res://assets/pit_filling.png");
+	sprite.hframes = 5;
+	sprite.vframes = 3;
+	add_actor_or_goal_at_appropriate_layer_at_back(sprite, layer);
+
 func set_actor_var(actor: ActorBase, prop: String, value, chrono: int,
 is_retro: bool = false, _retro_old_value = null) -> void:
 	var old_value = actor.get(prop);
@@ -1722,7 +1738,7 @@ is_retro: bool = false, _retro_old_value = null) -> void:
 				add_to_animation_server(player, [Anim.sing]);
 		elif actor.post_mortem == Actor.PostMortems.Fall:
 			if (value == true):
-				add_to_animation_server(actor, [Anim.sfx, "plummet"]);
+				add_to_animation_server(actor, [Anim.fall]);
 			else:
 				add_to_animation_server(actor, [Anim.sfx, "unfall"]);
 		elif actor.post_mortem == Actor.PostMortems.Melt:
@@ -1888,6 +1904,10 @@ func finish_animations(chrono: int) -> void:
 		goal.calculate_speed();
 	animation_server.clear();
 	animation_substep = 0;
+	
+	for hole_sprite in hole_sprites.values():
+		hole_sprite.queue_free();
+	hole_sprites.clear();
 
 func adjust_meta_turn(amount: int, chrono: int) -> void:
 	meta_turn += amount;
@@ -2406,6 +2426,7 @@ func time_passes(chrono: int) -> void:
 				var tile = terrain[i];
 				if tile == Tiles.Hole:
 					actor.post_mortem = Actor.PostMortems.Fall;
+					add_hole_sprite(actor, i);
 					set_actor_var(actor, "broken", true, chrono);
 					maybe_change_terrain(actor, actor.pos, i, false, Greenness.Mundane, chrono, -1);
 					break;
