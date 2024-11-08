@@ -188,6 +188,11 @@ _global_script_classes=[ {
 "class": "WaitForDraw",
 "language": "GDScript",
 "path": "res://WaitForDraw.gd"
+}, {
+"base": "Node2D",
+"class": "WebStartup",
+"language": "GDScript",
+"path": "res://WebStartup.gd"
 } ]
 _global_script_class_icons={
 "AccessibleSpinBox": "",
@@ -225,7 +230,8 @@ _global_script_class_icons={
 "StarSprite": "",
 "SuperScaling": "",
 "TimeBubble": "",
-"WaitForDraw": ""
+"WaitForDraw": "",
+"WebStartup": ""
 }
 
 [application]

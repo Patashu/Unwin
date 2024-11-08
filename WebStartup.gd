@@ -1,39 +1,34 @@
 extends Node2D
-class_name GenericModalPrompt
+class_name WebStartup
 
 onready var gamelogic = get_tree().get_root().find_node("LevelScene", true, false).gamelogic;
-onready var okbutton : Button = get_node("Holder/OkButton");
-onready var cancelbutton : Button = get_node("Holder/CancelButton");
 onready var holder : Label = get_node("Holder");
 onready var pointer : Sprite = get_node("Holder/Pointer");
+onready var okbutton : Button = get_node("Holder/OkButton");
 
 func _ready() -> void:
-	cancelbutton.connect("pressed", self, "destroy");
-	okbutton.connect("pressed", self, "accept");
+	okbutton.connect("pressed", self, "destroy");
+	okbutton.grab_focus();
 
 func destroy() -> void:
 	self.queue_free();
 	gamelogic.ui_stack.erase(self);
 	gamelogic.time_to_start();
 
-func accept() -> void:
-	destroy();
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (gamelogic.ui_stack.size() > 0 and gamelogic.ui_stack[gamelogic.ui_stack.size() - 1] != self):
 		return;
-	
-	if (Input.is_action_just_released("escape")):
+		
+	if (Input.is_action_just_pressed("escape")):
 		destroy();
-	elif (Input.is_action_just_released("ui_cancel")):
-		destroy();
+		return;
 		
 	var focus = holder.get_focus_owner();
 	if (focus == null):
-		cancelbutton.grab_focus();
-		focus = cancelbutton;
-	
+		okbutton.grab_focus();
+		focus = okbutton;
+
 	var focus_middle_x = round(focus.rect_position.x + focus.rect_size.x / 2);
 	pointer.position.y = round(focus.rect_position.y + focus.rect_size.y / 2);
 	if (focus_middle_x > holder.rect_size.x / 2):

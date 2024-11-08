@@ -356,15 +356,19 @@ func _ready() -> void:
 	load_level(0);
 	ready_done = true;
 	
-	var timetostart = Node2D.new();
-	timetostart.script = preload("res://WaitForDraw.gd");
-	timetostart.gamelogic = self;
-	self.get_parent().call_deferred("add_child", timetostart);
+	if (!is_web):
+		var timetostart = Node2D.new();
+		timetostart.script = preload("res://WaitForDraw.gd");
+		timetostart.gamelogic = self;
+		self.get_parent().call_deferred("add_child", timetostart);
+	else:
+		var a = preload("res://WebStartup.tscn").instance();
+		call_deferred("add_to_ui_stack", a)
 
 func time_to_start() -> void:
 	play_sound("intro");
 	fadeout_timer = 0.0;
-	fadeout_timer_max = 2.5;
+	fadeout_timer_max = 6.0;
 	intro_hop();
 
 var GuiHolder : CanvasLayer;
