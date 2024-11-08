@@ -513,6 +513,9 @@ func _process(delta: float) -> void:
 						frame = base_frame + adjusted_frame;
 					is_done = false;
 			13: #intro
+				facing_dir = Vector2.RIGHT;
+				base_frame = 0;
+				animation_frame = 0;
 				self.texture = preload("res://assets/intro_spritesheet.png");
 				self.hframes = 17;
 				self.vframes = 1;
@@ -524,7 +527,7 @@ func _process(delta: float) -> void:
 					var sprite = Sprite.new();
 					sprite.set_script(preload("res://FadingSprite.gd"));
 					sprite.texture = preload("res://assets/intro_particle.png")
-					sprite.hframes = 3;
+					sprite.hframes = 2;
 					sprite.vframes = 1;
 					sprite.frame = gamelogic.rng.randi_range(0, sprite.hframes - 1);
 					sprite.fadeout_timer_max = 0.8;
@@ -540,13 +543,28 @@ func _process(delta: float) -> void:
 					gamelogic.overactorsparticles.add_child(sprite);
 				self.frame = clamp(floor((animation_timer/animation_timer_max)*hframes), 0, hframes - 1);
 				if animation_timer > animation_timer_max:
+					if (animation_timer_max >= 2.0):
+						gamelogic.undo_effect_color = gamelogic.meta_color;
+						gamelogic.afterimage(self);
+						for i in range(10):
+							var sprite = Sprite.new();
+							sprite.set_script(preload("res://FadingSprite.gd"));
+							sprite.texture = preload("res://assets/intro_particle.png")
+							sprite.hframes = 2;
+							sprite.vframes = 1;
+							sprite.frame = gamelogic.rng.randi_range(0, sprite.hframes - 1);
+							sprite.fadeout_timer_max = 1.6;
+							sprite.scale = Vector2(1.0, 1.0);
+							sprite.velocity = Vector2(gamelogic.rng.randf_range(16, 32), 0).rotated(gamelogic.rng.randf_range(0, PI*2));
+							sprite.position = position + Vector2(gamelogic.cell_size/2, gamelogic.cell_size/2) + sprite.velocity*0.25;
+							sprite.centered = true;
+							gamelogic.overactorsparticles.add_child(sprite);
 					is_done = true;
 					update_graphics();
 				else:
 					is_done = false;
 			14: #outro
 				#same code as intro but with anim reversed
-				# also have to set base_frame to 0 to not interfere
 				facing_dir = Vector2.RIGHT;
 				base_frame = 0;
 				animation_frame = 0;

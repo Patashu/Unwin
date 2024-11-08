@@ -353,9 +353,10 @@ func _ready() -> void:
 	self.get_parent().call_deferred("add_child", timetostart);
 
 func time_to_start() -> void:
-	play_sound("bootup");
+	play_sound("intro");
 	fadeout_timer = 0.0;
 	fadeout_timer_max = 2.5;
+	intro_hop();
 
 var GuiHolder : CanvasLayer;
 
@@ -993,11 +994,18 @@ func initialize_starbar() -> void:
 	else:
 		call_deferred("initialize_starbar");
 
+var first_intro = false;
+
 func intro_hop() -> void:
 	if (!ready_done):
 		player.texture = null;
-		add_to_animation_server(player, [Anim.stall, 0.5]);
-		add_to_animation_server(player, [Anim.intro, 2.0]);
+		return;
+	if (!first_intro):
+		first_intro = true;
+		player.texture = null;
+		add_to_animation_server(player, [Anim.stall, 0.7]);
+		add_to_animation_server(player, [Anim.intro, 2.8]);
+		add_to_animation_server(player, [Anim.sing]);
 		add_to_animation_server(player, [Anim.sing]);
 	else:
 		add_to_animation_server(player, [Anim.intro, 0.5]);
@@ -1309,7 +1317,7 @@ func prepare_audio() -> void:
 	#old SFX still in use (afaik
 	sounds["involuntarybumpother"] = preload("res://sfx/involuntarybumpother.ogg");
 	sounds["bump"] = preload("res://sfx/bump.ogg");
-	sounds["bootup"] = preload("res://sfx/bootup.ogg");
+	sounds["intro"] = preload("res://sfx/intro.ogg");
 	sounds["unpush"] = preload("res://sfx/unpush.ogg");
 	sounds["push"] = preload("res://sfx/push.ogg");
 	sounds["unfall"] = preload("res://sfx/unfall.ogg");
