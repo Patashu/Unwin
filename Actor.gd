@@ -427,7 +427,7 @@ func _process(delta: float) -> void:
 						gamelogic.undo_effect_strength = 0.12;
 						gamelogic.undo_effect_per_second = 0.12;
 						gamelogic.undo_effect_color = c;
-						gamelogic.floating_text("You got a Star!", true);
+						gamelogic.floating_text("You recall not having that Star...", true);
 				animation_timer_max = 1.0;
 				var old_animation_timer_tick = int(animation_timer*5);
 				animation_timer += delta;

@@ -8,10 +8,9 @@ func _process(delta: float) -> void:
 	timer += delta;
 	if (reversed):
 		rect_position.y += delta*30;
-		modulate = Color(1, 1, 1, 1.0-(2.0-timer)/2.0);
 	else:
 		rect_position.y -= delta*30;
-		modulate = Color(1, 1, 1, (2-timer)/2);
+	modulate = Color(1, 1, 1, (2-timer)/2);
 	if (timer > 2):
 		queue_free();
 	update();
