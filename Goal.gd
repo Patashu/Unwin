@@ -13,6 +13,16 @@ var particle_timer = particle_timer_max;
 var last_particle_angle = 0.0;
 var unwinning = false;
 var starbar = null;
+var state : int = State.Closed;
+var state_timer = 0;
+var state_timer_max = 0.5;
+
+enum State {
+	Closed,
+	Opening,
+	Closing,
+	Open
+}
 
 func update_graphics() -> void:
 	pass
@@ -28,11 +38,51 @@ func calculate_speed() -> void:
 	if (starbar.collected >= starbar.collected_max or starbar.collected_max < 1):
 		particle_timer_max = 0.5;
 		dinged = true;
-		return;
-	dinged = false;
-	particle_timer_max = (3.0-2.0*(float(starbar.collected)/float(starbar.collected_max)))/2;
+	else:
+		particle_timer_max = (3.0-2.0*(float(starbar.collected)/float(starbar.collected_max)))/2;
+		dinged = false;
+	
+	if (dinged and state != State.Open and state != State.Opening):
+		state = State.Opening;
+		state_timer = 0;
+	elif (!dinged and state != State.Closed and state != State.Closing):
+		state = State.Closing;
+		state_timer = 0;
 
 func _process(delta: float) -> void:
+	match state:
+		State.Open:
+			self.texture = preload("res://assets/win_spritesheet.png");
+			self.hframes = 8;
+			state_timer += delta;
+			state_timer_max = 1.0;
+			if (state_timer >= state_timer_max):
+				state_timer -= state_timer_max;
+			self.frame = clamp(floor((state_timer/state_timer_max)*hframes), 0, hframes - 1);
+		State.Closed:
+			self.texture = preload("res://assets/win.png");
+			self.hframes = 1;
+			self.frame = 0;
+		State.Opening:
+			self.texture = preload("res://assets/win_open_spritesheet.png");
+			self.hframes = 4;
+			state_timer_max = 0.5;
+			state_timer += delta;
+			self.frame = clamp(floor((state_timer/state_timer_max)*self.hframes), 0, hframes - 1);
+			if (state_timer >= state_timer_max):
+				state_timer -= state_timer_max;
+				state = State.Open;
+		State.Closing:
+			self.texture = preload("res://assets/win_open_spritesheet.png");
+			self.hframes = 4;
+			self.frame = clamp(floor((1.0-(state_timer/state_timer_max))*self.hframes), 0, hframes - 1);
+			state_timer_max = 0.5;
+			state_timer += delta;
+			if (state_timer >= state_timer_max):
+				state_timer -= state_timer_max;
+				state = State.Closed;
+				
+	
 	particle_timer += delta;
 	if (particle_timer > particle_timer_max):
 		var underactorsparticles = gamelogic.underactorsparticles;
