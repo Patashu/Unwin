@@ -45,9 +45,11 @@ func calculate_speed() -> void:
 	if (dinged and state != State.Open and state != State.Opening):
 		state = State.Opening;
 		state_timer = 0;
+		gamelogic.play_sound("goalopening");
 	elif (!dinged and state != State.Closed and state != State.Closing):
 		state = State.Closing;
 		state_timer = 0;
+		gamelogic.play_sound("goalclosing");
 
 func _process(delta: float) -> void:
 	match state:

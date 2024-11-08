@@ -1279,12 +1279,14 @@ func prepare_audio() -> void:
 	
 	#new SFX
 	sounds["crashland"] = preload("res://sfx/crashland.ogg");
+	sounds["goalclosing"] = preload("res://sfx/goalclosing.ogg");
+	sounds["goalopening"] = preload("res://sfx/goalopening.ogg");
 	sounds["melt"] = preload("res://sfx/melt.ogg");
 	sounds["plummet"] = preload("res://sfx/plummet.ogg");
 	sounds["slide"] = preload("res://sfx/slide.ogg");
 	sounds["starget"] = preload("res://sfx/starget.ogg");
 	sounds["unmelt"] = preload("res://sfx/unmelt.ogg");
-	sounds["unwin"] = preload("res://sfx/unwin.ogg");
+	sounds["unwin"] = preload("res://sfx/unwin.ogg");	
 	
 	#old SFX still in use (afaik
 	sounds["involuntarybumpother"] = preload("res://sfx/involuntarybumpother.ogg");
