@@ -2028,6 +2028,8 @@ func adjust_meta_turn(amount: int, chrono: int) -> void:
 	if (won or lost or amount >= 0):
 		check_won(chrono);
 	
+var seen_goal : bool = false;
+	
 func check_won(chrono: int) -> void:
 	won = false;
 	var locked = false;
@@ -2044,8 +2046,9 @@ func check_won(chrono: int) -> void:
 	
 	var on_goal = !player.broken and terrain_in_tile(player.pos, player, chrono).has(Tiles.Win);
 	
-	if (locked and on_goal and !is_custom):
+	if (locked and on_goal and !is_custom and !doing_replay and !seen_goal):
 		floating_text("Collect more Stars (%d/%d)" % [starbar.collected, starbar.collected_max] )
+		seen_goal = true;
 	
 	if (!locked and on_goal):
 		won = true;
