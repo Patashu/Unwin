@@ -16,6 +16,7 @@ onready var hintbutton : Button = get_node("Holder/HintButton");
 onready var settingsbutton : Button = get_node("Holder/SettingsButton");
 onready var restartbutton : Button = get_node("Holder/RestartButton");
 onready var quitgamebutton : Button = get_node("Holder/QuitGameButton");
+onready var insightbutton : Button = get_node("Holder/InsightButton");
 var is_web = false;
 
 func _ready() -> void:
@@ -35,6 +36,7 @@ func _ready() -> void:
 	settingsbutton.connect("pressed", self, "_settingsbutton_pressed");
 	restartbutton.connect("pressed", self, "_restartbutton_pressed");
 	quitgamebutton.connect("pressed", self, "_quitgamebutton_pressed");
+	insightbutton.connect("pressed", self, "_insightbutton_pressed");
 	#IF YOU CHANGE THE NUMBER OF BUTTONS, CHANGE FOCUS NEIGHBOURS IN EDITOR TOO!!
 	
 	if (gamelogic.test_mode):
@@ -45,6 +47,19 @@ func _ready() -> void:
 		leveleditorbutton.add_stylebox_override("focus", stylebox);
 		leveleditorbutton.add_stylebox_override("disabled", stylebox);
 		leveleditorbutton.add_stylebox_override("normal", stylebox);
+		
+	if gamelogic.in_insight_level:
+		if gamelogic.has_remix.has(gamelogic.level_name) or gamelogic.level_name.find("(Remix)") >= 0:
+			insightbutton.text = "Lose Remix";
+		else:
+			insightbutton.text = "Lose Insight";
+	elif gamelogic.has_insight_level:
+		if gamelogic.has_remix.has(gamelogic.level_name):
+			insightbutton.text = "Gain Remix";
+		else:
+			insightbutton.text = "Gain Insight";
+	elif !gamelogic.has_insight_level:
+		insightbutton.disabled = true;
 		
 	if gamelogic.doing_replay:
 		authorsreplaybutton.text = "End Replay";
@@ -72,8 +87,9 @@ func _ready() -> void:
 		pastereplaybutton.text = "Paste Replay/Lvl";
 		quitgamebutton.queue_free();
 		#then re-do focus
-		pastereplaybutton.focus_neighbour_bottom = pastereplaybutton.get_path_to(yourreplaybutton);
-		yourreplaybutton.focus_neighbour_top = yourreplaybutton.get_path_to(pastereplaybutton);
+		#not any more as I added a lower, indestructible button!
+		#pastereplaybutton.focus_neighbour_bottom = pastereplaybutton.get_path_to(yourreplaybutton);
+		#yourreplaybutton.focus_neighbour_top = yourreplaybutton.get_path_to(pastereplaybutton);
 	else:
 		var clipboard = OS.get_clipboard();
 		if (gamelogic.looks_like_level(clipboard)):

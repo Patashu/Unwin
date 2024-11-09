@@ -11,10 +11,10 @@ script = ExtResource( 3 )
 margin_left = 171.0
 margin_top = 84.0
 margin_right = 340.0
-margin_bottom = 215.0
+margin_bottom = 244.0
 theme = ExtResource( 2 )
 custom_styles/normal = ExtResource( 1 )
-text = "Unwin b4.3 - Pause Menu"
+text = "Unwin b5 - Pause Menu"
 align = 1
 
 [node name="OkButton" type="Button" parent="Holder"]
@@ -23,7 +23,7 @@ margin_top = 17.0
 margin_right = 74.0
 margin_bottom = 32.0
 focus_neighbour_left = NodePath("../YourReplayButton")
-focus_neighbour_top = NodePath("../RestartButton")
+focus_neighbour_top = NodePath("../InsightButton")
 text = "Continue"
 
 [node name="YourReplayButton" type="Button" parent="Holder"]
@@ -31,7 +31,7 @@ margin_left = 78.0
 margin_top = 17.0
 margin_right = 160.0
 margin_bottom = 32.0
-focus_neighbour_top = NodePath("../QuitGameButton")
+focus_neighbour_top = NodePath("../HintButton")
 focus_neighbour_right = NodePath("../OkButton")
 text = "Your Replay"
 
@@ -48,6 +48,8 @@ margin_left = 78.0
 margin_top = 53.0
 margin_right = 160.0
 margin_bottom = 68.0
+focus_neighbour_top = NodePath("../AuthorsReplayButton")
+focus_neighbour_bottom = NodePath("../CopyReplayButton")
 text = "Save Replay"
 
 [node name="CopyReplayButton" type="Button" parent="Holder"]
@@ -72,6 +74,7 @@ margin_top = 35.0
 margin_right = 74.0
 margin_bottom = 50.0
 focus_neighbour_left = NodePath("../AuthorsReplayButton")
+focus_neighbour_bottom = NodePath("../ControlsButton")
 text = "Level Editor"
 
 [node name="ControlsButton" type="Button" parent="Holder"]
@@ -80,15 +83,18 @@ margin_top = 71.0
 margin_right = 74.0
 margin_bottom = 86.0
 focus_neighbour_left = NodePath("../CopyReplayButton")
+focus_neighbour_top = NodePath("../LevelEditorButton")
 text = "Controls"
 
 [node name="HintButton" type="Button" parent="Holder"]
-margin_left = 9.0
-margin_top = 53.0
-margin_right = 74.0
-margin_bottom = 68.0
-focus_neighbour_left = NodePath("../CopyReplayButton")
-text = "Hint, Please!"
+margin_left = 79.0
+margin_top = 139.0
+margin_right = 160.0
+margin_bottom = 154.0
+focus_neighbour_left = NodePath("../InsightButton")
+focus_neighbour_right = NodePath("../InsightButton")
+focus_neighbour_bottom = NodePath("../YourReplayButton")
+text = "Rules Overview"
 
 [node name="SettingsButton" type="Button" parent="Holder"]
 margin_left = 9.0
@@ -108,6 +114,16 @@ focus_neighbour_right = NodePath("../QuitGameButton")
 focus_neighbour_bottom = NodePath("../OkButton")
 text = "Restart"
 
+[node name="InsightButton" type="Button" parent="Holder"]
+margin_left = 9.0
+margin_top = 139.0
+margin_right = 74.0
+margin_bottom = 154.0
+focus_neighbour_left = NodePath("../QuitGameButton")
+focus_neighbour_right = NodePath("../HintButton")
+focus_neighbour_bottom = NodePath("../OkButton")
+text = "Gain Insight"
+
 [node name="QuitGameButton" type="Button" parent="Holder"]
 margin_left = 79.0
 margin_top = 107.0
@@ -118,3 +134,11 @@ focus_neighbour_bottom = NodePath("../YourReplayButton")
 text = "Quit Game"
 
 [node name="Pointer" type="Sprite" parent="Holder"]
+
+[node name="Label" type="Label" parent="Holder"]
+margin_left = 12.0
+margin_top = 126.0
+margin_right = 160.0
+margin_bottom = 137.0
+text = "Stuck? Try these:"
+align = 1

@@ -147,6 +147,9 @@ var custom_string : String = "";
 var chapter : int = 0;
 var level_in_chapter : int = 0;
 var level_is_extra : bool = false;
+var in_insight_level : bool = false;
+var has_insight_level : bool = false;
+var insight_level_scene = null;
 var level_number : int = 0
 var level_name : String = "Blah Blah Blah";
 var level_replay : String = "";
@@ -245,6 +248,8 @@ var level_list : Array = [];
 var level_filenames : Array = [];
 var level_names : Array = [];
 var level_extraness : Array = [];
+var has_remix : Dictionary = {};
+var insight_level_names : Dictionary = {};
 var chapter_names : Array = [];
 var chapter_skies : Array = [];
 var chapter_tracks : Array = [];
@@ -925,6 +930,19 @@ func initialize_level_list() -> void:
 		var level_name = level_names[i];
 		var level_filename = level_filenames[i];
 		
+		# also learn which puzzles are remixes
+		var insight_path = "res://levels/insight/" + level_filename + "Insight.tscn";
+		if (ResourceLoader.exists(insight_path)):
+			var insight_level = load(insight_path).instance();
+			var insight_level_name = insight_level.get_node("LevelInfo").level_name;
+			if (insight_level_name.find("(Insight)")) >= 0:
+				pass
+			elif insight_level_name.find("(Remix)") >= 0 or insight_level_name.find("World's Smallest Puzzle") >= 0 or insight_level_name.find("Theory of Everything") >= 0 or insight_level_name.find("Board Ring B") >= 0:
+				has_remix[level_name] = true;
+				has_remix[insight_level_name] = true;
+			insight_level_names[level_name] = insight_level_name;
+			insight_level.queue_free();
+		
 	refresh_puzzles_completed();
 		
 func refresh_puzzles_completed() -> void:
@@ -982,6 +1000,14 @@ func ready_map() -> void:
 			authors_replay = authors_replay_parts[authors_replay_parts.size()-1];
 		else:
 			authors_replay = annotated_authors_replay;
+			
+	has_insight_level = false;
+	insight_level_scene = null;
+	if (!is_custom):
+		var insight_path = "res://levels/insight/" + level_filenames[level_number] + "Insight.tscn";
+		if (ResourceLoader.exists(insight_path)):
+			has_insight_level = true;
+			insight_level_scene = load(insight_path);
 
 	calculate_map_size();
 	make_shadows();
@@ -2044,11 +2070,12 @@ func check_won(chrono: int) -> void:
 				level_save_data["won"] = true;
 				levelstar.previous_modulate = Color(1, 1, 1, 0);
 				levelstar.flash();
-				if (!is_custom):
-					puzzles_completed += 1;
-					if (level_is_extra):
-						advanced_puzzles_completed += 1;
-				specific_puzzles_completed[level_number] = true;
+				if (!in_insight_level):
+					if (!is_custom):
+						puzzles_completed += 1;
+						if (level_is_extra):
+							advanced_puzzles_completed += 1;
+					specific_puzzles_completed[level_number] = true;
 			if (!level_save_data.has("replay")):
 				level_save_data["replay"] = annotate_replay(user_replay);
 			else:
@@ -2072,10 +2099,15 @@ func check_won(chrono: int) -> void:
 	virtualbuttons.get_node("Others/EnterButton").disabled = !won or !virtualbuttons.visible;
 	if (won):
 		won_cooldown = 0;
+		var then = "Watch Replay"
+		if (in_insight_level):
+			then = "Lose Insight"
+		elif !(doing_replay):
+			then += "\nOr try custom puzzles! (link in itch.io description)";
 		if !doing_replay:
-			winlabel.change_text("You have won!\nProgramming: Patashu\nGraphics: Teal Knight\n[" + human_readable_input("ui_accept", 1) + "]: Watch Replay")
+			winlabel.change_text("You have won!\nProgramming: Patashu\nGraphics: Teal Knight\n[" + human_readable_input("ui_accept", 1) + "]: " + then);
 		elif doing_replay:
-			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: Watch Replay")
+			winlabel.change_text("You have won!\n\n[" + human_readable_input("ui_accept", 1) + "]: " + then)
 		won_fade_started = false;
 		tutoriallabel.visible = false;
 		call_deferred("adjust_winlabel_deferred");
@@ -2388,6 +2420,8 @@ func play_next_song() -> void:
 func load_level_direct(new_level: int) -> void:
 	is_custom = false;
 	end_replay();
+	in_insight_level = false;
+	has_insight_level = false;
 	var impulse = new_level - self.level_number;
 	load_level(impulse, true);
 	
@@ -2423,6 +2457,7 @@ func load_level(impulse: int, ignore_locked: bool = false) -> void:
 				break;
 			
 	if (impulse != 0):
+		in_insight_level = false;
 		save_file["level_number"] = level_number;
 		level_replay = "";
 		save_game();
@@ -2431,7 +2466,10 @@ func load_level(impulse: int, ignore_locked: bool = false) -> void:
 	if (is_custom):
 		load_custom_level(custom_string);
 		return;
-	level = level_list[level_number].instance();
+	if (impulse == 0 and has_insight_level and in_insight_level and insight_level_scene != null):
+		level = insight_level_scene.instance();
+	else:
+		level = level_list[level_number].instance();
 	levelfolder.remove_child(terrainmap);
 	terrainmap.queue_free();
 	levelfolder.add_child(level);
@@ -2628,13 +2666,19 @@ func do_one_replay_turn() -> void:
 					level_replay = replay;
 				else:
 					unit_test_mode_do_second_pass = true;
+					if (has_insight_level and !in_insight_level):
+						gain_insight();
+					else:
+						load_level(1);
+						while (unit_test_blacklist.has(level_name)):
+							load_level(1);
+			else:
+				if (has_insight_level and !in_insight_level):
+					gain_insight();
+				else:
 					load_level(1);
 					while (unit_test_blacklist.has(level_name)):
 						load_level(1);
-			else:
-				load_level(1);
-				while (unit_test_blacklist.has(level_name)):
-					load_level(1);
 			replay_turn = 0;
 			level_replay = authors_replay;
 			next_replay = replay_timer + replay_interval();
@@ -3085,6 +3129,31 @@ func _input(event: InputEvent) -> void:
 				save_file["fullscreen"] = false;
 			setup_resolution();
 
+func gain_insight() -> void:
+	if (ui_stack.size() > 0):
+		return;
+	
+	if (has_insight_level and !unit_test_mode):
+		if (!save_file.has("gain_insight") or save_file["gain_insight"] != true):
+			var modal = preload("res://GainInsightModalPrompt.tscn").instance();
+			add_to_ui_stack(modal);
+			return;
+	
+	if (has_insight_level):
+		end_replay(); #not sure why Unwin needs this but ET didn't?
+		if (in_insight_level):
+			in_insight_level = false;
+		else:
+			in_insight_level = true;
+		level_replay = "";
+		load_level(0);
+		cut_sound();
+		play_sound("usegreenality");
+		undo_effect_strength = 0.5;
+		undo_effect_per_second = undo_effect_strength*(1/0.5);
+		finish_animations(Chrono.TIMELESS);
+		undo_effect_color = meta_color;
+
 func serialize_current_level() -> String:
 	if (is_custom):
 		return custom_string;
@@ -3102,7 +3171,10 @@ func serialize_current_level() -> String:
 	# we now have to grab the original values for: terrain_layers, heavy_max_moves, light_max_moves
 	# has to be kept in sync with load_level/ready_map and any custom level logic we end up adding
 	var level = null;
-	level = level_list[level_number].instance();
+	if (has_insight_level and in_insight_level and insight_level_scene != null):
+		level = insight_level_scene.instance();
+	else:
+		level = level_list[level_number].instance();
 		
 	var level_info = level.get_node("LevelInfo");
 	level_metadata["level_replay"] = level_info.level_replay;
@@ -3227,6 +3299,7 @@ func load_custom_level(custom: String) -> void:
 	tutorial_complete();
 	
 	is_custom = true;
+	in_insight_level = false;
 	custom_string = custom;
 	var level_info = level.get_node("LevelInfo");
 	level_name = level_info["level_name"];
@@ -3509,7 +3582,10 @@ func _process(delta: float) -> void:
 		
 		if (won and Input.is_action_just_pressed("ui_accept")):
 			# only thing you really can do for a one puzzle game
-			start_saved_replay();
+			if (in_insight_level):
+				gain_insight();
+			else:
+				start_saved_replay();
 			update_info_labels();
 		elif (Input.is_action_just_pressed("escape")):
 			#end_replay(); #done in escape();
