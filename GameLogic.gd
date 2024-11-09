@@ -3093,7 +3093,7 @@ func serialize_current_level() -> String:
 	var result = "UnwinPuzzleStart: " + level_name + " by " + level_author + "\n";
 	var level_metadata = {};
 	var metadatas = ["level_name", "level_author", #"level_replay",
-	"clock_turns", "map_x_max", "map_y_max", 
+	"map_x_max", "map_y_max", 
 	];
 	for metadata in metadatas:
 		level_metadata[metadata] = self.get(metadata);
@@ -3177,7 +3177,7 @@ func deserialize_custom_level(custom: String) -> Node:
 		return null;
 	
 	var metadatas = ["level_name", "level_author", "level_replay",
-	"clock_turns", "map_x_max", "map_y_max", "target_sky", "layers",];
+	"map_x_max", "map_y_max", "target_sky", "layers",];
 	
 	for metadata in metadatas:
 		if (!result.has(metadata)):
