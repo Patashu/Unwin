@@ -2016,7 +2016,12 @@ func check_won(chrono: int) -> void:
 			locked = true;
 			break;
 	
-	if (!locked and !player.broken and terrain_in_tile(player.pos, player, chrono).has(Tiles.Win)):
+	var on_goal = !player.broken and terrain_in_tile(player.pos, player, chrono).has(Tiles.Win);
+	
+	if (locked and on_goal and !is_custom):
+		floating_text("Collect more Stars (%d/%d)" % [starbar.collected, starbar.collected_max] )
+	
+	if (!locked and on_goal):
 		won = true;
 		if (won and test_mode):
 			var level_info = terrainmap.get_node_or_null("LevelInfo");
