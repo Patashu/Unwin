@@ -385,7 +385,7 @@ func time_to_start() -> void:
 	current_track = -1;
 	target_track = 0;
 	fadeout_timer = 0.0;
-	fadeout_timer_max = 6.0;
+	fadeout_timer_max = 6.8;
 	intro_hop();
 
 var GuiHolder : CanvasLayer;
