@@ -14,7 +14,6 @@ func _ready() -> void:
 func destroy() -> void:
 	self.queue_free();
 	gamelogic.ui_stack.erase(self);
-	gamelogic.time_to_start();
 
 func accept() -> void:
 	destroy();
