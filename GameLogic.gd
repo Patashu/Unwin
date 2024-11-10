@@ -363,14 +363,22 @@ func _ready() -> void:
 	# But mute the music until we're ready.
 	current_track = -1;
 	
-	if (!is_web):
+	var already_won = false;
+	var levels_save_data = save_file["levels"];
+	if (!levels_save_data.has(level_name)):
+		levels_save_data[level_name] = {};
+	var level_save_data = levels_save_data[level_name];
+	if (level_save_data.has("won") and level_save_data["won"]):
+		already_won = true;
+	
+	if (is_web or !already_won):
+		var a = preload("res://WebStartup.tscn").instance();
+		call_deferred("add_to_ui_stack", a)
+	else:
 		var timetostart = Node2D.new();
 		timetostart.script = preload("res://WaitForDraw.gd");
 		timetostart.gamelogic = self;
 		self.get_parent().call_deferred("add_child", timetostart);
-	else:
-		var a = preload("res://WebStartup.tscn").instance();
-		call_deferred("add_to_ui_stack", a)
 
 func time_to_start() -> void:
 	play_sound("intro");

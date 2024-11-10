@@ -476,7 +476,7 @@ func tooltip_for_tile(tile: int) -> String:
 		Tiles.Wall:
 			text = "Wall: Solid."
 		Tiles.Player:
-			text = "Player: I'll write some lore here later."
+			text = "Player: Lyrebirds are imbued with the power of Song. They can recall past memories so vividly it was like they hadn't happened yet, and through singing, they can be experienced again, and reinforced in the process. (In practice, you're a Sokoban player who can Unwin Stars.)"
 		Tiles.Win:
 			text = "Win: If the Player is on Win and all Stars are collected: You win the puzzle."
 		Tiles.Star:

@@ -8,21 +8,23 @@
 script = ExtResource( 3 )
 
 [node name="Holder" type="Label" parent="."]
-margin_left = 157.0
-margin_top = 123.0
-margin_right = 351.0
-margin_bottom = 157.0
+margin_left = 143.0
+margin_top = 106.0
+margin_right = 354.0
+margin_bottom = 172.0
 theme = ExtResource( 2 )
 custom_styles/normal = ExtResource( 1 )
-text = "The teleportation song was a success."
+text = "The song of metacognition was a success.
+
+You begin to debug your own mind..."
 align = 1
 autowrap = true
 
 [node name="OkButton" type="Button" parent="Holder"]
-margin_left = 42.0
-margin_top = 14.0
-margin_right = 153.0
-margin_bottom = 29.0
+margin_left = 50.0
+margin_top = 47.0
+margin_right = 161.0
+margin_bottom = 62.0
 text = "Ok"
 
 [node name="Pointer" type="Sprite" parent="Holder"]
