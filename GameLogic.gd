@@ -360,6 +360,8 @@ func _ready() -> void:
 	# Load the first map.
 	load_level(0);
 	ready_done = true;
+	# But mute the music until we're ready.
+	current_track = -1;
 	
 	if (!is_web):
 		var timetostart = Node2D.new();
@@ -372,6 +374,8 @@ func _ready() -> void:
 
 func time_to_start() -> void:
 	play_sound("intro");
+	current_track = -1;
+	target_track = 0;
 	fadeout_timer = 0.0;
 	fadeout_timer_max = 6.0;
 	intro_hop();
@@ -889,7 +893,7 @@ func initialize_level_list() -> void:
 	chapter_standard_starting_levels.push_back(level_filenames.size());
 	chapter_standard_unlock_requirements.push_back(0);
 	chapter_skies.push_back(Color("25272A"));
-	chapter_tracks.push_back(-1);
+	chapter_tracks.push_back(0);
 	level_filenames.push_back("Unwin")
 	chapter_advanced_starting_levels.push_back(level_filenames.size());
 	chapter_advanced_unlock_requirements.push_back(8);
@@ -1388,9 +1392,9 @@ func prepare_audio() -> void:
 	sounds["voidundo"] = preload("res://sfx/voidundo.ogg");
 	sounds["switch"] = preload("res://sfx/switch.ogg");
 
-#	music_tracks.append(preload("res://music/New Bounds.ogg"));
-#	music_info.append("Patashu - New Bounds");
-#	music_db.append(0.30);
+	music_tracks.append(preload("res://music/Mind Palace.ogg"));
+	music_info.append("Patashu - Mind Palace");
+	music_db.append(0.0);
 	
 	for i in range (8):
 		var speaker = AudioStreamPlayer.new();
