@@ -8,10 +8,10 @@
 script = ExtResource( 3 )
 
 [node name="Holder" type="Label" parent="."]
-margin_left = 143.0
-margin_top = 106.0
-margin_right = 354.0
-margin_bottom = 186.0
+margin_left = 151.0
+margin_top = 110.0
+margin_right = 371.0
+margin_bottom = 176.0
 theme = ExtResource( 2 )
 custom_styles/normal = ExtResource( 1 )
 text = "The song of metacognition was a success.
@@ -22,9 +22,9 @@ autowrap = true
 
 [node name="OkButton" type="Button" parent="Holder"]
 margin_left = 50.0
-margin_top = 59.0
+margin_top = 45.0
 margin_right = 161.0
-margin_bottom = 74.0
+margin_bottom = 60.0
 text = "Ok"
 
 [node name="Pointer" type="Sprite" parent="Holder"]
