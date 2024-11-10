@@ -3546,7 +3546,7 @@ func _process(delta: float) -> void:
 		fanfare_duck_db = 0;
 	music_speaker.volume_db = music_speaker.volume_db - fanfare_duck_db;
 	
-	#starticipation - most recently unwon star(s) sparkle subtly
+	#starticipation - most recently won star(s) sparkle subtly
 	starticipation_timer += delta;
 	if (starticipation_timer > starticipation_timer_max):
 		starticipation_timer -= starticipation_timer_max;
@@ -3555,7 +3555,7 @@ func _process(delta: float) -> void:
 			for event in buffer:
 				if event[0] == Undo.set_actor_var:
 					var star = event[1];
-					var c = Color("E0B94A");
+					var c = Color("A7A79E");
 					# one sparkle, slightly different position logic
 					var sprite = Sprite.new();
 					sprite.set_script(preload("res://FadingSprite.gd"));
