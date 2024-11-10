@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Mind Palace.ogg-95a3deb89fa131bc2d1615c7d4790db5.ogg
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
