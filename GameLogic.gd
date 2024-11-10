@@ -972,9 +972,6 @@ func refresh_puzzles_completed() -> void:
 			specific_puzzles_completed.push_back(false);
 
 func ready_map() -> void:
-	# because it's so long and you might restart/gain insight/level editor/replay mode early
-	if (fadeout_timer_max > 2.0):
-		fadeout_timer_max = 2.0;
 	won = false;
 	end_lose();
 	lost_speaker.stop();
@@ -2334,6 +2331,11 @@ func do_one_letter(replay_char: String) -> void:
 			meta_undo();
 
 func restart(_is_silent: bool = false) -> void:
+	# because it's so long and you might restart/gain insight/level editor/replay mode early
+	if (fadeout_timer_max > 2.0):
+		fadeout_timer = 0.0;
+		fadeout_timer_max = 1.0;
+	
 	load_level(0);
 	cut_sound();
 	play_sound("restart");

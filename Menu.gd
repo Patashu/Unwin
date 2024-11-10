@@ -79,17 +79,21 @@ func _ready() -> void:
 		
 	if (gamelogic.user_replay.length() <= 0):
 		copyreplaybutton.disabled = true;
+		
+	if (gamelogic.is_custom):
+		quitgamebutton.text = "Exit Custom";
 	
 	# constantly check if we could paste this replay or not
 	# (unless it's a web build, silly!
 	if (is_web):
 		pastereplaybutton.disabled = false;
 		pastereplaybutton.text = "Paste Replay/Lvl";
-		quitgamebutton.queue_free();
-		#then re-do focus
-		#not any more as I added a lower, indestructible button!
-		#pastereplaybutton.focus_neighbour_bottom = pastereplaybutton.get_path_to(yourreplaybutton);
-		#yourreplaybutton.focus_neighbour_top = yourreplaybutton.get_path_to(pastereplaybutton);
+		if (!gamelogic.is_custom):
+			quitgamebutton.queue_free();
+			#then re-do focus
+			#not any more as I added a lower, indestructible button!
+			#pastereplaybutton.focus_neighbour_bottom = pastereplaybutton.get_path_to(yourreplaybutton);
+			#yourreplaybutton.focus_neighbour_top = yourreplaybutton.get_path_to(pastereplaybutton);
 	else:
 		var clipboard = OS.get_clipboard();
 		if (gamelogic.looks_like_level(clipboard)):
@@ -207,7 +211,16 @@ func _quitgamebutton_pressed() -> void:
 	if (gamelogic.ui_stack.size() > 0 and gamelogic.ui_stack[gamelogic.ui_stack.size() - 1] != self):
 		return;
 	
-	get_tree().quit();
+	if (gamelogic.is_custom):
+		# might be a better way to do this?
+		gamelogic.is_custom = false;
+		gamelogic.end_replay();
+		gamelogic.load_level(0);
+		gamelogic.update_info_labels();
+		destroy();
+		return;
+	else:
+		get_tree().quit();
 
 func destroy() -> void:
 	self.queue_free();
