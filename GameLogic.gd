@@ -981,7 +981,7 @@ func ready_map() -> void:
 	for goal in goals:
 		goal.queue_free();
 	goals.clear();
-	for hole_sprite in hole_sprites:
+	for hole_sprite in hole_sprites.values():
 		hole_sprite.queue_free();
 	hole_sprites.clear();
 	for whatever in underterrainfolder.get_children():
